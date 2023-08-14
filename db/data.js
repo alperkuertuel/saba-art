@@ -221,3 +221,5 @@ const artPieces = [
     widthReal: chance.natural({ min: 1, max: 200 }),
   },
 ];
+
+export default artPieces;
