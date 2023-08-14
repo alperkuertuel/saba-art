@@ -1,13 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 import { styled } from "styled-components";
 
 export default function ArtPiecesPreview({ artPieces }) {
   return (
     <GalleryWrapper>
-      {artPieces.map(({ id, imageUrl, name, date }) => (
+      {artPieces.map(({ id, imageUrl, name, date, slug }) => (
         <GalleryCard key={id}>
           <figure>
-            <StyledImage src={imageUrl} alt={name} width={1000} height={1000} />
+            <Link href={`/art-pieces/${slug}`}>
+              <StyledImage
+                src={imageUrl}
+                alt={name}
+                width={1000}
+                height={1000}
+              />
+            </Link>
             <Caption>
               <q>{name}</q>
               <b>{date}</b>

@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
       ...artPiece,
       date: chance.date({ string: true }),
       //name: chance.sentence({ words: 10 }),
-      description: chance.sentence({ words: 10 }),
+      description: chance.sentence({ words: 40 }),
       heightReal: chance.natural({ min: 50, max: 200 }),
       widthReal: chance.natural({ min: 50, max: 200 }),
     }));
