@@ -7,7 +7,7 @@ export default function ArtPiecesPreview({ artPieces }) {
       {artPieces.map(({ id, imageUrl, name, date }) => (
         <GalleryCard key={id}>
           <figure>
-            <StyledImage src={imageUrl} alt={name} width={200} height={200} />
+            <StyledImage src={imageUrl} alt={name} width={1000} height={500} />
             <Caption>
               <q>{name}</q>
               <b>{date}</b>
