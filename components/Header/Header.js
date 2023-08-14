@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export default function Header() {
   return (
     <StyledHeader>
-      <h1>Saba Art</h1>
+      <h1>VincentArte</h1>
       <p>
         <q>pictures are memories</q>
       </p>
@@ -13,7 +13,9 @@ export default function Header() {
 
 const StyledHeader = styled.header`
   width: 100%;
+  background-color: white;
   position: fixed;
+  top: 0;
   padding: 1rem;
   border-bottom: 1px solid lightgrey;
   text-align: center;

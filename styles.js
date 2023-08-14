@@ -14,4 +14,8 @@ export default createGlobalStyle`
     font-size: 100%;
   }
 
+  main {
+    margin: 7rem auto;
+  }
+
 `;
