@@ -45,4 +45,5 @@ const Caption = styled.figcaption`
 const GalleryCard = styled.article`
   background-color: lightgrey;
   border-radius: 5px;
+  height: fit-content;
 `;
