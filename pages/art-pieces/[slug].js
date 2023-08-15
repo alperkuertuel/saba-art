@@ -7,7 +7,9 @@ export default function ShowDetails({ artPieces }) {
   const { slug } = router.query;
   const foundArtPiece = artPieces.find((artpiece) => artpiece.slug === slug);
 
-  console.log(slug);
+  if (!slug) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
