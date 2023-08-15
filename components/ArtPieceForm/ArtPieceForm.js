@@ -21,7 +21,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
       id: uid(),
       slug: slug,
       date: data.year,
-      name: data.name,
+      name: data.name.replace(/^"+|"+$/g, ""),
       description: data.description,
       category: data.category,
       technique: data.technique,
@@ -101,7 +101,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
               max="400"
               id="heightReal"
               name="heightReal"
-              placeholder="Add height..."
+              placeholder="cm"
               defaultValue={artPieces?.heightReal}
               required
             />
@@ -115,7 +115,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
               max="400"
               id="widthReal"
               name="widthReal"
-              placeholder="?"
+              placeholder="cm"
               defaultValue={artPieces?.widthReal}
               required
             />

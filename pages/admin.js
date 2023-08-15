@@ -23,7 +23,7 @@ export default function AdminHomePage() {
 
   function addArtPiece(newArtPieceData) {
     if (adminArtPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
-      window.alert("Slug already exists. Please choose a different name.");
+      window.alert("Name already exists. Please choose a different name.");
     } else if (
       adminArtPieces.some(
         (piece) => piece.imageUrl === newArtPieceData.imageUrl
