@@ -14,12 +14,10 @@ export default function ShowDetails({ artPieces }) {
         <StyledErrorMessage>Loading...</StyledErrorMessage>
       </main>
     );
-  }
-
-  if (foundArtPiece !== slug) {
+  } else if (!foundArtPiece) {
     return (
       <main>
-        <StyledErrorMessage>404 art piece not found...</StyledErrorMessage>
+        <StyledErrorMessage>404 art piece not found.</StyledErrorMessage>
       </main>
     );
   }
