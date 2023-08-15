@@ -18,8 +18,13 @@ export default function App({ Component, pageProps }) {
       heightReal: chance.natural({ min: 50, max: 200 }),
       widthReal: chance.natural({ min: 50, max: 200 }),
     }));
-    const artPiecesAdmin = JSON.parse(localStorage.getItem("artPiecesAdmin"));
-    setArtPieces([...updatedArtPieces, ...artPiecesAdmin]);
+
+    //------- this block gets the data from admin page and marries it with data_links.js
+    let artPiecesAdmin = JSON.parse(localStorage.getItem("artPiecesAdmin"));
+    if (!artPiecesAdmin) {
+      artPiecesAdmin = [];
+    } else setArtPieces([...updatedArtPieces, ...artPiecesAdmin]);
+    //-------
   }, [setArtPieces]);
 
   // console.log(artPieces);

@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { uid } from "uid";
 
 export default function ArtPieceForm({ artPieces, onSubmit }) {
   function handleSubmit(event) {
@@ -13,6 +14,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
 
     const newArtPiece = {
+      id: uid(),
       slug: slug,
       date: data.year,
       name: data.name,

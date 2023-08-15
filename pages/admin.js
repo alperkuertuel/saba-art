@@ -32,8 +32,8 @@ export default function AdminHomePage() {
       <main>
         <ArtPieceForm onSubmit={addArtPiece} />
         <StyledSection>
-          {adminArtPieces.map(({ slug, imageUrl, name }) => (
-            <ul key={slug}>
+          {adminArtPieces.map(({ id, imageUrl, name }) => (
+            <ul key={id}>
               <StyledItem>
                 <Image src={imageUrl} height={50} width={50} alt={name} />
                 <p>
