@@ -1,13 +1,31 @@
 import { styled } from "styled-components";
 
-export default function ArtPieceForm({ onSubmit, defaultValue }) {
+export default function ArtPieceForm({ artPieces, onSubmit }) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    onSubmit(data);
-    console.log(data);
+    const slug = data.name
+      .toLowerCase()
+      .trim() // remove leading and trailing whitespace
+      .replace(/[^\w\s-]/g, "") // remove any characters which are not word characters
+      .replace(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
+      .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
+
+    const newArtPiece = {
+      slug: slug,
+      date: data.year,
+      name: data.name,
+      description: data.description,
+      category: data.category,
+      technique: data.technique,
+      imageUrl: data.imageUrl,
+      heightReal: data.heightReal,
+      widthReal: data.widthReal,
+    };
+    onSubmit(newArtPiece);
   }
+
   return (
     <StyledSection>
       <StyledForm onSubmit={handleSubmit}>
@@ -17,7 +35,7 @@ export default function ArtPieceForm({ onSubmit, defaultValue }) {
             id="imageUrl"
             name="imageUrl"
             placeholder="Add image link here..."
-            defaultValue={defaultValue?.imageUrl}
+            defaultValue={artPieces?.imageUrl}
             required
           />
         </label>
@@ -27,28 +45,36 @@ export default function ArtPieceForm({ onSubmit, defaultValue }) {
             id="name"
             name="name"
             placeholder="type in a name..."
-            defaultValue={defaultValue?.name}
+            defaultValue={artPieces?.name}
+            required
+          />
+        </label>
+        <label htmlFor="year">
+          <input
+            type="number"
+            min="1990"
+            max="2099"
+            step="1"
+            id="year"
+            name="year"
+            defaultValue={artPieces?.date}
             required
           />
         </label>
         <label htmlFor="category">
           <select name="category">
-            <option disabled hidden>
-              Select a category
-            </option>
-            <option defaultValue={defaultValue?.Impression}>Impression</option>
-            <option defaultValue={defaultValue?.Impression}>Landscape</option>
-            <option defaultValue={defaultValue?.Impression}>Abstract</option>
-            <option defaultValue={defaultValue?.Impression}>Portrait</option>
+            <option disabled>Select a category</option>
+            <option defaultValue={artPieces?.Impression}>Impression</option>
+            <option defaultValue={artPieces?.Impression}>Landscape</option>
+            <option defaultValue={artPieces?.Impression}>Abstract</option>
+            <option defaultValue={artPieces?.Impression}>Portrait</option>
           </select>
         </label>
         <label htmlFor="technique">
           <select name="technique">
-            <option disabled hidden>
-              Select a technique
-            </option>
-            <option defaultValue={defaultValue?.Oil}>Oil</option>
-            <option defaultValue={defaultValue?.Acryl}>Acryl</option>
+            <option disabled>Select a technique</option>
+            <option defaultValue={artPieces?.Oil}>Oil</option>
+            <option defaultValue={artPieces?.Acryl}>Acryl</option>
           </select>
         </label>
         <label htmlFor="heightReal">
@@ -57,7 +83,7 @@ export default function ArtPieceForm({ onSubmit, defaultValue }) {
             id="heightReal"
             name="heightReal"
             placeholder="Add height..."
-            defaultValue={defaultValue?.heightReal}
+            defaultValue={artPieces?.heightReal}
             required
           />
         </label>
@@ -67,7 +93,7 @@ export default function ArtPieceForm({ onSubmit, defaultValue }) {
             id="widthReal"
             name="widthReal"
             placeholder="Add width..."
-            defaultValue={defaultValue?.widthReal}
+            defaultValue={artPieces?.widthReal}
             required
           />
         </label>
@@ -76,7 +102,7 @@ export default function ArtPieceForm({ onSubmit, defaultValue }) {
           id="description"
           cols="30"
           rows="10"
-          defaultValue={defaultValue?.description}
+          defaultValue={artPieces?.description}
         ></textarea>
         <button type="submit">Submit</button>
       </StyledForm>

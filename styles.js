@@ -18,4 +18,8 @@ export default createGlobalStyle`
     margin: 7rem auto;
   }
 
+  ul {
+    list-style-type: none;
+  }
+
 `;

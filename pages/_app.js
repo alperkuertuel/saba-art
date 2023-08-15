@@ -18,7 +18,8 @@ export default function App({ Component, pageProps }) {
       heightReal: chance.natural({ min: 50, max: 200 }),
       widthReal: chance.natural({ min: 50, max: 200 }),
     }));
-    setArtPieces(updatedArtPieces);
+    const artPiecesAdmin = JSON.parse(localStorage.getItem("artPiecesAdmin"));
+    setArtPieces([...updatedArtPieces, ...artPiecesAdmin]);
   }, [setArtPieces]);
 
   // console.log(artPieces);
