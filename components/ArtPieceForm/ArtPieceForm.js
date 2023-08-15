@@ -38,7 +38,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="imageUrl">
           <Input
-            type="text"
+            type="url"
             id="imageUrl"
             name="imageUrl"
             placeholder="Only links from pixabey will work..."
@@ -58,6 +58,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
           />
         </label>
         <label htmlFor="year">
+          Release Year:
           <NumberInput
             type="number"
             min="1990"
@@ -65,6 +66,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             step="1"
             id="year"
             name="year"
+            placeholder="2019"
             defaultValue={artPieces?.date}
             required
           />
@@ -89,32 +91,36 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             <option defaultValue={artPieces?.Acryl}>Acryl</option>
           </StyledSelection>
         </label>
-        <label htmlFor="heightReal">
-          <NumberInput
-            type="number"
-            step="10"
-            min="0"
-            max="400"
-            id="heightReal"
-            name="heightReal"
-            placeholder="Add height..."
-            defaultValue={artPieces?.heightReal}
-            required
-          />
-        </label>
-        <label htmlFor="widthReal">
-          <NumberInput
-            type="number"
-            step="10"
-            min="0"
-            max="400"
-            id="widthReal"
-            name="widthReal"
-            placeholder="Add width..."
-            defaultValue={artPieces?.widthReal}
-            required
-          />
-        </label>
+        <StyledFieldset>
+          <label htmlFor="heightReal">
+            Width:
+            <NumberInput
+              type="number"
+              step="10"
+              min="0"
+              max="400"
+              id="heightReal"
+              name="heightReal"
+              placeholder="Add height..."
+              defaultValue={artPieces?.heightReal}
+              required
+            />
+          </label>
+          <label htmlFor="widthReal">
+            Height:
+            <NumberInput
+              type="number"
+              step="10"
+              min="0"
+              max="400"
+              id="widthReal"
+              name="widthReal"
+              placeholder="?"
+              defaultValue={artPieces?.widthReal}
+              required
+            />
+          </label>
+        </StyledFieldset>
         <label htmlFor="description">Describe your painting:</label>
         <Textarea
           name="description"
@@ -150,6 +156,7 @@ const Input = styled.input`
 
 const NumberInput = styled.input`
   padding: 0.5rem;
+  margin: 0 1rem;
   font-size: inherit;
   border: 1px solid black;
   border-radius: 0.5rem;
@@ -175,7 +182,6 @@ const StyledButton = styled.button`
   color: white;
   padding: 0.8rem;
   border-radius: 0.6rem;
-
   text-decoration: none;
   font-weight: bold;
   border: none;
@@ -183,4 +189,8 @@ const StyledButton = styled.button`
   &:hover {
     background-color: black;
   }
+`;
+
+const StyledFieldset = styled.fieldset`
+  border: none;
 `;
