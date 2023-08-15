@@ -19,8 +19,7 @@ export default function ShowDetails({ artPieces }) {
     return (
       <main>
         <StyledErrorMessage>
-          404 art piece not found.{" "}
-          <Link href={`/`}>Go back to the Gallery!</Link>
+          404 art piece not found. <Link href={`/`}>Go back!</Link>
         </StyledErrorMessage>
       </main>
     );
