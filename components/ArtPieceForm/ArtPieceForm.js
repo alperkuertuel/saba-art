@@ -9,6 +9,10 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
     const slug = data.name
       .toLowerCase()
       .trim() // remove leading and trailing whitespace
+      .replace(/[ö]/g, "oe") // ö to oe
+      .replace(/[ü]/g, "ue") // ü to ue
+      .replace(/[ä]/g, "ae") // ä to ae
+      .replace(/[ß]/g, "ss") // ß  ss
       .replace(/[^\w\s-]/g, "") // remove any characters which are not word characters
       .replace(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
@@ -25,6 +29,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
       heightReal: data.heightReal,
       widthReal: data.widthReal,
     };
+
     onSubmit(newArtPiece);
   }
 
@@ -32,27 +37,28 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
     <StyledSection>
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="imageUrl">
-          <input
+          <Input
             type="text"
             id="imageUrl"
             name="imageUrl"
-            placeholder="Add image link here..."
+            placeholder="Only links from pixabey will work..."
             defaultValue={artPieces?.imageUrl}
             required
           />
         </label>
         <label htmlFor="name">
-          <input
+          <Input
             type="text"
             id="name"
             name="name"
             placeholder="type in a name..."
             defaultValue={artPieces?.name}
+            maxLength={50}
             required
           />
         </label>
         <label htmlFor="year">
-          <input
+          <NumberInput
             type="number"
             min="1990"
             max="2099"
@@ -64,24 +70,31 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
           />
         </label>
         <label htmlFor="category">
-          <select name="category">
-            <option disabled>Select a category</option>
+          <StyledSelection name="category">
+            <option value="" disabled>
+              Select a category
+            </option>
             <option defaultValue={artPieces?.Impression}>Impression</option>
-            <option defaultValue={artPieces?.Impression}>Landscape</option>
-            <option defaultValue={artPieces?.Impression}>Abstract</option>
-            <option defaultValue={artPieces?.Impression}>Portrait</option>
-          </select>
+            <option defaultValue={artPieces?.Landscape}>Landscape</option>
+            <option defaultValue={artPieces?.Abstact}>Abstract</option>
+            <option defaultValue={artPieces?.Portrait}>Portrait</option>
+          </StyledSelection>
         </label>
         <label htmlFor="technique">
-          <select name="technique">
-            <option disabled>Select a technique</option>
+          <StyledSelection name="technique">
+            <option value="" disabled>
+              Select a technique
+            </option>
             <option defaultValue={artPieces?.Oil}>Oil</option>
             <option defaultValue={artPieces?.Acryl}>Acryl</option>
-          </select>
+          </StyledSelection>
         </label>
         <label htmlFor="heightReal">
-          <input
-            type="text"
+          <NumberInput
+            type="number"
+            step="10"
+            min="0"
+            max="400"
             id="heightReal"
             name="heightReal"
             placeholder="Add height..."
@@ -90,8 +103,11 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
           />
         </label>
         <label htmlFor="widthReal">
-          <input
-            type="text"
+          <NumberInput
+            type="number"
+            step="10"
+            min="0"
+            max="400"
             id="widthReal"
             name="widthReal"
             placeholder="Add width..."
@@ -99,14 +115,16 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             required
           />
         </label>
-        <textarea
+        <label htmlFor="description">Describe your painting:</label>
+        <Textarea
           name="description"
+          maxLength="300"
           id="description"
           cols="30"
           rows="10"
           defaultValue={artPieces?.description}
-        ></textarea>
-        <button type="submit">Submit</button>
+        ></Textarea>
+        <StyledButton type="submit">ADD NEW PICTURE</StyledButton>
       </StyledForm>
     </StyledSection>
   );
@@ -118,8 +136,51 @@ const StyledSection = styled.section`
 `;
 
 const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
+  display: grid;
+  gap: 0.5rem;
+`;
+
+const Input = styled.input`
+  padding: 0.5rem;
+  font-size: inherit;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  width: 100%;
+`;
+
+const NumberInput = styled.input`
+  padding: 0.5rem;
+  font-size: inherit;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+`;
+
+const StyledSelection = styled.select`
+  padding: 0.5rem;
+  font-size: inherit;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+`;
+
+const Textarea = styled.textarea`
+  font-family: inherit;
+  font-size: inherit;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+`;
+
+const StyledButton = styled.button`
+  background-color: grey;
+  color: white;
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  font-size: inherit;
+  &:hover {
+    background-color: black;
+  }
 `;

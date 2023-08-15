@@ -7,7 +7,7 @@ export default function ArtPiecesList({ adminArtPieces }) {
       {adminArtPieces.map(({ id, imageUrl, name }) => (
         <ul key={id}>
           <StyledItem>
-            <Image src={imageUrl} height={50} width={50} alt={name} />
+            <StyledImage src={imageUrl} height={50} width={50} alt={name} />
             <p>
               Name: <q>{name}</q>
             </p>
@@ -28,4 +28,9 @@ const StyledItem = styled.li`
   align-items: center;
   gap: 1rem;
   margin: 1rem 0;
+`;
+
+const StyledImage = styled(Image)`
+  border-radius: 50%;
+  border: 2px solid grey;
 `;
