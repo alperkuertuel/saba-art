@@ -11,3 +11,4 @@ export default function HomePage({ artPieces }) {
     </>
   );
 }
+/////// INDEX.JS OF ART-PIECES TO DISPLAY AGAIN ALL ART-PIECES ///////

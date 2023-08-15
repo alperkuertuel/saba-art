@@ -10,7 +10,7 @@ const artPiecesData = [
     date: chance.date({ string: true }),
     description: chance.sentence({ words: 15 }),
     category: "Abstract",
-    technique: "Oil",
+    technique: "Acryl",
     imageUrl:
       "https://cdn.pixabay.com/photo/2019/04/26/17/47/color-4158152_1280.jpg",
     heightReal: chance.natural({ min: 50, max: 200 }),
