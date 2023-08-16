@@ -36,6 +36,8 @@ export default function ShowDetails({ artPieces }) {
           description={foundArtPiece.description}
           category={foundArtPiece.category}
           technique={foundArtPiece.technique}
+          widthReal={foundArtPiece.widthReal}
+          heightReal={foundArtPiece.heightReal}
         />
       </main>
     </>

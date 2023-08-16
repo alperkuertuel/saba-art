@@ -6,7 +6,9 @@ import Link from "next/link";
 export default function Header() {
   return (
     <StyledHeader>
-      <h1>VincentArte</h1>
+      <h1>
+        <Link href={`/`}>ArtistName</Link>
+      </h1>
       <p>
         <q>pictures are memories</q>
       </p>

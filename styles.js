@@ -25,5 +25,9 @@ export default createGlobalStyle`
   input {
     line-height: 1.5rem;
   }
-
+  
+a {
+  text-decoration: none;
+  color: inherit;
+}
 `;

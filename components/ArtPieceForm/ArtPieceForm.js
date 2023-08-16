@@ -39,16 +39,18 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
     <StyledSection>
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="imageUrl">
+          Paste your image link here:
           <Input
             type="url"
             id="imageUrl"
             name="imageUrl"
-            placeholder="Only links from pixabey will work..."
+            placeholder="only links from pixabay will work..."
             defaultValue={artPieces?.imageUrl}
             required
           />
         </label>
         <label htmlFor="name">
+          What is the name of your painting?
           <Input
             type="text"
             id="name"

@@ -9,6 +9,8 @@ export default function ArtPieceDetails({
   category,
   technique,
   description,
+  widthReal,
+  heightReal,
 }) {
   return (
     <StyledSection>
@@ -23,6 +25,9 @@ export default function ArtPieceDetails({
         </StyledNameDate>
         <p>Category: {category}</p>
         <p>Technique: {technique}</p>
+        <p>
+          Sizes: {widthReal}cm x {heightReal}cm
+        </p>
         <StyledDescription>{description}</StyledDescription>
       </StyledCaption>
     </StyledSection>

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import ArtPiecesPreview from "./ArtPiecesPreview";
-import artPiecesData from "@/db/data_links";
+import artPiecesData from "@/db/data";
 
 test("Each art piece's alt text is displayed", () => {
   render(<ArtPiecesPreview artPieces={artPiecesData} />);
