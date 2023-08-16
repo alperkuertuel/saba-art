@@ -71,33 +71,31 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             required
           />
         </label>
-        <label htmlFor="category">
-          <StyledSelection name="category">
-            <option value="" disabled>
-              Select a category
-            </option>
-            <option defaultValue={artPieces?.Impression}>Impression</option>
-            <option defaultValue={artPieces?.Landscape}>Landscape</option>
-            <option defaultValue={artPieces?.Abstact}>Abstract</option>
-            <option defaultValue={artPieces?.Portrait}>Portrait</option>
-          </StyledSelection>
-        </label>
-        <label htmlFor="technique">
-          <StyledSelection name="technique">
-            <option value="" disabled>
-              Select a technique
-            </option>
-            <option defaultValue={artPieces?.Oil}>Oil</option>
-            <option defaultValue={artPieces?.Acryl}>Acryl</option>
-          </StyledSelection>
-        </label>
+        <StyledFieldset>
+          <label htmlFor="category">
+            Category:
+            <StyledSelection name="category">
+              <option defaultValue={artPieces?.Impression}>Impressions</option>
+              <option defaultValue={artPieces?.Landscape}>Landscapes</option>
+              <option defaultValue={artPieces?.Abstact}>Abstract</option>
+              <option defaultValue={artPieces?.Portrait}>Portraits</option>
+            </StyledSelection>
+          </label>
+          <label htmlFor="technique">
+            Technique:
+            <StyledSelection name="technique">
+              <option defaultValue={artPieces?.Oil}>Oil</option>
+              <option defaultValue={artPieces?.Acryl}>Acryl</option>
+            </StyledSelection>
+          </label>
+        </StyledFieldset>
         <StyledFieldset>
           <label htmlFor="heightReal">
             Width:
             <NumberInput
               type="number"
               step="10"
-              min="0"
+              min="10"
               max="400"
               id="heightReal"
               name="heightReal"
@@ -111,7 +109,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             <NumberInput
               type="number"
               step="10"
-              min="0"
+              min="10"
               max="400"
               id="widthReal"
               name="widthReal"
@@ -143,6 +141,7 @@ const StyledSection = styled.section`
 
 const StyledForm = styled.form`
   display: grid;
+  grid-template-rows: 1fr 1fr 2fr 1fr 2fr;
   gap: 0.5rem;
 `;
 
@@ -158,6 +157,7 @@ const NumberInput = styled.input`
   padding: 0.5rem;
   margin: 0 1rem;
   font-size: inherit;
+  width: fit-content;
   border: 1px solid black;
   border-radius: 0.5rem;
 `;
@@ -167,6 +167,7 @@ const StyledSelection = styled.select`
   font-size: inherit;
   border: 1px solid black;
   border-radius: 0.5rem;
+  margin: 0 1rem;
 `;
 
 const Textarea = styled.textarea`
