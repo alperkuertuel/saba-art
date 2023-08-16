@@ -8,30 +8,15 @@ export default function App({ Component, pageProps }) {
     defaultValue: [],
   });
 
-  useEffect(() => {
-    const chance = new Chance();
-    const updatedArtPieces = artPiecesData.map((artPiece) => ({
-      ...artPiece,
-      date: chance.date({ string: true }),
-      //name: chance.sentence({ words: 10 }),
-      description: chance.sentence({ words: 40 }),
-      heightReal: chance.natural({ min: 50, max: 200 }),
-      widthReal: chance.natural({ min: 50, max: 200 }),
-    }));
-
-    //------- this block gets the data from admin page and marries it with data_links.js
-    let artPiecesAdmin = JSON.parse(localStorage.getItem("artPiecesAdmin"));
-    if (!artPiecesAdmin) {
-      artPiecesAdmin = [];
-    } else setArtPieces([...updatedArtPieces, ...artPiecesAdmin]);
-    //-------
-  }, [setArtPieces]);
-
   // console.log(artPieces);
   return (
     <>
       <GlobalStyle />
-      <Component {...pageProps} artPieces={artPieces} />
+      <Component
+        {...pageProps}
+        artPieces={artPieces}
+        setArtPieces={setArtPieces}
+      />
     </>
   );
 }

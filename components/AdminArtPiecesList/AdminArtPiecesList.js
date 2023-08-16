@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 const { styled } = require("styled-components");
 
-export default function ArtPiecesList({ adminArtPieces }) {
+export default function ArtPiecesList({ artPieces }) {
   return (
     <StyledSection>
-      {adminArtPieces.map(({ slug, id, imageUrl, name }) => (
+      {artPieces.map(({ slug, id, imageUrl, name }) => (
         <ul key={id}>
           <StyledItem>
             <Link href={`/art-pieces/${slug}`}>
