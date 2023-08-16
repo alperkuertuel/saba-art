@@ -23,6 +23,13 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
     setArtPieceToEdit(selectedArtPieceToEdit);
   }
 
+  function handleDeleteArtPiece(id) {
+    const artPiecesWithoutDeletedArtPiece = artPieces.filter(
+      (piece) => piece.id !== id
+    );
+    setArtPieces(artPiecesWithoutDeletedArtPiece);
+  }
+
   return (
     <>
       <Header />
@@ -31,7 +38,11 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
           onSubmit={handleAddArtPiece}
           artPieceToEdit={artPieceToEdit}
         />
-        <ArtPiecesList artPieces={artPieces} onEdit={handleToEditArtPiece} />
+        <ArtPiecesList
+          artPieces={artPieces}
+          onEdit={handleToEditArtPiece}
+          onDelete={handleDeleteArtPiece}
+        />
       </main>
     </>
   );
