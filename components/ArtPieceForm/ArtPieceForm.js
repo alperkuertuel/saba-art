@@ -31,6 +31,8 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
     };
 
     onSubmit(newArtPiece);
+    event.target.reset();
+    event.target.imageUrl.focus();
   }
 
   return (
@@ -94,7 +96,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             Width:
             <NumberInput
               type="number"
-              step="10"
+              step="5"
               min="10"
               max="400"
               id="heightReal"
@@ -108,7 +110,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             Height:
             <NumberInput
               type="number"
-              step="10"
+              step="5"
               min="10"
               max="400"
               id="widthReal"
@@ -172,7 +174,6 @@ const StyledSelection = styled.select`
 
 const Textarea = styled.textarea`
   font-family: inherit;
-  font-size: inherit;
   border: 1px solid black;
   border-radius: 0.5rem;
   padding: 0.5rem;
