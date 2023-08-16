@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-const { styled } = require("styled-components");
+import styled from "styled-components";
 
 export default function ArtPiecesList({ artPieces }) {
   return (
     <StyledSection>
-      <ReverseList>
+      <ul>
         {artPieces.map(({ slug, id, imageUrl, name }) => (
           <StyledItem key={id}>
             <Link href={`/art-pieces/${slug}`}>
@@ -16,7 +16,7 @@ export default function ArtPiecesList({ artPieces }) {
             </p>
           </StyledItem>
         ))}
-      </ReverseList>
+      </ul>
     </StyledSection>
   );
 }
@@ -24,11 +24,6 @@ export default function ArtPiecesList({ artPieces }) {
 const StyledSection = styled.section`
   max-width: 600px;
   margin: 2rem auto;
-`;
-
-const ReverseList = styled.ul`
-  display: flex;
-  flex-direction: column-reverse;
 `;
 
 const StyledItem = styled.li`

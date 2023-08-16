@@ -5,10 +5,8 @@ import { useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
   const [artPieces, setArtPieces] = useLocalStorageState("artPieces", {
-    defaultValue: [],
+    defaultValue: artPiecesData,
   });
-
-  useEffect(() => setArtPieces(artPiecesData), [setArtPieces]);
 
   return (
     <>

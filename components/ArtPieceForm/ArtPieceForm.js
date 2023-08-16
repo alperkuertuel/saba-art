@@ -96,7 +96,6 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             Width:
             <NumberInput
               type="number"
-              step="5"
               min="10"
               max="400"
               id="heightReal"
@@ -110,7 +109,6 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             Height:
             <NumberInput
               type="number"
-              step="5"
               min="10"
               max="400"
               id="widthReal"

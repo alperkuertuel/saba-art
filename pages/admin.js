@@ -12,7 +12,7 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
       window.alert(
         "Image is already in the Gallery. Please choose a different piture"
       );
-    } else setArtPieces([...artPieces, newArtPieceData]);
+    } else setArtPieces([newArtPieceData, ...artPieces]);
   }
 
   return (
