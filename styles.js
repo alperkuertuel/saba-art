@@ -18,4 +18,12 @@ export default createGlobalStyle`
     margin: 7rem auto;
   }
 
+  ul {
+    list-style-type: none;
+  }
+  
+  input {
+    line-height: 1.5rem;
+  }
+
 `;
