@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 
-export default function ArtPiecesList({ artPieces }) {
+export default function ArtPiecesList({ artPieces, onEdit }) {
   return (
     <StyledSection>
       <ul>
@@ -14,6 +16,9 @@ export default function ArtPiecesList({ artPieces }) {
             <p>
               Name: <q>{name}</q>
             </p>
+            <button onClick={() => onEdit(id)}>
+              <FontAwesomeIcon icon={faPen} />
+            </button>
           </StyledItem>
         ))}
       </ul>

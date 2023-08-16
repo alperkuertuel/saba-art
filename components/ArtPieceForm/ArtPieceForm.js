@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { uid } from "uid";
 
-export default function ArtPieceForm({ artPieces, onSubmit }) {
+export default function ArtPieceForm({ onSubmit, artPieceToEdit }) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -12,7 +12,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
       .replace(/[ö]/g, "oe") // ö to oe
       .replace(/[ü]/g, "ue") // ü to ue
       .replace(/[ä]/g, "ae") // ä to ae
-      .replace(/[ß]/g, "ss") // ß  ss
+      .replace(/[ß]/g, "ss") // ß to ss
       .replace(/[^\w\s-]/g, "") // remove any characters which are not word characters
       .replace(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
@@ -31,6 +31,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
     };
 
     onSubmit(newArtPiece);
+
     event.target.reset();
     event.target.imageUrl.focus();
   }
@@ -45,7 +46,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             id="imageUrl"
             name="imageUrl"
             placeholder="only links from pixabay will work..."
-            defaultValue={artPieces?.imageUrl}
+            defaultValue={artPieceToEdit?.imageUrl}
             required
           />
         </label>
@@ -56,7 +57,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             id="name"
             name="name"
             placeholder="type in a name..."
-            defaultValue={artPieces?.name}
+            defaultValue={artPieceToEdit?.name}
             maxLength={50}
             required
           />
@@ -71,7 +72,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
             id="year"
             name="year"
             placeholder="2019"
-            defaultValue={artPieces?.date}
+            defaultValue={artPieceToEdit?.date}
             required
           />
         </label>
@@ -79,17 +80,21 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
           <label htmlFor="category">
             Category:
             <StyledSelection name="category">
-              <option defaultValue={artPieces?.Impression}>Impressions</option>
-              <option defaultValue={artPieces?.Landscape}>Landscapes</option>
-              <option defaultValue={artPieces?.Abstact}>Abstract</option>
-              <option defaultValue={artPieces?.Portrait}>Portraits</option>
+              <option defaultValue={artPieceToEdit?.Impression}>
+                Impressions
+              </option>
+              <option defaultValue={artPieceToEdit?.Landscape}>
+                Landscapes
+              </option>
+              <option defaultValue={artPieceToEdit?.Abstact}>Abstract</option>
+              <option defaultValue={artPieceToEdit?.Portrait}>Portraits</option>
             </StyledSelection>
           </label>
           <label htmlFor="technique">
             Technique:
             <StyledSelection name="technique">
-              <option defaultValue={artPieces?.Oil}>Oil</option>
-              <option defaultValue={artPieces?.Acryl}>Acryl</option>
+              <option defaultValue={artPieceToEdit?.Oil}>Oil</option>
+              <option defaultValue={artPieceToEdit?.Acryl}>Acryl</option>
             </StyledSelection>
           </label>
         </StyledFieldset>
@@ -103,7 +108,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
               id="heightReal"
               name="heightReal"
               placeholder="cm"
-              defaultValue={artPieces?.heightReal}
+              defaultValue={artPieceToEdit?.heightReal}
               required
             />
           </label>
@@ -116,7 +121,7 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
               id="widthReal"
               name="widthReal"
               placeholder="cm"
-              defaultValue={artPieces?.widthReal}
+              defaultValue={artPieceToEdit?.widthReal}
               required
             />
           </label>
@@ -128,9 +133,11 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
           id="description"
           cols="30"
           rows="10"
-          defaultValue={artPieces?.description}
+          defaultValue={artPieceToEdit?.description}
         ></Textarea>
-        <StyledButton type="submit">ADD NEW PICTURE</StyledButton>
+        <StyledButton type="submit">
+          {artPieceToEdit ? `EDIT: ${artPieceToEdit.name}` : "SUBMIT"}
+        </StyledButton>
       </StyledForm>
     </StyledSection>
   );
@@ -139,11 +146,12 @@ export default function ArtPieceForm({ artPieces, onSubmit }) {
 const StyledSection = styled.section`
   max-width: 600px;
   margin: 0 auto;
+  padding: 1rem;
 `;
 
 const StyledForm = styled.form`
   display: grid;
-  grid-template-rows: 1fr 1fr 2fr 1fr 2fr;
+  grid-template-rows: 1fr;
   gap: 0.5rem;
 `;
 
@@ -157,7 +165,7 @@ const Input = styled.input`
 
 const NumberInput = styled.input`
   padding: 0.5rem;
-  margin: 0 1rem;
+  margin: 0 0.5rem;
   font-size: inherit;
   width: fit-content;
   border: 1px solid black;
