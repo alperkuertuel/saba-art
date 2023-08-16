@@ -16,9 +16,9 @@ export default function ArtPiecesList({ artPieces, onEdit }) {
             <p>
               Name: <q>{name}</q>
             </p>
-            <button onClick={() => onEdit(id)}>
+            <StyledButton onClick={() => onEdit(id)}>
               <FontAwesomeIcon icon={faPen} />
-            </button>
+            </StyledButton>
           </StyledItem>
         ))}
       </ul>
@@ -41,4 +41,19 @@ const StyledItem = styled.li`
 const StyledImage = styled(Image)`
   border-radius: 50%;
   border: 2px solid grey;
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  font-size: 1.2rem;
+  background-color: transparent;
+  color: black;
+  width: fit-content;
+  padding: 5px 20px;
+  &:hover {
+    color: black;
+  }
 `;

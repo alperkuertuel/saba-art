@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function AdminHomePage({ artPieces, setArtPieces }) {
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
 
-  function addArtPiece(newArtPieceData) {
+  function handleAddArtPiece(newArtPieceData) {
     if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
       window.alert("Name already exists. Please choose a different name.");
     } else if (
@@ -17,16 +17,20 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
       );
     } else setArtPieces([newArtPieceData, ...artPieces]);
   }
+
   function handleToEditArtPiece(id) {
     const selectedArtPieceToEdit = artPieces.find((piece) => piece.id === id);
     setArtPieceToEdit(selectedArtPieceToEdit);
   }
-  //console.log(artPieceToEdit);
+
   return (
     <>
       <Header />
       <main>
-        <ArtPieceForm onSubmit={addArtPiece} artPieceToEdit={artPieceToEdit} />
+        <ArtPieceForm
+          onSubmit={handleAddArtPiece}
+          artPieceToEdit={artPieceToEdit}
+        />
         <ArtPiecesList artPieces={artPieces} onEdit={handleToEditArtPiece} />
       </main>
     </>

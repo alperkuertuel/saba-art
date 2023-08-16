@@ -135,8 +135,10 @@ export default function ArtPieceForm({ onSubmit, artPieceToEdit }) {
           rows="10"
           defaultValue={artPieceToEdit?.description}
         ></Textarea>
-        <StyledButton type="submit">
-          {artPieceToEdit ? `EDIT: ${artPieceToEdit.name}` : "SUBMIT"}
+        <StyledButton>
+          {artPieceToEdit.name !== undefined
+            ? `EDIT: ${artPieceToEdit.name}`
+            : "SUBMIT"}
         </StyledButton>
       </StyledForm>
     </StyledSection>
