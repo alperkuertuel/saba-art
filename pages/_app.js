@@ -1,6 +1,4 @@
 import GlobalStyle from "../styles";
-import artPiecesData from "@/db/data_links";
-import { useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
@@ -8,7 +6,6 @@ export default function App({ Component, pageProps }) {
     defaultValue: [],
   });
 
-  // console.log(artPieces);
   return (
     <>
       <GlobalStyle />

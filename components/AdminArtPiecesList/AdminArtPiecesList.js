@@ -23,6 +23,8 @@ export default function ArtPiecesList({ artPieces }) {
 
 const StyledSection = styled.section`
   max-width: 600px;
+  display: flex;
+  flex-direction: column-reverse;
   margin: 2rem auto;
 `;
 
