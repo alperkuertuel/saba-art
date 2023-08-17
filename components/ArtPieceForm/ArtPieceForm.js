@@ -1,39 +1,56 @@
+import { useState } from "react";
 import { styled } from "styled-components";
 import { uid } from "uid";
 
 export default function ArtPieceForm({ onSubmit, artPieceToEdit }) {
+  const [fileImageUrl, setfileImageUrl] = useState(null);
+
+  function handleFileChange(event) {
+    const imageFile = event.target.files[0];
+    // todo: validation with file info (size, type, length): console.log(event.target.files);
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onload = function (load) {
+        const url = load.target.result;
+        console.log(url);
+        setfileImageUrl(url);
+      };
+      reader.readAsDataURL(imageFile);
+    }
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     const slug = data.name
       .toLowerCase()
-      .trim() // remove leading and trailing whitespace
-      .replace(/[ö]/g, "oe") // ö to oe
-      .replace(/[ü]/g, "ue") // ü to ue
-      .replace(/[ä]/g, "ae") // ä to ae
-      .replace(/[ß]/g, "ss") // ß to ss
+      .trim()
+      .replace(/[ö]/g, "oe")
+      .replace(/[ü]/g, "ue")
+      .replace(/[ä]/g, "ae")
+      .replace(/[ß]/g, "ss")
       .replace(/[^\w\s-]/g, "") // remove any characters which are not word characters
       .replace(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
-
+    console.log(fileImageUrl);
     const newArtPiece = {
       id: uid(),
       slug: slug,
       date: data.year,
-      name: data.name.replace(/^"+|"+$/g, ""),
+      name: data.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
       description: data.description,
       category: data.category,
       technique: data.technique,
-      imageUrl: data.imageUrl,
+      imageUrl: fileImageUrl,
       heightReal: data.heightReal,
       widthReal: data.widthReal,
     };
 
     onSubmit(newArtPiece);
 
-    event.target.reset();
     event.target.imageUrl.focus();
+    event.target.reset();
   }
 
   return (
@@ -42,11 +59,12 @@ export default function ArtPieceForm({ onSubmit, artPieceToEdit }) {
         <label htmlFor="imageUrl">
           Paste your image link here:
           <Input
-            type="url"
+            type="file"
             id="imageUrl"
             name="imageUrl"
             placeholder="only links from pixabay will work..."
             defaultValue={artPieceToEdit?.imageUrl}
+            onChange={handleFileChange}
             required
           />
         </label>
@@ -71,7 +89,6 @@ export default function ArtPieceForm({ onSubmit, artPieceToEdit }) {
             step="1"
             id="year"
             name="year"
-            placeholder="2019"
             defaultValue={artPieceToEdit?.date}
             required
           />
