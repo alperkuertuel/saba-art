@@ -1,7 +1,11 @@
 import { styled } from "styled-components";
-import { uid } from "uid";
 
-export default function ArtPieceForm({ onSubmit, artPieceToEdit }) {
+export default function ArtPieceListForm({
+  onSubmit,
+  artPieceToEdit,
+  artPieces,
+  setArtPieces,
+}) {
   function handleUpdate(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -18,7 +22,7 @@ export default function ArtPieceForm({ onSubmit, artPieceToEdit }) {
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
 
     const editedArtPiece = {
-      id: uid(),
+      id: artPieceToEdit.id,
       slug: slug,
       date: data.year,
       name: data.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
@@ -29,10 +33,26 @@ export default function ArtPieceForm({ onSubmit, artPieceToEdit }) {
       heightReal: data.heightReal,
       widthReal: data.widthReal,
     };
-
-    event.target.reset();
     onSubmit(editedArtPiece);
     console.log("Editing submitted:", editedArtPiece);
+    console.log(artPieces);
+    const updatedArtpieces = artPieces.map((piece) =>
+      piece.id === artPieceToEdit.id
+        ? {
+            ...piece,
+            id: editedArtPiece.id,
+            name: editedArtPiece.name,
+            description: editedArtPiece.description,
+            category: editedArtPiece.category,
+            technique: editedArtPiece.technique,
+            heightReal: editedArtPiece.heightReal,
+            widthReal: editedArtPiece.widthReal,
+          }
+        : piece
+    );
+
+    setArtPieces(updatedArtpieces);
+    event.target.reset();
   }
 
   return (

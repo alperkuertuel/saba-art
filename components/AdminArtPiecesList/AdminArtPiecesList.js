@@ -3,10 +3,11 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import ArtPieceForm from "./ArtPiecesListForm";
+import ArtPieceListForm from "./ArtPiecesListForm";
 
 export default function ArtPiecesList({
   artPieces,
+  setArtPieces,
   onEdit,
   onDelete,
   artPieceToEdit,
@@ -29,12 +30,17 @@ export default function ArtPiecesList({
             <StyledButton onClick={() => onDelete(id)}>
               <FontAwesomeIcon icon={faTrashCan} />
             </StyledButton>
+            <EditForm>
+              <ArtPieceListForm
+                artPieces={artPieces}
+                setArtPieces={setArtPieces}
+                artPieceToEdit={artPieceToEdit}
+                onSubmit={onSubmit}
+              />
+            </EditForm>
           </StyledItem>
         ))}
       </ul>
-      <EditForm>
-        <ArtPieceForm artPieceToEdit={artPieceToEdit} onSubmit={onSubmit} />
-      </EditForm>
     </StyledSection>
   );
 }

@@ -41,10 +41,10 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
     setArtPieces([newArtPieceData, ...artPieces]);
   }
 
-  function handleEditArtPiece(id, editedArtPiece) {
+  function handleEditArtPiece(id) {
     const selectedArtPieceToEdit = artPieces.find((piece) => piece.id === id);
     setArtPieceToEdit(selectedArtPieceToEdit);
-    console.log("handleEditArtPiece", editedArtPiece);
+    console.log();
   }
 
   return (
@@ -63,6 +63,7 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
           onEdit={handleEditArtPiece}
           onDelete={handleDeleteArtPiece}
           artPieces={artPieces}
+          setArtPieces={setArtPieces}
         />
       </main>
     </>
