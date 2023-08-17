@@ -2,23 +2,11 @@ import { useState } from "react";
 import { styled } from "styled-components";
 import { uid } from "uid";
 
-export default function ArtPieceForm({ onSubmit, artPieceToEdit }) {
-  const [fileImageUrl, setfileImageUrl] = useState(null);
-
-  function handleFileChange(event) {
-    const imageFile = event.target.files[0];
-    // todo: validation with file info (size, type, length): console.log(event.target.files);
-    if (imageFile) {
-      const reader = new FileReader();
-      reader.onload = function (load) {
-        const url = load.target.result;
-        console.log(url);
-        setfileImageUrl(url);
-      };
-      reader.readAsDataURL(imageFile);
-    }
-  }
-
+export default function ArtPieceForm({
+  onSubmit,
+  artPieceToEdit,
+  fileImageUrl,
+}) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -33,7 +21,7 @@ export default function ArtPieceForm({ onSubmit, artPieceToEdit }) {
       .replace(/[^\w\s-]/g, "") // remove any characters which are not word characters
       .replace(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
-    console.log(fileImageUrl);
+    //console.log(fileImageUrl);
     const newArtPiece = {
       id: uid(),
       slug: slug,
