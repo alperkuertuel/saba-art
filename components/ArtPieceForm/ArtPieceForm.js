@@ -6,6 +6,7 @@ export default function ArtPieceForm({
   onSubmit,
   artPieceToEdit,
   fileImageUrl,
+  onChange,
 }) {
   function handleSubmit(event) {
     event.preventDefault();
@@ -52,7 +53,7 @@ export default function ArtPieceForm({
             name="imageUrl"
             placeholder="only links from pixabay will work..."
             defaultValue={artPieceToEdit?.imageUrl}
-            onChange={handleFileChange}
+            onChange={onChange}
             required
           />
         </label>

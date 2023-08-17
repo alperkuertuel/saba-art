@@ -5,7 +5,6 @@ import { useState } from "react";
 
 export default function AdminHomePage({ artPieces, setArtPieces }) {
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
-
   const [fileImageUrl, setfileImageUrl] = useState(null);
 
   function handleFileChange(event) {
@@ -54,6 +53,7 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
           onSubmit={handleAddArtPiece}
           artPieceToEdit={artPieceToEdit}
           fileImageUrl={fileImageUrl}
+          onChange={handleFileChange}
         />
         <ArtPiecesList
           artPieces={artPieces}
