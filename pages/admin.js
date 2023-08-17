@@ -1,4 +1,4 @@
-import ArtPieceForm from "@/components/ArtPieceForm/ArtPieceForm";
+import ArtPieceForm from "@/components/AdminArtPieceForm/ArtPieceForm";
 import Header from "@/components/Header/Header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
 import { useState } from "react";
@@ -56,6 +56,7 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
           artPieceToEdit={artPieceToEdit}
           fileImageUrl={fileImageUrl}
           onChange={handleFileChange}
+          setArtPieceToEdit={setArtPieceToEdit}
         />
         <ArtPiecesList
           artPieces={artPieces}

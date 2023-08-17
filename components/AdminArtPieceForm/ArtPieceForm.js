@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { styled } from "styled-components";
 import { uid } from "uid";
+import AdminImagePreview from "../AdminEditImagePreview/AdminEditImagePreview";
 
 export default function ArtPieceForm({
   onSubmit,
@@ -55,22 +55,10 @@ export default function ArtPieceForm({
             accept="image/*"
             required
           />
-          {fileImageUrl && (
-            <Image
-              src={fileImageUrl}
-              alt="upload image preview"
-              height={50}
-              width={50}
-            />
-          )}
-          {artPieceToEdit.imageUrl && (
-            <Image
-              src={artPieceToEdit.imageUrl}
-              alt="Selected Art"
-              height={50}
-              width={50}
-            />
-          )}
+          <AdminImagePreview
+            artPieceToEdit={artPieceToEdit}
+            fileImageUrl={fileImageUrl}
+          />
         </label>
         <label htmlFor="name">
           What is the name of your painting?
