@@ -3,8 +3,15 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import ArtPieceForm from "./ArtPiecesListForm";
 
-export default function ArtPiecesList({ artPieces, onEdit, onDelete }) {
+export default function ArtPiecesList({
+  artPieces,
+  onEdit,
+  onDelete,
+  artPieceToEdit,
+  onSubmit,
+}) {
   return (
     <StyledSection>
       <ul>
@@ -25,6 +32,9 @@ export default function ArtPiecesList({ artPieces, onEdit, onDelete }) {
           </StyledItem>
         ))}
       </ul>
+      <EditForm>
+        <ArtPieceForm artPieceToEdit={artPieceToEdit} onSubmit={onSubmit} />
+      </EditForm>
     </StyledSection>
   );
 }
@@ -60,3 +70,5 @@ const StyledButton = styled.button`
     color: black;
   }
 `;
+
+const EditForm = styled.span``;

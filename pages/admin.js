@@ -7,7 +7,7 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
   const [fileImageUrl, setfileImageUrl] = useState(null);
 
-  function handleFileChange(event) {
+  function handleImageUpload(event) {
     const imageFile = event.target.files[0];
 
     // todo: validation with file info (size, type, length): console.log(event.target.files);
@@ -19,6 +19,13 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
       };
       reader.readAsDataURL(imageFile);
     }
+  }
+
+  function handleDeleteArtPiece(id) {
+    const artPiecesWithoutDeletedArtPiece = artPieces.filter(
+      (piece) => piece.id !== id
+    );
+    setArtPieces(artPiecesWithoutDeletedArtPiece);
   }
 
   function handleAddArtPiece(newArtPieceData) {
@@ -34,17 +41,10 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
     setArtPieces([newArtPieceData, ...artPieces]);
   }
 
-  function handleToEditArtPiece(id) {
+  function handleEditArtPiece(id, editedArtPiece) {
     const selectedArtPieceToEdit = artPieces.find((piece) => piece.id === id);
     setArtPieceToEdit(selectedArtPieceToEdit);
-    console.log(selectedArtPieceToEdit);
-  }
-
-  function handleDeleteArtPiece(id) {
-    const artPiecesWithoutDeletedArtPiece = artPieces.filter(
-      (piece) => piece.id !== id
-    );
-    setArtPieces(artPiecesWithoutDeletedArtPiece);
+    console.log("handleEditArtPiece", editedArtPiece);
   }
 
   return (
@@ -52,17 +52,17 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
       <Header />
       <main>
         <ArtPieceForm
-          onSubmit={handleAddArtPiece}
-          artPieceToEdit={artPieceToEdit}
           fileImageUrl={fileImageUrl}
-          onChange={handleFileChange}
-          setArtPieceToEdit={setArtPieceToEdit}
+          onSubmit={handleAddArtPiece}
+          onChange={handleImageUpload}
         />
         <ArtPiecesList
-          artPieces={artPieces}
+          artPieceToEdit={artPieceToEdit}
           fileImageUrl={fileImageUrl}
-          onEdit={handleToEditArtPiece}
+          onSubmit={handleEditArtPiece}
+          onEdit={handleEditArtPiece}
           onDelete={handleDeleteArtPiece}
+          artPieces={artPieces}
         />
       </main>
     </>

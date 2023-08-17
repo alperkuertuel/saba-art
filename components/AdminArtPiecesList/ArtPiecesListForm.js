@@ -1,14 +1,8 @@
 import { styled } from "styled-components";
 import { uid } from "uid";
-import AdminImagePreview from "../AdminEditImagePreview/AdminEditImagePreview";
 
-export default function ArtPieceForm({
-  onSubmit,
-  artPieceToEdit,
-  fileImageUrl,
-  onChange,
-}) {
-  function handleSubmit(event) {
+export default function ArtPieceForm({ onSubmit, artPieceToEdit }) {
+  function handleUpdate(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
@@ -22,8 +16,8 @@ export default function ArtPieceForm({
       .replace(/[^\w\s-]/g, "") // remove any characters which are not word characters
       .replace(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
-    //console.log(fileImageUrl);
-    const newArtPiece = {
+
+    const editedArtPiece = {
       id: uid(),
       slug: slug,
       date: data.year,
@@ -31,33 +25,20 @@ export default function ArtPieceForm({
       description: data.description,
       category: data.category,
       technique: data.technique,
-      imageUrl: fileImageUrl,
+      imageUrl: artPieceToEdit.imageUrl,
       heightReal: data.heightReal,
       widthReal: data.widthReal,
     };
 
-    onSubmit(newArtPiece);
     event.target.reset();
-    event.target.name.focus();
+    onSubmit(editedArtPiece);
+    console.log("Editing submitted:", editedArtPiece);
   }
 
   return (
     <StyledSection>
-      <StyledForm onSubmit={handleSubmit}>
-        <label htmlFor="imageUrl">Upload your art piece: </label>
-        <Input
-          type="file"
-          id="imageUrl"
-          name="imageUrl"
-          onChange={onChange}
-          accept="image/*"
-          required
-        />
-        <AdminImagePreview
-          artPieceToEdit={artPieceToEdit}
-          fileImageUrl={fileImageUrl}
-        />
-        <label htmlFor="name">Name your art piece:</label>
+      <StyledForm onSubmit={handleUpdate}>
+        <label htmlFor="name">Change the name:</label>
         <Input
           type="text"
           id="name"
@@ -67,7 +48,7 @@ export default function ArtPieceForm({
           maxLength={50}
           required
         />
-        <label htmlFor="year">Release Year: </label>
+        <label htmlFor="year">Change Release year: </label>
         <NumberInput
           type="number"
           min="1990"
@@ -80,7 +61,7 @@ export default function ArtPieceForm({
         />
 
         <StyledFieldset>
-          <label htmlFor="category">Category: </label>
+          <label htmlFor="category">Change category: </label>
           <StyledSelection name="category">
             <option defaultValue={artPieceToEdit?.Impression}>
               Impressions
@@ -90,14 +71,14 @@ export default function ArtPieceForm({
             <option defaultValue={artPieceToEdit?.Portrait}>Portraits</option>
           </StyledSelection>
 
-          <label htmlFor="technique">Technique:</label>
+          <label htmlFor="technique">Change technique:</label>
           <StyledSelection name="technique">
             <option defaultValue={artPieceToEdit?.Oil}>Oil</option>
             <option defaultValue={artPieceToEdit?.Acryl}>Acryl</option>
           </StyledSelection>
         </StyledFieldset>
         <StyledFieldset>
-          <label htmlFor="heightReal">Width:</label>
+          <label htmlFor="heightReal">width:</label>
           <NumberInput
             type="number"
             min="10"
@@ -108,7 +89,7 @@ export default function ArtPieceForm({
             defaultValue={artPieceToEdit?.heightReal}
             required
           />
-          <label htmlFor="widthReal">Height:</label>
+          <label htmlFor="widthReal">height:</label>
           <NumberInput
             type="number"
             min="10"
@@ -129,12 +110,7 @@ export default function ArtPieceForm({
           rows="10"
           defaultValue={artPieceToEdit?.description}
         ></Textarea>
-        <StyledButton>
-          SUBMIT
-          {/* {artPieceToEdit.name !== undefined
-            ? `EDIT: ${artPieceToEdit.name}`
-            : "SUBMIT"} */}
-        </StyledButton>
+        <StyledButton>Upadate Your Art Piece</StyledButton>
       </StyledForm>
     </StyledSection>
   );

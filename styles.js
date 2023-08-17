@@ -30,7 +30,4 @@ a {
   text-decoration: none;
   color: inherit;
 }
-img {
-    pointer-events: none;
-}
 `;
