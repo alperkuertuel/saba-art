@@ -9,12 +9,12 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
 
   function handleFileChange(event) {
     const imageFile = event.target.files[0];
+
     // todo: validation with file info (size, type, length): console.log(event.target.files);
     if (imageFile) {
       const reader = new FileReader();
       reader.onload = function (load) {
         const url = load.target.result;
-        console.log(url);
         setfileImageUrl(url);
       };
       reader.readAsDataURL(imageFile);
@@ -22,20 +22,22 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
   }
 
   function handleAddArtPiece(newArtPieceData) {
-    if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
-      window.alert("Name already exists. Please choose a different name.");
-    } else if (
-      artPieces.some((piece) => piece.imageUrl === newArtPieceData.imageUrl)
-    ) {
-      window.alert(
-        "Image is already in the Gallery. Please choose a different piture"
-      );
-    } else setArtPieces([newArtPieceData, ...artPieces]);
+    // if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
+    //   window.alert("Name already exists. Please choose a different name.");
+    // } else if (
+    //   artPieces.some((piece) => piece.imageUrl === newArtPieceData.imageUrl)
+    // ) {
+    //   window.alert(
+    //     "Image is already in the Gallery. Please choose a different piture"
+    //   );
+    // } else
+    setArtPieces([newArtPieceData, ...artPieces]);
   }
 
   function handleToEditArtPiece(id) {
     const selectedArtPieceToEdit = artPieces.find((piece) => piece.id === id);
     setArtPieceToEdit(selectedArtPieceToEdit);
+    console.log(selectedArtPieceToEdit);
   }
 
   function handleDeleteArtPiece(id) {
@@ -57,6 +59,7 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
         />
         <ArtPiecesList
           artPieces={artPieces}
+          fileImageUrl={fileImageUrl}
           onEdit={handleToEditArtPiece}
           onDelete={handleDeleteArtPiece}
         />
