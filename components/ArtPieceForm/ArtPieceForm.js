@@ -38,8 +38,8 @@ export default function ArtPieceForm({
 
     onSubmit(newArtPiece);
 
-    event.target.imageUrl.focus();
     event.target.reset();
+    event.target.imageUrl.focus();
   }
 
   return (
@@ -51,8 +51,8 @@ export default function ArtPieceForm({
             type="file"
             id="imageUrl"
             name="imageUrl"
-            placeholder="only links from pixabay will work..."
             onChange={onChange}
+            accept="image/*"
             required
           />
           {fileImageUrl && (
