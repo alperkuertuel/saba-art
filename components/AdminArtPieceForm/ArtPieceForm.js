@@ -6,11 +6,11 @@ export default function ArtPieceForm({
   onSubmit,
   artPieceToEdit,
   fileImageUrl,
-  setfileImageUrl,
   onChange,
 }) {
   function handleSubmit(event) {
-    const formData = new FormData(event.target);
+    const form = event.target;
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData);
     const slug = data.name
       .toLowerCase()
@@ -37,8 +37,8 @@ export default function ArtPieceForm({
     };
 
     onSubmit(newArtPiece);
-    event.target.reset();
-    event.target.name.focus();
+    form.reset();
+    form.name.focus();
   }
 
   return (
@@ -55,10 +55,7 @@ export default function ArtPieceForm({
           accept="image/*"
           required
         />
-        <AdminImagePreview
-          fileImageUrl={fileImageUrl}
-          setfileImageUrl={setfileImageUrl}
-        />
+        <AdminImagePreview fileImageUrl={fileImageUrl} />
         <label htmlFor="name">Name your art piece:</label>
         <Input
           type="text"

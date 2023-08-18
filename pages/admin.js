@@ -9,7 +9,6 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
 
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
-    console.log(imageFile);
 
     if (imageFile && imageFile.size <= 600000) {
       const reader = new FileReader();
@@ -35,7 +34,7 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
     const artPieceName = artPieceToDelete.name;
     console.log(artPieceName);
     const sureToDelete = confirm(
-      `Are you sure about deleting ${artPieceToDelete.name}`
+      `Are you sure you want to delete ${artPieceToDelete.name}`
     );
     if (sureToDelete) {
       setArtPieces(artPiecesWithoutDeletedArtPiece);

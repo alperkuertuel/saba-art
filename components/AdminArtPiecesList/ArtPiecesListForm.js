@@ -7,7 +7,8 @@ export default function ArtPieceListForm({
   setArtPieces,
 }) {
   function handleUpdate(event) {
-    const formData = new FormData(event.target);
+    const form = event.target;
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData);
     const slug = data.name
       .toLowerCase()

@@ -1,8 +1,7 @@
 import Image from "next/image";
-import { useEffect } from "react";
 import { styled } from "styled-components";
 
-export default function AdminImagePreview({ fileImageUrl, setfileImageUrl }) {
+export default function AdminImagePreview({ fileImageUrl }) {
   return (
     <StyledPreview>
       Preview:
