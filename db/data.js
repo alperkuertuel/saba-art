@@ -10,8 +10,8 @@ const artPiecesData = [
     technique: "Oil",
     imageUrl:
       "https://cdn.pixabay.com/photo/2019/04/26/17/47/color-4158152_1280.jpg",
-    heightReal: 100,
-    widthReal: 100,
+    heightReal: "100",
+    widthReal: "100",
   },
 
   {

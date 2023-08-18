@@ -12,7 +12,6 @@ export default function AdminHomePage({
 }) {
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
-    console.log(imageFile);
 
     if (imageFile && imageFile.size <= 600000) {
       const reader = new FileReader();
@@ -54,7 +53,6 @@ export default function AdminHomePage({
   function handleEditArtPiece(id) {
     const selectedArtPieceToEdit = artPieces.find((piece) => piece.id === id);
     handleArtPieceToEdit(selectedArtPieceToEdit);
-    console.log(selectedArtPieceToEdit);
   }
 
   return (
@@ -69,6 +67,7 @@ export default function AdminHomePage({
         <ArtPiecesList
           artPieceToEdit={artPieceToEdit}
           fileImageUrl={fileImageUrl}
+          handleSetFileImageUrl={handleSetFileImageUrl}
           onSubmit={handleEditArtPiece}
           onEdit={handleEditArtPiece}
           onDelete={handleDeleteArtPiece}

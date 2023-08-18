@@ -9,6 +9,7 @@ export default function ArtPieceForm({
   onChange,
 }) {
   function handleSubmit(event) {
+    event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
@@ -22,7 +23,6 @@ export default function ArtPieceForm({
       .replace(/[^\w\s-]/g, "") // remove any characters which are not word characters
       .replace(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
-    //console.log(fileImageUrl);
     const newArtPiece = {
       id: uid(),
       slug: slug,
@@ -32,8 +32,8 @@ export default function ArtPieceForm({
       category: data.category,
       technique: data.technique,
       imageUrl: fileImageUrl,
-      heightReal: data.heightReal,
       widthReal: data.widthReal,
+      heightReal: data.heightReal,
     };
 
     onSubmit(newArtPiece);
@@ -45,7 +45,7 @@ export default function ArtPieceForm({
     <StyledSection>
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="imageUrl">
-          Upload your art piece: * Maximum file size is 600kB
+          Upload your art piece: *Maximum file size is 600kB
         </label>
         <Input
           type="file"
@@ -61,23 +61,21 @@ export default function ArtPieceForm({
           type="text"
           id="name"
           name="name"
+          minLength={3}
           placeholder="type in a name..."
           defaultValue={artPieceToEdit?.name}
           maxLength={50}
           required
         />
-        <label htmlFor="year">Release Year: </label>
+        <label htmlFor="date">Release Year: </label>
         <NumberInput
           type="number"
-          min="1990"
-          max="2099"
-          step="1"
-          id="year"
-          name="year"
+          id="date"
+          name="date"
+          min="0"
           defaultValue={artPieceToEdit?.date}
           required
         />
-
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
           <StyledSelection name="category">
@@ -99,23 +97,23 @@ export default function ArtPieceForm({
           <label htmlFor="heightReal">Width:</label>
           <NumberInput
             type="number"
-            min="10"
+            id="widthReal"
+            name="widthReal"
+            min="0"
             max="400"
-            id="heightReal"
-            name="heightReal"
             placeholder="cm"
-            defaultValue={artPieceToEdit?.heightReal}
+            defaultValue={artPieceToEdit?.widthReal}
             required
           />
           <label htmlFor="widthReal">Height:</label>
           <NumberInput
             type="number"
-            min="10"
+            min="0"
             max="400"
-            id="widthReal"
-            name="widthReal"
+            id="heightReal"
+            name="heightReal"
             placeholder="cm"
-            defaultValue={artPieceToEdit?.widthReal}
+            defaultValue={artPieceToEdit?.heightReal}
             required
           />
         </StyledFieldset>

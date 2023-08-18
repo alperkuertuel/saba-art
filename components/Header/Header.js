@@ -1,6 +1,4 @@
 import { styled } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faKey } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 export default function Header() {
@@ -12,9 +10,7 @@ export default function Header() {
       <p>
         <q>pictures are memories</q>
       </p>
-      <Link href={`/admin`}>
-        <StyledKey icon={faKey} />
-      </Link>
+      <StyledLink href={`/admin`}>ADMIN PAGE</StyledLink>
     </StyledHeader>
   );
 }
@@ -29,11 +25,8 @@ const StyledHeader = styled.header`
   text-align: center;
 `;
 
-const StyledKey = styled(FontAwesomeIcon)`
-  position: fixed;
-  right: 0;
-  top: 0;
-  font-size: 2rem;
+const StyledLink = styled(Link)`
+  font-size: 1rem;
   padding: 1rem;
   color: salmon;
 `;

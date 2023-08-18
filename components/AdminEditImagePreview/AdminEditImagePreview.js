@@ -6,7 +6,7 @@ export default function AdminImagePreview({ fileImageUrl }) {
     <StyledPreview>
       Preview:
       <StyledImage
-        src={fileImageUrl ? fileImageUrl : "/preview.png"}
+        src={fileImageUrl}
         alt="upload image preview"
         height={50}
         width={50}

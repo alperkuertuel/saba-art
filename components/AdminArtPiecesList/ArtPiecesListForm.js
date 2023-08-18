@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { styled } from "styled-components";
 
 export default function ArtPieceListForm({
@@ -6,7 +7,9 @@ export default function ArtPieceListForm({
   artPieces,
   handleSetArtPieces,
 }) {
+  const router = useRouter();
   function handleUpdate(event) {
+    event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
@@ -24,7 +27,7 @@ export default function ArtPieceListForm({
     const editedArtPiece = {
       id: artPieceToEdit.id,
       slug: slug,
-      date: data.year,
+      date: data.date,
       name: data.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
       description: data.description,
       category: data.category,
@@ -41,7 +44,9 @@ export default function ArtPieceListForm({
         ? {
             ...piece,
             id: editedArtPiece.id,
+            slug: editedArtPiece.slug,
             name: editedArtPiece.name,
+            date: editedArtPiece.date,
             description: editedArtPiece.description,
             category: editedArtPiece.category,
             technique: editedArtPiece.technique,
@@ -52,6 +57,8 @@ export default function ArtPieceListForm({
     );
     onSubmit(editedArtPiece);
     handleSetArtPieces(updatedArtpieces);
+    // todo: think about routing structure, is it usefull to route to the slug-page?
+    router.push(`/art-pieces/${slug}`);
   }
 
   return (
@@ -62,19 +69,17 @@ export default function ArtPieceListForm({
           type="text"
           id="name"
           name="name"
-          placeholder="type in a name..."
+          placeholder="change the name"
           defaultValue={artPieceToEdit?.name}
+          minLength={3}
           maxLength={50}
           required
         />
-        <label htmlFor="year">Change Release year: </label>
+        <label htmlFor="date">Change Release year: </label>
         <NumberInput
           type="number"
-          min="1990"
-          max="2099"
-          step="1"
-          id="year"
-          name="year"
+          id="date"
+          name="date"
           defaultValue={artPieceToEdit?.date}
           required
         />
@@ -100,23 +105,23 @@ export default function ArtPieceListForm({
           <label htmlFor="heightReal">width:</label>
           <NumberInput
             type="number"
-            min="10"
-            max="400"
-            id="heightReal"
-            name="heightReal"
-            placeholder="cm"
-            defaultValue={artPieceToEdit?.heightReal}
-            required
-          />
-          <label htmlFor="widthReal">height:</label>
-          <NumberInput
-            type="number"
-            min="10"
+            min="0"
             max="400"
             id="widthReal"
             name="widthReal"
             placeholder="cm"
             defaultValue={artPieceToEdit?.widthReal}
+            required
+          />
+          <label htmlFor="widthReal">height:</label>
+          <NumberInput
+            type="number"
+            min="0"
+            max="400"
+            id="heightReal"
+            name="heightReal"
+            placeholder="cm"
+            defaultValue={artPieceToEdit?.heightReal}
             required
           />
         </StyledFieldset>
