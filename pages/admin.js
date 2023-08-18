@@ -29,22 +29,15 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
   }
 
   function handleAddArtPiece(newArtPieceData) {
-    // if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
-    //   window.alert("Name already exists. Please choose a different name.");
-    // } else if (
-    //   artPieces.some((piece) => piece.imageUrl === newArtPieceData.imageUrl)
-    // ) {
-    //   window.alert(
-    //     "Image is already in the Gallery. Please choose a different piture"
-    //   );
-    // } else
-    setArtPieces([newArtPieceData, ...artPieces]);
+    if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
+      window.alert("Name already exists. Please choose a different name.");
+    } else setArtPieces([newArtPieceData, ...artPieces]);
   }
 
   function handleEditArtPiece(id) {
     const selectedArtPieceToEdit = artPieces.find((piece) => piece.id === id);
     setArtPieceToEdit(selectedArtPieceToEdit);
-    console.log();
+    console.log(id);
   }
 
   return (

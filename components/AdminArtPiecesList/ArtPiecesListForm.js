@@ -33,7 +33,7 @@ export default function ArtPieceListForm({
       heightReal: data.heightReal,
       widthReal: data.widthReal,
     };
-    onSubmit(editedArtPiece);
+
     console.log("Editing submitted:", editedArtPiece);
     console.log(artPieces);
     const updatedArtpieces = artPieces.map((piece) =>
@@ -50,9 +50,8 @@ export default function ArtPieceListForm({
           }
         : piece
     );
-
+    onSubmit(editedArtPiece);
     setArtPieces(updatedArtpieces);
-    event.target.reset();
   }
 
   return (
@@ -130,7 +129,7 @@ export default function ArtPieceListForm({
           rows="10"
           defaultValue={artPieceToEdit?.description}
         ></Textarea>
-        <StyledButton>Upadate Your Art Piece</StyledButton>
+        <StyledButton>UPDATE</StyledButton>
       </StyledForm>
     </StyledSection>
   );

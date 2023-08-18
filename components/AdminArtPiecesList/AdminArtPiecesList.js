@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ArtPieceListForm from "./ArtPiecesListForm";
+import { useState } from "react";
 
 export default function ArtPiecesList({
   artPieces,
@@ -15,7 +16,7 @@ export default function ArtPiecesList({
 }) {
   return (
     <StyledSection>
-      <ul>
+      <StyledItemList>
         {artPieces.map(({ slug, id, imageUrl, name }) => (
           <StyledItem key={id}>
             <Link href={`/art-pieces/${slug}`}>
@@ -30,17 +31,17 @@ export default function ArtPiecesList({
             <StyledButton onClick={() => onDelete(id)}>
               <FontAwesomeIcon icon={faTrashCan} />
             </StyledButton>
-            <EditForm>
-              <ArtPieceListForm
-                artPieces={artPieces}
-                setArtPieces={setArtPieces}
-                artPieceToEdit={artPieceToEdit}
-                onSubmit={onSubmit}
-              />
-            </EditForm>
           </StyledItem>
         ))}
-      </ul>
+      </StyledItemList>
+      <article>
+        <ArtPieceListForm
+          artPieces={artPieces}
+          setArtPieces={setArtPieces}
+          artPieceToEdit={artPieceToEdit}
+          onSubmit={onSubmit}
+        />
+      </article>
     </StyledSection>
   );
 }
@@ -48,6 +49,10 @@ export default function ArtPiecesList({
 const StyledSection = styled.section`
   max-width: 600px;
   margin: 2rem auto;
+`;
+
+const StyledItemList = styled.ul`
+  padding: 1rem;
 `;
 
 const StyledItem = styled.li`
@@ -76,5 +81,3 @@ const StyledButton = styled.button`
     color: black;
   }
 `;
-
-const EditForm = styled.span``;
