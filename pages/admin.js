@@ -1,7 +1,6 @@
 import ArtPieceForm from "@/components/AdminArtPieceForm/ArtPieceForm";
 import Header from "@/components/Header/Header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
-import { useState } from "react";
 
 export default function AdminHomePage({
   artPieces,
@@ -13,6 +12,7 @@ export default function AdminHomePage({
 }) {
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
+    console.log(imageFile);
 
     if (imageFile && imageFile.size <= 600000) {
       const reader = new FileReader();
@@ -54,7 +54,7 @@ export default function AdminHomePage({
   function handleEditArtPiece(id) {
     const selectedArtPieceToEdit = artPieces.find((piece) => piece.id === id);
     handleArtPieceToEdit(selectedArtPieceToEdit);
-    console.log(id);
+    console.log(selectedArtPieceToEdit);
   }
 
   return (

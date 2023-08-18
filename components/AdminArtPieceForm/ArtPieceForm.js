@@ -26,7 +26,7 @@ export default function ArtPieceForm({
     const newArtPiece = {
       id: uid(),
       slug: slug,
-      date: data.year,
+      date: data.date,
       name: data.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
       description: data.description,
       category: data.category,
