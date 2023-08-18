@@ -44,7 +44,9 @@ export default function ArtPieceForm({
   return (
     <StyledSection>
       <StyledForm onSubmit={handleSubmit}>
-        <label htmlFor="imageUrl">Upload your art piece: </label>
+        <label htmlFor="imageUrl">
+          Upload your art piece: * Maximum file size is 600kB
+        </label>
         <Input
           type="file"
           id="imageUrl"

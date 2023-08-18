@@ -7,7 +7,6 @@ export default function ArtPieceListForm({
   setArtPieces,
 }) {
   function handleUpdate(event) {
-    event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     const slug = data.name

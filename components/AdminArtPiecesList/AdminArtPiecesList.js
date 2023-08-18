@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ArtPieceListForm from "./ArtPiecesListForm";
-import { useState } from "react";
 
 export default function ArtPiecesList({
   artPieces,

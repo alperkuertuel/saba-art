@@ -9,16 +9,18 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
 
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
+    console.log(imageFile);
 
     // todo: validation with file info (size, type, length): console.log(event.target.files);
-    if (imageFile) {
+    if (imageFile && imageFile.size <= 600000) {
       const reader = new FileReader();
       reader.onload = function (load) {
         const url = load.target.result;
         setfileImageUrl(url);
       };
       reader.readAsDataURL(imageFile);
-    }
+      console.log(imageFile);
+    } else window.alert("Your file is to big!");
   }
 
   function handleDeleteArtPiece(id) {
@@ -32,6 +34,7 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
     if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
       window.alert("Name already exists. Please choose a different name.");
     } else setArtPieces([newArtPieceData, ...artPieces]);
+    console.log(artPieces);
   }
 
   function handleEditArtPiece(id) {

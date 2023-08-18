@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 export default function AdminImagePreview({ fileImageUrl }) {
   return (
     <>
-      {fileImageUrl && (
+      {fileImageUrl ? (
         <StyledPreview>
           Preview:
           <StyledImage
@@ -14,6 +14,8 @@ export default function AdminImagePreview({ fileImageUrl }) {
             width={50}
           />
         </StyledPreview>
+      ) : (
+        ""
       )}
     </>
   );
