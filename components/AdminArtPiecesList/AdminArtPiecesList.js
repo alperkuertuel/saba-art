@@ -7,7 +7,7 @@ import ArtPieceListForm from "./ArtPiecesListForm";
 
 export default function ArtPiecesList({
   artPieces,
-  setArtPieces,
+  handleSetArtPieces,
   onEdit,
   onDelete,
   artPieceToEdit,
@@ -36,7 +36,7 @@ export default function ArtPiecesList({
       <article>
         <ArtPieceListForm
           artPieces={artPieces}
-          setArtPieces={setArtPieces}
+          handleSetArtPieces={handleSetArtPieces}
           artPieceToEdit={artPieceToEdit}
           onSubmit={onSubmit}
         />

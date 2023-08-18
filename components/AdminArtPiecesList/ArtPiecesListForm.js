@@ -4,7 +4,7 @@ export default function ArtPieceListForm({
   onSubmit,
   artPieceToEdit,
   artPieces,
-  setArtPieces,
+  handleSetArtPieces,
 }) {
   function handleUpdate(event) {
     const form = event.target;
@@ -51,7 +51,7 @@ export default function ArtPieceListForm({
         : piece
     );
     onSubmit(editedArtPiece);
-    setArtPieces(updatedArtpieces);
+    handleSetArtPieces(updatedArtpieces);
   }
 
   return (

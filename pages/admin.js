@@ -3,10 +3,14 @@ import Header from "@/components/Header/Header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
 import { useState } from "react";
 
-export default function AdminHomePage({ artPieces, setArtPieces }) {
-  const [artPieceToEdit, setArtPieceToEdit] = useState([]);
-  let [fileImageUrl, setfileImageUrl] = useState(null);
-
+export default function AdminHomePage({
+  artPieces,
+  artPieceToEdit,
+  handleSetArtPieces,
+  handleArtPieceToEdit,
+  fileImageUrl,
+  handleSetFileImageUrl,
+}) {
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
 
@@ -14,7 +18,7 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
       const reader = new FileReader();
       reader.onload = function (load) {
         const url = load.target.result;
-        setfileImageUrl(url);
+        handleSetFileImageUrl(url);
       };
       reader.readAsDataURL(imageFile);
     } else window.alert("Your file is to big!") || location.reload();
@@ -37,19 +41,19 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
       `Are you sure you want to delete ${artPieceToDelete.name}`
     );
     if (sureToDelete) {
-      setArtPieces(artPiecesWithoutDeletedArtPiece);
+      handleSetArtPieces(artPiecesWithoutDeletedArtPiece);
     }
   }
 
   function handleAddArtPiece(newArtPieceData) {
     if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
       window.alert("Name already exists. Please choose a different name.");
-    } else setArtPieces([newArtPieceData, ...artPieces]);
+    } else handleSetArtPieces([newArtPieceData, ...artPieces]);
   }
 
   function handleEditArtPiece(id) {
     const selectedArtPieceToEdit = artPieces.find((piece) => piece.id === id);
-    setArtPieceToEdit(selectedArtPieceToEdit);
+    handleArtPieceToEdit(selectedArtPieceToEdit);
     console.log(id);
   }
 
@@ -59,7 +63,6 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
       <main>
         <ArtPieceForm
           fileImageUrl={fileImageUrl}
-          setfileImageUrl={setfileImageUrl}
           onSubmit={handleAddArtPiece}
           onChange={handleImageUpload}
         />
@@ -70,7 +73,7 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
           onEdit={handleEditArtPiece}
           onDelete={handleDeleteArtPiece}
           artPieces={artPieces}
-          setArtPieces={setArtPieces}
+          handleSetArtPieces={handleSetArtPieces}
         />
       </main>
     </>
