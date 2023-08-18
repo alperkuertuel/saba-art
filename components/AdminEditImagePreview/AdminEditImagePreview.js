@@ -1,23 +1,18 @@
 import Image from "next/image";
+import { useEffect } from "react";
 import { styled } from "styled-components";
 
-export default function AdminImagePreview({ fileImageUrl }) {
+export default function AdminImagePreview({ fileImageUrl, setfileImageUrl }) {
   return (
-    <>
-      {fileImageUrl ? (
-        <StyledPreview>
-          Preview:
-          <StyledImage
-            src={fileImageUrl}
-            alt="upload image preview"
-            height={50}
-            width={50}
-          />
-        </StyledPreview>
-      ) : (
-        ""
-      )}
-    </>
+    <StyledPreview>
+      Preview:
+      <StyledImage
+        src={fileImageUrl ? fileImageUrl : "/preview.png"}
+        alt="upload image preview"
+        height={50}
+        width={50}
+      />
+    </StyledPreview>
   );
 }
 

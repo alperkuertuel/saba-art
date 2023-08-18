@@ -6,10 +6,10 @@ export default function ArtPieceForm({
   onSubmit,
   artPieceToEdit,
   fileImageUrl,
+  setfileImageUrl,
   onChange,
 }) {
   function handleSubmit(event) {
-    event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     const slug = data.name
@@ -56,8 +56,8 @@ export default function ArtPieceForm({
           required
         />
         <AdminImagePreview
-          artPieceToEdit={artPieceToEdit}
           fileImageUrl={fileImageUrl}
+          setfileImageUrl={setfileImageUrl}
         />
         <label htmlFor="name">Name your art piece:</label>
         <Input

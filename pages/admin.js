@@ -5,13 +5,12 @@ import { useState } from "react";
 
 export default function AdminHomePage({ artPieces, setArtPieces }) {
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
-  const [fileImageUrl, setfileImageUrl] = useState(null);
+  let [fileImageUrl, setfileImageUrl] = useState(null);
 
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
     console.log(imageFile);
 
-    // todo: validation with file info (size, type, length): console.log(event.target.files);
     if (imageFile && imageFile.size <= 600000) {
       const reader = new FileReader();
       reader.onload = function (load) {
@@ -19,22 +18,34 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
         setfileImageUrl(url);
       };
       reader.readAsDataURL(imageFile);
-      console.log(imageFile);
-    } else window.alert("Your file is to big!");
+    } else window.alert("Your file is to big!") || location.reload();
   }
 
   function handleDeleteArtPiece(id) {
+    const artPieceToDelete = artPieces.find((piece) => piece.id === id);
     const artPiecesWithoutDeletedArtPiece = artPieces.filter(
       (piece) => piece.id !== id
     );
-    setArtPieces(artPiecesWithoutDeletedArtPiece);
+
+    if (!artPieceToDelete) {
+      console.log("Art piece not found.");
+      return;
+    }
+
+    const artPieceName = artPieceToDelete.name;
+    console.log(artPieceName);
+    const sureToDelete = confirm(
+      `Are you sure about deleting ${artPieceToDelete.name}`
+    );
+    if (sureToDelete) {
+      setArtPieces(artPiecesWithoutDeletedArtPiece);
+    }
   }
 
   function handleAddArtPiece(newArtPieceData) {
     if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
       window.alert("Name already exists. Please choose a different name.");
     } else setArtPieces([newArtPieceData, ...artPieces]);
-    console.log(artPieces);
   }
 
   function handleEditArtPiece(id) {
@@ -49,6 +60,7 @@ export default function AdminHomePage({ artPieces, setArtPieces }) {
       <main>
         <ArtPieceForm
           fileImageUrl={fileImageUrl}
+          setfileImageUrl={setfileImageUrl}
           onSubmit={handleAddArtPiece}
           onChange={handleImageUpload}
         />
