@@ -20,7 +20,7 @@ export default function AdminHomePage({
         handleSetFileImageUrl(url);
       };
       reader.readAsDataURL(imageFile);
-    } else window.alert("Your file is to big!") || location.reload();
+    } else window.alert("Your file is to big!");
   }
 
   function handleDeleteArtPiece(id) {
@@ -60,6 +60,7 @@ export default function AdminHomePage({
       <Header />
       <main>
         <ArtPieceForm
+          handleSetFileImageUrl={handleSetFileImageUrl}
           fileImageUrl={fileImageUrl}
           onSubmit={handleAddArtPiece}
           onChange={handleImageUpload}

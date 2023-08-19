@@ -6,6 +6,7 @@ export default function ArtPieceForm({
   onSubmit,
   artPieceToEdit,
   fileImageUrl,
+  handleSetFileImageUrl,
   onChange,
 }) {
   function handleSubmit(event) {
@@ -37,6 +38,7 @@ export default function ArtPieceForm({
     };
 
     onSubmit(newArtPiece);
+    handleSetFileImageUrl("/preview.png");
     form.reset();
     form.name.focus();
   }
