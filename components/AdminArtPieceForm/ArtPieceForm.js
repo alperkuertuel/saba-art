@@ -4,6 +4,7 @@ import AdminImagePreview from "../AdminEditImagePreview/AdminEditImagePreview";
 
 export default function ArtPieceForm({
   onSubmit,
+  allowedFileSize,
   artPieceToEdit,
   fileImageUrl,
   handleSetFileImageUrl,
@@ -47,7 +48,7 @@ export default function ArtPieceForm({
     <StyledSection>
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="imageUrl">
-          Upload your art piece: *Maximum file size is 600kB
+          Upload your art piece: *Maximum file size is {allowedFileSize / 1000}KB
         </label>
         <Input
           type="file"
@@ -56,6 +57,7 @@ export default function ArtPieceForm({
           onChange={onChange}
           accept="image/*"
           required
+          capture
         />
         <AdminImagePreview fileImageUrl={fileImageUrl} />
         <label htmlFor="name">Name your art piece:</label>
@@ -81,9 +83,7 @@ export default function ArtPieceForm({
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
           <StyledSelection name="category">
-            <option defaultValue={artPieceToEdit?.Impression}>
-              Impressions
-            </option>
+            <option defaultValue={artPieceToEdit?.Impression}>Impressions</option>
             <option defaultValue={artPieceToEdit?.Landscape}>Landscapes</option>
             <option defaultValue={artPieceToEdit?.Abstact}>Abstract</option>
             <option defaultValue={artPieceToEdit?.Portrait}>Portraits</option>
@@ -128,7 +128,7 @@ export default function ArtPieceForm({
           rows="10"
           defaultValue={artPieceToEdit?.description}
         ></Textarea>
-        <StyledButton>SUBMIT</StyledButton>
+        <StyledButton>ADD NEW ART PIECE</StyledButton>
       </StyledForm>
     </StyledSection>
   );

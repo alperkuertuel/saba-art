@@ -10,35 +10,25 @@ export default function AdminHomePage({
   fileImageUrl,
   handleSetFileImageUrl,
 }) {
+  const allowedFileSize = 600000;
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
 
-    if (imageFile && imageFile.size <= 600000) {
+    if (imageFile && imageFile.size <= allowedFileSize) {
       const reader = new FileReader();
       reader.onload = function (load) {
         const url = load.target.result;
         handleSetFileImageUrl(url);
       };
       reader.readAsDataURL(imageFile);
-    } else window.alert("Your file is to big!");
+    } else window.alert(`Your uploaded file is bigger then ${allowedFileSize / 1000}KB.`);
   }
 
   function handleDeleteArtPiece(id) {
     const artPieceToDelete = artPieces.find((piece) => piece.id === id);
-    const artPiecesWithoutDeletedArtPiece = artPieces.filter(
-      (piece) => piece.id !== id
-    );
+    const artPiecesWithoutDeletedArtPiece = artPieces.filter((piece) => piece.id !== id);
 
-    if (!artPieceToDelete) {
-      console.log("Art piece not found.");
-      return;
-    }
-
-    const artPieceName = artPieceToDelete.name;
-    console.log(artPieceName);
-    const sureToDelete = confirm(
-      `Are you sure you want to delete ${artPieceToDelete.name}`
-    );
+    const sureToDelete = confirm(`Are you sure you want to delete ${artPieceToDelete.name}`);
     if (sureToDelete) {
       handleSetArtPieces(artPiecesWithoutDeletedArtPiece);
     }
@@ -60,6 +50,7 @@ export default function AdminHomePage({
       <Header />
       <main>
         <ArtPieceForm
+          allowedFileSize={allowedFileSize}
           handleSetFileImageUrl={handleSetFileImageUrl}
           fileImageUrl={fileImageUrl}
           onSubmit={handleAddArtPiece}

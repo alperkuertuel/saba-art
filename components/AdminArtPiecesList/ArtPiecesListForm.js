@@ -37,16 +37,15 @@ export default function ArtPieceListForm({
       widthReal: data.widthReal,
     };
 
-    console.log("Editing submitted:", editedArtPiece);
-    console.log(artPieces);
     const updatedArtpieces = artPieces.map((piece) =>
       piece.id === artPieceToEdit.id
         ? {
             ...piece,
-            id: editedArtPiece.id,
+            id: artPieceToEdit.id,
             slug: editedArtPiece.slug,
             name: editedArtPiece.name,
             date: editedArtPiece.date,
+            imageUrl: artPieceToEdit.imageUrl,
             description: editedArtPiece.description,
             category: editedArtPiece.category,
             technique: editedArtPiece.technique,
@@ -55,8 +54,11 @@ export default function ArtPieceListForm({
           }
         : piece
     );
-    onSubmit(editedArtPiece);
+
+    onSubmit(artPieceToEdit.id);
     handleSetArtPieces(updatedArtpieces);
+    form.reset();
+    form.name.focus();
     // todo: think about routing structure, is it usefull to route to the slug-page?
     router.push(`/art-pieces/${slug}`);
   }
@@ -87,9 +89,7 @@ export default function ArtPieceListForm({
         <StyledFieldset>
           <label htmlFor="category">Change category: </label>
           <StyledSelection name="category">
-            <option defaultValue={artPieceToEdit?.Impression}>
-              Impressions
-            </option>
+            <option defaultValue={artPieceToEdit?.Impression}>Impressions</option>
             <option defaultValue={artPieceToEdit?.Landscape}>Landscapes</option>
             <option defaultValue={artPieceToEdit?.Abstact}>Abstract</option>
             <option defaultValue={artPieceToEdit?.Portrait}>Portraits</option>
