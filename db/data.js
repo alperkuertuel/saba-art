@@ -3,22 +3,22 @@ const artPiecesData = [
     id: "1",
     slug: "voilette-blues",
     name: "Voilette Blues",
-    date: "2021",
+    date: "2000",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Abstract",
     technique: "Oil",
     imageUrl:
       "https://cdn.pixabay.com/photo/2019/04/26/17/47/color-4158152_1280.jpg",
-    heightReal: 100,
-    widthReal: 100,
+    heightReal: "100",
+    widthReal: "100",
   },
 
   {
     id: "2",
     slug: "milky-way",
     name: "Milky Way",
-    date: "2021",
+    date: "2003",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Impression",
@@ -32,7 +32,7 @@ const artPiecesData = [
     id: "3",
     slug: "ocean-scene",
     name: "Ocean Scene",
-    date: "2021",
+    date: "2002",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Landscape",
@@ -46,7 +46,7 @@ const artPiecesData = [
     id: "4",
     slug: "mona-lisa",
     name: "Mona Lisa",
-    date: "2021",
+    date: "2006",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Portrait",
@@ -60,7 +60,7 @@ const artPiecesData = [
     id: "5",
     slug: "forest-walk",
     name: "Forest Walk",
-    date: "2021",
+    date: "2009",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Landscape",
@@ -74,7 +74,7 @@ const artPiecesData = [
     id: "6",
     slug: "fishermens-bay",
     name: "Fishermens Bay",
-    date: "2021",
+    date: "2010",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Impression",
@@ -88,7 +88,7 @@ const artPiecesData = [
     id: "7",
     slug: "nordic-snow-hut",
     name: "Nordic Snow Hut",
-    date: "2021",
+    date: "2011",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Impression",
@@ -102,7 +102,7 @@ const artPiecesData = [
     id: "8",
     slug: "spilled-coffee",
     name: "Spilled Coffee",
-    date: 2021,
+    date: "2012",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
 
@@ -117,7 +117,7 @@ const artPiecesData = [
     id: "9",
     slug: "florenz",
     name: "Florenz",
-    date: "2021",
+    date: "2013",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Impression",
@@ -131,7 +131,7 @@ const artPiecesData = [
     id: "10",
     slug: "blue-blues",
     name: "Blue Blues",
-    date: "2021",
+    date: "2014",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Abstract",
@@ -145,7 +145,7 @@ const artPiecesData = [
     id: "11",
     slug: "rainbow-blues",
     name: "Rainbow Blues",
-    date: "2021",
+    date: "2015",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Abstract",
@@ -159,7 +159,7 @@ const artPiecesData = [
     id: "12",
     slug: "grunge",
     name: "Grunge",
-    date: "2021",
+    date: "2016",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Abstract",
@@ -173,7 +173,7 @@ const artPiecesData = [
     id: "13",
     slug: "mountain-in-vietnam",
     name: "Mountain In Vietnam",
-    date: "2021",
+    date: "2017",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Landscape",
@@ -187,7 +187,7 @@ const artPiecesData = [
     id: "14",
     slug: "izmir-mountain",
     name: "Izmir Mountain",
-    date: "2021",
+    date: "2018",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Landscape",
@@ -201,7 +201,7 @@ const artPiecesData = [
     id: "15",
     slug: "ephesus",
     name: "Ephesus",
-    date: "2021",
+    date: "2019",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Impression",
@@ -229,7 +229,7 @@ const artPiecesData = [
     id: "17",
     slug: "stormy-north",
     name: "Stormy North",
-    date: "2021",
+    date: "2022",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Impression",
@@ -243,7 +243,7 @@ const artPiecesData = [
     id: "18",
     slug: "alps",
     name: "Alps",
-    date: "2021",
+    date: "2023",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     category: "Landscape",
