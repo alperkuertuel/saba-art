@@ -1,7 +1,7 @@
 import Header from "@/components/Header/Header";
 import ArtPieceDetails from "@/components/ArtPieceDetails/ArtPieceDetails";
 import { useRouter } from "next/router";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import Link from "next/link";
 
 export default function ShowDetails({ artPieces }) {

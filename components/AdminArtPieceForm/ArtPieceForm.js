@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { uid } from "uid";
 import AdminImagePreview from "../AdminEditImagePreview/AdminEditImagePreview";
 
@@ -48,7 +48,7 @@ export default function ArtPieceForm({
     <StyledSection>
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="imageUrl">
-          Upload your art piece: *Maximum file size is {allowedFileSize / 1000}KB
+          Upload your art piece: *Maximum file size is {allowedFileSize / 1024}KB
         </label>
         <Input
           type="file"
@@ -67,32 +67,24 @@ export default function ArtPieceForm({
           name="name"
           minLength={3}
           placeholder="type in a name..."
-          defaultValue={artPieceToEdit?.name}
           maxLength={50}
           required
         />
         <label htmlFor="date">Release Year: </label>
-        <NumberInput
-          type="number"
-          id="date"
-          name="date"
-          min="0"
-          defaultValue={artPieceToEdit?.date}
-          required
-        />
+        <NumberInput type="number" id="date" name="date" min="0" required />
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
           <StyledSelection name="category">
-            <option defaultValue={artPieceToEdit?.Impression}>Impressions</option>
-            <option defaultValue={artPieceToEdit?.Landscape}>Landscapes</option>
-            <option defaultValue={artPieceToEdit?.Abstact}>Abstract</option>
-            <option defaultValue={artPieceToEdit?.Portrait}>Portraits</option>
+            <option>Impressions</option>
+            <option>Landscapes</option>
+            <option>Abstract</option>
+            <option>Portraits</option>
           </StyledSelection>
 
           <label htmlFor="technique">Technique:</label>
           <StyledSelection name="technique">
-            <option defaultValue={artPieceToEdit?.Oil}>Oil</option>
-            <option defaultValue={artPieceToEdit?.Acryl}>Acryl</option>
+            <option>Oil</option>
+            <option>Acryl</option>
           </StyledSelection>
         </StyledFieldset>
         <StyledFieldset>
@@ -104,7 +96,6 @@ export default function ArtPieceForm({
             min="0"
             max="400"
             placeholder="cm"
-            defaultValue={artPieceToEdit?.widthReal}
             required
           />
           <label htmlFor="widthReal">Height:</label>
@@ -115,7 +106,6 @@ export default function ArtPieceForm({
             id="heightReal"
             name="heightReal"
             placeholder="cm"
-            defaultValue={artPieceToEdit?.heightReal}
             required
           />
         </StyledFieldset>
@@ -126,7 +116,6 @@ export default function ArtPieceForm({
           id="description"
           cols="30"
           rows="10"
-          defaultValue={artPieceToEdit?.description}
         ></Textarea>
         <StyledButton>ADD NEW ART PIECE</StyledButton>
       </StyledForm>

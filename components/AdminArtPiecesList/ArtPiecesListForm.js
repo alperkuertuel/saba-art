@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export default function ArtPieceListForm({
   onSubmit,
@@ -107,8 +107,8 @@ export default function ArtPieceListForm({
             type="number"
             min="0"
             max="400"
-            id="widthReal"
-            name="widthReal"
+            id="heightReal"
+            name="heightReal"
             placeholder="cm"
             defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).widthReal}
             required
@@ -118,8 +118,8 @@ export default function ArtPieceListForm({
             type="number"
             min="0"
             max="400"
-            id="heightReal"
-            name="heightReal"
+            id="widthReal"
+            name="widthReal"
             placeholder="cm"
             defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).heightReal}
             required

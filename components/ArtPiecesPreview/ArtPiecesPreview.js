@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export default function ArtPiecesPreview({ artPieces }) {
   return (
@@ -9,12 +9,7 @@ export default function ArtPiecesPreview({ artPieces }) {
         <GalleryCard key={id}>
           <figure>
             <Link href={`/art-pieces/${slug}`}>
-              <StyledImage
-                src={imageUrl}
-                alt={name}
-                width={1000}
-                height={1000}
-              />
+              <StyledImage src={imageUrl} alt={name} width={1000} height={1000} />
             </Link>
             <Caption>
               <q>{name}</q>

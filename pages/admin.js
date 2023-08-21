@@ -10,7 +10,7 @@ export default function AdminHomePage({
   fileImageUrl,
   handleSetFileImageUrl,
 }) {
-  const allowedFileSize = 600000;
+  const allowedFileSize = 614400;
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
 
@@ -21,7 +21,7 @@ export default function AdminHomePage({
         handleSetFileImageUrl(url);
       };
       reader.readAsDataURL(imageFile);
-    } else window.alert(`Your uploaded file is bigger then ${allowedFileSize / 1000}KB.`);
+    } else window.alert(`Your uploaded file is bigger then ${allowedFileSize / 1024}KB.`);
   }
 
   function handleDeleteArtPiece(id) {
