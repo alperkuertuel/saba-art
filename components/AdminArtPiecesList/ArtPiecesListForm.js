@@ -72,7 +72,7 @@ export default function ArtPieceListForm({
           id="name"
           name="name"
           placeholder="change the name"
-          defaultValue={artPieceToEdit?.name}
+          defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).name}
           minLength={3}
           maxLength={50}
           required
@@ -82,23 +82,23 @@ export default function ArtPieceListForm({
           type="number"
           id="date"
           name="date"
-          defaultValue={artPieceToEdit?.date}
+          defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).date}
           required
         />
 
         <StyledFieldset>
           <label htmlFor="category">Change category: </label>
           <StyledSelection name="category">
-            <option defaultValue={artPieceToEdit?.Impression}>Impressions</option>
-            <option defaultValue={artPieceToEdit?.Landscape}>Landscapes</option>
-            <option defaultValue={artPieceToEdit?.Abstact}>Abstract</option>
-            <option defaultValue={artPieceToEdit?.Portrait}>Portraits</option>
+            <option>Impressions</option>
+            <option>Landscapes</option>
+            <option>Abstract</option>
+            <option>Portraits</option>
           </StyledSelection>
 
           <label htmlFor="technique">Change technique:</label>
           <StyledSelection name="technique">
-            <option defaultValue={artPieceToEdit?.Oil}>Oil</option>
-            <option defaultValue={artPieceToEdit?.Acryl}>Acryl</option>
+            <option>Oil</option>
+            <option>Acryl</option>
           </StyledSelection>
         </StyledFieldset>
         <StyledFieldset>
@@ -110,7 +110,7 @@ export default function ArtPieceListForm({
             id="widthReal"
             name="widthReal"
             placeholder="cm"
-            defaultValue={artPieceToEdit?.widthReal}
+            defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).widthReal}
             required
           />
           <label htmlFor="widthReal">height:</label>
@@ -121,7 +121,7 @@ export default function ArtPieceListForm({
             id="heightReal"
             name="heightReal"
             placeholder="cm"
-            defaultValue={artPieceToEdit?.heightReal}
+            defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).heightReal}
             required
           />
         </StyledFieldset>
@@ -132,7 +132,7 @@ export default function ArtPieceListForm({
           id="description"
           cols="30"
           rows="10"
-          defaultValue={artPieceToEdit?.description}
+          defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).description}
         ></Textarea>
         <StyledButton>UPDATE</StyledButton>
       </StyledForm>
