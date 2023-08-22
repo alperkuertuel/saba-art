@@ -6,19 +6,20 @@ import styled from "styled-components";
 export default function ArtPiecesPreview({ artPieces, filteredCategory }) {
   return (
     <GalleryWrapper>
-      {filteredCategory.map(({ id, imageUrl, name, date, slug }) => (
-        <GalleryCard key={id}>
-          <figure>
-            <Link href={`/art-pieces/${slug}`}>
-              <StyledImage src={imageUrl} alt={name} width={1000} height={1000} />
-            </Link>
-            <Caption>
-              <h2>{name}</h2>
-              {date}
-            </Caption>
-          </figure>
-        </GalleryCard>
-      ))}
+      {filteredCategory &&
+        filteredCategory.map(({ id, imageUrl, name, date, slug }) => (
+          <GalleryCard key={id}>
+            <figure>
+              <Link href={`/art-pieces/${slug}`}>
+                <StyledImage src={imageUrl} alt={name} width={1000} height={1000} />
+              </Link>
+              <Caption>
+                <h2>{name}</h2>
+                {date}
+              </Caption>
+            </figure>
+          </GalleryCard>
+        ))}
     </GalleryWrapper>
   );
 }
