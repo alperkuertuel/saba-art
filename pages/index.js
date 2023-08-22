@@ -7,7 +7,7 @@ export default function HomePage({ artPieces }) {
     <>
       <Header />
       <main>
-        <CategoryFilter />
+        <CategoryFilter artPieces={artPieces} />
         <ArtPiecesPreview artPieces={artPieces} />
       </main>
     </>
