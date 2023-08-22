@@ -1,25 +1,26 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { uid } from "uid";
 
-export default function CategoryFilter({ artPieces, handleSetArtPieces }) {
+export default function CategoryFilter({ artPieces, handleSetFilteredCategory, filteredCategory }) {
   const allCategories = artPieces.map((piece) => piece.category);
 
   // Ref: https://stackoverflow.com/questions/62054582/how-do-i-filter-all-items-that-occur-once-into-one-list-and-all-items-that-occur
   const uniqueSet = new Set(allCategories);
   const uniqueCatagories = [...uniqueSet];
 
-  function handleFilterCategories(category) {
+  function handleFilteredCategories(category) {
     if (uniqueCatagories.includes(category)) {
-      const test = artPieces.filter((piece) => piece.category === category);
-      console.log(test);
+      const filter = artPieces.filter((piece) => piece.category === category);
+      handleSetFilteredCategory(filter);
     }
   }
-
+  console.log(filteredCategory);
   return (
     <StyledCategoryFilter>
       {uniqueCatagories.map((category) => (
         <li key={uid()}>
-          <button onClick={() => handleFilterCategories(category)}>{category}</button>
+          <button onClick={() => handleFilteredCategories(category)}>{category}</button>
         </li>
       ))}
     </StyledCategoryFilter>
