@@ -105,6 +105,19 @@ const artPiecesData = [
     widthReal: "100",
   },
   {
+    id: "test3",
+    slug: "nordic-snow-hut",
+    name: "Nordic Snow Hut",
+    date: "2011",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    category: "Test2",
+    technique: "Oil",
+    imageUrl: "https://cdn.pixabay.com/photo/2013/03/03/19/46/george-durrie-89656_1280.jpg",
+    date: "2021",
+    widthReal: "100",
+  },
+  {
     id: "8",
     slug: "spilled-coffee",
     name: "Spilled Coffee",
