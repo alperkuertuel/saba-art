@@ -2,8 +2,9 @@ import Link from "next/link";
 import styled from "styled-components";
 import { uid } from "uid";
 
-export default function CategoryFilter({ artPieces, handleSetFilteredCategory, filteredCategory }) {
+export default function CategoryFilter({ artPieces, handleSetFilteredCategory }) {
   const allCategories = artPieces.map((piece) => piece.category);
+  const currentYear = new Date().getFullYear();
 
   // Ref: https://stackoverflow.com/questions/62054582/how-do-i-filter-all-items-that-occur-once-into-one-list-and-all-items-that-occur
   const uniqueSet = new Set(allCategories);
@@ -15,10 +16,17 @@ export default function CategoryFilter({ artPieces, handleSetFilteredCategory, f
       handleSetFilteredCategory(filter);
     }
   }
-  console.log(filteredCategory);
+
+  function handleNewestArtPieces() {
+    const yearFilter = artPieces.filter(
+      (piece) => new Date(piece.date).getFullYear() === currentYear
+    );
+    handleSetFilteredCategory(yearFilter);
+  }
+
   return (
     <StyledCategoryFilter>
-      <StyledLink href="/">All</StyledLink>
+      <StyledNewestButton onClick={handleNewestArtPieces}>Newest</StyledNewestButton>
       {uniqueCatagories.map((category) => (
         <li key={uid()}>
           <StyledButton onClick={() => handleFilteredCategories(category)}>{category}</StyledButton>
@@ -44,11 +52,11 @@ const StyledButton = styled.button`
   font-size: 1rem;
 `;
 
-const StyledLink = styled(Link)`
+const StyledNewestButton = styled.button`
   border: none;
-  color: black;
   background: var(--box-color);
   padding: 0.5rem;
   border-radius: 5px;
   box-shadow: var(--box-shadow);
+  font-size: 1rem;
 `;
