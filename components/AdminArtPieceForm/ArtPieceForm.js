@@ -58,14 +58,21 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
         <label htmlFor="name">Name your art piece:</label>
         <Input type="text" id="name" name="name" minLength={3} maxLength={30} required />
         <label htmlFor="date">Release Year: </label>
-        <Input type="number" id="date" name="date" min="0" required />
+        <Input
+          type="number"
+          id="date"
+          name="date"
+          min="0"
+          maxLength={new Date().getFullYear()}
+          required
+        />
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
           <StyledSelection name="category">
-            <option>Impressions</option>
-            <option>Landscapes</option>
+            <option>Impression</option>
+            <option>Landscape</option>
             <option>Abstract</option>
-            <option>Portraits</option>
+            <option>Portrait</option>
             <option>New Category 1</option> {/* for testing */}
             <option>New Category 2</option> {/* for testing */}
           </StyledSelection>

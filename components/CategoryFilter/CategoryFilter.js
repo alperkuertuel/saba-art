@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styled from "styled-components";
 import { uid } from "uid";
 
@@ -28,7 +27,7 @@ export default function CategoryFilter({ artPieces, handleSetFilteredCategory })
     <StyledCategoryFilter>
       <StyledNewestButton onClick={handleNewestArtPieces}>Newest</StyledNewestButton>
       {uniqueCatagories.map((category) => (
-        <li key={uid()}>
+        <li key={category.id}>
           <StyledButton onClick={() => handleFilteredCategories(category)}>{category}</StyledButton>
         </li>
       ))}
