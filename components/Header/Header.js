@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import Link from "next/link";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 export default function Header() {
   return (
     <StyledHeader>
+      <ProgressBar />
       <h1>
         <Link href={`/`}>ArtistName</Link>
       </h1>
