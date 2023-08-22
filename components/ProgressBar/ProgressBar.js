@@ -11,7 +11,6 @@ export default function ProgressBar() {
     const maxScroll = documentHeight - windowHeight;
     const currentScrollPercent = (scrollY / maxScroll) * 100;
     setScrollPercent(currentScrollPercent);
-    console.log(currentScrollPercent);
   }
 
   useEffect(() => {
