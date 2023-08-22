@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }) {
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
   const [fileImageUrl, setfileImageUrl] = useState("/img/preview.png");
 
-  const [filteredCategory, setFilteredCategory] = useState([]);
+  const [filteredCategory, setFilteredCategory] = useState(artPieces);
 
   function handleArtPieceToEdit(artPieceToEdit) {
     setArtPieceToEdit(artPieceToEdit);

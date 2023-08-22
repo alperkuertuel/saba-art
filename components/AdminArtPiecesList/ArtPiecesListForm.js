@@ -92,6 +92,8 @@ export default function ArtPieceListForm({
             <option>Landscapes</option>
             <option>Abstract</option>
             <option>Portraits</option>
+            <option>New Category 1</option> {/* for testing */}
+            <option>New Category 2</option> {/* for testing */}
           </StyledSelection>
 
           <label htmlFor="technique">Technique: </label>

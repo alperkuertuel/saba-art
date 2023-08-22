@@ -66,7 +66,8 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
             <option>Landscapes</option>
             <option>Abstract</option>
             <option>Portraits</option>
-            <option>Portraits2</option>
+            <option>New Category 1</option> {/* for testing */}
+            <option>New Category 2</option> {/* for testing */}
           </StyledSelection>
 
           <label htmlFor="technique"></label>

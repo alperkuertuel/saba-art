@@ -12,7 +12,7 @@ export default function HomePage({ artPieces, handleSetFilteredCategory, filtere
           handleSetFilteredCategory={handleSetFilteredCategory}
           filteredCategory={filteredCategory}
         />
-        <ArtPiecesPreview artPieces={artPieces} />
+        <ArtPiecesPreview artPieces={artPieces} filteredCategory={filteredCategory} />
       </main>
     </>
   );

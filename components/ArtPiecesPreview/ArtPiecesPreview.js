@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import styled from "styled-components";
 
-export default function ArtPiecesPreview({ artPieces }) {
+export default function ArtPiecesPreview({ artPieces, filteredCategory }) {
   return (
     <GalleryWrapper>
-      {artPieces.map(({ id, imageUrl, name, date, slug }) => (
+      {filteredCategory.map(({ id, imageUrl, name, date, slug }) => (
         <GalleryCard key={id}>
           <figure>
             <Link href={`/art-pieces/${slug}`}>
