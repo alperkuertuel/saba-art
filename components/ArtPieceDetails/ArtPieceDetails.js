@@ -20,8 +20,8 @@ export default function ArtPieceDetails({
       <StyledButton href={`/`}>BACK</StyledButton>
       <StyledCaption>
         <StyledNameDate>
-          <q>{name}</q>
-          <b>{date}</b>
+          <h2>{name}</h2>
+          {date}
         </StyledNameDate>
         <p>Category: {category}</p>
         <p>Technique: {technique}</p>
@@ -54,7 +54,6 @@ const StyledImage = styled(Image)`
 const StyledNameDate = styled.p`
   display: flex;
   justify-content: space-between;
-  font-size: 1.5rem;
 `;
 
 const StyledCaption = styled.figcaption`
@@ -71,13 +70,12 @@ const StyledButton = styled(Link)`
   border: none;
   cursor: pointer;
   border-radius: 4px;
-  font-size: 1.2rem;
-  background-color: grey;
+  background-color: var(--secondary-color);
   text-decoration: none;
   color: white;
   width: fit-content;
   padding: 5px 20px;
   &:hover {
-    background-color: black;
+    background-color: var(--tertiary-color);
   }
 `;

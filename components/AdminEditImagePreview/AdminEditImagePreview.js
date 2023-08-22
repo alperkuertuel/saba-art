@@ -5,7 +5,7 @@ export default function AdminImagePreview({ fileImageUrl }) {
   return (
     <StyledPreview>
       Preview:
-      <StyledImage src={fileImageUrl} alt="upload image preview" height={50} width={50} />
+      <StyledImage src={fileImageUrl} alt="upload image preview" height={40} width={40} />
     </StyledPreview>
   );
 }

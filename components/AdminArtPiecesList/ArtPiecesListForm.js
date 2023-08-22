@@ -57,8 +57,6 @@ export default function ArtPieceListForm({
 
     onSubmit(artPieceToEdit.id);
     handleSetArtPieces(updatedArtpieces);
-    form.reset();
-    form.name.focus();
     // todo: think about routing structure, is it usefull to route to the slug-page?
     router.push(`/art-pieces/${slug}`);
   }
@@ -66,7 +64,7 @@ export default function ArtPieceListForm({
   return (
     <StyledSection>
       <StyledForm onSubmit={handleUpdate}>
-        <label htmlFor="name">Change the name:</label>
+        <label htmlFor="name">Change name:</label>
         <Input
           type="text"
           id="name"
@@ -74,20 +72,21 @@ export default function ArtPieceListForm({
           placeholder="change the name"
           defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).name}
           minLength={3}
-          maxLength={50}
+          maxLength={30}
           required
         />
-        <label htmlFor="date">Change Release year: </label>
-        <NumberInput
+        <label htmlFor="date">Change release year: </label>
+        <Input
           type="number"
           id="date"
           name="date"
+          max="3000"
           defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).date}
           required
         />
 
         <StyledFieldset>
-          <label htmlFor="category">Change category: </label>
+          <label htmlFor="category">Category: </label>
           <StyledSelection name="category">
             <option>Impressions</option>
             <option>Landscapes</option>
@@ -95,15 +94,15 @@ export default function ArtPieceListForm({
             <option>Portraits</option>
           </StyledSelection>
 
-          <label htmlFor="technique">Change technique:</label>
+          <label htmlFor="technique">Technique: </label>
           <StyledSelection name="technique">
             <option>Oil</option>
             <option>Acryl</option>
           </StyledSelection>
         </StyledFieldset>
         <StyledFieldset>
-          <label htmlFor="heightReal">width:</label>
-          <NumberInput
+          <label htmlFor="heightReal">width: </label>
+          <Input
             type="number"
             min="0"
             max="400"
@@ -113,8 +112,8 @@ export default function ArtPieceListForm({
             defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).widthReal}
             required
           />
-          <label htmlFor="widthReal">height:</label>
-          <NumberInput
+          <label htmlFor="widthReal"> height: </label>
+          <Input
             type="number"
             min="0"
             max="400"
@@ -125,13 +124,13 @@ export default function ArtPieceListForm({
             required
           />
         </StyledFieldset>
-        <label htmlFor="description">Describe your painting:</label>
+        <label htmlFor="description">Change description:</label>
         <Textarea
           name="description"
           maxLength="300"
           id="description"
           cols="30"
-          rows="10"
+          rows="5"
           defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).description}
         ></Textarea>
         <StyledButton>UPDATE</StyledButton>
@@ -141,60 +140,58 @@ export default function ArtPieceListForm({
 }
 
 const StyledSection = styled.section`
-  max-width: 600px;
   margin: 0 auto;
-  padding: 1rem;
+  font-size: 0.8rem;
 `;
 
 const StyledForm = styled.form`
   display: grid;
   grid-template-rows: 1fr;
-  gap: 0.5rem;
+  gap: 0.7rem;
 `;
 
 const Input = styled.input`
-  padding: 0.5rem;
-  font-size: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  width: 100%;
-`;
-
-const NumberInput = styled.input`
-  padding: 0.5rem;
-  margin: 0 0.5rem;
-  font-size: inherit;
   width: fit-content;
-  border: 1px solid black;
-  border-radius: 0.5rem;
+  line-height: 1.15;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 5px 5px 0 0;
+  padding: 0.4rem;
 `;
 
 const StyledSelection = styled.select`
-  padding: 0.5rem;
-  font-size: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  margin: 0 1rem;
+  text-align: center;
+  width: auto;
+  line-height: 1.15;
+  border: none;
+  outline: none;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 0.4rem;
+  margin-right: 1rem;
 `;
 
 const Textarea = styled.textarea`
   font-family: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
   padding: 0.5rem;
 `;
 
 const StyledButton = styled.button`
-  background-color: grey;
+  background-color: var(--secondary-color);
+  cursor: pointer;
   color: white;
   padding: 0.8rem;
-  border-radius: 0.6rem;
+  border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
   border: none;
   font-size: inherit;
   &:hover {
-    background-color: black;
+    background-color: var(--tertiary-color);
+    transition: background-color 0.2s ease;
   }
 `;
 

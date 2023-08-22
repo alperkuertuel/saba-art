@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }) {
     defaultValue: artPiecesData,
   });
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
-  let [fileImageUrl, setfileImageUrl] = useState("/preview.png");
+  let [fileImageUrl, setfileImageUrl] = useState("/img/preview.png");
 
   function handleArtPieceToEdit(artPieceToEdit) {
     setArtPieceToEdit(artPieceToEdit);
