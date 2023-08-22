@@ -8,11 +8,17 @@ export default function CategoryFilter({ artPieces }) {
   const uniqueSet = new Set(allCategories);
   const uniqueCatagories = [...uniqueSet];
 
+  function handleFilterCategories(category) {
+    if (category === "Test2") {
+      console.log(artPieces);
+    }
+  }
+
   return (
     <StyledCategoryFilter>
       {uniqueCatagories.map((category) => (
         <li key={uid()}>
-          <button>{category}</button>
+          <button onClick={() => handleFilterCategories(category)}>{category}</button>
         </li>
       ))}
     </StyledCategoryFilter>
