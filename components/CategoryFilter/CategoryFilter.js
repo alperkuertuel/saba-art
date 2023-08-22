@@ -11,7 +11,9 @@ export default function CategoryFilter({ artPieces }) {
   return (
     <StyledCategoryFilter>
       {uniqueCatagories.map((category) => (
-        <li key={uid()}>{category}</li>
+        <li key={uid()}>
+          <button>{category}</button>
+        </li>
       ))}
     </StyledCategoryFilter>
   );
@@ -19,4 +21,7 @@ export default function CategoryFilter({ artPieces }) {
 
 const StyledCategoryFilter = styled.ul`
   margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 `;
