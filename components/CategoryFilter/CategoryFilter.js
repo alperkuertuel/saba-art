@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { uid } from "uid";
 
-export default function CategoryFilter({ artPieces }) {
+export default function CategoryFilter({ artPieces, handleSetArtPieces }) {
   const allCategories = artPieces.map((piece) => piece.category);
 
   // Ref: https://stackoverflow.com/questions/62054582/how-do-i-filter-all-items-that-occur-once-into-one-list-and-all-items-that-occur
@@ -9,8 +9,9 @@ export default function CategoryFilter({ artPieces }) {
   const uniqueCatagories = [...uniqueSet];
 
   function handleFilterCategories(category) {
-    if (category === "Test2") {
-      console.log(artPieces);
+    if (uniqueCatagories.includes(category)) {
+      const test = artPieces.filter((piece) => piece.category === category);
+      console.log(test);
     }
   }
 
