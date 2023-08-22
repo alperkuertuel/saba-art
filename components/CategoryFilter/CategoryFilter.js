@@ -1,11 +1,8 @@
 import styled from "styled-components";
-import { uid } from "uid";
 
 export default function CategoryFilter({ artPieces, handleSetFilteredCategory }) {
   const allCategories = artPieces.map((piece) => piece.category);
-  const currentYear = new Date().getFullYear();
-
-  // Ref: https://stackoverflow.com/questions/62054582/how-do-i-filter-all-items-that-occur-once-into-one-list-and-all-items-that-occur
+  const currentYear = new Date().getFullYear().toString();
   const uniqueSet = new Set(allCategories);
   const uniqueCatagories = [...uniqueSet];
 
@@ -17,9 +14,7 @@ export default function CategoryFilter({ artPieces, handleSetFilteredCategory })
   }
 
   function handleNewestArtPieces() {
-    const yearFilter = artPieces.filter(
-      (piece) => new Date(piece.date).getFullYear() === currentYear
-    );
+    const yearFilter = artPieces.filter((piece) => piece.date === currentYear);
     handleSetFilteredCategory(yearFilter);
   }
 
@@ -27,7 +22,7 @@ export default function CategoryFilter({ artPieces, handleSetFilteredCategory })
     <StyledCategoryFilter>
       <StyledNewestButton onClick={handleNewestArtPieces}>Newest</StyledNewestButton>
       {uniqueCatagories.map((category) => (
-        <li key={category.id}>
+        <li key={category}>
           <StyledButton onClick={() => handleFilteredCategories(category)}>{category}</StyledButton>
         </li>
       ))}

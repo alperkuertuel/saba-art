@@ -10,10 +10,10 @@ export default function ArtPiecesPreview({ artPieces, filteredCategory }) {
           <GalleryCard key={id}>
             <figure>
               <Link href={`/art-pieces/${slug}`}>
-                <StyledImage src={imageUrl} alt={name} width={1000} height={1000} />
+                <StyledImage src={imageUrl} alt={name} width={1000} height={1000} priority />
               </Link>
               <Caption>
-                <h2>{name}</h2>
+                <p>{name}</p>
                 {date}
               </Caption>
             </figure>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export default function ProgressBar() {
   const [scrollPercent, setScrollPercent] = useState(0);

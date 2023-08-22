@@ -38,7 +38,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
     form.reset();
     form.name.focus();
   }
-
+  const currentYear = new Date().getFullYear().toString();
   return (
     <StyledSection>
       <StyledForm onSubmit={handleSubmit}>
@@ -58,14 +58,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
         <label htmlFor="name">Name your art piece:</label>
         <Input type="text" id="name" name="name" minLength={3} maxLength={30} required />
         <label htmlFor="date">Release Year: </label>
-        <Input
-          type="number"
-          id="date"
-          name="date"
-          min="0"
-          maxLength={new Date().getFullYear()}
-          required
-        />
+        <Input type="number" id="date" name="date" min="0" max={currentYear} required />
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
           <StyledSelection name="category">

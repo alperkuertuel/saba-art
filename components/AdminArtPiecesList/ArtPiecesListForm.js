@@ -60,7 +60,7 @@ export default function ArtPieceListForm({
     // todo: think about routing structure, is it usefull to route to the slug-page?
     router.push(`/art-pieces/${slug}`);
   }
-
+  const currentYear = new Date().getFullYear().toString();
   return (
     <StyledSection>
       <StyledForm onSubmit={handleUpdate}>
@@ -80,14 +80,17 @@ export default function ArtPieceListForm({
           type="number"
           id="date"
           name="date"
-          max="3000"
+          max={currentYear}
           defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).date}
           required
         />
 
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
-          <StyledSelection name="category">
+          <StyledSelection
+            name="category"
+            defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).category}
+          >
             <option>Impression</option>
             <option>Landscape</option>
             <option>Abstract</option>
@@ -97,7 +100,10 @@ export default function ArtPieceListForm({
           </StyledSelection>
 
           <label htmlFor="technique">Technique: </label>
-          <StyledSelection name="technique">
+          <StyledSelection
+            name="technique"
+            defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).technique}
+          >
             <option>Oil</option>
             <option>Acryl</option>
           </StyledSelection>
