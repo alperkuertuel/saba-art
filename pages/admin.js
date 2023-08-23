@@ -26,6 +26,15 @@ export default function AdminHomePage({
           let width = img.width;
           let height = img.height;
 
+          // step 2: resizing with keeping the aspect ratio
+          if (width > maxWidth) {
+            height = (maxWidth / width) * height;
+            width = maxWidth;
+          } else if (height > maxHeight) {
+            width = (maxHeight / height) * width;
+            height = maxHeight;
+          }
+
           canvas.width = width;
           canvas.height = height;
 
