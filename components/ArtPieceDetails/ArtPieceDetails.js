@@ -30,7 +30,7 @@ export default function ArtPieceDetails({
       <StyledButton href={`/`}>BACK</StyledButton>
       <StyledCaption>
         <StyledNameDate>
-          <h2>{name}</h2>
+          <p>{name}</p>
           {date}
         </StyledNameDate>
         <p>Category: {category}</p>
@@ -50,7 +50,7 @@ const StyledSection = styled.section`
   gap: 1rem;
   padding: 1rem;
   min-width: 280px;
-  max-width: 600px; // with of upload resizing and converting
+  max-width: 800px; // witdth of upload resizing and converting
   margin: auto;
 `;
 
@@ -58,6 +58,7 @@ const StyledImage = styled(Image)`
   object-fit: contain;
   width: 100%;
   height: 100%;
+  max-height: 800px; // max height for very long pictures
   border-radius: 5px;
 `;
 
