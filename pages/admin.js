@@ -26,10 +26,13 @@ export default function AdminHomePage({
           let width = img.width;
           let height = img.height;
 
+          canvas.width = width;
+          canvas.height = height;
+
           const ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
 
-          const resizedImageData = canvas.toDataURL("image/webp", 0.7);
+          const resizedImageData = canvas.toDataURL("image/webp", 0.7); // compression!
           console.log(resizedImageData);
 
           handleSetFileImageUrl(resizedImageData);
