@@ -10,9 +10,8 @@ export default function AdminHomePage({
   fileImageUrl,
   handleSetFileImageUrl,
 }) {
-  const allowedFileSize = 614400;
   const maxWidth = 800; // max width of detail page
-  const maxHeight = 800;
+  const maxHeight = 800; // max height of detail page
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
 
@@ -21,7 +20,6 @@ export default function AdminHomePage({
       reader.onload = function (load) {
         const img = new Image();
         img.onload = function () {
-          // step 1: drawing in canvas and assigning width and height
           const canvas = document.createElement("canvas");
           let width = img.width;
           let height = img.height;
@@ -41,7 +39,7 @@ export default function AdminHomePage({
           const ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
 
-          const resizedImageData = canvas.toDataURL("image/webp", 0.7); // compression!
+          const resizedImageData = canvas.toDataURL("image/webp", 0.7);
           console.log(resizedImageData);
 
           handleSetFileImageUrl(resizedImageData);
@@ -78,7 +76,6 @@ export default function AdminHomePage({
       <Header />
       <main>
         <ArtPieceForm
-          allowedFileSize={allowedFileSize}
           handleSetFileImageUrl={handleSetFileImageUrl}
           fileImageUrl={fileImageUrl}
           onSubmit={handleAddArtPiece}

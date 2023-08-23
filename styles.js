@@ -46,10 +46,7 @@ export default createGlobalStyle`
     line-height: 1.5rem;
   }
   
-  img {
-    display: block;
-  }
-  
+
 a {
   text-decoration: none;
   color: var(--secondary-color);

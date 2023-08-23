@@ -61,7 +61,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
         <Input type="number" id="date" name="date" min="0" max={currentYear} required />
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
-          <StyledSelection name="category">
+          <StyledSelection name="category" id="category">
             <option>Impression</option>
             <option>Landscape</option>
             <option>Abstract</option>
@@ -71,7 +71,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
           </StyledSelection>
 
           <label htmlFor="technique"></label>
-          <StyledSelection name="technique">
+          <StyledSelection name="technique" id="technique">
             <option>Oil</option>
             <option>Acryl</option>
           </StyledSelection>
@@ -141,7 +141,7 @@ const FileInput = styled.input`
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: fit-content;
   line-height: 1.15;
   border: none;
   outline: none;

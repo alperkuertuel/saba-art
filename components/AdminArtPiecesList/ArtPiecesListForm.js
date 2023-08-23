@@ -89,6 +89,7 @@ export default function ArtPieceListForm({
           <label htmlFor="category">Category: </label>
           <StyledSelection
             name="category"
+            id="category"
             defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).category}
           >
             <option>Impression</option>
@@ -102,6 +103,7 @@ export default function ArtPieceListForm({
           <label htmlFor="technique">Technique: </label>
           <StyledSelection
             name="technique"
+            id="technique"
             defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).technique}
           >
             <option>Oil</option>
@@ -165,7 +167,7 @@ const Input = styled.input`
   outline: none;
   border-bottom: 1px solid var(--border-color);
   border-radius: 5px 5px 0 0;
-  padding: 0.4rem;
+  padding: 0rem;
 `;
 
 const StyledSelection = styled.select`
@@ -176,7 +178,7 @@ const StyledSelection = styled.select`
   outline: none;
   border: 1px solid var(--border-color);
   border-radius: 5px;
-  padding: 0.4rem;
+  padding: 0.3rem 0;
   margin-right: 1rem;
 `;
 
