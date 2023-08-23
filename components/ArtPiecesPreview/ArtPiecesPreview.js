@@ -2,22 +2,23 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function ArtPiecesPreview({ artPieces }) {
+export default function ArtPiecesPreview({ artPieces, filteredCategory }) {
   return (
     <GalleryWrapper>
-      {artPieces.map(({ id, imageUrl, name, date, slug }) => (
-        <GalleryCard key={id}>
-          <figure>
-            <Link href={`/art-pieces/${slug}`}>
-              <StyledImage src={imageUrl} alt={name} width={1000} height={1000} />
-            </Link>
-            <Caption>
-              <q>{name}</q>
-              <b>{date}</b>
-            </Caption>
-          </figure>
-        </GalleryCard>
-      ))}
+      {filteredCategory &&
+        filteredCategory.map(({ id, imageUrl, name, date, slug }) => (
+          <GalleryCard key={id}>
+            <figure>
+              <Link href={`/art-pieces/${slug}`}>
+                <StyledImage src={imageUrl} alt={name} width={1000} height={1000} priority />
+              </Link>
+              <Caption>
+                <p>{name}</p>
+                {date}
+              </Caption>
+            </figure>
+          </GalleryCard>
+        ))}
     </GalleryWrapper>
   );
 }
@@ -36,7 +37,7 @@ const StyledImage = styled(Image)`
   object-fit: contain;
   width: 100%;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
 `;
 
 const Caption = styled.figcaption`
@@ -46,7 +47,8 @@ const Caption = styled.figcaption`
 `;
 
 const GalleryCard = styled.article`
-  background-color: lightgrey;
+  background-color: var(--box-color);
   border-radius: 5px;
   height: fit-content;
+  box-shadow: var(--box-shadow);
 `;

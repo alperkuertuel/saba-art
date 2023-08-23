@@ -1,15 +1,10 @@
 import styled from "styled-components";
 import { uid } from "uid";
 import AdminImagePreview from "../AdminEditImagePreview/AdminEditImagePreview";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
 
-export default function ArtPieceForm({
-  onSubmit,
-  allowedFileSize,
-  artPieceToEdit,
-  fileImageUrl,
-  handleSetFileImageUrl,
-  onChange,
-}) {
+export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleSetFileImageUrl }) {
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -39,18 +34,18 @@ export default function ArtPieceForm({
     };
 
     onSubmit(newArtPiece);
-    handleSetFileImageUrl("/preview.png");
+    handleSetFileImageUrl("/img/preview.png");
     form.reset();
     form.name.focus();
   }
-
+  const currentYear = new Date().getFullYear().toString();
   return (
     <StyledSection>
       <StyledForm onSubmit={handleSubmit}>
-        <label htmlFor="imageUrl">
-          Upload your art piece: *Maximum file size is {allowedFileSize / 1024}KB
-        </label>
-        <Input
+        <FileLabel htmlFor="imageUrl">
+          <FontAwesomeIcon icon={faCloudArrowUp} />
+        </FileLabel>
+        <FileInput
           type="file"
           id="imageUrl"
           name="imageUrl"
@@ -61,35 +56,29 @@ export default function ArtPieceForm({
         />
         <AdminImagePreview fileImageUrl={fileImageUrl} />
         <label htmlFor="name">Name your art piece:</label>
-        <Input
-          type="text"
-          id="name"
-          name="name"
-          minLength={3}
-          placeholder="type in a name..."
-          maxLength={50}
-          required
-        />
+        <Input type="text" id="name" name="name" minLength={3} maxLength={30} required />
         <label htmlFor="date">Release Year: </label>
-        <NumberInput type="number" id="date" name="date" min="0" required />
+        <Input type="number" id="date" name="date" min="0" max={currentYear} required />
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
           <StyledSelection name="category">
-            <option>Impressions</option>
-            <option>Landscapes</option>
+            <option>Impression</option>
+            <option>Landscape</option>
             <option>Abstract</option>
-            <option>Portraits</option>
+            <option>Portrait</option>
+            <option>New Category 1</option> {/* for testing */}
+            <option>New Category 2</option> {/* for testing */}
           </StyledSelection>
 
-          <label htmlFor="technique">Technique:</label>
+          <label htmlFor="technique"></label>
           <StyledSelection name="technique">
             <option>Oil</option>
             <option>Acryl</option>
           </StyledSelection>
         </StyledFieldset>
         <StyledFieldset>
-          <label htmlFor="heightReal">Width:</label>
-          <NumberInput
+          <label htmlFor="heightReal">width: </label>
+          <Input
             type="number"
             id="widthReal"
             name="widthReal"
@@ -98,8 +87,8 @@ export default function ArtPieceForm({
             placeholder="cm"
             required
           />
-          <label htmlFor="widthReal">Height:</label>
-          <NumberInput
+          <label htmlFor="widthReal"> height: </label>
+          <Input
             type="number"
             min="0"
             max="400"
@@ -110,13 +99,7 @@ export default function ArtPieceForm({
           />
         </StyledFieldset>
         <label htmlFor="description">Describe your painting:</label>
-        <Textarea
-          name="description"
-          maxLength="300"
-          id="description"
-          cols="30"
-          rows="10"
-        ></Textarea>
+        <Textarea name="description" maxLength="300" id="description" cols="30" rows="5"></Textarea>
         <StyledButton>ADD NEW ART PIECE</StyledButton>
       </StyledForm>
     </StyledSection>
@@ -132,52 +115,73 @@ const StyledSection = styled.section`
 const StyledForm = styled.form`
   display: grid;
   grid-template-rows: 1fr;
-  gap: 0.5rem;
+  gap: 0.7rem;
+`;
+
+const FileLabel = styled.label`
+  line-height: 1.15;
+  text-align: center;
+  cursor: pointer;
+  font-size: 2rem;
+  color: var(--tertiary-color);
+  border: 1px dotted var(--border-color);
+  background: hsl(0 0 0/0);
+  border-radius: 5px;
+  transition: 0.5s;
+  &:hover,
+  &:focus,
+  &:active {
+    background: var(--tertiary-color);
+    color: #fff;
+  }
+`;
+
+const FileInput = styled.input`
+  display: none;
 `;
 
 const Input = styled.input`
-  padding: 0.5rem;
-  font-size: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  width: 100%;
-`;
-
-const NumberInput = styled.input`
-  padding: 0.5rem;
-  margin: 0 0.5rem;
-  font-size: inherit;
   width: fit-content;
-  border: 1px solid black;
-  border-radius: 0.5rem;
+  line-height: 1.15;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 5px 5px 0 0;
+  padding: 0.4rem;
 `;
 
 const StyledSelection = styled.select`
-  padding: 0.5rem;
-  font-size: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  margin: 0 1rem;
+  text-align: center;
+  width: auto;
+  line-height: 1.15;
+  border: none;
+  outline: none;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 0.4rem;
+  margin-right: 1rem;
 `;
 
 const Textarea = styled.textarea`
   font-family: inherit;
-  border: 1px solid black;
-  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
   padding: 0.5rem;
 `;
 
 const StyledButton = styled.button`
-  background-color: grey;
+  background-color: var(--secondary-color);
   color: white;
+  cursor: pointer;
   padding: 0.8rem;
-  border-radius: 0.6rem;
+  border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
   border: none;
   font-size: inherit;
   &:hover {
-    background-color: black;
+    background-color: var(--tertiary-color);
+    transition: background-color 0.2s ease;
   }
 `;
 

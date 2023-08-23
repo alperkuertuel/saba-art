@@ -8,7 +8,9 @@ export default function App({ Component, pageProps }) {
     defaultValue: artPiecesData,
   });
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
-  let [fileImageUrl, setfileImageUrl] = useState("/preview.png");
+  const [fileImageUrl, setfileImageUrl] = useState("/img/preview.png");
+
+  const [filteredCategory, setFilteredCategory] = useState(artPieces);
 
   function handleArtPieceToEdit(artPieceToEdit) {
     setArtPieceToEdit(artPieceToEdit);
@@ -22,6 +24,10 @@ export default function App({ Component, pageProps }) {
     setfileImageUrl(fileImageUrl);
   }
 
+  function handleSetFilteredCategory(filteredCategory) {
+    setFilteredCategory(filteredCategory);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -29,10 +35,12 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         artPieces={artPieces}
         artPieceToEdit={artPieceToEdit}
+        filteredCategory={filteredCategory}
         fileImageUrl={fileImageUrl}
         handleSetFileImageUrl={handleSetFileImageUrl}
         handleArtPieceToEdit={handleArtPieceToEdit}
         handleSetArtPieces={handleSetArtPieces}
+        handleSetFilteredCategory={handleSetFilteredCategory}
       />
     </>
   );

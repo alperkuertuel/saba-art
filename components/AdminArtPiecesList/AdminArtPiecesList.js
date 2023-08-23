@@ -20,17 +20,17 @@ export default function ArtPiecesList({
         {artPieces.map(({ slug, id, imageUrl, name }) => (
           <Fragment key={id}>
             <StyledItem>
-              <Link href={`/art-pieces/${slug}`}>
+              <StyledLink href={`/art-pieces/${slug}`}>
                 <StyledImage src={imageUrl} height={75} width={75} alt={name} />
-              </Link>
+              </StyledLink>
               <p>
-                Name: <q>{name}</q>
+                <q>{name}</q>
               </p>
               <StyledButton onClick={() => onEdit(id)}>
-                <FontAwesomeIcon icon={faPencil} />
+                <StyledIcon icon={faPencil} />
               </StyledButton>
               <StyledButton onClick={() => onDelete(id)}>
-                <FontAwesomeIcon icon={faTrashCan} />
+                <StyledIcon icon={faTrashCan} />
               </StyledButton>
             </StyledItem>
             {artPieceToEdit.id === id && (
@@ -49,37 +49,42 @@ export default function ArtPiecesList({
 }
 
 const StyledSection = styled.section`
-  max-width: 600px;
-  margin: 2rem auto;
-`;
-
-const StyledItemList = styled.ul`
+  margin: 1rem auto;
   padding: 1rem;
 `;
 
+const StyledLink = styled(Link)`
+  padding: 0.2rem;
+  border-radius: 50%;
+`;
+
+const StyledItemList = styled.ul``;
+
 const StyledItem = styled.li`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 0.5rem;
   margin: 1rem 0;
+  padding: 0.4rem;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  background-color: var(--box-color);
 `;
 
 const StyledImage = styled(Image)`
   border-radius: 50%;
-  border: 2px solid grey;
+  border: 2px solid var(--border-color);
 `;
 
 const StyledButton = styled.button`
   border: none;
+  background: transparent;
   cursor: pointer;
-  border-radius: 4px;
-  border: none;
-  font-size: 1.2rem;
-  background-color: transparent;
-  color: black;
-  width: fit-content;
-  padding: 5px 20px;
-  &:hover {
-    color: black;
-  }
+`;
+
+const StyledIcon = styled(FontAwesomeIcon)`
+  font-size: 1.4rem;
+  color: var(--secondary-color);
 `;
