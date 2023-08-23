@@ -15,7 +15,17 @@ export default function ArtPieceDetails({
   return (
     <StyledSection>
       <figure>
-        <StyledImage src={imageUrl} width={1000} height={1000} alt={name} />
+        <StyledImage
+          src={imageUrl}
+          width={1000}
+          height={1000}
+          alt={name}
+          priority={false}
+          placeholder="blur"
+          blurDataURL={
+            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
+          }
+        />
       </figure>
       <StyledButton href={`/`}>BACK</StyledButton>
       <StyledCaption>
@@ -40,7 +50,7 @@ const StyledSection = styled.section`
   gap: 1rem;
   padding: 1rem;
   min-width: 280px;
-  max-width: 700px;
+  max-width: 600px; // with of upload resizing and converting
   margin: auto;
 `;
 

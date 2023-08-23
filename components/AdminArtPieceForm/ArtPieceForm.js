@@ -141,7 +141,7 @@ const FileInput = styled.input`
 `;
 
 const Input = styled.input`
-  width: fit-content;
+  width: 100%;
   line-height: 1.15;
   border: none;
   outline: none;

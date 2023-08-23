@@ -27,7 +27,7 @@ export default createGlobalStyle`
 
   main {
     margin: 6rem auto;
-    max-width: 800px;
+    max-width: 1280px;
   }
 
   h1 {

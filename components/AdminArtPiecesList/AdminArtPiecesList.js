@@ -21,7 +21,17 @@ export default function ArtPiecesList({
           <Fragment key={id}>
             <StyledItem>
               <StyledLink href={`/art-pieces/${slug}`}>
-                <StyledImage src={imageUrl} height={75} width={75} alt={name} />
+                <StyledImage
+                  src={imageUrl}
+                  height={75}
+                  width={75}
+                  alt={name}
+                  priority={false}
+                  placeholder="blur"
+                  blurDataURL={
+                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
+                  }
+                />
               </StyledLink>
               <p>
                 <q>{name}</q>

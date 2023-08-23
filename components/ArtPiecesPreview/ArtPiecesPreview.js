@@ -10,7 +10,17 @@ export default function ArtPiecesPreview({ artPieces, filteredCategory }) {
           <GalleryCard key={id}>
             <figure>
               <Link href={`/art-pieces/${slug}`}>
-                <StyledImage src={imageUrl} alt={name} width={1000} height={1000} priority />
+                <StyledImage
+                  src={imageUrl}
+                  alt={name}
+                  width={1000}
+                  height={1000}
+                  priority={false}
+                  placeholder="blur"
+                  blurDataURL={
+                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
+                  }
+                />
               </Link>
               <Caption>
                 <p>{name}</p>
@@ -34,7 +44,7 @@ const GalleryWrapper = styled.section`
 `;
 
 const StyledImage = styled(Image)`
-  object-fit: contain;
+  object-fit: cover;
   width: 100%;
   height: 100%;
   border-radius: 5px 5px 0 0;
