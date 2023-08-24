@@ -23,7 +23,9 @@ export default function ArtPiecesPreview({ artPieces, filteredCategory }) {
                 />
               </Link>
               <Caption>
-                <p>{name}</p>
+                <b>
+                  <q>{name}</q>
+                </b>
                 {date}
               </Caption>
             </figure>
