@@ -14,8 +14,10 @@ export default function ArtPiecesList({
   artPieceToEdit,
   onSubmit,
 }) {
+  // todo: set toggle function when clicking the pen
   return (
     <StyledSection>
+      <h2>Edit and delete art pieces:</h2>
       <ul>
         {artPieces.map(({ slug, id, imageUrl, name }) => (
           <Fragment key={id}>

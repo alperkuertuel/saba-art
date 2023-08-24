@@ -41,6 +41,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
   const currentYear = new Date().getFullYear().toString();
   return (
     <StyledSection>
+      <h2>Add new art pieces: </h2>
       <StyledForm onSubmit={handleSubmit}>
         <FileLabel htmlFor="imageUrl">
           <FontAwesomeIcon icon={faCloudArrowUp} />
@@ -100,7 +101,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
         </StyledFieldset>
         <label htmlFor="description">Describe your painting:</label>
         <Textarea name="description" maxLength="300" id="description" cols="30" rows="5"></Textarea>
-        <StyledButton>ADD NEW ART PIECE</StyledButton>
+        <StyledButton>ADD</StyledButton>
       </StyledForm>
     </StyledSection>
   );
