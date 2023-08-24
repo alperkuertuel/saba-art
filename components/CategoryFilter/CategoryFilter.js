@@ -18,9 +18,16 @@ export default function CategoryFilter({ artPieces, handleSetFilteredCategory })
     handleSetFilteredCategory(yearFilter);
   }
 
+  function handleFilterAll() {
+    handleSetFilteredCategory(artPieces);
+  }
+
   return (
     <StyledNavigaton>
       <StyledCategoryFilter>
+        <li>
+          <StyledButton onClick={handleFilterAll}>All</StyledButton>
+        </li>
         <li>
           <StyledNewestButton onClick={handleNewestArtPieces}>Newest</StyledNewestButton>
         </li>

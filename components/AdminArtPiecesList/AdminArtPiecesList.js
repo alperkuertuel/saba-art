@@ -82,7 +82,7 @@ const StyledItem = styled.li`
 `;
 
 const StyledImage = styled(Image)`
-  border-radius: 50%;
+  border-radius: 2rem;
   border: 2px solid var(--border-color);
 `;
 
