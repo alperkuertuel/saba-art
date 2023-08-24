@@ -52,6 +52,7 @@ const StyledCategoryFilter = styled.ul`
 const StyledNewestButton = styled.button`
   padding: 0.5rem;
   border-radius: 5px;
+  background: var(--box-color);
   height: fit-content;
 `;
 

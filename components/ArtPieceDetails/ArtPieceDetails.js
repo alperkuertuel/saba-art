@@ -2,6 +2,8 @@ import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import { FacebookIcon, WhatsappIcon, WhatsappShareButton } from "react-share";
+import { FacebookShareButton } from "react-share";
 import styled from "styled-components";
 
 export default function ArtPieceDetails({
@@ -13,6 +15,7 @@ export default function ArtPieceDetails({
   description,
   widthReal,
   heightReal,
+  slug,
 }) {
   return (
     <StyledSection>
@@ -29,16 +32,31 @@ export default function ArtPieceDetails({
           }
         />
       </figure>
-      <DetailPageButtons>
+
+      <ButtonList>
         <li>
-          <StyledButton href={`/`}>BACK</StyledButton>
+          <StyledBackButton href={`/`}>BACK</StyledBackButton>
         </li>
-        <li>
-          <button onClick={() => handleShareButton}>
-            <StyledShareIcon icon={faShareNodes} />
-          </button>
-        </li>
-      </DetailPageButtons>
+        <FacebookItem>
+          <FacebookShareButton
+            windowWidth={1000}
+            windowHeight={400}
+            url={`https://capstone-project-art-gallery-alper92.vercel.app/art-pieces/${slug}`}
+          >
+            <FacebookIcon size={32} round={true} />
+          </FacebookShareButton>
+        </FacebookItem>
+        <WhatsappItem>
+          <WhatsappShareButton
+            windowWidth={1000}
+            windowHeight={1000}
+            url={`https://capstone-project-art-gallery-alper92.vercel.app/art-pieces/${slug}`}
+            title={name}
+          >
+            <WhatsappIcon size={32} round={true} />
+          </WhatsappShareButton>
+        </WhatsappItem>
+      </ButtonList>
       <StyledCaption>
         <StyledNameDate>
           <b>
@@ -63,7 +81,7 @@ const StyledSection = styled.section`
   gap: 1rem;
   padding: 1rem;
   min-width: 280px;
-  max-width: 800px; // witdth of upload resizing and converting
+  max-width: 800px; // max width of resizing during upload
   margin: auto;
 `;
 
@@ -71,7 +89,7 @@ const StyledImage = styled(Image)`
   object-fit: contain;
   width: 100%;
   height: 100%;
-  max-height: 800px; // max height for very long pictures
+  max-height: 800px; // max height of resizing during upload
   border-radius: 5px;
 `;
 
@@ -90,13 +108,14 @@ const StyledDescription = styled.p`
   text-align: justify;
 `;
 
-const DetailPageButtons = styled.ul`
-  display: flex;
+const ButtonList = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr 32px 32px;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.5rem;
 `;
 
-const StyledButton = styled(Link)`
+const StyledBackButton = styled(Link)`
   border: none;
   cursor: pointer;
   border-radius: 4px;
@@ -110,8 +129,6 @@ const StyledButton = styled(Link)`
   }
 `;
 
-const StyledShareIcon = styled(FontAwesomeIcon)`
-  font-size: 1.5rem;
-  color: var(--border-color);
-  padding: 0.5rem;
-`;
+const FacebookItem = styled.li``;
+
+const WhatsappItem = styled.li``;

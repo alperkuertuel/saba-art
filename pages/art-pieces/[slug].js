@@ -29,8 +29,8 @@ export default function ShowDetails({ artPieces }) {
   return (
     <>
       <Head>
-        <title>{foundArtPiece.name}</title>
-        <meta name="description" content={foundArtPiece.description} />
+        <meta property="og:title" content={foundArtPiece.name} />
+        <meta name="og: description" content={foundArtPiece.description} />
       </Head>
       <Header />
       <main>
@@ -43,6 +43,7 @@ export default function ShowDetails({ artPieces }) {
           technique={foundArtPiece.technique}
           widthReal={foundArtPiece.widthReal}
           heightReal={foundArtPiece.heightReal}
+          slug={foundArtPiece.slug}
         />
       </main>
     </>
