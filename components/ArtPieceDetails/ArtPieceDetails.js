@@ -1,3 +1,5 @@
+import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
@@ -27,11 +29,22 @@ export default function ArtPieceDetails({
           }
         />
       </figure>
-      <StyledButton href={`/`}>BACK</StyledButton>
+      <DetailPageButtons>
+        <li>
+          <StyledButton href={`/`}>BACK</StyledButton>
+        </li>
+        <li>
+          <button onClick={() => handleShareButton}>
+            <StyledShareIcon icon={faShareNodes} />
+          </button>
+        </li>
+      </DetailPageButtons>
       <StyledCaption>
         <StyledNameDate>
-          <p>{name}</p>
-          {date}
+          <b>
+            <q>{name}</q>
+          </b>
+          <p>{date}</p>
         </StyledNameDate>
         <p>Category: {category}</p>
         <p>Technique: {technique}</p>
@@ -62,7 +75,7 @@ const StyledImage = styled(Image)`
   border-radius: 5px;
 `;
 
-const StyledNameDate = styled.p`
+const StyledNameDate = styled.div`
   display: flex;
   justify-content: space-between;
 `;
@@ -77,6 +90,12 @@ const StyledDescription = styled.p`
   text-align: justify;
 `;
 
+const DetailPageButtons = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const StyledButton = styled(Link)`
   border: none;
   cursor: pointer;
@@ -89,4 +108,10 @@ const StyledButton = styled(Link)`
   &:hover {
     background-color: var(--tertiary-color);
   }
+`;
+
+const StyledShareIcon = styled(FontAwesomeIcon)`
+  font-size: 1.5rem;
+  color: var(--border-color);
+  padding: 0.5rem;
 `;

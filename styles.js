@@ -61,6 +61,7 @@ export default createGlobalStyle`
     font-size: 1rem;
     border: none;
     cursor: pointer;
+    background: none;
   }
   
 `;
