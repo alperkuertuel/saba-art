@@ -54,6 +54,7 @@ const StyledNewestButton = styled.button`
   border-radius: 5px;
   background: var(--box-color);
   height: fit-content;
+  box-shadow: var(--box-shadow);
 `;
 
 const StyledButton = styled.button`
@@ -61,4 +62,5 @@ const StyledButton = styled.button`
   padding: 0.5rem;
   border-radius: 5px;
   font-size: 1rem;
+  box-shadow: var(--box-shadow);
 `;
