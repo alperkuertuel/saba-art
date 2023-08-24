@@ -19,38 +19,45 @@ export default function CategoryFilter({ artPieces, handleSetFilteredCategory })
   }
 
   return (
-    <StyledCategoryFilter>
-      <StyledNewestButton onClick={handleNewestArtPieces}>Newest</StyledNewestButton>
-      {uniqueCatagories.map((category) => (
-        <li key={category}>
-          <StyledButton onClick={() => handleFilteredCategories(category)}>{category}</StyledButton>
+    <StyledNavigaton>
+      <StyledCategoryFilter>
+        <li>
+          <StyledNewestButton onClick={handleNewestArtPieces}>Newest</StyledNewestButton>
         </li>
-      ))}
-    </StyledCategoryFilter>
+        {uniqueCatagories.map((category) => (
+          <li key={category}>
+            <StyledButton onClick={() => handleFilteredCategories(category)}>
+              {category}
+            </StyledButton>
+          </li>
+        ))}
+      </StyledCategoryFilter>
+    </StyledNavigaton>
   );
 }
 
-const StyledCategoryFilter = styled.ul`
+const StyledNavigaton = styled.nav`
+  display: inline-block;
+  display: flex;
+  gap: 0.5rem;
   margin: 1rem;
+`;
+
+const StyledCategoryFilter = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 `;
 
-const StyledButton = styled.button`
-  border: none;
-  background: var(--box-color);
+const StyledNewestButton = styled.button`
   padding: 0.5rem;
   border-radius: 5px;
-  box-shadow: var(--box-shadow);
-  font-size: 1rem;
+  height: fit-content;
 `;
 
-const StyledNewestButton = styled.button`
-  border: none;
+const StyledButton = styled.button`
   background: var(--box-color);
   padding: 0.5rem;
   border-radius: 5px;
-  box-shadow: var(--box-shadow);
   font-size: 1rem;
 `;

@@ -6,7 +6,7 @@ export default createGlobalStyle`
     --secondary-color: #391b0e;
     --tertiary-color: #a48676;
     --box-color: #f4f4f4;
-    --box-shadow: rgba(0, 0, 0, 0.075) 0px 2px 4px 0px;
+    --box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
     --border-color: #938270;
   }
 
@@ -55,6 +55,12 @@ export default createGlobalStyle`
       line-height: 1.5rem;
       outline: none;
       border: none;
+  }
+
+  button {
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
   }
   
 `;

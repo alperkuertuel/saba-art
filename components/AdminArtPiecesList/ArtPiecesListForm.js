@@ -184,7 +184,6 @@ const Textarea = styled.textarea`
 
 const StyledButton = styled.button`
   background-color: var(--secondary-color);
-  cursor: pointer;
   color: white;
   padding: 0.8rem;
   border-radius: 5px;

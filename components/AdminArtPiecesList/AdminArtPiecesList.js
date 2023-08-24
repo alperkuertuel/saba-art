@@ -87,9 +87,7 @@ const StyledImage = styled(Image)`
 `;
 
 const StyledButton = styled.button`
-  border: none;
   background: transparent;
-  cursor: pointer;
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`

@@ -165,12 +165,10 @@ const Textarea = styled.textarea`
 const StyledButton = styled.button`
   background-color: var(--secondary-color);
   color: white;
-  cursor: pointer;
   padding: 0.8rem;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
-  border: none;
   font-size: inherit;
   &:hover {
     background-color: var(--tertiary-color);
