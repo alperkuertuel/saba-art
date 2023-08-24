@@ -162,20 +162,13 @@ const StyledForm = styled.form`
 
 const Input = styled.input`
   width: fit-content;
-  line-height: 1.15;
-  border: none;
-  outline: none;
   border-bottom: 1px solid var(--border-color);
   border-radius: 5px 5px 0 0;
-  padding: 0rem;
 `;
 
 const StyledSelection = styled.select`
   text-align: center;
   width: auto;
-  line-height: 1.15;
-  border: none;
-  outline: none;
   border: 1px solid var(--border-color);
   border-radius: 5px;
   padding: 0.3rem 0;

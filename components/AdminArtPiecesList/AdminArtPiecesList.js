@@ -16,7 +16,7 @@ export default function ArtPiecesList({
 }) {
   return (
     <StyledSection>
-      <StyledItemList>
+      <ul>
         {artPieces.map(({ slug, id, imageUrl, name }) => (
           <Fragment key={id}>
             <StyledItem>
@@ -53,7 +53,7 @@ export default function ArtPiecesList({
             )}
           </Fragment>
         ))}
-      </StyledItemList>
+      </ul>
     </StyledSection>
   );
 }
@@ -67,8 +67,6 @@ const StyledLink = styled(Link)`
   padding: 0.2rem;
   border-radius: 50%;
 `;
-
-const StyledItemList = styled.ul``;
 
 const StyledItem = styled.li`
   display: flex;
@@ -95,6 +93,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: var(--secondary-color);
+  padding: 0.3rem;
 `;

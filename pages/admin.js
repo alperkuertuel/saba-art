@@ -10,8 +10,8 @@ export default function AdminHomePage({
   fileImageUrl,
   handleSetFileImageUrl,
 }) {
-  const maxWidth = 800; // max width of detail page
-  const maxHeight = 800; // max height of detail page
+  const maxWidth = 800; // maxWidth of detail page
+  const maxHeight = 800; // maxHeight of detail page
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
 
@@ -24,7 +24,6 @@ export default function AdminHomePage({
           let width = img.width;
           let height = img.height;
 
-          // step 2: resizing with keeping the aspect ratio
           if (width > maxWidth) {
             height = (maxWidth / width) * height;
             width = maxWidth;

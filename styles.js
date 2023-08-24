@@ -41,15 +41,20 @@ export default createGlobalStyle`
   ul {
     list-style-type: none;
   }
-  
-  input {
-    line-height: 1.5rem;
+
+  a {
+    text-decoration: none;
+    color: var(--secondary-color);
+  }
+
+  img {
+    display: block;
   }
   
-
-a {
-  text-decoration: none;
-  color: var(--secondary-color);
-}
-
+  input {
+      line-height: 1.5rem;
+      outline: none;
+      border: none;
+  }
+  
 `;

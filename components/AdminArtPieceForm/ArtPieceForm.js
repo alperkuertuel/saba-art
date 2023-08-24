@@ -70,7 +70,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
             <option>New Category 2</option> {/* for testing */}
           </StyledSelection>
 
-          <label htmlFor="technique"></label>
+          <label htmlFor="technique">Technique: </label>
           <StyledSelection name="technique" id="technique">
             <option>Oil</option>
             <option>Acryl</option>
@@ -107,7 +107,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
 }
 
 const StyledSection = styled.section`
-  max-width: 600px;
+  font-size: 0.8rem;
   margin: 0 auto;
   padding: 1rem;
 `;
@@ -142,23 +142,16 @@ const FileInput = styled.input`
 
 const Input = styled.input`
   width: fit-content;
-  line-height: 1.15;
-  border: none;
-  outline: none;
   border-bottom: 1px solid var(--border-color);
   border-radius: 5px 5px 0 0;
-  padding: 0.4rem;
 `;
 
 const StyledSelection = styled.select`
   text-align: center;
   width: auto;
-  line-height: 1.15;
-  border: none;
-  outline: none;
   border: 1px solid var(--border-color);
   border-radius: 5px;
-  padding: 0.4rem;
+  padding: 0.3rem 0;
   margin-right: 1rem;
 `;
 
