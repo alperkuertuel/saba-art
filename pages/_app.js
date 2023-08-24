@@ -12,6 +12,8 @@ export default function App({ Component, pageProps }) {
 
   const [filteredCategory, setFilteredCategory] = useState(artPieces);
 
+  const [scrollPercent, setScrollPercent] = useState(0);
+
   function handleArtPieceToEdit(artPieceToEdit) {
     setArtPieceToEdit(artPieceToEdit);
   }
@@ -28,6 +30,10 @@ export default function App({ Component, pageProps }) {
     setFilteredCategory(filteredCategory);
   }
 
+  function handleSetScrollPercentage(scrollPercent) {
+    setScrollPercent(scrollPercent);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -37,10 +43,12 @@ export default function App({ Component, pageProps }) {
         artPieceToEdit={artPieceToEdit}
         filteredCategory={filteredCategory}
         fileImageUrl={fileImageUrl}
+        scrollPercent={scrollPercent}
         handleSetFileImageUrl={handleSetFileImageUrl}
         handleArtPieceToEdit={handleArtPieceToEdit}
         handleSetArtPieces={handleSetArtPieces}
         handleSetFilteredCategory={handleSetFilteredCategory}
+        handleSetScrollPercentage={handleSetScrollPercentage}
       />
     </>
   );

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
 
-export default function ShowDetails({ artPieces }) {
+export default function ShowDetails({ artPieces, scrollPercent, handleSetScrollPercentage }) {
   const router = useRouter();
   const { slug } = router.query;
   const foundArtPiece = artPieces.find((artpiece) => artpiece.slug === slug);
@@ -32,7 +32,7 @@ export default function ShowDetails({ artPieces }) {
         <meta property="og:title" content={foundArtPiece.name} />
         <meta name="og: description" content={foundArtPiece.description} />
       </Head>
-      <Header />
+      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <ArtPieceDetails
           imageUrl={foundArtPiece.imageUrl}

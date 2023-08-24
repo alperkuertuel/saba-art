@@ -9,6 +9,8 @@ export default function AdminHomePage({
   handleArtPieceToEdit,
   fileImageUrl,
   handleSetFileImageUrl,
+  scrollPercent,
+  handleSetScrollPercentage,
 }) {
   const maxWidth = 800; // maxWidth of detail page
   const maxHeight = 800; // maxHeight of detail page
@@ -72,7 +74,7 @@ export default function AdminHomePage({
 
   return (
     <>
-      <Header />
+      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <ArtPieceForm
           handleSetFileImageUrl={handleSetFileImageUrl}
