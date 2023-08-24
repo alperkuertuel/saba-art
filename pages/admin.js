@@ -10,18 +10,43 @@ export default function AdminHomePage({
   fileImageUrl,
   handleSetFileImageUrl,
 }) {
-  const allowedFileSize = 614400;
+  const maxWidth = 800; // maxWidth of detail page
+  const maxHeight = 800; // maxHeight of detail page
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
 
-    if (imageFile && imageFile.size <= allowedFileSize) {
+    if (imageFile) {
       const reader = new FileReader();
       reader.onload = function (load) {
-        const url = load.target.result;
-        handleSetFileImageUrl(url);
+        const img = new Image();
+        img.onload = function () {
+          const canvas = document.createElement("canvas");
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxWidth) {
+            height = (maxWidth / width) * height;
+            width = maxWidth;
+          } else if (height > maxHeight) {
+            width = (maxHeight / height) * width;
+            height = maxHeight;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const resizedImageData = canvas.toDataURL("image/webp", 0.7);
+          console.log(resizedImageData);
+
+          handleSetFileImageUrl(resizedImageData);
+        };
+        img.src = load.target.result;
       };
       reader.readAsDataURL(imageFile);
-    } else window.alert(`Your uploaded file is bigger then ${allowedFileSize / 1024}KB.`);
+    }
   }
 
   function handleDeleteArtPiece(id) {
@@ -50,7 +75,6 @@ export default function AdminHomePage({
       <Header />
       <main>
         <ArtPieceForm
-          allowedFileSize={allowedFileSize}
           handleSetFileImageUrl={handleSetFileImageUrl}
           fileImageUrl={fileImageUrl}
           onSubmit={handleAddArtPiece}

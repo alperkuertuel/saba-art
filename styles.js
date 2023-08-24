@@ -27,7 +27,7 @@ export default createGlobalStyle`
 
   main {
     margin: 6rem auto;
-    max-width: 800px;
+    max-width: 1280px;
   }
 
   h1 {
@@ -41,18 +41,20 @@ export default createGlobalStyle`
   ul {
     list-style-type: none;
   }
-  
-  input {
-    line-height: 1.5rem;
+
+  a {
+    text-decoration: none;
+    color: var(--secondary-color);
   }
-  
+
   img {
     display: block;
   }
   
-a {
-  text-decoration: none;
-  color: var(--secondary-color);
-}
-
+  input {
+      line-height: 1.5rem;
+      outline: none;
+      border: none;
+  }
+  
 `;
