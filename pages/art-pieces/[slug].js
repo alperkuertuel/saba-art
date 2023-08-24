@@ -3,6 +3,7 @@ import ArtPieceDetails from "@/components/ArtPieceDetails/ArtPieceDetails";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function ShowDetails({ artPieces }) {
   const router = useRouter();
@@ -27,6 +28,10 @@ export default function ShowDetails({ artPieces }) {
 
   return (
     <>
+      <Head>
+        <title>{foundArtPiece.name}</title>
+        <meta name="description" content={foundArtPiece.description} />
+      </Head>
       <Header />
       <main>
         <ArtPieceDetails
