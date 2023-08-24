@@ -51,16 +51,6 @@ export default function AdminHomePage({
     }
   }
 
-  function handleDeleteArtPiece(id) {
-    const artPieceToDelete = artPieces.find((piece) => piece.id === id);
-    const artPiecesWithoutDeletedArtPiece = artPieces.filter((piece) => piece.id !== id);
-
-    const sureToDelete = confirm(`Are you sure you want to delete ${artPieceToDelete.name}`);
-    if (sureToDelete) {
-      handleSetArtPieces(artPiecesWithoutDeletedArtPiece);
-    }
-  }
-
   function handleAddArtPiece(newArtPieceData) {
     if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
       window.alert("Name already exists. Please choose a different name.");
@@ -70,6 +60,15 @@ export default function AdminHomePage({
   function handleEditArtPiece(id) {
     const selectedArtPieceToEdit = artPieces.find((piece) => piece.id === id);
     handleArtPieceToEdit(selectedArtPieceToEdit);
+  }
+
+  function handleDeleteArtPiece(id) {
+    const artPieceToDelete = artPieces.find((piece) => piece.id === id);
+    const artPiecesWithoutDeletedArtPiece = artPieces.filter((piece) => piece.id !== id);
+    const sureToDelete = confirm(`Are you sure you want to delete ${artPieceToDelete.name}`);
+    if (sureToDelete) {
+      handleSetArtPieces(artPiecesWithoutDeletedArtPiece);
+    }
   }
 
   return (

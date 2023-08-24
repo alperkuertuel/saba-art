@@ -70,7 +70,6 @@ const StyledLink = styled(Link)`
 
 const StyledImage = styled(Image)`
   width: 100%;
-  height: auto;
   border-radius: 50%;
   border: 2px solid var(--border-color);
 `;
