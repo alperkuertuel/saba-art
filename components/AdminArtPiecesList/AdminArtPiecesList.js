@@ -23,8 +23,8 @@ export default function ArtPiecesList({
               <StyledLink href={`/art-pieces/${slug}`}>
                 <StyledImage
                   src={imageUrl}
-                  height={75}
-                  width={75}
+                  height={50}
+                  width={50}
                   alt={name}
                   priority={false}
                   placeholder="blur"
@@ -68,6 +68,13 @@ const StyledLink = styled(Link)`
   border-radius: 50%;
 `;
 
+const StyledImage = styled(Image)`
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+`;
+
 const StyledItem = styled.li`
   display: flex;
   flex-wrap: wrap;
@@ -79,11 +86,6 @@ const StyledItem = styled.li`
   border-radius: 5px;
   box-shadow: var(--box-shadow);
   background-color: var(--box-color);
-`;
-
-const StyledImage = styled(Image)`
-  border-radius: 2rem;
-  border: 2px solid var(--border-color);
 `;
 
 const StyledButton = styled.button`
