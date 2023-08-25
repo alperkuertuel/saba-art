@@ -29,8 +29,8 @@ export default function ShowDetails({ artPieces, scrollPercent, handleSetScrollP
   return (
     <>
       <Head>
-        <meta property="og:title" content={foundArtPiece.name} />
-        <meta name="og: description" content={foundArtPiece.description} />
+        <title>{foundArtPiece.name}</title>
+        <meta name="description" content={foundArtPiece.description} />
       </Head>
       <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
