@@ -8,20 +8,16 @@ export default function ScrollUp({ scrollPercent }) {
   console.log(scrollPercent);
 
   useEffect(() => {
-    if (scrollPercent >= 5) {
+    if (scrollPercent >= 15) {
       setBackToTopButton(true);
     } else setBackToTopButton(false);
   }, [scrollPercent]);
-
-  function handleScrollUp() {
-    window.scrollTo(0, 0);
-  }
 
   return (
     <>
       {backToTopButton && (
         <StyledScrollUpButton>
-          <ArrowUp icon={faChevronUp} onClick={() => handleScrollUp()} />
+          <ArrowUp icon={faChevronUp} onClick={() => window.scrollTo(0, 0)} />
         </StyledScrollUpButton>
       )}
     </>
@@ -40,4 +36,5 @@ const ArrowUp = styled(FontAwesomeIcon)`
   color: var(--secondary-color);
   font-size: 2rem;
   padding: 0.5rem;
+  transition: width 2s ease-in-out;
 `;
