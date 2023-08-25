@@ -1,22 +1,20 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export default function ProgressBar() {
-  const [scrollPercent, setScrollPercent] = useState(0);
-
+export default function ProgressBar({ scrollPercent, handleSetScrollPercentage }) {
   function handleScroll() {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     const maxScroll = documentHeight - windowHeight;
-    const currentScrollPercent = (scrollY / maxScroll) * 100;
-    setScrollPercent(currentScrollPercent);
+    const currentScrollPercent = Math.round((scrollY / maxScroll) * 100).toString();
+    handleSetScrollPercentage(currentScrollPercent);
   }
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  });
 
   return (
     <ProgressBarContainer>

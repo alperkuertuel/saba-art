@@ -14,8 +14,10 @@ export default function ArtPiecesList({
   artPieceToEdit,
   onSubmit,
 }) {
+  // todo: set toggle function when clicking the pen
   return (
     <StyledSection>
+      <h2>Edit and delete art pieces:</h2>
       <ul>
         {artPieces.map(({ slug, id, imageUrl, name }) => (
           <Fragment key={id}>
@@ -23,8 +25,8 @@ export default function ArtPiecesList({
               <StyledLink href={`/art-pieces/${slug}`}>
                 <StyledImage
                   src={imageUrl}
-                  height={75}
-                  width={75}
+                  height={50}
+                  width={50}
                   alt={name}
                   priority={false}
                   placeholder="blur"
@@ -68,6 +70,12 @@ const StyledLink = styled(Link)`
   border-radius: 50%;
 `;
 
+const StyledImage = styled(Image)`
+  width: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+`;
+
 const StyledItem = styled.li`
   display: flex;
   flex-wrap: wrap;
@@ -81,15 +89,8 @@ const StyledItem = styled.li`
   background-color: var(--box-color);
 `;
 
-const StyledImage = styled(Image)`
-  border-radius: 50%;
-  border: 2px solid var(--border-color);
-`;
-
 const StyledButton = styled.button`
-  border: none;
   background: transparent;
-  cursor: pointer;
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`

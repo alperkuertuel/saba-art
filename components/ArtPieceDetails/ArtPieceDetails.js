@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FacebookIcon, WhatsappIcon, WhatsappShareButton, FacebookShareButton } from "react-share";
 import styled from "styled-components";
 
 export default function ArtPieceDetails({
@@ -11,6 +12,7 @@ export default function ArtPieceDetails({
   description,
   widthReal,
   heightReal,
+  slug,
 }) {
   return (
     <StyledSection>
@@ -27,11 +29,35 @@ export default function ArtPieceDetails({
           }
         />
       </figure>
-      <StyledButton href={`/`}>BACK</StyledButton>
+
+      <ButtonList>
+        <li>
+          <StyledBackButton href={`/`}>BACK</StyledBackButton>
+        </li>
+        <li>
+          <FacebookShareButton
+            windowWidth={1000}
+            windowHeight={400}
+            url={`https://capstone-project-git-feat-sharing-functionality-alper92.vercel.app/art-pieces/${slug}`}
+          >
+            <FacebookIcon size={32} round={true} />
+          </FacebookShareButton>
+        </li>
+        <li>
+          <WhatsappShareButton
+            windowWidth={1000}
+            windowHeight={1000}
+            url={`https://capstone-project-git-feat-sharing-functionality-alper92.vercel.app/art-pieces/${slug}`}
+            title={name}
+          >
+            <WhatsappIcon size={32} round={true} />
+          </WhatsappShareButton>
+        </li>
+      </ButtonList>
       <StyledCaption>
         <StyledNameDate>
-          <p>{name}</p>
-          {date}
+          <h1>{name}</h1>
+          <p>{date}</p>
         </StyledNameDate>
         <p>Category: {category}</p>
         <p>Technique: {technique}</p>
@@ -50,7 +76,7 @@ const StyledSection = styled.section`
   gap: 1rem;
   padding: 1rem;
   min-width: 280px;
-  max-width: 800px; // witdth of upload resizing and converting
+  max-width: 800px; // max width of resizing during upload
   margin: auto;
 `;
 
@@ -58,13 +84,14 @@ const StyledImage = styled(Image)`
   object-fit: contain;
   width: 100%;
   height: 100%;
-  max-height: 800px; // max height for very long pictures
+  max-height: 800px; // max height of resizing during upload
   border-radius: 5px;
 `;
 
-const StyledNameDate = styled.p`
+const StyledNameDate = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const StyledCaption = styled.figcaption`
@@ -77,7 +104,14 @@ const StyledDescription = styled.p`
   text-align: justify;
 `;
 
-const StyledButton = styled(Link)`
+const ButtonList = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr 32px 32px;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const StyledBackButton = styled(Link)`
   border: none;
   cursor: pointer;
   border-radius: 4px;

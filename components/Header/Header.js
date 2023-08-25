@@ -2,10 +2,13 @@ import styled from "styled-components";
 import Link from "next/link";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
-export default function Header() {
+export default function Header({ scrollPercent, handleSetScrollPercentage }) {
   return (
     <StyledHeader>
-      <ProgressBar />
+      <ProgressBar
+        scrollPercent={scrollPercent}
+        handleSetScrollPercentage={handleSetScrollPercentage}
+      />
       <h1>
         <Link href={`/`}>ArtistName</Link>
       </h1>

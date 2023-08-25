@@ -41,6 +41,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
   const currentYear = new Date().getFullYear().toString();
   return (
     <StyledSection>
+      <h2>Add new art pieces: </h2>
       <StyledForm onSubmit={handleSubmit}>
         <FileLabel htmlFor="imageUrl">
           <FontAwesomeIcon icon={faCloudArrowUp} />
@@ -52,7 +53,6 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
           onChange={onChange}
           accept="image/*"
           required
-          capture
         />
         <AdminImagePreview fileImageUrl={fileImageUrl} />
         <label htmlFor="name">Name your art piece:</label>
@@ -100,7 +100,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
         </StyledFieldset>
         <label htmlFor="description">Describe your painting:</label>
         <Textarea name="description" maxLength="300" id="description" cols="30" rows="5"></Textarea>
-        <StyledButton>ADD NEW ART PIECE</StyledButton>
+        <StyledButton>ADD</StyledButton>
       </StyledForm>
     </StyledSection>
   );
@@ -165,12 +165,10 @@ const Textarea = styled.textarea`
 const StyledButton = styled.button`
   background-color: var(--secondary-color);
   color: white;
-  cursor: pointer;
   padding: 0.8rem;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
-  border: none;
   font-size: inherit;
   &:hover {
     background-color: var(--tertiary-color);

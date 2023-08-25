@@ -3,8 +3,9 @@ import ArtPieceDetails from "@/components/ArtPieceDetails/ArtPieceDetails";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
+import Head from "next/head";
 
-export default function ShowDetails({ artPieces }) {
+export default function ShowDetails({ artPieces, scrollPercent, handleSetScrollPercentage }) {
   const router = useRouter();
   const { slug } = router.query;
   const foundArtPiece = artPieces.find((artpiece) => artpiece.slug === slug);
@@ -27,7 +28,11 @@ export default function ShowDetails({ artPieces }) {
 
   return (
     <>
-      <Header />
+      <Head>
+        <title>{foundArtPiece.name}</title>
+        <meta name="description" content={foundArtPiece.description} />
+      </Head>
+      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <ArtPieceDetails
           imageUrl={foundArtPiece.imageUrl}
@@ -38,6 +43,7 @@ export default function ShowDetails({ artPieces }) {
           technique={foundArtPiece.technique}
           widthReal={foundArtPiece.widthReal}
           heightReal={foundArtPiece.heightReal}
+          slug={foundArtPiece.slug}
         />
       </main>
     </>

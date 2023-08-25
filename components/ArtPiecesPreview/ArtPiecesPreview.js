@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function ArtPiecesPreview({ artPieces, filteredCategory }) {
+export default function ArtPiecesPreview({ filteredCategory }) {
   return (
     <GalleryWrapper>
       {filteredCategory &&
@@ -23,7 +23,9 @@ export default function ArtPiecesPreview({ artPieces, filteredCategory }) {
                 />
               </Link>
               <Caption>
-                <p>{name}</p>
+                <b>
+                  <q>{name}</q>
+                </b>
                 {date}
               </Caption>
             </figure>
