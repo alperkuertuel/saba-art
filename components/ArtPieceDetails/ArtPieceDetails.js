@@ -38,7 +38,7 @@ export default function ArtPieceDetails({
           <FacebookShareButton
             windowWidth={1000}
             windowHeight={400}
-            url={`https://capstone-project-art-gallery-alper92.vercel.app/art-pieces/${slug}`}
+            url={`https://capstone-project-git-feat-sharing-functionality-alper92.vercel.app/art-pieces/${slug}`}
           >
             <FacebookIcon size={32} round={true} />
           </FacebookShareButton>
@@ -47,7 +47,7 @@ export default function ArtPieceDetails({
           <WhatsappShareButton
             windowWidth={1000}
             windowHeight={1000}
-            url={`https://capstone-project-art-gallery-alper92.vercel.app/art-pieces/${slug}`}
+            url={`https://capstone-project-git-feat-sharing-functionality-alper92.vercel.app/art-pieces/${slug}`}
             title={name}
           >
             <WhatsappIcon size={32} round={true} />
