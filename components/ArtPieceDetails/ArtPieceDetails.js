@@ -56,7 +56,7 @@ export default function ArtPieceDetails({
       </ButtonList>
       <StyledCaption>
         <StyledNameDate>
-          <h2>{name}</h2>
+          <h1>{name}</h1>
           <p>{date}</p>
         </StyledNameDate>
         <p>Category: {category}</p>
@@ -91,6 +91,7 @@ const StyledImage = styled(Image)`
 const StyledNameDate = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const StyledCaption = styled.figcaption`
