@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-export default function ArtPieceListForm({
+export default function ArtPiecesEditForm({
   onSubmit,
   artPieceToEdit,
   artPieces,

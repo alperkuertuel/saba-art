@@ -3,7 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import ArtPieceListForm from "./ArtPiecesListForm";
+import ArtPiecesEditForm from "../AdminArtPiecesEditForm/AdminArtPiecesEditForm";
 import { Fragment } from "react";
 
 export default function ArtPiecesList({
@@ -46,7 +46,7 @@ export default function ArtPiecesList({
               </StyledButton>
             </StyledItem>
             {artPieceToEdit.id === id && (
-              <ArtPieceListForm
+              <ArtPiecesEditForm
                 artPieces={artPieces}
                 handleSetArtPieces={handleSetArtPieces}
                 artPieceToEdit={artPieceToEdit}
