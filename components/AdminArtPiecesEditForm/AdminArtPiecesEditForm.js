@@ -57,6 +57,7 @@ export default function ArtPiecesEditForm({
 
     onSubmit(artPieceToEdit.id);
     handleSetArtPieces(updatedArtpieces);
+
     // todo: think about routing structure, is it usefull to route to the slug-page?
     router.push(`/art-pieces/${slug}`);
   }

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 export default function CategoryFilter({ artPieces, handleSetFilteredCategory }) {
@@ -5,35 +6,46 @@ export default function CategoryFilter({ artPieces, handleSetFilteredCategory })
   const currentYear = new Date().getFullYear().toString();
   const uniqueSet = new Set(allCategories);
   const uniqueCatagories = [...uniqueSet];
+  const [active, setActive] = useState("All");
 
   function handleFilteredCategories(category) {
     if (uniqueCatagories.includes(category)) {
       const filter = artPieces.filter((piece) => piece.category === category);
       handleSetFilteredCategory(filter);
+      setActive(category);
     }
   }
 
   function handleNewestArtPieces() {
     const yearFilter = artPieces.filter((piece) => piece.date === currentYear);
     handleSetFilteredCategory(yearFilter);
+    setActive("Newest");
   }
 
   function handleFilterAll() {
     handleSetFilteredCategory(artPieces);
+    setActive("All");
   }
 
   return (
     <StyledNavigaton>
       <StyledCategoryFilter>
         <li>
-          <StyledButton onClick={handleFilterAll}>All</StyledButton>
+          <StyledButton $active={active === "All" ? 1 : 0.5} onClick={handleFilterAll}>
+            All
+          </StyledButton>
         </li>
         <li>
-          <StyledNewestButton onClick={handleNewestArtPieces}>Newest</StyledNewestButton>
+          <StyledButton $active={active === "Newest" ? 1 : 0.5} onClick={handleNewestArtPieces}>
+            Newest
+          </StyledButton>
         </li>
         {uniqueCatagories.map((category) => (
           <li key={category}>
-            <StyledButton onClick={() => handleFilteredCategories(category)}>
+            <StyledButton
+              $active={active === category ? 1 : 0.5}
+              onClick={() => handleFilteredCategories(category)}
+            >
               {category}
             </StyledButton>
           </li>
@@ -56,16 +68,10 @@ const StyledCategoryFilter = styled.ul`
   gap: 0.5rem;
 `;
 
-const StyledNewestButton = styled.button`
-  padding: 0.5rem;
-  border-radius: 5px;
-  background: var(--box-color);
-  height: fit-content;
-  box-shadow: var(--box-shadow);
-`;
-
 const StyledButton = styled.button`
-  background: var(--box-color);
+  opacity: ${(props) => props.$active};
+  background-color: var(--box-color);
+  transition: opacity 0.2s ease-out;
   padding: 0.5rem;
   border-radius: 5px;
   font-size: 1rem;
