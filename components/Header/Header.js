@@ -28,6 +28,7 @@ const StyledHeader = styled.header`
   padding: 0.5rem;
   border-bottom: 1px solid lightgrey;
   text-align: center;
+  z-index: 1;
 `;
 
 const StyledLink = styled(Link)`

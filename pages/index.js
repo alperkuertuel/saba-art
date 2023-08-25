@@ -1,6 +1,7 @@
 import ArtPiecesPreview from "@/components/ArtPiecesPreview/ArtPiecesPreview";
 import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
 import Header from "@/components/Header/Header";
+import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import Head from "next/head";
 
 export default function HomePage({
@@ -24,6 +25,7 @@ export default function HomePage({
           filteredCategory={filteredCategory}
         />
         <ArtPiecesPreview artPieces={artPieces} filteredCategory={filteredCategory} />
+        <ScrollUp scrollPercent={scrollPercent} />
       </main>
     </>
   );
