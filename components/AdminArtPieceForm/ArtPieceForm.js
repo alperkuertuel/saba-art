@@ -53,7 +53,6 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
           onChange={onChange}
           accept="image/*"
           required
-          capture
         />
         <AdminImagePreview fileImageUrl={fileImageUrl} />
         <label htmlFor="name">Name your art piece:</label>
