@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FacebookIcon, WhatsappIcon, WhatsappShareButton } from "react-share";
-import { FacebookShareButton } from "react-share";
+import { FacebookIcon, WhatsappIcon, WhatsappShareButton, FacebookShareButton } from "react-share";
 import styled from "styled-components";
 
 export default function ArtPieceDetails({
@@ -35,7 +34,7 @@ export default function ArtPieceDetails({
         <li>
           <StyledBackButton href={`/`}>BACK</StyledBackButton>
         </li>
-        <FacebookItem>
+        <li>
           <FacebookShareButton
             windowWidth={1000}
             windowHeight={400}
@@ -43,8 +42,8 @@ export default function ArtPieceDetails({
           >
             <FacebookIcon size={32} round={true} />
           </FacebookShareButton>
-        </FacebookItem>
-        <WhatsappItem>
+        </li>
+        <li>
           <WhatsappShareButton
             windowWidth={1000}
             windowHeight={1000}
@@ -53,13 +52,11 @@ export default function ArtPieceDetails({
           >
             <WhatsappIcon size={32} round={true} />
           </WhatsappShareButton>
-        </WhatsappItem>
+        </li>
       </ButtonList>
       <StyledCaption>
         <StyledNameDate>
-          <b>
-            <q>{name}</q>
-          </b>
+          <h2>{name}</h2>
           <p>{date}</p>
         </StyledNameDate>
         <p>Category: {category}</p>
@@ -126,7 +123,3 @@ const StyledBackButton = styled(Link)`
     background-color: var(--tertiary-color);
   }
 `;
-
-const FacebookItem = styled.li``;
-
-const WhatsappItem = styled.li``;

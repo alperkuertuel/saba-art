@@ -43,7 +43,7 @@ export default function CategoryFilter({ artPieces, handleSetFilteredCategory })
   );
 }
 
-const StyledNavigaton = styled.nav`
+const StyledNavigaton = styled.section`
   display: inline-block;
   display: flex;
   gap: 0.5rem;
