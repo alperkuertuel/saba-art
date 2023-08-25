@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 export default function ScrollUp({ scrollPercent }) {
   const [backToTopButton, setBackToTopButton] = useState(false);
-  console.log(scrollPercent);
 
   useEffect(() => {
     if (scrollPercent >= 15) {
@@ -36,5 +35,4 @@ const ArrowUp = styled(FontAwesomeIcon)`
   color: var(--secondary-color);
   font-size: 2rem;
   padding: 0.5rem;
-  transition: width 2s ease-in-out;
 `;
