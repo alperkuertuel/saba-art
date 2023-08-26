@@ -3,7 +3,6 @@ import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
 import Header from "@/components/Header/Header";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import Head from "next/head";
-import { useState } from "react";
 
 export default function HomePage({
   artPieces,

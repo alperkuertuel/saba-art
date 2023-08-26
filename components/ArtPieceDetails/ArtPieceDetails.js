@@ -33,7 +33,7 @@ export default function ArtPieceDetails({
 
       <ButtonList>
         <li>
-          <StyledBackButton onClick={handleSetActive(category)} href={`/`}>
+          <StyledBackButton onClick={() => handleSetActive(category)} href={`/`}>
             BACK
           </StyledBackButton>
         </li>
@@ -51,7 +51,7 @@ export default function ArtPieceDetails({
             windowWidth={1000}
             windowHeight={1000}
             url={`https://capstone-project-git-feat-sharing-functionality-alper92.vercel.app/art-pieces/${slug}`}
-            title={name}
+            title={`I found this beautiful art piece called "${name}"! Click the link for more: `}
           >
             <WhatsappIcon size={32} round={true} />
           </WhatsappShareButton>

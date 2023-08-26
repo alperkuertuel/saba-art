@@ -37,7 +37,10 @@ export default function ShowDetails({
         <title>{foundArtPiece.name}</title>
         <meta name="description" content={foundArtPiece.description} />
       </Head>
-      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
+      <Header
+        scrollPercent={scrollPercent}
+        handleSetScrollPercentage={() => handleSetScrollPercentage(0)}
+      />
       <main>
         <ArtPieceDetails
           imageUrl={foundArtPiece.imageUrl}
