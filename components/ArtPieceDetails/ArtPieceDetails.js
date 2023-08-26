@@ -33,7 +33,7 @@ export default function ArtPieceDetails({
 
       <ButtonList>
         <li>
-          <StyledBackButton onClick={() => handleSetActive(category)} href={`/`}>
+          <StyledBackButton onClick={() => handleSetActive(category)} href={`/`} scroll={false}>
             BACK
           </StyledBackButton>
         </li>
