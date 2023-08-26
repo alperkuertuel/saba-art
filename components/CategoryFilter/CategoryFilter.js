@@ -1,34 +1,37 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export default function CategoryFilter({ artPieces, handleSetFilteredCategory }) {
+export default function CategoryFilter({
+  artPieces,
+  handleSetFilteredCategory,
+  handleSetActive,
+  active,
+}) {
   const allCategories = artPieces.map((piece) => piece.category);
   const currentYear = new Date().getFullYear().toString();
   const uniqueSet = new Set(allCategories);
   const uniqueCatagories = [...uniqueSet];
-  const [active, setActive] = useState("All");
 
   function handleFilteredCategories(category) {
     if (uniqueCatagories.includes(category)) {
       const filter = artPieces.filter((piece) => piece.category === category);
       handleSetFilteredCategory(filter);
-      setActive(category);
+      handleSetActive(category);
     }
   }
 
   function handleNewestArtPieces() {
     const yearFilter = artPieces.filter((piece) => piece.date === currentYear);
     handleSetFilteredCategory(yearFilter);
-    setActive("Newest");
+    handleSetActive("Newest");
   }
 
   function handleFilterAll() {
     handleSetFilteredCategory(artPieces);
-    setActive("All");
+    handleSetActive("All");
   }
 
   return (
-    <StyledNavigaton>
+    <StyledFilterSection>
       <StyledCategoryFilter>
         <li>
           <StyledButton $active={active === "All" ? 1 : 0.5} onClick={handleFilterAll}>
@@ -51,11 +54,11 @@ export default function CategoryFilter({ artPieces, handleSetFilteredCategory })
           </li>
         ))}
       </StyledCategoryFilter>
-    </StyledNavigaton>
+    </StyledFilterSection>
   );
 }
 
-const StyledNavigaton = styled.section`
+const StyledFilterSection = styled.section`
   display: flex;
   gap: 0.5rem;
   margin: 1rem;

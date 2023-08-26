@@ -5,7 +5,12 @@ import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
 
-export default function ShowDetails({ artPieces, scrollPercent, handleSetScrollPercentage }) {
+export default function ShowDetails({
+  artPieces,
+  scrollPercent,
+  handleSetScrollPercentage,
+  handleSetActive,
+}) {
   const router = useRouter();
   const { slug } = router.query;
   const foundArtPiece = artPieces.find((artpiece) => artpiece.slug === slug);
@@ -44,6 +49,7 @@ export default function ShowDetails({ artPieces, scrollPercent, handleSetScrollP
           widthReal={foundArtPiece.widthReal}
           heightReal={foundArtPiece.heightReal}
           slug={foundArtPiece.slug}
+          handleSetActive={handleSetActive}
         />
       </main>
     </>

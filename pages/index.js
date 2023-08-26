@@ -3,6 +3,7 @@ import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
 import Header from "@/components/Header/Header";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import Head from "next/head";
+import { useState } from "react";
 
 export default function HomePage({
   artPieces,
@@ -10,6 +11,8 @@ export default function HomePage({
   filteredCategory,
   scrollPercent,
   handleSetScrollPercentage,
+  handleSetActive,
+  active,
 }) {
   return (
     <>
@@ -20,6 +23,8 @@ export default function HomePage({
       <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <CategoryFilter
+          handleSetActive={handleSetActive}
+          active={active}
           artPieces={artPieces}
           handleSetFilteredCategory={handleSetFilteredCategory}
           filteredCategory={filteredCategory}

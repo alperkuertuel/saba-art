@@ -13,6 +13,7 @@ export default function ArtPieceDetails({
   widthReal,
   heightReal,
   slug,
+  handleSetActive,
 }) {
   return (
     <StyledSection>
@@ -32,7 +33,9 @@ export default function ArtPieceDetails({
 
       <ButtonList>
         <li>
-          <StyledBackButton href={`/`}>BACK</StyledBackButton>
+          <StyledBackButton onClick={handleSetActive(category)} href={`/`}>
+            BACK
+          </StyledBackButton>
         </li>
         <li>
           <FacebookShareButton
