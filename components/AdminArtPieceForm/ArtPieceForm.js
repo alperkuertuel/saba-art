@@ -41,7 +41,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
   const currentYear = new Date().getFullYear().toString();
   return (
     <StyledSection>
-      <h2>Add new art pieces: </h2>
+      <h2>Add a new art piece: </h2>
       <StyledForm onSubmit={handleSubmit} autoComplete="on">
         <FileLabel htmlFor="imageUrl">
           <FontAwesomeIcon icon={faCloudArrowUp} />
@@ -109,7 +109,8 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
 const StyledSection = styled.section`
   font-size: 0.8rem;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0 1rem;
+  height: 85vh;
 `;
 
 const StyledForm = styled.form`
@@ -120,6 +121,7 @@ const StyledForm = styled.form`
 
 const FileLabel = styled.label`
   line-height: 1.15;
+  margin-top: 1rem;
   text-align: center;
   cursor: pointer;
   font-size: 2rem;
