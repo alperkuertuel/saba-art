@@ -42,7 +42,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
   return (
     <StyledSection>
       <h2>Add new art pieces: </h2>
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit} autoComplete="on">
         <FileLabel htmlFor="imageUrl">
           <FontAwesomeIcon icon={faCloudArrowUp} />
         </FileLabel>

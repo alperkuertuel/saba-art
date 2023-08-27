@@ -64,7 +64,7 @@ export default function ArtPiecesEditForm({
   const currentYear = new Date().getFullYear().toString();
   return (
     <StyledSection>
-      <StyledForm onSubmit={handleUpdate}>
+      <StyledForm onSubmit={handleUpdate} autocomplete="on">
         <label htmlFor="name">Change name:</label>
         <Input
           type="text"
