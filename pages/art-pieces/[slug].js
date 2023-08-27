@@ -10,6 +10,7 @@ export default function ShowDetails({
   scrollPercent,
   handleSetScrollPercentage,
   handleSetActive,
+  active,
 }) {
   const router = useRouter();
   const { slug } = router.query;
@@ -53,6 +54,7 @@ export default function ShowDetails({
           heightReal={foundArtPiece.heightReal}
           slug={foundArtPiece.slug}
           handleSetActive={handleSetActive}
+          active={active}
         />
       </main>
     </>

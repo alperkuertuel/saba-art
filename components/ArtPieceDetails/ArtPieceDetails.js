@@ -14,7 +14,15 @@ export default function ArtPieceDetails({
   heightReal,
   slug,
   handleSetActive,
+  active,
 }) {
+  function handlePreserveActive() {
+    if (active === "All") {
+      handleSetActive("All");
+    } else if (active === "Newest") {
+      handleSetActive("Newest");
+    } else handleSetActive(category);
+  }
   return (
     <StyledSection>
       <figure>
@@ -33,7 +41,7 @@ export default function ArtPieceDetails({
 
       <ButtonList>
         <li>
-          <StyledBackButton onClick={() => handleSetActive(category)} href={`/`} scroll={false}>
+          <StyledBackButton onClick={() => handlePreserveActive} href={`/`} scroll={false}>
             BACK
           </StyledBackButton>
         </li>

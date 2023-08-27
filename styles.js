@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    --primary-color: whtie;
+    --primary-color: white;
     --secondary-color: #391b0e;
     --tertiary-color: #a48676;
     --box-color: #f4f4f4;

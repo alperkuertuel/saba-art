@@ -34,19 +34,25 @@ export default function CategoryFilter({
     <StyledFilterSection>
       <StyledCategoryFilter>
         <li>
-          <StyledButton $active={active === "All" ? 1 : 0.5} onClick={handleFilterAll}>
+          <StyledButton
+            $active={active === "All" ? "var(--tertiary-color)" : "none"}
+            onClick={handleFilterAll}
+          >
             All
           </StyledButton>
         </li>
         <li>
-          <StyledButton $active={active === "Newest" ? 1 : 0.5} onClick={handleNewestArtPieces}>
+          <StyledButton
+            $active={active === "Newest" ? "var(--tertiary-color)" : "none"}
+            onClick={handleNewestArtPieces}
+          >
             Newest
           </StyledButton>
         </li>
         {uniqueCatagories.map((category) => (
           <li key={category}>
             <StyledButton
-              $active={active === category ? 1 : 0.5}
+              $active={active === category ? "var(--tertiary-color)" : "none"}
               onClick={() => handleFilteredCategories(category)}
             >
               {category}
@@ -71,9 +77,9 @@ const StyledCategoryFilter = styled.ul`
 `;
 
 const StyledButton = styled.button`
-  opacity: ${(props) => props.$active};
+  border: 1px solid ${(props) => props.$active};
   background-color: var(--box-color);
-  transition: opacity 0.2s ease-out;
+  transition: border 0.1s ease;
   padding: 0.5rem;
   border-radius: 5px;
   font-size: 1rem;
