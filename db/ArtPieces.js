@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const artPiecesSchema = new Schema({
-  id: { type: String, required: true },
+const artPieceSchema = new Schema({
   slug: { type: String, required: true },
   name: { type: String, required: true },
   date: { type: String, required: true },
@@ -15,6 +14,6 @@ const artPiecesSchema = new Schema({
   widthReal: { type: String, required: true },
 });
 
-const artPiece = mongoose.models.artPiece || mongoose.model("artPiece", artPiecesSchema);
+const artPiece = mongoose.models.artPiece || mongoose.model("artPiece", artPieceSchema);
 
 export default artPiece;
