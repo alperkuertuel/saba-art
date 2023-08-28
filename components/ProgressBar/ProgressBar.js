@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 export default function ProgressBar({ scrollPercent, handleSetScrollPercentage }) {
@@ -9,6 +9,8 @@ export default function ProgressBar({ scrollPercent, handleSetScrollPercentage }
     const maxScroll = documentHeight - windowHeight;
     const currentScrollPercent = Math.round((scrollY / maxScroll) * 100).toString();
     handleSetScrollPercentage(currentScrollPercent);
+    // console.log(maxScroll);
+    // MS = (SY*100)/SP -> maxScroll for preserving scroll position
   }
 
   useEffect(() => {
@@ -35,4 +37,5 @@ const ProgressBarFill = styled.div`
   height: 100%;
   background-color: var(--tertiary-color);
   width: ${(props) => props.width}%;
+  transition: width 0.1s ease-in-out;
 `;

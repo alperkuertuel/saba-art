@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-export default function ArtPieceListForm({
+export default function ArtPiecesEditForm({
   onSubmit,
   artPieceToEdit,
   artPieces,
@@ -57,13 +57,14 @@ export default function ArtPieceListForm({
 
     onSubmit(artPieceToEdit.id);
     handleSetArtPieces(updatedArtpieces);
+
     // todo: think about routing structure, is it usefull to route to the slug-page?
     router.push(`/art-pieces/${slug}`);
   }
   const currentYear = new Date().getFullYear().toString();
   return (
     <StyledSection>
-      <StyledForm onSubmit={handleUpdate}>
+      <StyledForm onSubmit={handleUpdate} autoComplete="on">
         <label htmlFor="name">Change name:</label>
         <Input
           type="text"

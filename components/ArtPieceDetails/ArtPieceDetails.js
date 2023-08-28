@@ -13,7 +13,16 @@ export default function ArtPieceDetails({
   widthReal,
   heightReal,
   slug,
+  handleSetActive,
+  active,
 }) {
+  function handlePreserveActiveState() {
+    if (active === "All") {
+      handleSetActive("All");
+    } else if (active === "Newest") {
+      handleSetActive("Newest");
+    } else handleSetActive(category);
+  }
   return (
     <StyledSection>
       <figure>
@@ -32,13 +41,15 @@ export default function ArtPieceDetails({
 
       <ButtonList>
         <li>
-          <StyledBackButton href={`/`}>BACK</StyledBackButton>
+          <StyledBackButton onClick={() => handlePreserveActiveState} href={`/`} scroll={false}>
+            BACK
+          </StyledBackButton>
         </li>
         <li>
           <FacebookShareButton
             windowWidth={1000}
             windowHeight={400}
-            url={`https://capstone-project-git-feat-sharing-functionality-alper92.vercel.app/art-pieces/${slug}`}
+            url={`https://capstone-project-lt3yhzqyj-alper92.vercel.app/art-pieces/${slug}`}
           >
             <FacebookIcon size={32} round={true} />
           </FacebookShareButton>
@@ -47,8 +58,8 @@ export default function ArtPieceDetails({
           <WhatsappShareButton
             windowWidth={1000}
             windowHeight={1000}
-            url={`https://capstone-project-git-feat-sharing-functionality-alper92.vercel.app/art-pieces/${slug}`}
-            title={name}
+            url={`https://capstone-project-lt3yhzqyj-alper92.vercel.app/art-pieces/${slug}`}
+            title={`I found this beautiful art piece called "${name}"! Click the link for more: `}
           >
             <WhatsappIcon size={32} round={true} />
           </WhatsappShareButton>

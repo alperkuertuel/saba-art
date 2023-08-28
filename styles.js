@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    --primary-color: whtie;
+    --primary-color: white;
     --secondary-color: #391b0e;
     --tertiary-color: #a48676;
     --box-color: #f4f4f4;
@@ -18,6 +18,10 @@ export default createGlobalStyle`
     padding: 0;
   }
 
+html {
+  scroll-behavior: smooth;
+}
+
   body {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -31,7 +35,7 @@ export default createGlobalStyle`
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.8;
   }
 
   h2 {

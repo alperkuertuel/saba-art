@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export default function CategoryFilter({ artPieces, handleSetFilteredCategory }) {
+export default function CategoryFilter({
+  artPieces,
+  handleSetFilteredCategory,
+  handleSetActive,
+  active,
+}) {
   const allCategories = artPieces.map((piece) => piece.category);
   const currentYear = new Date().getFullYear().toString();
   const uniqueSet = new Set(allCategories);
@@ -10,41 +15,56 @@ export default function CategoryFilter({ artPieces, handleSetFilteredCategory })
     if (uniqueCatagories.includes(category)) {
       const filter = artPieces.filter((piece) => piece.category === category);
       handleSetFilteredCategory(filter);
+      handleSetActive(category);
     }
   }
 
   function handleNewestArtPieces() {
     const yearFilter = artPieces.filter((piece) => piece.date === currentYear);
     handleSetFilteredCategory(yearFilter);
+    handleSetActive("Newest");
   }
 
   function handleFilterAll() {
     handleSetFilteredCategory(artPieces);
+    handleSetActive("All");
   }
 
   return (
-    <StyledNavigaton>
+    <StyledFilterSection>
       <StyledCategoryFilter>
         <li>
-          <StyledButton onClick={handleFilterAll}>All</StyledButton>
+          <StyledButton
+            $active={active === "All" ? "var(--tertiary-color)" : "none"}
+            onClick={handleFilterAll}
+          >
+            All
+          </StyledButton>
         </li>
         <li>
-          <StyledNewestButton onClick={handleNewestArtPieces}>Newest</StyledNewestButton>
+          <StyledButton
+            $active={active === "Newest" ? "var(--tertiary-color)" : "none"}
+            onClick={handleNewestArtPieces}
+          >
+            Newest
+          </StyledButton>
         </li>
         {uniqueCatagories.map((category) => (
           <li key={category}>
-            <StyledButton onClick={() => handleFilteredCategories(category)}>
+            <StyledButton
+              $active={active === category ? "var(--tertiary-color)" : "none"}
+              onClick={() => handleFilteredCategories(category)}
+            >
               {category}
             </StyledButton>
           </li>
         ))}
       </StyledCategoryFilter>
-    </StyledNavigaton>
+    </StyledFilterSection>
   );
 }
 
-const StyledNavigaton = styled.section`
-  display: inline-block;
+const StyledFilterSection = styled.section`
   display: flex;
   gap: 0.5rem;
   margin: 1rem;
@@ -56,16 +76,10 @@ const StyledCategoryFilter = styled.ul`
   gap: 0.5rem;
 `;
 
-const StyledNewestButton = styled.button`
-  padding: 0.5rem;
-  border-radius: 5px;
-  background: var(--box-color);
-  height: fit-content;
-  box-shadow: var(--box-shadow);
-`;
-
 const StyledButton = styled.button`
-  background: var(--box-color);
+  border: 1px solid ${(props) => props.$active};
+  background-color: var(--box-color);
+  transition: border 0.1s ease;
   padding: 0.5rem;
   border-radius: 5px;
   font-size: 1rem;

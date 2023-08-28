@@ -13,6 +13,7 @@ export default function App({ Component, pageProps }) {
   const [filteredCategory, setFilteredCategory] = useState(artPieces);
 
   const [scrollPercent, setScrollPercent] = useState(0);
+  const [active, setActive] = useState();
 
   function handleArtPieceToEdit(artPieceToEdit) {
     setArtPieceToEdit(artPieceToEdit);
@@ -34,6 +35,10 @@ export default function App({ Component, pageProps }) {
     setScrollPercent(scrollPercent);
   }
 
+  function handleSetActive(active) {
+    setActive(active);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -44,11 +49,13 @@ export default function App({ Component, pageProps }) {
         filteredCategory={filteredCategory}
         fileImageUrl={fileImageUrl}
         scrollPercent={scrollPercent}
+        active={active}
         handleSetFileImageUrl={handleSetFileImageUrl}
         handleArtPieceToEdit={handleArtPieceToEdit}
         handleSetArtPieces={handleSetArtPieces}
         handleSetFilteredCategory={handleSetFilteredCategory}
         handleSetScrollPercentage={handleSetScrollPercentage}
+        handleSetActive={handleSetActive}
       />
     </>
   );

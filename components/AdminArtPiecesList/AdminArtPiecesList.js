@@ -3,7 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import ArtPieceListForm from "./ArtPiecesListForm";
+import ArtPiecesEditForm from "../AdminArtPiecesEditForm/AdminArtPiecesEditForm";
 import { Fragment } from "react";
 
 export default function ArtPiecesList({
@@ -17,7 +17,7 @@ export default function ArtPiecesList({
   // todo: set toggle function when clicking the pen
   return (
     <StyledSection>
-      <h2>Edit and delete art pieces:</h2>
+      <h2>Update or delete art pieces:</h2>
       <ul>
         {artPieces.map(({ slug, id, imageUrl, name }) => (
           <Fragment key={id}>
@@ -46,7 +46,7 @@ export default function ArtPiecesList({
               </StyledButton>
             </StyledItem>
             {artPieceToEdit.id === id && (
-              <ArtPieceListForm
+              <ArtPiecesEditForm
                 artPieces={artPieces}
                 handleSetArtPieces={handleSetArtPieces}
                 artPieceToEdit={artPieceToEdit}
