@@ -1,7 +1,8 @@
 import GlobalStyle from "../styles";
 import useLocalStorageState from "use-local-storage-state";
-import artPiecesData from "@/db/data";
+import artPiecesData from "@/db/BackUp/data";
 import { useState } from "react";
+import { SWRConfig } from "swr";
 
 export default function App({ Component, pageProps }) {
   const [artPieces, setArtPieces] = useLocalStorageState("artPieces", {
@@ -42,21 +43,33 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Component
-        {...pageProps}
-        artPieces={artPieces}
-        artPieceToEdit={artPieceToEdit}
-        filteredCategory={filteredCategory}
-        fileImageUrl={fileImageUrl}
-        scrollPercent={scrollPercent}
-        active={active}
-        handleSetFileImageUrl={handleSetFileImageUrl}
-        handleArtPieceToEdit={handleArtPieceToEdit}
-        handleSetArtPieces={handleSetArtPieces}
-        handleSetFilteredCategory={handleSetFilteredCategory}
-        handleSetScrollPercentage={handleSetScrollPercentage}
-        handleSetActive={handleSetActive}
-      />
+      <SWRConfig
+        value={{
+          fetcher: async (...args) => {
+            const response = await fetch(...args);
+            if (!response.ok) {
+              throw new Error(`Request with ${JSON.stringify(args)} failed.`);
+            }
+            return await response.json();
+          },
+        }}
+      >
+        <Component
+          {...pageProps}
+          artPieces={artPieces}
+          artPieceToEdit={artPieceToEdit}
+          filteredCategory={filteredCategory}
+          fileImageUrl={fileImageUrl}
+          scrollPercent={scrollPercent}
+          active={active}
+          handleSetFileImageUrl={handleSetFileImageUrl}
+          handleArtPieceToEdit={handleArtPieceToEdit}
+          handleSetArtPieces={handleSetArtPieces}
+          handleSetFilteredCategory={handleSetFilteredCategory}
+          handleSetScrollPercentage={handleSetScrollPercentage}
+          handleSetActive={handleSetActive}
+        />
+      </SWRConfig>
     </>
   );
 }

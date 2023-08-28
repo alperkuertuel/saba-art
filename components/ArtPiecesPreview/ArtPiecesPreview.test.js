@@ -1,17 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import ArtPiecesPreview from "./ArtPiecesPreview";
-import artPiecesData from "@/db/data";
+import artPiecesData from "@/db/BackUp/data";
 
 test("Each art piece's alt text is displayed", () => {
   render(<ArtPiecesPreview artPieces={artPiecesData} />);
   artPiecesData.forEach((piece) => {
     const imageElement = screen.getByAltText(piece.name);
     expect(imageElement).toHaveAttribute("alt", piece.name);
-    expect(imageElement).toHaveAttribute(
-      "src",
-      expect.stringContaining(".jpg")
-    );
+    expect(imageElement).toHaveAttribute("src", expect.stringContaining(".jpg"));
   });
 });
 

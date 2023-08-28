@@ -1,11 +1,11 @@
 import dbConnect from "@/db/connect";
-import artPiece from "@/db/ArtPieces";
+import ArtPiece from "@/db/ArtPiece";
 
 export default async function handler(request, response) {
   await dbConnect();
-
   if (request.method === "GET") {
-    const artPieces = await artPiece.find();
+    const artPieces = await ArtPiece.find();
+
     return response.status(200).json(artPieces);
   }
 }

@@ -14,6 +14,6 @@ const artPieceSchema = new Schema({
   widthReal: { type: String, required: true },
 });
 
-const artPiece = mongoose.models.artPiece || mongoose.model("artPiece", artPieceSchema);
+const ArtPiece = mongoose.models.ArtPiece || mongoose.model("ArtPiece", artPieceSchema);
 
-export default artPiece;
+export default ArtPiece;
