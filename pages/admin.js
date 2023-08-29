@@ -6,7 +6,6 @@ export default function AdminHomePage({
   artPieces,
   artPieceToEdit,
   handleSetArtPieces,
-  handleArtPieceToEdit,
   fileImageUrl,
   handleSetFileImageUrl,
   scrollPercent,
@@ -70,7 +69,8 @@ export default function AdminHomePage({
     }
   }
 
-  async function handleEditArtPiece(editedArtPiece) {
+  async function handleEditArtPiece(editedArtPiece, id) {
+    console.log(editedArtPiece);
     try {
       const response = await fetch(`/api/${id}`, {
         method: "PATCH",

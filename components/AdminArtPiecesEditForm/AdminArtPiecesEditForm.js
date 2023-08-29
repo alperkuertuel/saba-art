@@ -2,15 +2,15 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import useSWR from "swr";
 
-export default function ArtPiecesEditForm({ onSubmit }) {
+export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit }) {
   const { data } = useSWR("/api", { fallbackData: [] });
   const router = useRouter();
   function handleUpdate(event) {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-    const slug = data.name
+    const editData = Object.fromEntries(formData);
+    const slug = editData.name
       .toLowerCase()
       .trim()
       .replace(/[ö]/g, "oe")
@@ -22,16 +22,16 @@ export default function ArtPiecesEditForm({ onSubmit }) {
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
 
     const editedArtPiece = {
-      id: data._id,
+      id: artPieceToEdit.id,
       slug: slug,
-      date: data.date,
-      name: data.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
-      description: data.description,
-      category: data.category,
-      technique: data.technique,
-      imageUrl: data.imageUrl,
-      heightReal: data.heightReal,
-      widthReal: data.widthReal,
+      date: editData.date,
+      name: editData.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
+      description: editData.description,
+      category: editData.category,
+      technique: editData.technique,
+      imageUrl: artPieceToEdit.imageUrl,
+      heightReal: editData.heightReal,
+      widthReal: editData.widthReal,
     };
 
     onSubmit(editedArtPiece);
@@ -49,7 +49,7 @@ export default function ArtPiecesEditForm({ onSubmit }) {
           id="name"
           name="name"
           placeholder="change the name"
-          defaultValue={data?.name}
+          defaultValue={data.name?.name}
           minLength={3}
           maxLength={30}
           required
@@ -60,13 +60,13 @@ export default function ArtPiecesEditForm({ onSubmit }) {
           id="date"
           name="date"
           max={currentYear}
-          defaultValue={data?.date}
+          defaultValue={data.date?.date}
           required
         />
 
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
-          <StyledSelection name="category" id="category" defaultValue={data?.category}>
+          <StyledSelection name="category" id="category" defaultValue={data.category?.category}>
             <option>Impression</option>
             <option>Landscape</option>
             <option>Abstract</option>
@@ -76,7 +76,7 @@ export default function ArtPiecesEditForm({ onSubmit }) {
           </StyledSelection>
 
           <label htmlFor="technique">Technique: </label>
-          <StyledSelection name="technique" id="technique" defaultValue={data?.technique}>
+          <StyledSelection name="technique" id="technique" defaultValue={data.category?.technique}>
             <option>Oil</option>
             <option>Acryl</option>
           </StyledSelection>
@@ -90,7 +90,7 @@ export default function ArtPiecesEditForm({ onSubmit }) {
             id="heightReal"
             name="heightReal"
             placeholder="cm"
-            defaultValue={data?.heightReal}
+            defaultValue={data.heightReal?.heightReal}
             required
           />
           <label htmlFor="widthReal"> height: </label>
@@ -101,7 +101,7 @@ export default function ArtPiecesEditForm({ onSubmit }) {
             id="widthReal"
             name="widthReal"
             placeholder="cm"
-            defaultValue={data?.widthReal}
+            defaultValue={data.widthReal?.widthReal}
             required
           />
         </StyledFieldset>
@@ -112,7 +112,7 @@ export default function ArtPiecesEditForm({ onSubmit }) {
           id="description"
           cols="30"
           rows="5"
-          defaultValue={data?.description}
+          defaultValue={data.description?.description}
         ></Textarea>
         <StyledButton>UPDATE</StyledButton>
       </StyledForm>
