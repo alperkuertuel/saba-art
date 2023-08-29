@@ -8,4 +8,16 @@ export default async function handler(request, response) {
     const artPieces = await ArtPiece.find();
     return response.status(200).json(artPieces);
   }
+
+  if (request.method === "POST") {
+    try {
+      const newArtPieceData = request.body;
+      await ArtPiece.create(newArtPieceData);
+
+      response.status(201).json({ status: "Art piece created" });
+    } catch (error) {
+      console.log(error);
+      response.status(400).json({ error: error.message });
+    }
+  }
 }

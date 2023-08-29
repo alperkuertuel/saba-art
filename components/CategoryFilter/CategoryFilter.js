@@ -1,32 +1,35 @@
 import styled from "styled-components";
+import useSWR from "swr";
 
 export default function CategoryFilter({
   artPieces,
+  filteredCategory,
   handleSetFilteredCategory,
   handleSetActive,
   active,
 }) {
-  const allCategories = artPieces.map((piece) => piece.category);
+  const { data } = useSWR("/api", { fallbackData: [] });
+  const allCategories = data.map((piece) => piece.category);
   const currentYear = new Date().getFullYear().toString();
   const uniqueSet = new Set(allCategories);
   const uniqueCatagories = [...uniqueSet];
 
   function handleFilteredCategories(category) {
     if (uniqueCatagories.includes(category)) {
-      const filter = artPieces.filter((piece) => piece.category === category);
+      const filter = data.filter((piece) => piece.category === category);
       handleSetFilteredCategory(filter);
       handleSetActive(category);
     }
   }
 
   function handleNewestArtPieces() {
-    const yearFilter = artPieces.filter((piece) => piece.date === currentYear);
+    const yearFilter = data.filter((piece) => piece.date === currentYear);
     handleSetFilteredCategory(yearFilter);
     handleSetActive("Newest");
   }
 
   function handleFilterAll() {
-    handleSetFilteredCategory(artPieces);
+    handleSetFilteredCategory(data);
     handleSetActive("All");
   }
 

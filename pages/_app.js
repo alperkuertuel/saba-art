@@ -1,17 +1,22 @@
 import GlobalStyle from "../styles";
 import useLocalStorageState from "use-local-storage-state";
 import artPiecesData from "@/db/BackUp/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SWRConfig } from "swr";
+import useSWR from "swr";
+
+const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function App({ Component, pageProps }) {
-  const [artPieces, setArtPieces] = useLocalStorageState("artPieces", {
-    defaultValue: artPiecesData,
-  });
+  const { data } = useSWR("/api", fetcher, { fallbackData: [] });
+  console.log(data);
+
+  const [artPieces, setArtPieces] = useState(data);
+
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
   const [fileImageUrl, setfileImageUrl] = useState("/img/preview.png");
 
-  const [filteredCategory, setFilteredCategory] = useState(artPieces);
+  const [filteredCategory, setFilteredCategory] = useState();
 
   const [scrollPercent, setScrollPercent] = useState(0);
   const [active, setActive] = useState();
@@ -45,13 +50,8 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <SWRConfig
         value={{
-          fetcher: async (...args) => {
-            const response = await fetch(...args);
-            if (!response.ok) {
-              throw new Error(`Request with ${JSON.stringify(args)} failed.`);
-            }
-            return await response.json();
-          },
+          fetcher,
+          refreshInterval: 1000,
         }}
       >
         <Component

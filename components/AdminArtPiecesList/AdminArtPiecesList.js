@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ArtPiecesEditForm from "../AdminArtPiecesEditForm/AdminArtPiecesEditForm";
 import { Fragment } from "react";
+import useSWR from "swr";
 
 export default function ArtPiecesList({
   artPieces,
@@ -15,12 +16,13 @@ export default function ArtPiecesList({
   onSubmit,
 }) {
   // todo: set toggle function when clicking the pen
+  const { data } = useSWR("/api", { fallbackData: [] });
   return (
     <StyledSection>
       <h2>Update or delete art pieces:</h2>
       <ul>
-        {artPieces.map(({ slug, id, imageUrl, name }) => (
-          <Fragment key={id}>
+        {data.map(({ slug, _id, imageUrl, name }) => (
+          <Fragment key={_id}>
             <StyledItem>
               <StyledLink href={`/art-pieces/${slug}`}>
                 <StyledImage
@@ -38,14 +40,14 @@ export default function ArtPiecesList({
               <p>
                 <q>{name}</q>
               </p>
-              <StyledButton onClick={() => onEdit(id)}>
+              <StyledButton onClick={() => onEdit(_id)}>
                 <StyledIcon icon={faPencil} />
               </StyledButton>
-              <StyledButton onClick={() => onDelete(id)}>
+              <StyledButton onClick={() => onDelete(_id)}>
                 <StyledIcon icon={faTrashCan} />
               </StyledButton>
             </StyledItem>
-            {artPieceToEdit.id === id && (
+            {_id && (
               <ArtPiecesEditForm
                 artPieces={artPieces}
                 handleSetArtPieces={handleSetArtPieces}

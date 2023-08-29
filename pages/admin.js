@@ -51,10 +51,23 @@ export default function AdminHomePage({
     }
   }
 
-  function handleAddArtPiece(newArtPieceData) {
-    if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
-      window.alert("Name already exists. Please choose a different name.");
-    } else handleSetArtPieces([newArtPieceData, ...artPieces]);
+  async function handleAddArtPiece(newArtPieceData) {
+    // if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
+    //   window.alert("Name already exists. Please choose a different name.");
+    // } else handleSetArtPieces([newArtPieceData, ...artPieces]);
+
+    const response = await fetch("/api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newArtPieceData),
+    });
+
+    if (!response.ok) {
+      console.error(response.status);
+      return;
+    }
   }
 
   function handleEditArtPiece(id) {
