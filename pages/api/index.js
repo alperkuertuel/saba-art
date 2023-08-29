@@ -20,4 +20,9 @@ export default async function handler(request, response) {
       response.status(400).json({ error: error.message });
     }
   }
+
+  if (request.method === "DELETE") {
+    await ArtPiece.findByIdAndDelete(slug);
+    response.status(200).json({ message: "Art piece was deleted successfully!" });
+  }
 }

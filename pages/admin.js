@@ -75,13 +75,17 @@ export default function AdminHomePage({
     handleArtPieceToEdit(selectedArtPieceToEdit);
   }
 
-  function handleDeleteArtPiece(id) {
-    const artPieceToDelete = artPieces.find((piece) => piece.id === id);
-    const artPiecesWithoutDeletedArtPiece = artPieces.filter((piece) => piece.id !== id);
-    const sureToDelete = confirm(`Are you sure you want to delete ${artPieceToDelete.name}`);
-    if (sureToDelete) {
-      handleSetArtPieces(artPiecesWithoutDeletedArtPiece);
-    }
+  // const artPieceToDelete = artPieces.find((piece) => piece.id === id);
+  // const artPiecesWithoutDeletedArtPiece = artPieces.filter((piece) => piece.id !== id);
+  // const sureToDelete = confirm(`Are you sure you want to delete ${artPieceToDelete.name}`);
+  // if (sureToDelete) {
+  //   handleSetArtPieces(artPiecesWithoutDeletedArtPiece);
+  // }
+
+  async function handleDeleteArtPiece(id) {
+    await fetch(`/api/${id}`, {
+      method: "DELETE",
+    });
   }
 
   return (
