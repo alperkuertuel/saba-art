@@ -3,6 +3,7 @@ import ArtPiece from "@/db/ArtPiece";
 
 export default async function handler(request, response) {
   await dbConnect();
+
   if (request.method === "GET") {
     const artPieces = await ArtPiece.find();
 
