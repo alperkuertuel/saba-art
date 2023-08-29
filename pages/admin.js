@@ -70,9 +70,22 @@ export default function AdminHomePage({
     }
   }
 
-  function handleEditArtPiece(id) {
-    const selectedArtPieceToEdit = artPieces.find((piece) => piece.id === id);
-    handleArtPieceToEdit(selectedArtPieceToEdit);
+  async function handleEditArtPiece(editedArtPiece) {
+    try {
+      const response = await fetch(`/api/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editedArtPiece),
+      });
+
+      if (response.ok) {
+        console.log("art piece deleted");
+      } else console.log("something went wrong");
+    } catch (error) {
+      console.log("error");
+    }
   }
 
   // const artPieceToDelete = artPieces.find((piece) => piece.id === id);

@@ -16,6 +16,12 @@ export default async function handler(request, response) {
     response.status(200).json(artPiece);
   }
 
+  if (request.method === "PATCH") {
+    const artPieceData = request.body;
+    await ArtPiece.findByIdAndUpdate(id, artPieceData);
+    response.status(200).json({ status: "Art piece updated!" });
+  }
+
   if (request.method === "DELETE") {
     await ArtPiece.findByIdAndDelete(id);
     response.status(200).json({ message: "Art piece was deleted successfully!" });
