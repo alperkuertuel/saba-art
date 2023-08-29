@@ -6,7 +6,6 @@ export default async function handler(request, response) {
 
   if (request.method === "GET") {
     const artPieces = await ArtPiece.find();
-
     return response.status(200).json(artPieces);
   }
 }
