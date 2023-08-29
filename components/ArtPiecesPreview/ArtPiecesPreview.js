@@ -1,14 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-import useSWR from "swr";
 
 export default function ArtPiecesPreview({ filteredCategory }) {
-  const { data } = useSWR("/api", { fallbackData: [] });
   return (
     <GalleryWrapper>
-      {data &&
-        data.map(({ _id, imageUrl, name, date, slug }) => (
+      {filteredCategory &&
+        filteredCategory.map(({ _id, imageUrl, name, date, slug }) => (
           <GalleryCard key={_id}>
             <figure>
               <Link href={`/art-pieces/${slug}`}>

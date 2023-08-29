@@ -1,7 +1,5 @@
 import GlobalStyle from "../styles";
-import useLocalStorageState from "use-local-storage-state";
-import artPiecesData from "@/db/BackUp/data";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SWRConfig } from "swr";
 import useSWR from "swr";
 
@@ -16,7 +14,7 @@ export default function App({ Component, pageProps }) {
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
   const [fileImageUrl, setfileImageUrl] = useState("/img/preview.png");
 
-  const [filteredCategory, setFilteredCategory] = useState();
+  const [filteredCategory, setFilteredCategory] = useState(data);
 
   const [scrollPercent, setScrollPercent] = useState(0);
   const [active, setActive] = useState();
@@ -51,7 +49,7 @@ export default function App({ Component, pageProps }) {
       <SWRConfig
         value={{
           fetcher,
-          refreshInterval: 1000,
+          refreshInterval: 600000,
         }}
       >
         <Component

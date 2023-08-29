@@ -1,18 +1,13 @@
 import styled from "styled-components";
 import useSWR from "swr";
 
-export default function CategoryFilter({
-  artPieces,
-  filteredCategory,
-  handleSetFilteredCategory,
-  handleSetActive,
-  active,
-}) {
+export default function CategoryFilter({ handleSetFilteredCategory, handleSetActive, active }) {
   const { data } = useSWR("/api", { fallbackData: [] });
   const allCategories = data.map((piece) => piece.category);
   const currentYear = new Date().getFullYear().toString();
   const uniqueSet = new Set(allCategories);
   const uniqueCatagories = [...uniqueSet];
+  // console.log(uniqueCatagories);
 
   function handleFilteredCategories(category) {
     if (uniqueCatagories.includes(category)) {
