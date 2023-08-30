@@ -22,11 +22,9 @@ export default function HomePage({
       <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <CategoryFilter
+          handleSetFilteredCategory={handleSetFilteredCategory}
           handleSetActive={handleSetActive}
           active={active}
-          artPieces={artPieces}
-          handleSetFilteredCategory={handleSetFilteredCategory}
-          filteredCategory={filteredCategory}
         />
         <ArtPiecesPreview artPieces={artPieces} filteredCategory={filteredCategory} />
         <ScrollUp scrollPercent={scrollPercent} />
