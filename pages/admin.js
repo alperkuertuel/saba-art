@@ -47,7 +47,7 @@ export default function AdminHomePage({
 
           if (height <= maxHeight && width <= maxWidth) {
             return alert(
-              `Your image width and height is smaller then 800px. In order to preserve quality upload a bigger sized image!`
+              `Your image width or height is smaller then 800px. In order to preserve quality upload a bigger sized image!`
             );
           }
 
