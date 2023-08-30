@@ -5,7 +5,6 @@ import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import Head from "next/head";
 
 export default function HomePage({
-  artPieces,
   handleSetFilteredCategory,
   filteredCategory,
   scrollPercent,

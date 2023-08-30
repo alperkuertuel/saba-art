@@ -7,24 +7,18 @@ const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function App({ Component, pageProps }) {
   const { data } = useSWR("/api", fetcher, { fallbackData: [] });
-  // console.log(data);
-
-  const [artPieces, setArtPieces] = useState(data);
 
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
   const [fileImageUrl, setfileImageUrl] = useState("/img/preview.png");
 
   const [filteredCategory, setFilteredCategory] = useState(data);
+  // this filtere exists to only show picutres when a category is selected
 
   const [scrollPercent, setScrollPercent] = useState(0);
   const [active, setActive] = useState();
 
   function handleSetArtPieceToEdit(artPieceToEdit) {
     setArtPieceToEdit(artPieceToEdit);
-  }
-
-  function handleSetArtPieces(artPieces) {
-    setArtPieces(artPieces);
   }
 
   function handleSetFileImageUrl(fileImageUrl) {
@@ -54,7 +48,6 @@ export default function App({ Component, pageProps }) {
       >
         <Component
           {...pageProps}
-          artPieces={artPieces}
           artPieceToEdit={artPieceToEdit}
           filteredCategory={filteredCategory}
           fileImageUrl={fileImageUrl}
@@ -62,7 +55,6 @@ export default function App({ Component, pageProps }) {
           active={active}
           handleSetFileImageUrl={handleSetFileImageUrl}
           handleSetArtPieceToEdit={handleSetArtPieceToEdit}
-          handleSetArtPieces={handleSetArtPieces}
           handleSetFilteredCategory={handleSetFilteredCategory}
           handleSetScrollPercentage={handleSetScrollPercentage}
           handleSetActive={handleSetActive}

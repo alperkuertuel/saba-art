@@ -7,7 +7,6 @@ import Head from "next/head";
 import useSWR from "swr";
 
 export default function ShowDetails({
-  artPieces,
   scrollPercent,
   handleSetScrollPercentage,
   handleSetActive,
