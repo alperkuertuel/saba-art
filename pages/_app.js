@@ -40,12 +40,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <SWRConfig
-        value={{
-          fetcher,
-          refreshInterval: 600000,
-        }}
-      >
+      <SWRConfig value={{ fetcher }}>
         <Component
           {...pageProps}
           artPieceToEdit={artPieceToEdit}
