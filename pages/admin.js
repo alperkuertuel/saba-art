@@ -78,9 +78,13 @@ export default function AdminHomePage({
   }
 
   async function handleDeleteArtPiece(id) {
-    await fetch(`/api/${id}`, {
-      method: "DELETE",
-    });
+    const artPieceToDelete = data.find((piece) => piece._id === id);
+    const sureToDelete = confirm(`Are you sure you want to delete ${artPieceToDelete.name}`);
+    if (sureToDelete) {
+      await fetch(`/api/${id}`, {
+        method: "DELETE",
+      });
+    }
   }
 
   return (
