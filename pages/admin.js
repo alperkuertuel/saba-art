@@ -1,16 +1,19 @@
 import ArtPieceForm from "@/components/AdminArtPieceForm/ArtPieceForm";
 import Header from "@/components/Header/Header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
+import useSWR from "swr";
 
 export default function AdminHomePage({
   artPieces,
   artPieceToEdit,
+  handleArtPieceToEdit,
   handleSetArtPieces,
   fileImageUrl,
   handleSetFileImageUrl,
   scrollPercent,
   handleSetScrollPercentage,
 }) {
+  const { data } = useSWR("/api");
   const maxWidth = 800; // maxWidth of detail page
   const maxHeight = 800; // maxHeight of detail page
   function handleImageUpload(event) {
@@ -50,11 +53,10 @@ export default function AdminHomePage({
     }
   }
 
-  async function handleAddArtPiece(newArtPieceData) {
+  async function handleAddArtPiece(newArtPieceData, id) {
     // if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
     //   window.alert("Name already exists. Please choose a different name.");
     // } else handleSetArtPieces([newArtPieceData, ...artPieces]);
-
     const response = await fetch("/api", {
       method: "POST",
       headers: {
@@ -69,31 +71,27 @@ export default function AdminHomePage({
     }
   }
 
-  async function handleEditArtPiece(editedArtPiece, id) {
-    console.log(editedArtPiece);
-    try {
-      const response = await fetch(`/api/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editedArtPiece),
-      });
+  async function handleEditArtPiece(id) {
+    // console.log(artPieceToEditData);
+    const selectedArtPieceToEdit = data.find((piece) => piece.id === id);
+    handleArtPieceToEdit(selectedArtPieceToEdit);
+    console.log(artPieceToEdit);
+    // try {
+    //   const response = await fetch(`/api/${id}`, {
+    //     method: "PATCH",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(editedArtPiece),
+    //   });
 
-      if (response.ok) {
-        console.log("art piece deleted");
-      } else console.log("something went wrong");
-    } catch (error) {
-      console.log("error");
-    }
+    //   if (response.ok) {
+    //     console.log("art piece deleted");
+    //   } else console.log("something went wrong");
+    // } catch (error) {
+    //   console.log("error");
+    // }
   }
-
-  // const artPieceToDelete = artPieces.find((piece) => piece.id === id);
-  // const artPiecesWithoutDeletedArtPiece = artPieces.filter((piece) => piece.id !== id);
-  // const sureToDelete = confirm(`Are you sure you want to delete ${artPieceToDelete.name}`);
-  // if (sureToDelete) {
-  //   handleSetArtPieces(artPiecesWithoutDeletedArtPiece);
-  // }
 
   async function handleDeleteArtPiece(id) {
     await fetch(`/api/${id}`, {

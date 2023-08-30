@@ -18,7 +18,7 @@ export default function ShowDetails({
   const { data } = useSWR("/api", { fallbackData: [] });
   const foundArtPiece = data.find((artpiece) => artpiece.slug === slug);
 
-  if (!slug) {
+  if (!slug && !data) {
     return (
       <main>
         <StyledErrorMessage>Loading...</StyledErrorMessage>

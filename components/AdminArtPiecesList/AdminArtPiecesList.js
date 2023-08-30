@@ -11,14 +11,13 @@ export default function ArtPiecesList({
   artPieces,
   handleSetArtPieces,
   onDelete,
+  onEdit,
   artPieceToEdit,
   onSubmit,
 }) {
   // todo: set toggle function when clicking the pen
   const { data } = useSWR("/api", { fallbackData: [] });
-  function onEdit(id) {
-    console.log(id);
-  }
+
   return (
     <StyledSection>
       <h2>Update or delete art pieces:</h2>
@@ -54,7 +53,6 @@ export default function ArtPiecesList({
                 artPieces={artPieces}
                 handleSetArtPieces={handleSetArtPieces}
                 artPieceToEdit={artPieceToEdit}
-                onEdit={onEdit}
                 onSubmit={onSubmit}
               />
             )}
