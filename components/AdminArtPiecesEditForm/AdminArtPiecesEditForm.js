@@ -44,10 +44,16 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
       });
 
       if (response.ok) {
-        console.log("art piece edited");
-      } else console.log("something went wrong");
+        alert(`You successfully updated ${editedArtPiece.name}`);
+      } else
+        alert(
+          `Something went wrong updating ${editedArtPiece.name}! Please try it again or contact the developer!`
+        );
     } catch (error) {
-      console.log("error");
+      console.error(
+        `Something went wrong during sending the patch request of ${editedArtPiece.name}!`,
+        error
+      );
     }
 
     // todo: think about routing structure, is it usefull to route to the slug-page?
