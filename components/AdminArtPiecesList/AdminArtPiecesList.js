@@ -10,6 +10,7 @@ import useSWR from "swr";
 export default function ArtPiecesList({
   artPieces,
   handleSetArtPieces,
+  handleArtPieceToEdit,
   onDelete,
   onEdit,
   artPieceToEdit,
@@ -22,42 +23,66 @@ export default function ArtPiecesList({
     <StyledSection>
       <h2>Update or delete art pieces:</h2>
       <ul>
-        {data.map(({ slug, _id, imageUrl, name }) => (
-          <Fragment key={_id}>
-            <StyledItem>
-              <StyledLink href={`/art-pieces/${slug}`}>
-                <StyledImage
-                  src={imageUrl}
-                  height={50}
-                  width={50}
-                  alt={name}
-                  priority={false}
-                  placeholder="blur"
-                  blurDataURL={
-                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
-                  }
+        {data.map(
+          ({
+            slug,
+            _id,
+            imageUrl,
+            name,
+            date,
+            category,
+            technique,
+            heightReal,
+            widthReal,
+            description,
+          }) => (
+            <Fragment key={_id}>
+              <StyledItem>
+                <StyledLink href={`/art-pieces/${slug}`}>
+                  <StyledImage
+                    src={imageUrl}
+                    height={50}
+                    width={50}
+                    alt={name}
+                    priority={false}
+                    placeholder="blur"
+                    blurDataURL={
+                      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
+                    }
+                  />
+                </StyledLink>
+                <p>
+                  <q>{name}</q>
+                </p>
+                <StyledButton onClick={() => onEdit(_id)}>
+                  <StyledIcon icon={faPencil} />
+                </StyledButton>
+                <StyledButton onClick={() => onDelete(_id)}>
+                  <StyledIcon icon={faTrashCan} />
+                </StyledButton>
+              </StyledItem>
+              {artPieceToEdit._id === _id && (
+                <ArtPiecesEditForm
+                  artPieces={artPieces}
+                  handleSetArtPieces={handleSetArtPieces}
+                  handleArtPieceToEdit={handleArtPieceToEdit}
+                  onSubmit={onSubmit}
+                  artPieceToEdit={{
+                    _id,
+                    name,
+                    date,
+                    category,
+                    technique,
+                    imageUrl,
+                    heightReal,
+                    widthReal,
+                    description,
+                  }}
                 />
-              </StyledLink>
-              <p>
-                <q>{name}</q>
-              </p>
-              <StyledButton onClick={() => onEdit(_id)}>
-                <StyledIcon icon={faPencil} />
-              </StyledButton>
-              <StyledButton onClick={() => onDelete(_id)}>
-                <StyledIcon icon={faTrashCan} />
-              </StyledButton>
-            </StyledItem>
-            {_id && (
-              <ArtPiecesEditForm
-                artPieces={artPieces}
-                handleSetArtPieces={handleSetArtPieces}
-                artPieceToEdit={artPieceToEdit}
-                onSubmit={onSubmit}
-              />
-            )}
-          </Fragment>
-        ))}
+              )}
+            </Fragment>
+          )
+        )}
       </ul>
     </StyledSection>
   );

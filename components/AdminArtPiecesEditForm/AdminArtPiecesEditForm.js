@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import useSWR from "swr";
 
-export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit }) {
+export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit, handleArtPieceToEdit }) {
   const { data } = useSWR("/api", { fallbackData: [] });
   const router = useRouter();
   function handleUpdate(event) {
@@ -22,7 +22,7 @@ export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit }) {
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
 
     const editedArtPiece = {
-      id: artPieceToEdit.id,
+      id: artPieceToEdit._id,
       slug: slug,
       date: editData.date,
       name: editData.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
@@ -34,8 +34,8 @@ export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit }) {
       widthReal: editData.widthReal,
     };
 
+    handleArtPieceToEdit(editedArtPiece);
     onSubmit(editedArtPiece);
-
     // todo: think about routing structure, is it usefull to route to the slug-page?
     // router.push(`/art-pieces/${slug}`);
   }
@@ -49,7 +49,7 @@ export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit }) {
           id="name"
           name="name"
           placeholder="change the name"
-          defaultValue={data.name?.name}
+          defaultValue={artPieceToEdit.name}
           minLength={3}
           maxLength={30}
           required
@@ -60,13 +60,13 @@ export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit }) {
           id="date"
           name="date"
           max={currentYear}
-          defaultValue={data.date?.date}
+          defaultValue={artPieceToEdit.date}
           required
         />
 
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
-          <StyledSelection name="category" id="category" defaultValue={data.category?.category}>
+          <StyledSelection name="category" id="category" defaultValue={artPieceToEdit.category}>
             <option>Impression</option>
             <option>Landscape</option>
             <option>Abstract</option>
@@ -76,7 +76,7 @@ export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit }) {
           </StyledSelection>
 
           <label htmlFor="technique">Technique: </label>
-          <StyledSelection name="technique" id="technique" defaultValue={data.category?.technique}>
+          <StyledSelection name="technique" id="technique" defaultValue={artPieceToEdit.technique}>
             <option>Oil</option>
             <option>Acryl</option>
           </StyledSelection>
@@ -90,7 +90,7 @@ export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit }) {
             id="heightReal"
             name="heightReal"
             placeholder="cm"
-            defaultValue={data.heightReal?.heightReal}
+            defaultValue={artPieceToEdit.heightReal}
             required
           />
           <label htmlFor="widthReal"> height: </label>
@@ -101,7 +101,7 @@ export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit }) {
             id="widthReal"
             name="widthReal"
             placeholder="cm"
-            defaultValue={data.widthReal?.widthReal}
+            defaultValue={artPieceToEdit.widthReal}
             required
           />
         </StyledFieldset>
@@ -112,7 +112,7 @@ export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit }) {
           id="description"
           cols="30"
           rows="5"
-          defaultValue={data.description?.description}
+          defaultValue={artPieceToEdit.description}
         ></Textarea>
         <StyledButton>UPDATE</StyledButton>
       </StyledForm>

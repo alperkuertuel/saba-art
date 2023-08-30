@@ -2,6 +2,7 @@ import ArtPieceForm from "@/components/AdminArtPieceForm/ArtPieceForm";
 import Header from "@/components/Header/Header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
 import useSWR from "swr";
+import { useEffect } from "react";
 
 export default function AdminHomePage({
   artPieces,
@@ -53,7 +54,7 @@ export default function AdminHomePage({
     }
   }
 
-  async function handleAddArtPiece(newArtPieceData, id) {
+  async function handleAddArtPiece(newArtPieceData) {
     // if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
     //   window.alert("Name already exists. Please choose a different name.");
     // } else handleSetArtPieces([newArtPieceData, ...artPieces]);
@@ -72,10 +73,11 @@ export default function AdminHomePage({
   }
 
   async function handleEditArtPiece(id) {
-    // console.log(artPieceToEditData);
-    const selectedArtPieceToEdit = data.find((piece) => piece.id === id);
+    const selectedArtPieceToEdit = data.find((piece) => piece._id === id);
     handleArtPieceToEdit(selectedArtPieceToEdit);
-    console.log(artPieceToEdit);
+    // handleArtPieceToEdit(selectedArtPieceToEdit);
+    console.log(selectedArtPieceToEdit);
+
     // try {
     //   const response = await fetch(`/api/${id}`, {
     //     method: "PATCH",
@@ -111,6 +113,7 @@ export default function AdminHomePage({
         />
         <ArtPiecesList
           artPieceToEdit={artPieceToEdit}
+          handleArtPieceToEdit={handleArtPieceToEdit}
           fileImageUrl={fileImageUrl}
           handleSetFileImageUrl={handleSetFileImageUrl}
           onSubmit={handleEditArtPiece}
