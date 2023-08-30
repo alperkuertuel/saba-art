@@ -45,9 +45,9 @@ export default function AdminHomePage({
           let width = img.width;
           let height = img.height;
 
-          if (height || width <= maxWidth || maxHeight) {
+          if (height <= maxHeight && width <= maxWidth) {
             return alert(
-              `Your image width or height is smaller then 800px. In order to preserve quality upload a bigger sized image!`
+              `Your image width and height is smaller then 800px. In order to preserve quality upload a bigger sized image!`
             );
           }
 
@@ -66,7 +66,9 @@ export default function AdminHomePage({
           ctx.drawImage(img, 0, 0, width, height);
 
           const resizedImageData = canvas.toDataURL("image/webp", 0.7);
-          console.log(resizedImageData);
+          alert(
+            `You successfully created a compressed webp image file which is ready for the gallery! Go on full filling the form to finally add the art piece to the gallery!`
+          );
 
           handleSetFileImageUrl(resizedImageData);
         };
