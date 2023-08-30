@@ -2,6 +2,7 @@ import ArtPieceForm from "@/components/AdminArtPieceForm/ArtPieceForm";
 import Header from "@/components/Header/Header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
 import useSWR from "swr";
+import { useRouter } from "next/router";
 
 export default function AdminHomePage({
   artPieceToEdit,
@@ -11,6 +12,7 @@ export default function AdminHomePage({
   scrollPercent,
   handleSetScrollPercentage,
 }) {
+  const router = useRouter();
   const { data } = useSWR("/api", { fallbackData: [] });
   const maxWidth = 800; // maxWidth of detail page
   const maxHeight = 800; // maxHeight of detail page
@@ -67,13 +69,14 @@ export default function AdminHomePage({
         console.error(response.status);
         return;
       }
+      router.push(`/art-pieces/${newArtPieceData.slug}`);
     }
   }
 
   function handleArtPieceToEdit(id) {
     const selectedArtPieceToEdit = data.find((piece) => piece._id === id);
     handleSetArtPieceToEdit(selectedArtPieceToEdit);
-    console.log(artPieceToEdit);
+    // console.log(artPieceToEdit);
     // initially I wanted to use this handler function to create the patch request, but it didnt work at all! now it is just there to open up the form after clicking the pen i still do not want to give up on this :)
   }
 
