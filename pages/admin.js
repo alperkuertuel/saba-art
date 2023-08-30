@@ -5,7 +5,7 @@ import useSWR from "swr";
 
 export default function AdminHomePage({
   artPieceToEdit,
-  handleArtPieceToEdit,
+  handleSetArtPieceToEdit,
   fileImageUrl,
   handleSetFileImageUrl,
   scrollPercent,
@@ -71,8 +71,9 @@ export default function AdminHomePage({
 
   async function handleEditArtPiece(id) {
     const selectedArtPieceToEdit = data.find((piece) => piece._id === id);
-    handleArtPieceToEdit(selectedArtPieceToEdit);
-    console.log(artPieceToEdit); // it renders the artPieceToEdit only the second time I push the button!
+    handleSetArtPieceToEdit(selectedArtPieceToEdit);
+    console.log(artPieceToEdit);
+    // initially I wanted to use this handler function to create the patch request, but it didnt work at all! now it is just there to open up the form after clicking the pen
   }
 
   async function handleDeleteArtPiece(id) {
@@ -88,11 +89,12 @@ export default function AdminHomePage({
         <ArtPieceForm
           handleSetFileImageUrl={handleSetFileImageUrl}
           fileImageUrl={fileImageUrl}
+          onSubmit={handleAddArtPiece}
           onChange={handleImageUpload}
         />
         <ArtPiecesList
           artPieceToEdit={artPieceToEdit}
-          handleArtPieceToEdit={handleArtPieceToEdit}
+          handleSetArtPieceToEdit={handleSetArtPieceToEdit}
           fileImageUrl={fileImageUrl}
           handleSetFileImageUrl={handleSetFileImageUrl}
           onEdit={handleEditArtPiece}

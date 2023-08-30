@@ -8,7 +8,7 @@ import { Fragment } from "react";
 import useSWR from "swr";
 
 export default function ArtPiecesList({
-  handleArtPieceToEdit,
+  handleSetArtPieceToEdit,
   onDelete,
   onEdit,
   artPieceToEdit,
@@ -16,7 +16,6 @@ export default function ArtPiecesList({
 }) {
   // todo: set toggle function when clicking the pen
   const { data } = useSWR("/api", { fallbackData: [] });
-
   return (
     <StyledSection>
       <h2>Update or delete art pieces:</h2>
@@ -61,7 +60,7 @@ export default function ArtPiecesList({
               </StyledItem>
               {artPieceToEdit._id === _id && (
                 <ArtPiecesEditForm
-                  handleArtPieceToEdit={handleArtPieceToEdit}
+                  handleSetArtPieceToEdit={handleSetArtPieceToEdit}
                   onSubmit={onSubmit}
                   artPieceToEdit={{
                     _id,

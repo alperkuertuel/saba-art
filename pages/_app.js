@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }) {
   const [scrollPercent, setScrollPercent] = useState(0);
   const [active, setActive] = useState();
 
-  function handleArtPieceToEdit(artPieceToEdit) {
+  function handleSetArtPieceToEdit(artPieceToEdit) {
     setArtPieceToEdit(artPieceToEdit);
   }
 
@@ -61,7 +61,7 @@ export default function App({ Component, pageProps }) {
           scrollPercent={scrollPercent}
           active={active}
           handleSetFileImageUrl={handleSetFileImageUrl}
-          handleArtPieceToEdit={handleArtPieceToEdit}
+          handleSetArtPieceToEdit={handleSetArtPieceToEdit}
           handleSetArtPieces={handleSetArtPieces}
           handleSetFilteredCategory={handleSetFilteredCategory}
           handleSetScrollPercentage={handleSetScrollPercentage}
