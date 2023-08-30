@@ -26,7 +26,7 @@ export default function HomePage({
           handleSetActive={handleSetActive}
           active={active}
         />
-        <ArtPiecesPreview artPieces={artPieces} filteredCategory={filteredCategory} />
+        <ArtPiecesPreview filteredCategory={filteredCategory} />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
     </>
