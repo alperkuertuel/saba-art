@@ -90,12 +90,12 @@ const StyledSection = styled.section`
 
 const StyledLink = styled(Link)`
   padding: 0.2rem;
-  border-radius: 50%;
+  border-radius: 5px;
 `;
 
 const StyledImage = styled(Image)`
   width: 100%;
-  border-radius: 50%;
+  border-radius: 5px;
   border: 2px solid var(--border-color);
 `;
 

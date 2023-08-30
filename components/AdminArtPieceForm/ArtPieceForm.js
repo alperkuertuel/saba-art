@@ -109,7 +109,7 @@ const StyledSection = styled.section`
   font-size: 0.8rem;
   margin: 0 auto;
   padding: 0 1rem;
-  height: 85vh;
+  height: auto;
 `;
 
 const StyledForm = styled.form`

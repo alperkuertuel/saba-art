@@ -134,7 +134,7 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
           rows="5"
           defaultValue={artPieceToEdit.description}
         ></Textarea>
-        <StyledButton>UPDATE</StyledButton>
+        <StyledButton>UPDATE {artPieceToEdit ? artPieceToEdit.name : ""}</StyledButton>
       </StyledForm>
     </StyledSection>
   );
