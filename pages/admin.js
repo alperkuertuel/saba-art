@@ -18,7 +18,7 @@ export default function AdminHomePage({
   const maxHeight = 800; // maxHeight of detail page
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
-    console.log(imageFile);
+    // console.log(imageFile);
 
     if (
       imageFile.type === "image/webp" ||
@@ -26,7 +26,7 @@ export default function AdminHomePage({
       imageFile.type === "image/gif"
     ) {
       return alert(
-        `Your image file type is not allowed. Valid image file types are .png, .jpg/jpeg `
+        `Your image file type is not allowed. Valid image file types are .png, .jpg/jpeg`
       );
     }
 
