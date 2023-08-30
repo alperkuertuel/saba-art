@@ -52,20 +52,21 @@ export default function AdminHomePage({
   }
 
   async function handleAddArtPiece(newArtPieceData) {
-    // if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
-    //   window.alert("Name already exists. Please choose a different name.");
-    // } else handleSetArtPieces([newArtPieceData, ...artPieces]);
-    const response = await fetch("/api", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newArtPieceData),
-    });
+    if (data.some((piece) => piece.slug === newArtPieceData.slug)) {
+      alert("Name already exists. Please choose a different name.");
+    } else {
+      const response = await fetch("/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newArtPieceData),
+      });
 
-    if (!response.ok) {
-      console.error(response.status);
-      return;
+      if (!response.ok) {
+        console.error(response.status);
+        return;
+      }
     }
   }
 
