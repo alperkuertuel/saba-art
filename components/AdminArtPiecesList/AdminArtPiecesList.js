@@ -8,8 +8,6 @@ import { Fragment } from "react";
 import useSWR from "swr";
 
 export default function ArtPiecesList({
-  artPieces,
-  handleSetArtPieces,
   handleArtPieceToEdit,
   onDelete,
   onEdit,
@@ -63,8 +61,6 @@ export default function ArtPiecesList({
               </StyledItem>
               {artPieceToEdit._id === _id && (
                 <ArtPiecesEditForm
-                  artPieces={artPieces}
-                  handleSetArtPieces={handleSetArtPieces}
                   handleArtPieceToEdit={handleArtPieceToEdit}
                   onSubmit={onSubmit}
                   artPieceToEdit={{

@@ -1,9 +1,7 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import useSWR from "swr";
 
 export default function ArtPiecesEditForm({ artPieceToEdit }) {
-  const { data } = useSWR("/api", { fallbackData: [] });
   const router = useRouter();
   async function handleUpdate(event) {
     event.preventDefault();
@@ -53,7 +51,7 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
     }
 
     // todo: think about routing structure, is it usefull to route to the slug-page?
-    // router.push(`/art-pieces/${slug}`);
+    router.push(`/art-pieces/${slug}`);
   }
   const currentYear = new Date().getFullYear().toString();
   return (

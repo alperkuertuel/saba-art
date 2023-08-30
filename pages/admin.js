@@ -4,10 +4,8 @@ import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
 import useSWR from "swr";
 
 export default function AdminHomePage({
-  artPieces,
   artPieceToEdit,
   handleArtPieceToEdit,
-  handleSetArtPieces,
   fileImageUrl,
   handleSetFileImageUrl,
   scrollPercent,
@@ -99,8 +97,6 @@ export default function AdminHomePage({
           handleSetFileImageUrl={handleSetFileImageUrl}
           onEdit={handleEditArtPiece}
           onDelete={handleDeleteArtPiece}
-          artPieces={artPieces}
-          handleSetArtPieces={handleSetArtPieces}
         />
       </main>
     </>
