@@ -18,7 +18,7 @@ export default async function handler(request, response) {
 
   if (request.method === "PATCH") {
     const artPieceData = request.body;
-    await ArtPiece.findByIdAndUpdate(artPieceData, id);
+    await ArtPiece.findByIdAndUpdate(id, artPieceData);
     response.status(200).json({ status: "Art piece updated!" });
   }
 

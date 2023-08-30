@@ -2,7 +2,6 @@ import ArtPieceForm from "@/components/AdminArtPieceForm/ArtPieceForm";
 import Header from "@/components/Header/Header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
 import useSWR from "swr";
-import { useEffect } from "react";
 
 export default function AdminHomePage({
   artPieces,
@@ -14,7 +13,7 @@ export default function AdminHomePage({
   scrollPercent,
   handleSetScrollPercentage,
 }) {
-  const { data } = useSWR("/api");
+  const { data } = useSWR("/api", { fallbackData: [] });
   const maxWidth = 800; // maxWidth of detail page
   const maxHeight = 800; // maxHeight of detail page
   function handleImageUpload(event) {
@@ -75,24 +74,7 @@ export default function AdminHomePage({
   async function handleEditArtPiece(id) {
     const selectedArtPieceToEdit = data.find((piece) => piece._id === id);
     handleArtPieceToEdit(selectedArtPieceToEdit);
-    // handleArtPieceToEdit(selectedArtPieceToEdit);
-    console.log(selectedArtPieceToEdit);
-
-    // try {
-    //   const response = await fetch(`/api/${id}`, {
-    //     method: "PATCH",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(editedArtPiece),
-    //   });
-
-    //   if (response.ok) {
-    //     console.log("art piece deleted");
-    //   } else console.log("something went wrong");
-    // } catch (error) {
-    //   console.log("error");
-    // }
+    console.log(artPieceToEdit); // it renders the artPieceToEdit only the second time I push the button!
   }
 
   async function handleDeleteArtPiece(id) {
@@ -108,7 +90,6 @@ export default function AdminHomePage({
         <ArtPieceForm
           handleSetFileImageUrl={handleSetFileImageUrl}
           fileImageUrl={fileImageUrl}
-          onSubmit={handleAddArtPiece}
           onChange={handleImageUpload}
         />
         <ArtPiecesList
@@ -116,7 +97,6 @@ export default function AdminHomePage({
           handleArtPieceToEdit={handleArtPieceToEdit}
           fileImageUrl={fileImageUrl}
           handleSetFileImageUrl={handleSetFileImageUrl}
-          onSubmit={handleEditArtPiece}
           onEdit={handleEditArtPiece}
           onDelete={handleDeleteArtPiece}
           artPieces={artPieces}

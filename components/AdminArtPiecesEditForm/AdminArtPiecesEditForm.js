@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import useSWR from "swr";
 
-export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit, handleArtPieceToEdit }) {
+export default function ArtPiecesEditForm({ artPieceToEdit }) {
   const { data } = useSWR("/api", { fallbackData: [] });
   const router = useRouter();
-  function handleUpdate(event) {
+  async function handleUpdate(event) {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
@@ -22,7 +22,7 @@ export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit, handleArtP
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
 
     const editedArtPiece = {
-      id: artPieceToEdit._id,
+      _id: artPieceToEdit._id,
       slug: slug,
       date: editData.date,
       name: editData.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
@@ -34,8 +34,24 @@ export default function ArtPiecesEditForm({ onSubmit, artPieceToEdit, handleArtP
       widthReal: editData.widthReal,
     };
 
-    handleArtPieceToEdit(editedArtPiece);
-    onSubmit(editedArtPiece);
+    console.log(editedArtPiece);
+
+    try {
+      const response = await fetch(`/api/${editedArtPiece._id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editedArtPiece),
+      });
+
+      if (response.ok) {
+        console.log("art piece edited");
+      } else console.log("something went wrong");
+    } catch (error) {
+      console.log("error");
+    }
+
     // todo: think about routing structure, is it usefull to route to the slug-page?
     // router.push(`/art-pieces/${slug}`);
   }
