@@ -18,6 +18,23 @@ export default function AdminHomePage({
   const maxHeight = 800; // maxHeight of detail page
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
+    console.log(imageFile);
+
+    if (
+      imageFile.type === "image/webp" ||
+      imageFile.type === "image/vnd.microsoft.icon" ||
+      imageFile.type === "image/gif"
+    ) {
+      return alert(
+        `Your image file type is not allowed. Valid image file types are .png, .jpg/jpeg `
+      );
+    }
+
+    if (imageFile.size < 307200) {
+      return alert(
+        `Your image file is smaller than 300kB, try to upload an image which has a bigger size in order to preserve quality!`
+      );
+    }
 
     if (imageFile) {
       const reader = new FileReader();
@@ -27,6 +44,12 @@ export default function AdminHomePage({
           const canvas = document.createElement("canvas");
           let width = img.width;
           let height = img.height;
+
+          if (height || width <= maxWidth || maxHeight) {
+            return alert(
+              `Your image width or height is smaller then 800px. In order to preserve quality upload a bigger sized image!`
+            );
+          }
 
           if (width > maxWidth) {
             height = (maxWidth / width) * height;
