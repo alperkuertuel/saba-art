@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 async function getUserRoleFromDatabase(email) {
   if (
+    //todo
     email === process.env.ADMIN_MAIL ||
     email === process.env.ADMIN_2 ||
     email === process.env.ADMIN_3
