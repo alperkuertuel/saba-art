@@ -3,12 +3,8 @@ import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 async function getUserRoleFromDatabase(email) {
-  if (
-    //todo
-    email === process.env.ADMIN_MAIL ||
-    email === process.env.ADMIN_2 ||
-    email === process.env.ADMIN_3
-  ) {
+  if (email === process.env.ADMIN_MAIL) {
+    // todo!
     return "Admin";
   }
   return "Viewer";
@@ -20,14 +16,17 @@ const fakeLogin = CredentialsProvider({
     username: { label: "Username", type: "text", placeholder: "artist" },
     password: { label: "Password", type: "password" },
   },
-  // and adding a fake authorization with static username and password:
+
   async authorize(credentials) {
-    if (credentials.username === "artist" && credentials.password === "art-gallery") {
+    const fakeUser = process.env.FAKE_USER;
+    const fakePassword = process.env.FAKE_PASSWORD;
+    const fakeEmail = process.env.FAKE_EMAIL;
+    if (credentials.username === fakeUser && credentials.password === fakePassword) {
       return {
         id: "1",
-        name: "artist",
-        email: "artist@github.com",
-        role: "Viewer",
+        name: fakeUser,
+        email: fakeEmail,
+        role: "Viewer", // todo!
       };
     } else {
       return null;
@@ -36,7 +35,7 @@ const fakeLogin = CredentialsProvider({
 });
 
 const providers =
-  process.env.VERCEL_ENV === "preview" // this was from the session with thomas földi, after taking a closer look I understood that the fake login already exists!
+  process.env.VERCEL_ENV === "preview"
     ? [fakeLogin]
     : [
         GithubProvider({
