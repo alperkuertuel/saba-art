@@ -3,7 +3,7 @@ import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 async function getUserRoleFromDatabase(email) {
-  if (email === "alperkuertuel@hotmail.de") {
+  if (email === process.env.ADMIN_MAIL) {
     return "Admin";
   }
   return "Viewer";
