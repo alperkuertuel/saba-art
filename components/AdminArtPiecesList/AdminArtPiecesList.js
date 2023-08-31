@@ -5,56 +5,79 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ArtPiecesEditForm from "../AdminArtPiecesEditForm/AdminArtPiecesEditForm";
 import { Fragment } from "react";
+import useSWR from "swr";
 
 export default function ArtPiecesList({
-  artPieces,
-  handleSetArtPieces,
-  onEdit,
+  handleSetArtPieceToEdit,
   onDelete,
+  onEdit,
   artPieceToEdit,
   onSubmit,
 }) {
   // todo: set toggle function when clicking the pen
+  const { data } = useSWR("/api", { fallbackData: [] });
   return (
     <StyledSection>
       <h2>Update or delete art pieces:</h2>
       <ul>
-        {artPieces.map(({ slug, id, imageUrl, name }) => (
-          <Fragment key={id}>
-            <StyledItem>
-              <StyledLink href={`/art-pieces/${slug}`}>
-                <StyledImage
-                  src={imageUrl}
-                  height={50}
-                  width={50}
-                  alt={name}
-                  priority={false}
-                  placeholder="blur"
-                  blurDataURL={
-                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
-                  }
+        {data.map(
+          ({
+            slug,
+            _id,
+            imageUrl,
+            name,
+            date,
+            category,
+            technique,
+            heightReal,
+            widthReal,
+            description,
+          }) => (
+            <Fragment key={_id}>
+              <StyledItem>
+                <StyledLink href={`/art-pieces/${slug}`}>
+                  <StyledImage
+                    src={imageUrl}
+                    height={50}
+                    width={50}
+                    alt={name}
+                    priority={false}
+                    placeholder="blur"
+                    blurDataURL={
+                      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
+                    }
+                  />
+                </StyledLink>
+                <p>
+                  <q>{name}</q>
+                </p>
+                <StyledButton onClick={() => onEdit(_id)}>
+                  <StyledIcon icon={faPencil} />
+                </StyledButton>
+                <StyledButton onClick={() => onDelete(_id)}>
+                  <StyledIcon icon={faTrashCan} />
+                </StyledButton>
+              </StyledItem>
+              {artPieceToEdit._id === _id && (
+                <ArtPiecesEditForm
+                  handleSetArtPieceToEdit={handleSetArtPieceToEdit}
+                  onSubmit={onSubmit}
+                  artPieceToEdit={{
+                    _id,
+                    name,
+                    date,
+                    category,
+                    technique,
+                    imageUrl,
+                    heightReal,
+                    widthReal,
+                    description,
+                  }}
                 />
-              </StyledLink>
-              <p>
-                <q>{name}</q>
-              </p>
-              <StyledButton onClick={() => onEdit(id)}>
-                <StyledIcon icon={faPencil} />
-              </StyledButton>
-              <StyledButton onClick={() => onDelete(id)}>
-                <StyledIcon icon={faTrashCan} />
-              </StyledButton>
-            </StyledItem>
-            {artPieceToEdit.id === id && (
-              <ArtPiecesEditForm
-                artPieces={artPieces}
-                handleSetArtPieces={handleSetArtPieces}
-                artPieceToEdit={artPieceToEdit}
-                onSubmit={onSubmit}
-              />
-            )}
-          </Fragment>
-        ))}
+              )}
+            </Fragment>
+          )
+        )}
       </ul>
     </StyledSection>
   );
@@ -67,12 +90,12 @@ const StyledSection = styled.section`
 
 const StyledLink = styled(Link)`
   padding: 0.2rem;
-  border-radius: 50%;
+  border-radius: 5px;
 `;
 
 const StyledImage = styled(Image)`
   width: 100%;
-  border-radius: 50%;
+  border-radius: 5px;
   border: 2px solid var(--border-color);
 `;
 

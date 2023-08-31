@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { uid } from "uid";
 import AdminImagePreview from "../AdminEditImagePreview/AdminEditImagePreview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +20,6 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
       .replace(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
     const newArtPiece = {
-      id: uid(),
       slug: slug,
       date: data.date,
       name: data.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
@@ -110,7 +108,7 @@ const StyledSection = styled.section`
   font-size: 0.8rem;
   margin: 0 auto;
   padding: 0 1rem;
-  height: 85vh;
+  height: auto;
 `;
 
 const StyledForm = styled.form`

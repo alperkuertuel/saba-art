@@ -1,19 +1,14 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-export default function ArtPiecesEditForm({
-  onSubmit,
-  artPieceToEdit,
-  artPieces,
-  handleSetArtPieces,
-}) {
+export default function ArtPiecesEditForm({ artPieceToEdit }) {
   const router = useRouter();
-  function handleUpdate(event) {
+  async function handleUpdate(event) {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-    const slug = data.name
+    const editData = Object.fromEntries(formData);
+    const slug = editData.name
       .toLowerCase()
       .trim()
       .replace(/[ö]/g, "oe")
@@ -25,38 +20,41 @@ export default function ArtPiecesEditForm({
       .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
 
     const editedArtPiece = {
-      id: artPieceToEdit.id,
+      _id: artPieceToEdit._id,
       slug: slug,
-      date: data.date,
-      name: data.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
-      description: data.description,
-      category: data.category,
-      technique: data.technique,
+      date: editData.date,
+      name: editData.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
+      description: editData.description,
+      category: editData.category,
+      technique: editData.technique,
       imageUrl: artPieceToEdit.imageUrl,
-      heightReal: data.heightReal,
-      widthReal: data.widthReal,
+      heightReal: editData.heightReal,
+      widthReal: editData.widthReal,
     };
 
-    const updatedArtpieces = artPieces.map((piece) =>
-      piece.id === artPieceToEdit.id
-        ? {
-            ...piece,
-            id: artPieceToEdit.id,
-            slug: editedArtPiece.slug,
-            name: editedArtPiece.name,
-            date: editedArtPiece.date,
-            imageUrl: artPieceToEdit.imageUrl,
-            description: editedArtPiece.description,
-            category: editedArtPiece.category,
-            technique: editedArtPiece.technique,
-            heightReal: editedArtPiece.heightReal,
-            widthReal: editedArtPiece.widthReal,
-          }
-        : piece
-    );
+    //console.log(editedArtPiece);
 
-    onSubmit(artPieceToEdit.id);
-    handleSetArtPieces(updatedArtpieces);
+    try {
+      const response = await fetch(`/api/${editedArtPiece._id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editedArtPiece),
+      });
+
+      if (response.ok) {
+        alert(`You successfully updated ${editedArtPiece.name}`);
+      } else
+        alert(
+          `Something went wrong updating ${editedArtPiece.name}! Please try it again or contact the developer!`
+        );
+    } catch (error) {
+      console.error(
+        `Something went wrong during sending the patch request of ${editedArtPiece.name}!`,
+        error
+      );
+    }
 
     // todo: think about routing structure, is it usefull to route to the slug-page?
     router.push(`/art-pieces/${slug}`);
@@ -71,7 +69,7 @@ export default function ArtPiecesEditForm({
           id="name"
           name="name"
           placeholder="change the name"
-          defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).name}
+          defaultValue={artPieceToEdit.name}
           minLength={3}
           maxLength={30}
           required
@@ -82,17 +80,13 @@ export default function ArtPiecesEditForm({
           id="date"
           name="date"
           max={currentYear}
-          defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).date}
+          defaultValue={artPieceToEdit.date}
           required
         />
 
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
-          <StyledSelection
-            name="category"
-            id="category"
-            defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).category}
-          >
+          <StyledSelection name="category" id="category" defaultValue={artPieceToEdit.category}>
             <option>Impression</option>
             <option>Landscape</option>
             <option>Abstract</option>
@@ -102,11 +96,7 @@ export default function ArtPiecesEditForm({
           </StyledSelection>
 
           <label htmlFor="technique">Technique: </label>
-          <StyledSelection
-            name="technique"
-            id="technique"
-            defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).technique}
-          >
+          <StyledSelection name="technique" id="technique" defaultValue={artPieceToEdit.technique}>
             <option>Oil</option>
             <option>Acryl</option>
           </StyledSelection>
@@ -120,7 +110,7 @@ export default function ArtPiecesEditForm({
             id="heightReal"
             name="heightReal"
             placeholder="cm"
-            defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).widthReal}
+            defaultValue={artPieceToEdit.heightReal}
             required
           />
           <label htmlFor="widthReal"> height: </label>
@@ -131,7 +121,7 @@ export default function ArtPiecesEditForm({
             id="widthReal"
             name="widthReal"
             placeholder="cm"
-            defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).heightReal}
+            defaultValue={artPieceToEdit.widthReal}
             required
           />
         </StyledFieldset>
@@ -142,9 +132,9 @@ export default function ArtPiecesEditForm({
           id="description"
           cols="30"
           rows="5"
-          defaultValue={artPieces.find((piece) => piece.id === artPieceToEdit.id).description}
+          defaultValue={artPieceToEdit.description}
         ></Textarea>
-        <StyledButton>UPDATE</StyledButton>
+        <StyledButton>UPDATE {artPieceToEdit ? artPieceToEdit.name : ""}</StyledButton>
       </StyledForm>
     </StyledSection>
   );

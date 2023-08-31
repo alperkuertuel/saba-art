@@ -1,21 +1,40 @@
 import ArtPieceForm from "@/components/AdminArtPieceForm/ArtPieceForm";
 import Header from "@/components/Header/Header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
+import useSWR from "swr";
+import { useRouter } from "next/router";
 
 export default function AdminHomePage({
-  artPieces,
   artPieceToEdit,
-  handleSetArtPieces,
-  handleArtPieceToEdit,
+  handleSetArtPieceToEdit,
   fileImageUrl,
   handleSetFileImageUrl,
   scrollPercent,
   handleSetScrollPercentage,
 }) {
+  const router = useRouter();
+  const { data } = useSWR("/api", { fallbackData: [] });
   const maxWidth = 800; // maxWidth of detail page
   const maxHeight = 800; // maxHeight of detail page
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
+    // console.log(imageFile);
+
+    if (
+      imageFile.type === "image/webp" ||
+      imageFile.type === "image/vnd.microsoft.icon" ||
+      imageFile.type === "image/gif"
+    ) {
+      return alert(
+        `Your image file type is not allowed. Valid image file types are .png, .jpg/jpeg`
+      );
+    }
+
+    if (imageFile.size < 307200) {
+      return alert(
+        `Your image file is smaller than 300kB, try to upload an image which has a bigger size in order to preserve quality!`
+      );
+    }
 
     if (imageFile) {
       const reader = new FileReader();
@@ -25,6 +44,12 @@ export default function AdminHomePage({
           const canvas = document.createElement("canvas");
           let width = img.width;
           let height = img.height;
+
+          if (height <= maxHeight && width <= maxWidth) {
+            return alert(
+              `Your image width or height is smaller then 800px. In order to preserve quality upload a bigger sized image!`
+            );
+          }
 
           if (width > maxWidth) {
             height = (maxWidth / width) * height;
@@ -41,7 +66,9 @@ export default function AdminHomePage({
           ctx.drawImage(img, 0, 0, width, height);
 
           const resizedImageData = canvas.toDataURL("image/webp", 0.7);
-          console.log(resizedImageData);
+          alert(
+            `You successfully created a compressed webp image file which is ready for the gallery! Go on full filling the form to finally add the art piece to the gallery!`
+          );
 
           handleSetFileImageUrl(resizedImageData);
         };
@@ -51,23 +78,41 @@ export default function AdminHomePage({
     }
   }
 
-  function handleAddArtPiece(newArtPieceData) {
-    if (artPieces.some((piece) => piece.slug === newArtPieceData.slug)) {
-      window.alert("Name already exists. Please choose a different name.");
-    } else handleSetArtPieces([newArtPieceData, ...artPieces]);
+  async function handleAddArtPiece(newArtPieceData) {
+    if (data.some((piece) => piece.slug === newArtPieceData.slug)) {
+      alert("Name already exists. Please choose a different name.");
+    } else {
+      const response = await fetch("/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newArtPieceData),
+      });
+
+      if (!response.ok) {
+        console.error(response.status);
+        return;
+      }
+      router.push(`/art-pieces/${newArtPieceData.slug}`);
+    }
   }
 
-  function handleEditArtPiece(id) {
-    const selectedArtPieceToEdit = artPieces.find((piece) => piece.id === id);
-    handleArtPieceToEdit(selectedArtPieceToEdit);
+  function handleArtPieceToEdit(id) {
+    const selectedArtPieceToEdit = data.find((piece) => piece._id === id);
+    handleSetArtPieceToEdit(selectedArtPieceToEdit);
+    // console.log(artPieceToEdit);
+    // initially I wanted to use this handler function to create the patch request, but it didnt work at all! now it is just there to open up the form after clicking the pen i still do not want to give up on this :)
   }
 
-  function handleDeleteArtPiece(id) {
-    const artPieceToDelete = artPieces.find((piece) => piece.id === id);
-    const artPiecesWithoutDeletedArtPiece = artPieces.filter((piece) => piece.id !== id);
-    const sureToDelete = confirm(`Are you sure you want to delete ${artPieceToDelete.name}`);
+  async function handleDeleteArtPiece(id) {
+    const artPieceToDelete = data.find((piece) => piece._id === id);
+    const sureToDelete = confirm(`Are you sure you want to delete "${artPieceToDelete.name}"?`);
     if (sureToDelete) {
-      handleSetArtPieces(artPiecesWithoutDeletedArtPiece);
+      await fetch(`/api/${id}`, {
+        method: "DELETE",
+      });
+      router.push(`/admin`);
     }
   }
 
@@ -83,13 +128,11 @@ export default function AdminHomePage({
         />
         <ArtPiecesList
           artPieceToEdit={artPieceToEdit}
+          handleSetArtPieceToEdit={handleSetArtPieceToEdit}
           fileImageUrl={fileImageUrl}
           handleSetFileImageUrl={handleSetFileImageUrl}
-          onSubmit={handleEditArtPiece}
-          onEdit={handleEditArtPiece}
+          onEdit={handleArtPieceToEdit}
           onDelete={handleDeleteArtPiece}
-          artPieces={artPieces}
-          handleSetArtPieces={handleSetArtPieces}
         />
       </main>
     </>

@@ -6,8 +6,8 @@ export default function ArtPiecesPreview({ filteredCategory }) {
   return (
     <GalleryWrapper>
       {filteredCategory &&
-        filteredCategory.map(({ id, imageUrl, name, date, slug }) => (
-          <GalleryCard key={id}>
+        filteredCategory.map(({ _id, imageUrl, name, date, slug }) => (
+          <GalleryCard key={_id}>
             <figure>
               <Link href={`/art-pieces/${slug}`}>
                 <StyledImage

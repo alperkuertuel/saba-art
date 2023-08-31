@@ -1,32 +1,29 @@
 import styled from "styled-components";
+import useSWR from "swr";
 
-export default function CategoryFilter({
-  artPieces,
-  handleSetFilteredCategory,
-  handleSetActive,
-  active,
-}) {
-  const allCategories = artPieces.map((piece) => piece.category);
+export default function CategoryFilter({ handleSetFilteredCategory, handleSetActive, active }) {
+  const { data, isLoading } = useSWR("/api", { fallbackData: [] });
+  const allCategories = data.map((piece) => piece.category);
   const currentYear = new Date().getFullYear().toString();
   const uniqueSet = new Set(allCategories);
   const uniqueCatagories = [...uniqueSet];
 
   function handleFilteredCategories(category) {
     if (uniqueCatagories.includes(category)) {
-      const filter = artPieces.filter((piece) => piece.category === category);
+      const filter = data.filter((piece) => piece.category === category);
       handleSetFilteredCategory(filter);
       handleSetActive(category);
     }
   }
 
   function handleNewestArtPieces() {
-    const yearFilter = artPieces.filter((piece) => piece.date === currentYear);
+    const yearFilter = data.filter((piece) => piece.date === currentYear);
     handleSetFilteredCategory(yearFilter);
     handleSetActive("Newest");
   }
 
   function handleFilterAll() {
-    handleSetFilteredCategory(artPieces);
+    handleSetFilteredCategory(data);
     handleSetActive("All");
   }
 
@@ -49,16 +46,20 @@ export default function CategoryFilter({
             Newest
           </StyledButton>
         </li>
-        {uniqueCatagories.map((category) => (
-          <li key={category}>
-            <StyledButton
-              $active={active === category ? "var(--tertiary-color)" : "none"}
-              onClick={() => handleFilteredCategories(category)}
-            >
-              {category}
-            </StyledButton>
-          </li>
-        ))}
+        {isLoading ? (
+          <li>Loading...</li>
+        ) : (
+          uniqueCatagories.map((category) => (
+            <li key={category}>
+              <StyledButton
+                $active={active === category ? "var(--tertiary-color)" : "none"}
+                onClick={() => handleFilteredCategories(category)}
+              >
+                {category}
+              </StyledButton>
+            </li>
+          ))
+        )}
       </StyledCategoryFilter>
     </StyledFilterSection>
   );
@@ -73,6 +74,7 @@ const StyledFilterSection = styled.section`
 const StyledCategoryFilter = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.5rem;
 `;
 

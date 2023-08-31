@@ -4,7 +4,6 @@ import Header from "@/components/Header/Header";
 import Head from "next/head";
 
 export default function HomePage({
-  artPieces,
   handleSetFilteredCategory,
   filteredCategory,
   scrollPercent,
@@ -19,11 +18,10 @@ export default function HomePage({
       <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <CategoryFilter
-          artPieces={artPieces}
           handleSetFilteredCategory={handleSetFilteredCategory}
           filteredCategory={filteredCategory}
         />
-        <ArtPiecesPreview artPieces={artPieces} filteredCategory={filteredCategory} />
+        <ArtPiecesPreview filteredCategory={filteredCategory} />
       </main>
     </>
   );

@@ -5,7 +5,6 @@ import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import Head from "next/head";
 
 export default function HomePage({
-  artPieces,
   handleSetFilteredCategory,
   filteredCategory,
   scrollPercent,
@@ -22,13 +21,11 @@ export default function HomePage({
       <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <CategoryFilter
+          handleSetFilteredCategory={handleSetFilteredCategory}
           handleSetActive={handleSetActive}
           active={active}
-          artPieces={artPieces}
-          handleSetFilteredCategory={handleSetFilteredCategory}
-          filteredCategory={filteredCategory}
         />
-        <ArtPiecesPreview artPieces={artPieces} filteredCategory={filteredCategory} />
+        <ArtPiecesPreview filteredCategory={filteredCategory} />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
     </>

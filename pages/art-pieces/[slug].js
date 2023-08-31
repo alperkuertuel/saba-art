@@ -4,9 +4,9 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
+import useSWR from "swr";
 
 export default function ShowDetails({
-  artPieces,
   scrollPercent,
   handleSetScrollPercentage,
   handleSetActive,
@@ -14,15 +14,16 @@ export default function ShowDetails({
 }) {
   const router = useRouter();
   const { slug } = router.query;
-  const foundArtPiece = artPieces.find((artpiece) => artpiece.slug === slug);
+  const { data, isLoading } = useSWR("/api", { fallbackData: [] });
+  const foundArtPiece = data.find((artpiece) => artpiece.slug === slug);
 
-  if (!slug) {
+  if (isLoading || !foundArtPiece) {
     return (
       <main>
         <StyledErrorMessage>Loading...</StyledErrorMessage>
       </main>
     );
-  } else if (!foundArtPiece) {
+  } else if (!slug || !data) {
     return (
       <main>
         <StyledErrorMessage>
