@@ -57,7 +57,7 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
     }
 
     // todo: think about routing structure, is it usefull to route to the slug-page?
-    router.push(`/art-pieces/${slug}`);
+    //router.push(`/art-pieces/${slug}`);
   }
   const currentYear = new Date().getFullYear().toString();
   return (
