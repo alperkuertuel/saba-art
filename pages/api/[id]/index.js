@@ -34,8 +34,10 @@ export default async function handler(request, response) {
           response.status(200).json({ status: "Art piece updated!" });
         }
       } catch (error) {
+        console.error("Error:", error);
         return response.status(500).json({ error: "Error!" });
       }
+      break;
 
     case "DELETE":
       try {
@@ -50,8 +52,10 @@ export default async function handler(request, response) {
           response.status(200).json({ message: "Art piece was deleted successfully!" });
         }
       } catch (error) {
+        console.error("Error:", error);
         return response.status(500).json({ error: "Error!" });
       }
+      break;
     default:
       response.status(405).json({ error: "Method not allowed" });
   }

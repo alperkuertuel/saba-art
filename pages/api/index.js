@@ -26,6 +26,7 @@ export default async function handler(request, response) {
           return response.status(201).json(newArtPieceData);
         }
       } catch (error) {
+        console.error("Error:", error);
         return response.status(500).json({ error: "Error!" });
       }
     default:
