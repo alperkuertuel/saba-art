@@ -32,7 +32,7 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
       widthReal: editData.widthReal,
     };
 
-    console.log(editedArtPiece);
+    //console.log(editedArtPiece);
 
     try {
       const response = await fetch(`/api/${editedArtPiece._id}`, {

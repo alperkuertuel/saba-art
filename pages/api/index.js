@@ -16,8 +16,9 @@ export default async function handler(request, response) {
 
       response.status(201).json({ status: "Art piece created" });
     } catch (error) {
-      console.log(error);
-      response.status(400).json({ error: error.message });
+      response
+        .status(400)
+        .json({ error: "Something went wrong during the upload of your art piece" });
     }
   }
 }

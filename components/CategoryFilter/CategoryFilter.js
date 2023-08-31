@@ -7,7 +7,6 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
   const currentYear = new Date().getFullYear().toString();
   const uniqueSet = new Set(allCategories);
   const uniqueCatagories = [...uniqueSet];
-  // console.log(uniqueCatagories);
 
   function handleFilteredCategories(category) {
     if (uniqueCatagories.includes(category)) {

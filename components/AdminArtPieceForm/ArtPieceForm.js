@@ -32,7 +32,6 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
     };
 
     onSubmit(newArtPiece);
-    console.log(newArtPiece);
     handleSetFileImageUrl("/img/preview.png");
     form.reset();
     form.name.focus();
