@@ -4,9 +4,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 async function getUserRoleFromDatabase(email) {
   if (email === "alperkuertuel@hotmail.de") {
-    return "admin";
+    return "Admin";
   }
-  return "viewer";
+  return "Viewer";
 }
 
 const fakeLogin = CredentialsProvider({

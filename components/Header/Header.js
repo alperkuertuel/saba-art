@@ -26,7 +26,7 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
             <StyledButton onClick={signOut}>Logout</StyledButton>
             <p>
               {/* session.user.admin */}
-              <Link href="/admin">ADMIN-PAGE</Link>
+              <Link href="/admin">ADMIN</Link>
             </p>
           </>
         ) : (
@@ -50,8 +50,8 @@ const StyledHeader = styled.header`
 
 const StyledLoginContainer = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: 5px;
   font-size: 0.8rem;
   padding: 0.5rem;
 `;
@@ -60,10 +60,9 @@ const StyledButton = styled.button`
   text-transform: uppercase;
   background-color: var(--secondary-color);
   color: white;
-  padding: 0.8rem;
+  padding: 0.5rem;
   border-radius: 5px;
   text-decoration: none;
-  font-weight: bold;
   font-size: inherit;
   &:hover {
     background-color: var(--tertiary-color);
