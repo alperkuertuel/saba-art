@@ -17,7 +17,7 @@ export default async function handler(request, response) {
         const session = await getServerSession(request, response, authOptions);
         if (!session || !session.user) {
           return response.status(401).json({
-            message: "Status 401: You are not authorized! Only logged in users can add pictures!",
+            message: "Status 401: You are not authorized! Only administrators can add pictures!",
           });
         }
         if (session.user.role === "Admin" && session.user.email === process.env.ADMIN_MAIL) {
