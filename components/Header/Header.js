@@ -2,10 +2,8 @@ import styled from "styled-components";
 import Link from "next/link";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useRouter } from "next/router";
 
 export default function Header({ scrollPercent, handleSetScrollPercentage }) {
-  const router = useRouter();
   const { data: session } = useSession();
   console.log("session", session);
   return (
