@@ -21,12 +21,13 @@ const fakeLogin = CredentialsProvider({
     const fakeUser = process.env.FAKE_USER;
     const fakePassword = process.env.FAKE_PASSWORD;
     const fakeEmail = process.env.FAKE_EMAIL;
+    const role = process.env.ROLE;
     if (credentials.username === fakeUser && credentials.password === fakePassword) {
       return {
         id: "1",
         name: fakeUser,
         email: fakeEmail,
-        role: "Viewer", // todo!
+        role: role,
       };
     } else {
       return null;
