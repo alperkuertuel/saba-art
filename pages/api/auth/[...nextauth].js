@@ -27,6 +27,7 @@ const fakeLogin = CredentialsProvider({
         id: "1",
         name: "artist",
         email: "artist@github.com",
+        role: "Viewer",
       };
     } else {
       return null;
@@ -35,7 +36,7 @@ const fakeLogin = CredentialsProvider({
 });
 
 const providers =
-  process.env.VERCEL_ENV === "preview"
+  process.env.VERCEL_ENV === "preview" // this was from the session with thomas földi, after taking a closer look I understood that the fake login already exists!
     ? [fakeLogin]
     : [
         GithubProvider({
