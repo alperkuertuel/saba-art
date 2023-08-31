@@ -44,6 +44,8 @@ export const authOptions = {
   providers,
   callbacks: {
     async jwt({ token, user }) {
+      // todo:
+      token.secret = process.env.JWT_SECRET;
       if (user) {
         // only gets called once when logging in!
         token.role = await getUserRoleFromDatabase(user.email);
