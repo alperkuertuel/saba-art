@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
 
 export default function Header({ scrollPercent, handleSetScrollPercentage }) {
   const { data: session } = useSession();
@@ -24,13 +25,26 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
             <StyledButton onClick={signOut}>Logout</StyledButton>
             <p>
               {/* session.user.admin */}
-              <Link href="/admin">ADMIN</Link>
+              <Link href="/admin">SETTINGS</Link>
             </p>
           </>
         ) : (
           <StyledButton onClick={() => signIn()}>Login</StyledButton>
         )}
       </StyledLoginContainer>
+      {session ? (
+        <Greeting>
+          <StyledLoginAvatar
+            src="https://avatars.githubusercontent.com/u/83625276?v=4"
+            width={30}
+            height={30}
+            alt="user avatar"
+          />
+          {session.user.role}
+        </Greeting>
+      ) : (
+        ""
+      )}
     </StyledHeader>
   );
 }
@@ -67,4 +81,22 @@ const StyledButton = styled.button`
     transition: background-color 0.2s ease;
     color: black;
   }
+`;
+
+const Greeting = styled.p`
+  font-size: 0.8rem;
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  width: 50px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledLoginAvatar = styled(Image)`
+  border-radius: 50%;
+  display: block;
+  text-align: center;
 `;
