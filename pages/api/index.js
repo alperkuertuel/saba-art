@@ -45,13 +45,12 @@ export default async function handler(request, response) {
             message: "Status 401: You are not authorized! Only logged in users can add pictures!",
           });
         }
-        if (session || session.user || session.user.role === "Admin") {
+        if (session.user.role === "Admin" && session.user.email === process.env.ADMIN_MAIL) {
           const newArtPieceData = request.body;
           await ArtPiece.create(newArtPieceData);
           return response.status(201).json(newArtPieceData);
         }
       } catch (error) {
-        console.log(error);
         return response.status(500).json({ error: "Error!" });
       }
     default:
