@@ -2,7 +2,7 @@ import styled from "styled-components";
 import useSWR from "swr";
 
 export default function CategoryFilter({ handleSetFilteredCategory, handleSetActive, active }) {
-  const { data } = useSWR("/api", { fallbackData: [] });
+  const { data, isLoading } = useSWR("/api", { fallbackData: [] });
   const allCategories = data.map((piece) => piece.category);
   const currentYear = new Date().getFullYear().toString();
   const uniqueSet = new Set(allCategories);
@@ -46,16 +46,20 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
             Newest
           </StyledButton>
         </li>
-        {uniqueCatagories.map((category) => (
-          <li key={category}>
-            <StyledButton
-              $active={active === category ? "var(--tertiary-color)" : "none"}
-              onClick={() => handleFilteredCategories(category)}
-            >
-              {category}
-            </StyledButton>
-          </li>
-        ))}
+        {isLoading ? (
+          <li>Loading...</li>
+        ) : (
+          uniqueCatagories.map((category) => (
+            <li key={category}>
+              <StyledButton
+                $active={active === category ? "var(--tertiary-color)" : "none"}
+                onClick={() => handleFilteredCategories(category)}
+              >
+                {category}
+              </StyledButton>
+            </li>
+          ))
+        )}
       </StyledCategoryFilter>
     </StyledFilterSection>
   );
@@ -70,6 +74,7 @@ const StyledFilterSection = styled.section`
 const StyledCategoryFilter = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.5rem;
 `;
 
