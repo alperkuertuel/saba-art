@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import Link from "next/link";
 import ProgressBar from "../ProgressBar/ProgressBar";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Header({ scrollPercent, handleSetScrollPercentage }) {
+  const { data: session } = useSession();
+  console.log("session", session);
   return (
     <StyledHeader>
       <ProgressBar
@@ -15,7 +18,16 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
       <p>
         <q>pictures are memories</q>
       </p>
-      <StyledLink href={`/admin`}>ADMIN</StyledLink>
+      <StyledLoginContainer>
+        {session ? (
+          <>
+            <StyledButton onClick={signOut}>Logout</StyledButton>
+            <p>Signed in as {session.user.email}</p>
+          </>
+        ) : (
+          <StyledButton onClick={() => signIn()}>Login</StyledButton>
+        )}
+      </StyledLoginContainer>
     </StyledHeader>
   );
 }
@@ -31,13 +43,26 @@ const StyledHeader = styled.header`
   z-index: 1;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLoginContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   font-size: 0.8rem;
   padding: 1rem;
-  color: #936946;
-  letter-spacing: 2px;
+`;
+
+const StyledButton = styled.button`
+  text-transform: uppercase;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.8rem;
+  border-radius: 5px;
+  text-decoration: none;
   font-weight: bold;
+  font-size: inherit;
+  &:hover {
+    background-color: var(--tertiary-color);
+    transition: background-color 0.2s ease;
+    color: black;
+  }
 `;

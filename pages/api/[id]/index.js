@@ -8,6 +8,7 @@ export default async function handler(request, response) {
   if (!id) {
     console.log("nothing here!");
   }
+
   if (request.method === "GET") {
     const artPiece = await ArtPiece.findById(id);
     if (!artPiece) {
