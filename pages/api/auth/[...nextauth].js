@@ -12,7 +12,7 @@ async function getUserRoleFromDatabase(email) {
 const fakeLogin = CredentialsProvider({
   name: "Credentials",
   credentials: {
-    username: { label: "Username", type: "text", placeholder: "fish" },
+    username: { label: "Username", type: "text", placeholder: "artist" },
     password: { label: "Password", type: "password" },
   },
   // and adding a fake authorization with static username and password:
