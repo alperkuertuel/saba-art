@@ -14,7 +14,7 @@ const fakeLogin = CredentialsProvider({
   name: "Credentials",
   credentials: {
     username: { label: "Username", type: "text", placeholder: process.env.FAKE_USER },
-    password: { label: "Password", type: "password" },
+    password: { label: "Password", type: "password", placeholder: process.env.FAKE_PASSWORD },
   },
 
   async authorize(credentials) {
