@@ -24,7 +24,7 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
           <>
             <StyledButton onClick={signOut}>Logout</StyledButton>
             <p>
-              {/* session.user.admin */}
+              {/* ACCESS session.user.admin */}
               <Link href="/admin">SETTINGS</Link>
             </p>
           </>
@@ -32,10 +32,14 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
           <StyledButton onClick={() => signIn()}>Login</StyledButton>
         )}
       </StyledLoginContainer>
-      {session ? (
+      {session && session.user.role === "Admin" ? (
         <Greeting>
           <StyledLoginAvatar
-            src="https://avatars.githubusercontent.com/u/83625276?v=4"
+            src={
+              session.user.image
+                ? session.user.image
+                : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkmCnxHwADBAGyi4SUBgAAAABJRU5ErkJggg=="
+            }
             width={30}
             height={30}
             alt="user avatar"
