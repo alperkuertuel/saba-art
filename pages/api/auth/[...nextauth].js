@@ -4,8 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 async function getUserRoleFromDatabase(email) {
-  if (email === process.env.ADMIN_MAIL) {
-    // todo!
+  if (email === process.env.ADMIN_MAIL || email === process.env.ADMIN_2) {
     return "Admin";
   }
   return "Viewer";
@@ -14,7 +13,7 @@ async function getUserRoleFromDatabase(email) {
 const fakeLogin = CredentialsProvider({
   name: "Credentials",
   credentials: {
-    username: { label: "Username", type: "text", placeholder: "artist" },
+    username: { label: "Username", type: "text", placeholder: process.env.FAKE_USER },
     password: { label: "Password", type: "password" },
   },
 
@@ -60,7 +59,6 @@ const providers =
               ? process.env.GOOGLE_SECRET_LOCALHOST
               : process.env.GOOGLE_SECRET,
         }),
-        // ...add more providers here
       ];
 
 export const authOptions = {

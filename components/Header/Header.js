@@ -24,8 +24,7 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
           <>
             <StyledButton onClick={signOut}>Logout</StyledButton>
             <p>
-              {/* ACCESS session.user.admin */}
-              <Link href="/admin">SETTINGS</Link>
+              {session && session.user.role === "Admin" ? <Link href="/admin">SETTINGS</Link> : ""}
             </p>
           </>
         ) : (
@@ -47,7 +46,7 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
           {session.user.role}
         </Greeting>
       ) : (
-        ""
+        <Greeting>{session && `Hello, ` + session.user.name}</Greeting>
       )}
     </StyledHeader>
   );
