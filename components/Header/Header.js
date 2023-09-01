@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import Link from "next/link";
 import ProgressBar from "../ProgressBar/ProgressBar";
+import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
 
 export default function Header({ scrollPercent, handleSetScrollPercentage }) {
+  const { data: session } = useSession();
+  console.log("session", session);
   return (
     <StyledHeader>
       <ProgressBar
@@ -15,7 +19,35 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
       <p>
         <q>pictures are memories</q>
       </p>
-      <StyledLink href={`/admin`}>ADMIN</StyledLink>
+      <StyledLoginContainer>
+        {session ? (
+          <>
+            <StyledButton onClick={signOut}>Logout</StyledButton>
+            <p>
+              {session && session.user.role === "Admin" ? <Link href="/admin">SETTINGS</Link> : ""}
+            </p>
+          </>
+        ) : (
+          <StyledButton onClick={() => signIn()}>Login</StyledButton>
+        )}
+      </StyledLoginContainer>
+      {session && session.user.role === "Admin" ? (
+        <Greeting>
+          <StyledLoginAvatar
+            src={
+              session.user.image
+                ? session.user.image
+                : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkmCnxHwADBAGyi4SUBgAAAABJRU5ErkJggg=="
+            }
+            width={30}
+            height={30}
+            alt="user avatar"
+          />
+          {session.user.role}
+        </Greeting>
+      ) : (
+        <Greeting>{session && `Hello, ` + session.user.name}</Greeting>
+      )}
     </StyledHeader>
   );
 }
@@ -31,13 +63,43 @@ const StyledHeader = styled.header`
   z-index: 1;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLoginContainer = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: 5px;
   font-size: 0.8rem;
-  padding: 1rem;
-  color: #936946;
-  letter-spacing: 2px;
-  font-weight: bold;
+  padding: 0.5rem;
+`;
+
+const StyledButton = styled.button`
+  text-transform: uppercase;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: inherit;
+  &:hover {
+    background-color: var(--tertiary-color);
+    transition: background-color 0.2s ease;
+    color: black;
+  }
+`;
+
+const Greeting = styled.p`
+  font-size: 0.8rem;
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  width: 50px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledLoginAvatar = styled(Image)`
+  border-radius: 50%;
+  display: block;
+  text-align: center;
 `;

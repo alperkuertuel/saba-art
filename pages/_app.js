@@ -2,10 +2,11 @@ import GlobalStyle from "../styles";
 import { useState } from "react";
 import { SWRConfig } from "swr";
 import useSWR from "swr";
+import { SessionProvider } from "next-auth/react";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps: { session, ...pageProps } }) {
   const { data } = useSWR("/api", fetcher, { fallbackData: [] });
 
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
@@ -41,19 +42,21 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <SWRConfig value={{ fetcher }}>
-        <Component
-          {...pageProps}
-          artPieceToEdit={artPieceToEdit}
-          filteredCategory={filteredCategory}
-          fileImageUrl={fileImageUrl}
-          scrollPercent={scrollPercent}
-          active={active}
-          handleSetFileImageUrl={handleSetFileImageUrl}
-          handleSetArtPieceToEdit={handleSetArtPieceToEdit}
-          handleSetFilteredCategory={handleSetFilteredCategory}
-          handleSetScrollPercentage={handleSetScrollPercentage}
-          handleSetActive={handleSetActive}
-        />
+        <SessionProvider session={session}>
+          <Component
+            {...pageProps}
+            artPieceToEdit={artPieceToEdit}
+            filteredCategory={filteredCategory}
+            fileImageUrl={fileImageUrl}
+            scrollPercent={scrollPercent}
+            active={active}
+            handleSetFileImageUrl={handleSetFileImageUrl}
+            handleSetArtPieceToEdit={handleSetArtPieceToEdit}
+            handleSetFilteredCategory={handleSetFilteredCategory}
+            handleSetScrollPercentage={handleSetScrollPercentage}
+            handleSetActive={handleSetActive}
+          />
+        </SessionProvider>
       </SWRConfig>
     </>
   );
