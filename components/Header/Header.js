@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Header({ scrollPercent, handleSetScrollPercentage }) {
   const { data: session } = useSession();
-  console.log("session", session);
+  //console.log("session", session);
   return (
     <StyledHeader>
       <ProgressBar
