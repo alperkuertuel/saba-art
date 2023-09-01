@@ -7,10 +7,7 @@ export default async function handler(request, response) {
   await dbConnect();
   const { id } = request.query;
 
-  if (!id) {
-    console.log("nothing here!");
-  }
-
+  // todo: CORS?
   if (request.method === "GET") {
     const artPiece = await ArtPiece.findById(id);
     if (!artPiece) {
@@ -28,7 +25,11 @@ export default async function handler(request, response) {
             message: "Status 401: You are not authorized! Only administrators can update pictures!",
           });
         }
-        if (session.user.role === "Admin" && session.user.email === process.env.ADMIN_MAIL) {
+        if (
+          session.user.role === "Admin" &&
+          session.user.email === process.env.ADMIN_MAIL /*
+        todo: add more emails */
+        ) {
           const artPieceData = request.body;
           await ArtPiece.findByIdAndUpdate(id, artPieceData);
           response.status(200).json({ status: "Art piece updated!" });

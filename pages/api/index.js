@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth/next";
 export default async function handler(request, response) {
   await dbConnect();
 
+  // todo: CORS?
   if (request.method === "GET") {
     const artPieces = await ArtPiece.find();
     return response.status(200).json(artPieces);
@@ -20,7 +21,11 @@ export default async function handler(request, response) {
             message: "Status 401: You are not authorized! Only administrators can add pictures!",
           });
         }
-        if (session.user.role === "Admin" && session.user.email === process.env.ADMIN_MAIL) {
+        if (
+          session.user.role === "Admin" &&
+          session.user.email === process.env.ADMIN_MAIL
+          /* todo: add more admin mails */
+        ) {
           const newArtPieceData = request.body;
           await ArtPiece.create(newArtPieceData);
           return response.status(201).json(newArtPieceData);
