@@ -74,17 +74,7 @@ export default function ArtPiecesList({
                   <ArtPiecesEditForm
                     handleSetArtPieceToEdit={handleSetArtPieceToEdit}
                     onSubmit={onSubmit}
-                    artPieceToEdit={{
-                      _id,
-                      name,
-                      date,
-                      category,
-                      technique,
-                      imageUrl,
-                      heightReal,
-                      widthReal,
-                      description,
-                    }}
+                    artPieceToEdit={artPieceToEdit}
                   />
                 )}
               </Fragment>
