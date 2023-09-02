@@ -37,7 +37,7 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
             src={
               session.user.image
                 ? session.user.image
-                : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkmCnxHwADBAGyi4SUBgAAAABJRU5ErkJggg=="
+                : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAPklEQVR42u3OsQ0AAAQAMBIvm73uDtJe0KyOiWNSWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlr6eXoBiucrxq1KGkAAAAAASUVORK5CYII="
             }
             width={30}
             height={30}
