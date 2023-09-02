@@ -27,59 +27,46 @@ export default function ArtPiecesList({
             Loading <LoadingDots />
           </StyledItem>
         ) : (
-          data.map(
-            ({
-              slug,
-              _id,
-              imageUrl,
-              name,
-              date,
-              category,
-              technique,
-              heightReal,
-              widthReal,
-              description,
-            }) => (
-              <Fragment key={_id}>
-                <StyledItem>
-                  <StyledLink href={`/art-pieces/${slug}`}>
-                    <StyledImage
-                      src={imageUrl}
-                      height={50}
-                      width={50}
-                      alt={name}
-                      priority={false}
-                      placeholder="blur"
-                      blurDataURL={
-                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
-                      }
-                    />
-                  </StyledLink>
-                  <p>
-                    <q>{name}</q>
-                  </p>
-                  <StyledButton
-                    onClick={() => {
-                      onEdit(_id);
-                      setToggleForm(!toggleForm);
-                    }}
-                  >
-                    <StyledIcon icon={faPencil} />
-                  </StyledButton>
-                  <StyledButton onClick={() => onDelete(_id)}>
-                    <StyledIcon icon={faTrashCan} />
-                  </StyledButton>
-                </StyledItem>
-                {artPieceToEdit._id === _id && toggleForm && (
-                  <ArtPiecesEditForm
-                    handleSetArtPieceToEdit={handleSetArtPieceToEdit}
-                    onSubmit={onSubmit}
-                    artPieceToEdit={artPieceToEdit}
+          data.map(({ slug, _id, imageUrl, name }) => (
+            <Fragment key={_id}>
+              <StyledItem>
+                <StyledLink href={`/art-pieces/${slug}`}>
+                  <StyledImage
+                    src={imageUrl}
+                    height={50}
+                    width={50}
+                    alt={name}
+                    priority={false}
+                    placeholder="blur"
+                    blurDataURL={
+                      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
+                    }
                   />
-                )}
-              </Fragment>
-            )
-          )
+                </StyledLink>
+                <p>
+                  <q>{name}</q>
+                </p>
+                <StyledButton
+                  onClick={() => {
+                    onEdit(_id);
+                    setToggleForm(!toggleForm);
+                  }}
+                >
+                  <StyledIcon icon={faPencil} />
+                </StyledButton>
+                <StyledButton onClick={() => onDelete(_id)}>
+                  <StyledIcon icon={faTrashCan} />
+                </StyledButton>
+              </StyledItem>
+              {artPieceToEdit._id === _id && toggleForm && (
+                <ArtPiecesEditForm
+                  handleSetArtPieceToEdit={handleSetArtPieceToEdit}
+                  onSubmit={onSubmit}
+                  artPieceToEdit={artPieceToEdit}
+                />
+              )}
+            </Fragment>
+          ))
         )}
       </ul>
     </StyledSection>
