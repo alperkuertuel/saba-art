@@ -3,6 +3,7 @@ import Header from "@/components/Header/Header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 
 export default function AdminHomePage({
   artPieceToEdit,
@@ -134,6 +135,7 @@ export default function AdminHomePage({
           onEdit={handleArtPieceToEdit}
           onDelete={handleDeleteArtPiece}
         />
+        <ScrollUp scrollPercent={scrollPercent} />
       </main>
     </>
   );
