@@ -6,7 +6,7 @@ import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ArtPiecesEditForm from "../AdminArtPiecesEditForm/AdminArtPiecesEditForm";
 import { Fragment } from "react";
 import useSWR from "swr";
-import { LoadingDots } from "../CategoryFilter/CategoryFilter";
+import LoadingDots from "../LoadingDots/LoadingDots";
 
 export default function ArtPiecesList({
   handleSetArtPieceToEdit,
@@ -24,7 +24,7 @@ export default function ArtPiecesList({
       <ul>
         {isLoading ? (
           <StyledItem>
-            Loading <LoadingDots src="/img/loading_dots.gif" width={20} height={5} alt="..." />
+            Loading <LoadingDots />
           </StyledItem>
         ) : (
           data.map(

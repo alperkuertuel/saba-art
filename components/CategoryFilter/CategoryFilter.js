@@ -1,6 +1,6 @@
-import Image from "next/image";
 import styled from "styled-components";
 import useSWR from "swr";
+import LoadingDots from "../LoadingDots/LoadingDots";
 
 export default function CategoryFilter({ handleSetFilteredCategory, handleSetActive, active }) {
   const { data, isLoading } = useSWR("/api", { fallbackData: [] });
@@ -33,7 +33,7 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
       <StyledCategoryFilter>
         {isLoading ? (
           <li>
-            Loading <LoadingDots src="/img/loading_dots.gif" width={20} height={5} alt="..." />
+            Loading <LoadingDots />
           </li>
         ) : (
           <>
@@ -109,10 +109,4 @@ const CategoryCount = styled.span`
   background-color: rgba(0, 0, 0, 0.1);
   font-size: 0.8rem;
   vertical-align: top;
-`;
-
-export const LoadingDots = styled(Image)`
-  display: inline-block;
-  width: 20;
-  height: 5;
 `;
