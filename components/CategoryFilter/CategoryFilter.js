@@ -111,7 +111,7 @@ const CategoryCount = styled.span`
   vertical-align: top;
 `;
 
-const LoadingDots = styled(Image)`
+export const LoadingDots = styled(Image)`
   display: inline-block;
   width: 20;
   height: 5;
