@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 import useSWR from "swr";
 
@@ -30,35 +31,47 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
   return (
     <StyledFilterSection>
       <StyledCategoryFilter>
-        <li>
-          <StyledButton
-            $active={active === "All" ? "var(--tertiary-color)" : "none"}
-            onClick={handleFilterAll}
-          >
-            All
-          </StyledButton>
-        </li>
-        <li>
-          <StyledButton
-            $active={active === "Newest" ? "var(--tertiary-color)" : "none"}
-            onClick={handleNewestArtPieces}
-          >
-            Newest
-          </StyledButton>
-        </li>
         {isLoading ? (
-          <li>Loading...</li>
+          <li>
+            Loading <LoadingDots src="/img/loading_dots.gif" width={20} height={5} alt="..." />
+          </li>
         ) : (
-          uniqueCatagories.map((category) => (
-            <li key={category}>
+          <>
+            <li>
               <StyledButton
-                $active={active === category ? "var(--tertiary-color)" : "none"}
-                onClick={() => handleFilteredCategories(category)}
+                $active={active === "All" ? "var(--tertiary-color)" : "none"}
+                onClick={handleFilterAll}
               >
-                {category}
+                All
+                <CategoryCount>{data.length}</CategoryCount>
               </StyledButton>
             </li>
-          ))
+            <li>
+              <StyledButton
+                $active={active === "Newest" ? "var(--tertiary-color)" : "none"}
+                onClick={handleNewestArtPieces}
+              >
+                Newest
+                <CategoryCount>
+                  {data.filter((piece) => piece.date === currentYear).length}
+                </CategoryCount>
+              </StyledButton>
+            </li>
+
+            {uniqueCatagories.map((category) => (
+              <li key={category}>
+                <StyledButton
+                  $active={active === category ? "var(--tertiary-color)" : "none"}
+                  onClick={() => handleFilteredCategories(category)}
+                >
+                  {category}
+                  <CategoryCount>
+                    {data.filter((count) => count.category === category).length}
+                  </CategoryCount>
+                </StyledButton>
+              </li>
+            ))}
+          </>
         )}
       </StyledCategoryFilter>
     </StyledFilterSection>
@@ -86,4 +99,20 @@ const StyledButton = styled.button`
   border-radius: 5px;
   font-size: 1rem;
   box-shadow: var(--box-shadow);
+  line-height: 1rem;
+`;
+
+const CategoryCount = styled.span`
+  padding: 2px 5px;
+  margin: 0 0 0 8px;
+  border-radius: 40%;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 0.8rem;
+  vertical-align: top;
+`;
+
+const LoadingDots = styled(Image)`
+  display: inline-block;
+  width: 20;
+  height: 5;
 `;
