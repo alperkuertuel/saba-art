@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
 import useSWR from "swr";
+import LoadingDots from "@/components/LoadingDots/LoadingDots";
 
 export default function ShowDetails({
   scrollPercent,
@@ -19,17 +20,15 @@ export default function ShowDetails({
 
   if (isLoading || !foundArtPiece) {
     return (
-      <main>
-        <StyledErrorMessage>Loading...</StyledErrorMessage>
-      </main>
+      <StyledErrorMessage>
+        Loading <LoadingDots />
+      </StyledErrorMessage>
     );
   } else if (!slug || !data) {
     return (
-      <main>
-        <StyledErrorMessage>
-          404 art piece not found. <Link href={`/`}>Go back!</Link>
-        </StyledErrorMessage>
-      </main>
+      <StyledErrorMessage>
+        404 art piece not found. <br /> <Link href={`/`}>Go back to the gallery!</Link>
+      </StyledErrorMessage>
     );
   }
 

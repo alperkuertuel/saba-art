@@ -102,8 +102,6 @@ export default function AdminHomePage({
   function handleArtPieceToEdit(id) {
     const selectedArtPieceToEdit = data.find((piece) => piece._id === id);
     handleSetArtPieceToEdit(selectedArtPieceToEdit);
-    // console.log(artPieceToEdit);
-    // initially I wanted to use this handler function to create the patch request, but it didnt work at all! now it is just there to open up the form after clicking the pen i still do not want to give up on this :)
   }
 
   async function handleDeleteArtPiece(id) {

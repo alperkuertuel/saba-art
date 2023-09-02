@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ArtPiecesEditForm from "../AdminArtPiecesEditForm/AdminArtPiecesEditForm";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import useSWR from "swr";
 import LoadingDots from "../LoadingDots/LoadingDots";
 
@@ -17,10 +17,10 @@ export default function ArtPiecesList({
 }) {
   // todo: set toggle function when clicking the pen
   const { data, isLoading } = useSWR("/api", { fallbackData: [] });
+  const [toggleForm, setToggleForm] = useState(false);
   return (
     <StyledSection>
       <h2>Update or delete art pieces:</h2>
-
       <ul>
         {isLoading ? (
           <StyledItem>
@@ -58,14 +58,19 @@ export default function ArtPiecesList({
                   <p>
                     <q>{name}</q>
                   </p>
-                  <StyledButton onClick={() => onEdit(_id)}>
+                  <StyledButton
+                    onClick={() => {
+                      onEdit(_id);
+                      setToggleForm(!toggleForm);
+                    }}
+                  >
                     <StyledIcon icon={faPencil} />
                   </StyledButton>
                   <StyledButton onClick={() => onDelete(_id)}>
                     <StyledIcon icon={faTrashCan} />
                   </StyledButton>
                 </StyledItem>
-                {artPieceToEdit._id === _id && (
+                {artPieceToEdit._id === _id && toggleForm && (
                   <ArtPiecesEditForm
                     handleSetArtPieceToEdit={handleSetArtPieceToEdit}
                     onSubmit={onSubmit}
