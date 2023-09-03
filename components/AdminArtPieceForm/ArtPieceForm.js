@@ -145,7 +145,7 @@ const FileInput = styled.input`
 `;
 
 const Input = styled.input`
-  width: fit-content;
+  width: auto;
   border-bottom: 1px solid var(--border-color);
   border-radius: 5px 5px 0 0;
 `;
