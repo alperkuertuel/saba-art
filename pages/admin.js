@@ -3,9 +3,15 @@ import Header from "@/components/Header/Header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
+import Head from "next/head";
 
 export default function AdminHomePage({
   artPieceToEdit,
+  handleSetFilteredCategory,
+  filteredCategory,
+  active,
+  handleSetActive,
   handleSetArtPieceToEdit,
   fileImageUrl,
   handleSetFileImageUrl,
@@ -101,8 +107,6 @@ export default function AdminHomePage({
   function handleArtPieceToEdit(id) {
     const selectedArtPieceToEdit = data.find((piece) => piece._id === id);
     handleSetArtPieceToEdit(selectedArtPieceToEdit);
-    // console.log(artPieceToEdit);
-    // initially I wanted to use this handler function to create the patch request, but it didnt work at all! now it is just there to open up the form after clicking the pen i still do not want to give up on this :)
   }
 
   async function handleDeleteArtPiece(id) {
@@ -118,6 +122,10 @@ export default function AdminHomePage({
 
   return (
     <>
+      <Head>
+        <title>ArtistName - pictures are memories</title>
+        <meta name="description" content="the gallery of ArtistName" />
+      </Head>
       <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <ArtPieceForm
@@ -127,6 +135,11 @@ export default function AdminHomePage({
           onChange={handleImageUpload}
         />
         <ArtPiecesList
+          handleSetFilteredCategory={handleSetFilteredCategory}
+          handleSetScrollPercentage={handleSetScrollPercentage}
+          filteredCategory={filteredCategory}
+          handleSetActive={handleSetActive}
+          active={active}
           artPieceToEdit={artPieceToEdit}
           handleSetArtPieceToEdit={handleSetArtPieceToEdit}
           fileImageUrl={fileImageUrl}
@@ -134,6 +147,7 @@ export default function AdminHomePage({
           onEdit={handleArtPieceToEdit}
           onDelete={handleDeleteArtPiece}
         />
+        <ScrollUp scrollPercent={scrollPercent} />
       </main>
     </>
   );

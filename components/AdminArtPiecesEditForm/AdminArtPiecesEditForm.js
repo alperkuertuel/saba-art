@@ -61,13 +61,14 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
   }
   const currentYear = new Date().getFullYear().toString();
   return (
-    <StyledSection>
-      <StyledForm onSubmit={handleUpdate} autoComplete="on">
+    <StyledArticle>
+      <StyledForm onSubmit={handleUpdate} autoComplete="off">
         <label htmlFor="name">Change name:</label>
         <Input
           type="text"
           id="name"
           name="name"
+          autoComplete="name"
           placeholder="change the name"
           defaultValue={artPieceToEdit.name}
           minLength={3}
@@ -136,12 +137,11 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
         ></Textarea>
         <StyledButton>UPDATE {artPieceToEdit ? artPieceToEdit.name : ""}</StyledButton>
       </StyledForm>
-    </StyledSection>
+    </StyledArticle>
   );
 }
 
-const StyledSection = styled.section`
-  margin: 0 auto;
+const StyledArticle = styled.article`
   font-size: 0.8rem;
 `;
 
@@ -152,7 +152,7 @@ const StyledForm = styled.form`
 `;
 
 const Input = styled.input`
-  width: fit-content;
+  width: auto;
   border-bottom: 1px solid var(--border-color);
   border-radius: 5px 5px 0 0;
 `;

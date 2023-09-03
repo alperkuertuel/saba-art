@@ -26,17 +26,7 @@ export default function ArtPieceDetails({
   return (
     <StyledSection>
       <figure>
-        <StyledImage
-          src={imageUrl}
-          width={1000}
-          height={1000}
-          alt={name}
-          priority={false}
-          placeholder="blur"
-          blurDataURL={
-            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
-          }
-        />
+        <StyledImage src={imageUrl} width={1000} height={1000} alt={name} priority={true} />
       </figure>
 
       <ButtonList>
@@ -85,10 +75,8 @@ const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1rem;
   min-width: 280px;
   max-width: 800px; // max width of resizing during upload
-  margin: auto;
 `;
 
 const StyledImage = styled(Image)`

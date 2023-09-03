@@ -7,7 +7,7 @@ export default function ScrollUp({ scrollPercent }) {
   const [backToTopButton, setBackToTopButton] = useState(false);
 
   useEffect(() => {
-    if (scrollPercent >= 15) {
+    if (scrollPercent >= 30) {
       setBackToTopButton(true);
     } else setBackToTopButton(false);
   }, [scrollPercent]);
@@ -26,7 +26,7 @@ export default function ScrollUp({ scrollPercent }) {
 const StyledScrollUpButton = styled.button`
   position: fixed;
   bottom: 15px;
-  left: 20px;
+  right: 20px;
   background-color: var(--border-color);
   border-radius: 50%;
 `;

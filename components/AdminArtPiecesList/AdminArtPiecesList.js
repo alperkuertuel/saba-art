@@ -4,89 +4,66 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ArtPiecesEditForm from "../AdminArtPiecesEditForm/AdminArtPiecesEditForm";
-import { Fragment } from "react";
-import useSWR from "swr";
+import { Fragment, useState } from "react";
+import CategoryFilter from "../CategoryFilter/CategoryFilter";
 
 export default function ArtPiecesList({
   handleSetArtPieceToEdit,
+  handleSetScrollPercentage,
+  handleSetFilteredCategory,
+  handleSetActive,
+  active,
   onDelete,
   onEdit,
   artPieceToEdit,
   onSubmit,
+  filteredCategory,
 }) {
-  // todo: set toggle function when clicking the pen
-  const { data } = useSWR("/api", { fallbackData: [] });
+  const [toggleEditForm, setToggleEditForm] = useState(false);
   return (
-    <StyledSection>
+    <section>
       <h2>Update or delete art pieces:</h2>
+      <CategoryFilter
+        handleSetFilteredCategory={handleSetFilteredCategory}
+        handleSetActive={handleSetActive}
+        active={active}
+      />
       <ul>
-        {data.map(
-          ({
-            slug,
-            _id,
-            imageUrl,
-            name,
-            date,
-            category,
-            technique,
-            heightReal,
-            widthReal,
-            description,
-          }) => (
-            <Fragment key={_id}>
-              <StyledItem>
-                <StyledLink href={`/art-pieces/${slug}`}>
-                  <StyledImage
-                    src={imageUrl}
-                    height={50}
-                    width={50}
-                    alt={name}
-                    priority={false}
-                    placeholder="blur"
-                    blurDataURL={
-                      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
-                    }
-                  />
-                </StyledLink>
-                <p>
-                  <q>{name}</q>
-                </p>
-                <StyledButton onClick={() => onEdit(_id)}>
-                  <StyledIcon icon={faPencil} />
-                </StyledButton>
-                <StyledButton onClick={() => onDelete(_id)}>
-                  <StyledIcon icon={faTrashCan} />
-                </StyledButton>
-              </StyledItem>
-              {artPieceToEdit._id === _id && (
-                <ArtPiecesEditForm
-                  handleSetArtPieceToEdit={handleSetArtPieceToEdit}
-                  onSubmit={onSubmit}
-                  artPieceToEdit={{
-                    _id,
-                    name,
-                    date,
-                    category,
-                    technique,
-                    imageUrl,
-                    heightReal,
-                    widthReal,
-                    description,
-                  }}
-                />
-              )}
-            </Fragment>
-          )
-        )}
+        {filteredCategory.map(({ slug, _id, imageUrl, name }) => (
+          <Fragment key={_id}>
+            <StyledItem>
+              <StyledLink href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage(0)}>
+                <StyledImage src={imageUrl} height={50} width={50} alt={name} priority={false} />
+              </StyledLink>
+              <p>
+                <q>{name}</q>
+              </p>
+              <StyledButton
+                aria-label="edit"
+                onClick={() => {
+                  onEdit(_id);
+                  setToggleEditForm(!toggleEditForm);
+                }}
+              >
+                <StyledIcon icon={faPencil} />
+              </StyledButton>
+              <StyledButton onClick={() => onDelete(_id)} aria-label="delete">
+                <StyledIcon icon={faTrashCan} />
+              </StyledButton>
+            </StyledItem>
+            {artPieceToEdit._id === _id && toggleEditForm && (
+              <ArtPiecesEditForm
+                handleSetArtPieceToEdit={handleSetArtPieceToEdit}
+                onSubmit={onSubmit}
+                artPieceToEdit={artPieceToEdit}
+              />
+            )}
+          </Fragment>
+        ))}
       </ul>
-    </StyledSection>
+    </section>
   );
 }
-
-const StyledSection = styled.section`
-  margin: 1rem auto;
-  padding: 1rem;
-`;
 
 const StyledLink = styled(Link)`
   padding: 0.2rem;

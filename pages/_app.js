@@ -1,3 +1,4 @@
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import GlobalStyle from "../styles";
 import { useState } from "react";
 import { SWRConfig } from "swr";

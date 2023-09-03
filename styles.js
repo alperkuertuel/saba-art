@@ -8,6 +8,8 @@ export default createGlobalStyle`
     --box-color: #f4f4f4;
     --box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
     --border-color: #938270;
+    --active-color: #dab28a;
+    --blue-grey: #dee1e6;
   }
 
   *,
@@ -32,14 +34,21 @@ html {
   main {
     margin: 6rem auto;
     max-width: 1280px;
+    padding: 0 1rem;
+  }
+
+  section {
+
+    margin: 2rem auto;
   }
 
   h1 {
-    font-size: 1.8;
+    font-size: 1.8rem;
   }
 
   h2 {
     font-size: 1.3rem;
+    margin-bottom: 1rem;
   }
 
   ul {

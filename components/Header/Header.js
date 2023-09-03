@@ -23,28 +23,27 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
         {session ? (
           <>
             <StyledButton onClick={signOut}>Logout</StyledButton>
-            <p>
-              {session && session.user.role === "Admin" ? <Link href="/admin">SETTINGS</Link> : ""}
-            </p>
           </>
         ) : (
           <StyledButton onClick={() => signIn()}>Login</StyledButton>
         )}
       </StyledLoginContainer>
       {session && session.user.role === "Admin" ? (
-        <Greeting>
-          <StyledLoginAvatar
-            src={
-              session.user.image
-                ? session.user.image
-                : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkmCnxHwADBAGyi4SUBgAAAABJRU5ErkJggg=="
-            }
-            width={30}
-            height={30}
-            alt="user avatar"
-          />
-          {session.user.role}
-        </Greeting>
+        <Link href="/admin">
+          <Greeting>
+            <StyledLoginAvatar
+              src={
+                session.user.image
+                  ? session.user.image
+                  : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAPklEQVR42u3OsQ0AAAQAMBIvm73uDtJe0KyOiWNSWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlr6eXoBiucrxq1KGkAAAAAASUVORK5CYII="
+              }
+              width={30}
+              height={30}
+              alt="user avatar"
+            />
+            {session.user.role}
+          </Greeting>
+        </Link>
       ) : (
         <Greeting>{session && `Hello, ` + session.user.name}</Greeting>
       )}

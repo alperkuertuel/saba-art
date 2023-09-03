@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import useSWR from "swr";
+import LoadingDots from "../LoadingDots/LoadingDots";
 
 export default function CategoryFilter({ handleSetFilteredCategory, handleSetActive, active }) {
   const { data, isLoading } = useSWR("/api", { fallbackData: [] });
@@ -28,62 +29,78 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
   }
 
   return (
-    <StyledFilterSection>
-      <StyledCategoryFilter>
+    <StyledCategoryFilter>
+      {isLoading ? (
         <li>
-          <StyledButton
-            $active={active === "All" ? "var(--tertiary-color)" : "none"}
-            onClick={handleFilterAll}
-          >
-            All
-          </StyledButton>
+          Loading <LoadingDots />
         </li>
-        <li>
-          <StyledButton
-            $active={active === "Newest" ? "var(--tertiary-color)" : "none"}
-            onClick={handleNewestArtPieces}
-          >
-            Newest
-          </StyledButton>
-        </li>
-        {isLoading ? (
-          <li>Loading...</li>
-        ) : (
-          uniqueCatagories.map((category) => (
-            <li key={category}>
-              <StyledButton
-                $active={active === category ? "var(--tertiary-color)" : "none"}
-                onClick={() => handleFilteredCategories(category)}
+      ) : (
+        <>
+          <li>
+            <StyledButton onClick={handleFilterAll}>
+              All
+              <CategoryCount
+                $active={active === "All" ? "var(--active-color)" : "var(--blue-grey)"}
               >
+                {data.length}
+              </CategoryCount>
+            </StyledButton>
+          </li>
+          <li>
+            <StyledButton
+              $active={active === "Newest" ? "var(--active-color)" : "var(--blue-grey)"}
+              onClick={handleNewestArtPieces}
+            >
+              Newest from {currentYear}
+              <CategoryCount
+                $active={active === "Newest" ? "var(--active-color)" : "var(--blue-grey)"}
+              >
+                {data.filter((piece) => piece.date === currentYear).length}
+              </CategoryCount>
+            </StyledButton>
+          </li>
+
+          {uniqueCatagories.map((category) => (
+            <li key={category}>
+              <StyledButton onClick={() => handleFilteredCategories(category)}>
                 {category}
+                <CategoryCount
+                  $active={active === category ? "var(--active-color)" : "var(--blue-grey)"}
+                >
+                  {data.filter((count) => count.category === category).length}
+                </CategoryCount>
               </StyledButton>
             </li>
-          ))
-        )}
-      </StyledCategoryFilter>
-    </StyledFilterSection>
+          ))}
+        </>
+      )}
+    </StyledCategoryFilter>
   );
 }
-
-const StyledFilterSection = styled.section`
-  display: flex;
-  gap: 0.5rem;
-  margin: 1rem;
-`;
 
 const StyledCategoryFilter = styled.ul`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
+  margin: 1rem 0;
 `;
 
 const StyledButton = styled.button`
-  border: 1px solid ${(props) => props.$active};
   background-color: var(--box-color);
-  transition: border 0.1s ease;
   padding: 0.5rem;
   border-radius: 5px;
   font-size: 1rem;
   box-shadow: var(--box-shadow);
+  line-height: 1rem;
+`;
+
+const CategoryCount = styled.span`
+  transition: background-color 0.2s ease;
+  padding: 3px 5px;
+  margin: 0 0 0 8px;
+  border-radius: 5px;
+  background-color: ${(props) => props.$active};
+  font-size: 0.8rem;
+  vertical-align: top;
 `;

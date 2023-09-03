@@ -40,7 +40,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
   return (
     <StyledSection>
       <h2>Add a new art piece: </h2>
-      <StyledForm onSubmit={handleSubmit} autoComplete="on">
+      <StyledForm onSubmit={handleSubmit} autoComplete="off">
         <FileLabel htmlFor="imageUrl">
           <FontAwesomeIcon icon={faCloudArrowUp} />
         </FileLabel>
@@ -54,7 +54,15 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
         />
         <AdminImagePreview fileImageUrl={fileImageUrl} />
         <label htmlFor="name">Name your art piece:</label>
-        <Input type="text" id="name" name="name" minLength={3} maxLength={30} required />
+        <Input
+          type="text"
+          id="name"
+          name="name"
+          minLength={3}
+          maxLength={30}
+          autoComplete="name"
+          required
+        />
         <label htmlFor="date">Release Year: </label>
         <Input type="number" id="date" name="date" min="0" max={currentYear} required />
         <StyledFieldset>
@@ -106,9 +114,6 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
 
 const StyledSection = styled.section`
   font-size: 0.8rem;
-  margin: 0 auto;
-  padding: 0 1rem;
-  height: auto;
 `;
 
 const StyledForm = styled.form`
@@ -119,7 +124,6 @@ const StyledForm = styled.form`
 
 const FileLabel = styled.label`
   line-height: 1.15;
-  margin-top: 1rem;
   text-align: center;
   cursor: pointer;
   font-size: 2rem;
@@ -141,7 +145,7 @@ const FileInput = styled.input`
 `;
 
 const Input = styled.input`
-  width: fit-content;
+  width: auto;
   border-bottom: 1px solid var(--border-color);
   border-radius: 5px 5px 0 0;
 `;

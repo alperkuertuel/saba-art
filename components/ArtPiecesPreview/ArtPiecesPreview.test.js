@@ -1,10 +1,10 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import ArtPiecesPreview from "./ArtPiecesPreview";
-import artPiecesData from "@/db/BackUp/data";
+import artPiecesData from "@/db/TestData/SampleDataForTests";
 
 test("Each art piece's alt text is displayed", () => {
-  render(<ArtPiecesPreview artPieces={artPiecesData} />);
+  render(<ArtPiecesPreview filteredCategory={artPiecesData} />);
   artPiecesData.forEach((piece) => {
     const imageElement = screen.getByAltText(piece.name);
     expect(imageElement).toHaveAttribute("alt", piece.name);
@@ -13,7 +13,7 @@ test("Each art piece's alt text is displayed", () => {
 });
 
 test("Each art piece's name is displayed", () => {
-  render(<ArtPiecesPreview artPieces={artPiecesData} />);
+  render(<ArtPiecesPreview filteredCategory={artPiecesData} />);
   artPiecesData.forEach((piece) => {
     const nameElement = screen.getByText(piece.name);
     expect(nameElement).toBeInTheDocument(piece.name);
@@ -21,7 +21,7 @@ test("Each art piece's name is displayed", () => {
 });
 
 test("Each art piece's date is displayed", () => {
-  render(<ArtPiecesPreview artPieces={artPiecesData} />);
+  render(<ArtPiecesPreview filteredCategory={artPiecesData} />);
   artPiecesData.forEach((piece) => {
     const dateElement = screen.getByRole("generic");
     expect(dateElement).toBeInTheDocument(piece.date);

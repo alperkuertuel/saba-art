@@ -6,9 +6,6 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  experimental: {
-    scrollRestoration: true,
-  },
   reactStrictMode: true,
   webpack(config) {
     config.module.rules.push({
