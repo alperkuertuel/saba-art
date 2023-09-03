@@ -9,6 +9,7 @@ import CategoryFilter from "../CategoryFilter/CategoryFilter";
 
 export default function ArtPiecesList({
   handleSetArtPieceToEdit,
+  handleSetScrollPercentage,
   handleSetFilteredCategory,
   handleSetActive,
   active,
@@ -18,7 +19,7 @@ export default function ArtPiecesList({
   onSubmit,
   filteredCategory,
 }) {
-  const [toggleForm, setToggleForm] = useState(false);
+  const [toggleEditForm, setToggleEditForm] = useState(false);
   return (
     <section>
       <h2>Update or delete art pieces:</h2>
@@ -31,7 +32,7 @@ export default function ArtPiecesList({
         {filteredCategory.map(({ slug, _id, imageUrl, name }) => (
           <Fragment key={_id}>
             <StyledItem>
-              <StyledLink href={`/art-pieces/${slug}`}>
+              <StyledLink href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage(0)}>
                 <StyledImage src={imageUrl} height={50} width={50} alt={name} priority={false} />
               </StyledLink>
               <p>
@@ -41,7 +42,7 @@ export default function ArtPiecesList({
                 aria-label="edit"
                 onClick={() => {
                   onEdit(_id);
-                  setToggleForm(!toggleForm);
+                  setToggleEditForm(!toggleEditForm);
                 }}
               >
                 <StyledIcon icon={faPencil} />
@@ -50,7 +51,7 @@ export default function ArtPiecesList({
                 <StyledIcon icon={faTrashCan} />
               </StyledButton>
             </StyledItem>
-            {artPieceToEdit._id === _id && toggleForm && (
+            {artPieceToEdit._id === _id && toggleEditForm && (
               <ArtPiecesEditForm
                 handleSetArtPieceToEdit={handleSetArtPieceToEdit}
                 onSubmit={onSubmit}

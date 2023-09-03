@@ -136,6 +136,7 @@ export default function AdminHomePage({
         />
         <ArtPiecesList
           handleSetFilteredCategory={handleSetFilteredCategory}
+          handleSetScrollPercentage={handleSetScrollPercentage}
           filteredCategory={filteredCategory}
           handleSetActive={handleSetActive}
           active={active}
