@@ -23,25 +23,15 @@ export default function ArtPiecesList({
       <h2>Update or delete art pieces:</h2>
       <ul>
         {isLoading ? (
-          <StyledItem>
+          <div>
             Loading <LoadingDots />
-          </StyledItem>
+          </div>
         ) : (
           data.map(({ slug, _id, imageUrl, name }) => (
             <Fragment key={_id}>
               <StyledItem>
                 <StyledLink href={`/art-pieces/${slug}`}>
-                  <StyledImage
-                    src={imageUrl}
-                    height={50}
-                    width={50}
-                    alt={name}
-                    priority={false}
-                    placeholder="blur"
-                    blurDataURL={
-                      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPs7WqbCQAFgQI4fezTAAAAAABJRU5ErkJggg=="
-                    }
-                  />
+                  <StyledImage src={imageUrl} height={50} width={50} alt={name} priority={false} />
                 </StyledLink>
                 <p>
                   <q>{name}</q>

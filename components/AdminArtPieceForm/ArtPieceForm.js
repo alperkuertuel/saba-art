@@ -127,7 +127,6 @@ const StyledForm = styled.form`
 
 const FileLabel = styled.label`
   line-height: 1.15;
-  margin-top: 1rem;
   text-align: center;
   cursor: pointer;
   font-size: 2rem;
