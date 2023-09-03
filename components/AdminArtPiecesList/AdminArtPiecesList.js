@@ -47,6 +47,7 @@ export default function ArtPiecesList({
                   <q>{name}</q>
                 </p>
                 <StyledButton
+                  aria-label="edit"
                   onClick={() => {
                     onEdit(_id);
                     setToggleForm(!toggleForm);
@@ -54,7 +55,7 @@ export default function ArtPiecesList({
                 >
                   <StyledIcon icon={faPencil} />
                 </StyledButton>
-                <StyledButton onClick={() => onDelete(_id)}>
+                <StyledButton onClick={() => onDelete(_id)} aria-label="delete">
                   <StyledIcon icon={faTrashCan} />
                 </StyledButton>
               </StyledItem>
