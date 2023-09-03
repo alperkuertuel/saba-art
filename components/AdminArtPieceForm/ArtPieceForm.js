@@ -40,7 +40,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
   return (
     <StyledSection>
       <h2>Add a new art piece: </h2>
-      <StyledForm onSubmit={handleSubmit} autoComplete="on">
+      <StyledForm onSubmit={handleSubmit} autoComplete="off">
         <FileLabel htmlFor="imageUrl">
           <FontAwesomeIcon icon={faCloudArrowUp} />
         </FileLabel>
@@ -54,7 +54,15 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
         />
         <AdminImagePreview fileImageUrl={fileImageUrl} />
         <label htmlFor="name">Name your art piece:</label>
-        <Input type="text" id="name" name="name" minLength={3} maxLength={30} required />
+        <Input
+          type="text"
+          id="name"
+          name="name"
+          minLength={3}
+          maxLength={30}
+          autoComplete="name"
+          required
+        />
         <label htmlFor="date">Release Year: </label>
         <Input type="number" id="date" name="date" min="0" max={currentYear} required />
         <StyledFieldset>

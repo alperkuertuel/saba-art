@@ -4,6 +4,7 @@ import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
+import Head from "next/head";
 
 export default function AdminHomePage({
   artPieceToEdit,
@@ -117,6 +118,10 @@ export default function AdminHomePage({
 
   return (
     <>
+      <Head>
+        <title>ArtistName - pictures are memories</title>
+        <meta name="description" content="the gallery of ArtistName" />
+      </Head>
       <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <ArtPieceForm
