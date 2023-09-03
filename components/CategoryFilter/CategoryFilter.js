@@ -37,21 +37,24 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
       ) : (
         <>
           <li>
-            <StyledButton
-              $active={active === "All" ? "var(--tertiary-color)" : "none"}
-              onClick={handleFilterAll}
-            >
+            <StyledButton onClick={handleFilterAll}>
               All
-              <CategoryCount>{data.length}</CategoryCount>
+              <CategoryCount
+                $active={active === "All" ? "var(--active-color)" : "var(--blue-grey)"}
+              >
+                {data.length}
+              </CategoryCount>
             </StyledButton>
           </li>
           <li>
             <StyledButton
-              $active={active === "Newest" ? "var(--tertiary-color)" : "none"}
+              $active={active === "Newest" ? "var(--active-color)" : "var(--blue-grey)"}
               onClick={handleNewestArtPieces}
             >
-              Newest
-              <CategoryCount>
+              Newest from {currentYear}
+              <CategoryCount
+                $active={active === "Newest" ? "var(--active-color)" : "var(--blue-grey)"}
+              >
                 {data.filter((piece) => piece.date === currentYear).length}
               </CategoryCount>
             </StyledButton>
@@ -59,12 +62,11 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
 
           {uniqueCatagories.map((category) => (
             <li key={category}>
-              <StyledButton
-                $active={active === category ? "var(--tertiary-color)" : "none"}
-                onClick={() => handleFilteredCategories(category)}
-              >
+              <StyledButton onClick={() => handleFilteredCategories(category)}>
                 {category}
-                <CategoryCount>
+                <CategoryCount
+                  $active={active === category ? "var(--active-color)" : "var(--blue-grey)"}
+                >
                   {data.filter((count) => count.category === category).length}
                 </CategoryCount>
               </StyledButton>
@@ -85,9 +87,7 @@ const StyledCategoryFilter = styled.ul`
 `;
 
 const StyledButton = styled.button`
-  border: 1px solid ${(props) => props.$active};
   background-color: var(--box-color);
-  transition: border 0.1s ease;
   padding: 0.5rem;
   border-radius: 5px;
   font-size: 1rem;
@@ -96,10 +96,11 @@ const StyledButton = styled.button`
 `;
 
 const CategoryCount = styled.span`
-  padding: 2px 5px;
+  transition: background-color 0.2s ease;
+  padding: 3px 5px;
   margin: 0 0 0 8px;
-  border-radius: 40%;
-  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: ${(props) => props.$active};
   font-size: 0.8rem;
   vertical-align: top;
 `;

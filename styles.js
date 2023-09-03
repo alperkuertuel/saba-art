@@ -8,6 +8,8 @@ export default createGlobalStyle`
     --box-color: #f4f4f4;
     --box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
     --border-color: #938270;
+    --active-color: #dab28a;
+    --blue-grey: #dee1e6;
   }
 
   *,
