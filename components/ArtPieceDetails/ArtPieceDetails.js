@@ -75,10 +75,8 @@ const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1rem;
   min-width: 280px;
   max-width: 800px; // max width of resizing during upload
-  margin: auto;
 `;
 
 const StyledImage = styled(Image)`

@@ -32,10 +32,16 @@ html {
   main {
     margin: 6rem auto;
     max-width: 1280px;
+    padding: 0 1rem;
+  }
+
+  section {
+
+    margin: 2rem auto;
   }
 
   h1 {
-    font-size: 1.8;
+    font-size: 1.8rem;
   }
 
   h2 {

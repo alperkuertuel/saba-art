@@ -5,69 +5,64 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ArtPiecesEditForm from "../AdminArtPiecesEditForm/AdminArtPiecesEditForm";
 import { Fragment, useState } from "react";
-import useSWR from "swr";
-import LoadingDots from "../LoadingDots/LoadingDots";
+import CategoryFilter from "../CategoryFilter/CategoryFilter";
 
 export default function ArtPiecesList({
   handleSetArtPieceToEdit,
+  handleSetFilteredCategory,
+  handleSetActive,
+  active,
   onDelete,
   onEdit,
   artPieceToEdit,
   onSubmit,
+  filteredCategory,
 }) {
-  // todo: set toggle function when clicking the pen
-  const { data, isLoading } = useSWR("/api", { fallbackData: [] });
   const [toggleForm, setToggleForm] = useState(false);
   return (
-    <StyledSection>
+    <section>
       <h2>Update or delete art pieces:</h2>
+      <CategoryFilter
+        handleSetFilteredCategory={handleSetFilteredCategory}
+        handleSetActive={handleSetActive}
+        active={active}
+      />
       <ul>
-        {isLoading ? (
-          <div>
-            Loading <LoadingDots />
-          </div>
-        ) : (
-          data.map(({ slug, _id, imageUrl, name }) => (
-            <Fragment key={_id}>
-              <StyledItem>
-                <StyledLink href={`/art-pieces/${slug}`}>
-                  <StyledImage src={imageUrl} height={50} width={50} alt={name} priority={false} />
-                </StyledLink>
-                <p>
-                  <q>{name}</q>
-                </p>
-                <StyledButton
-                  aria-label="edit"
-                  onClick={() => {
-                    onEdit(_id);
-                    setToggleForm(!toggleForm);
-                  }}
-                >
-                  <StyledIcon icon={faPencil} />
-                </StyledButton>
-                <StyledButton onClick={() => onDelete(_id)} aria-label="delete">
-                  <StyledIcon icon={faTrashCan} />
-                </StyledButton>
-              </StyledItem>
-              {artPieceToEdit._id === _id && toggleForm && (
-                <ArtPiecesEditForm
-                  handleSetArtPieceToEdit={handleSetArtPieceToEdit}
-                  onSubmit={onSubmit}
-                  artPieceToEdit={artPieceToEdit}
-                />
-              )}
-            </Fragment>
-          ))
-        )}
+        {filteredCategory.map(({ slug, _id, imageUrl, name }) => (
+          <Fragment key={_id}>
+            <StyledItem>
+              <StyledLink href={`/art-pieces/${slug}`}>
+                <StyledImage src={imageUrl} height={50} width={50} alt={name} priority={false} />
+              </StyledLink>
+              <p>
+                <q>{name}</q>
+              </p>
+              <StyledButton
+                aria-label="edit"
+                onClick={() => {
+                  onEdit(_id);
+                  setToggleForm(!toggleForm);
+                }}
+              >
+                <StyledIcon icon={faPencil} />
+              </StyledButton>
+              <StyledButton onClick={() => onDelete(_id)} aria-label="delete">
+                <StyledIcon icon={faTrashCan} />
+              </StyledButton>
+            </StyledItem>
+            {artPieceToEdit._id === _id && toggleForm && (
+              <ArtPiecesEditForm
+                handleSetArtPieceToEdit={handleSetArtPieceToEdit}
+                onSubmit={onSubmit}
+                artPieceToEdit={artPieceToEdit}
+              />
+            )}
+          </Fragment>
+        ))}
       </ul>
-    </StyledSection>
+    </section>
   );
 }
-
-const StyledSection = styled.section`
-  margin: 1rem auto;
-  padding: 1rem;
-`;
 
 const StyledLink = styled(Link)`
   padding: 0.2rem;

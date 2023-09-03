@@ -8,6 +8,10 @@ import Head from "next/head";
 
 export default function AdminHomePage({
   artPieceToEdit,
+  handleSetFilteredCategory,
+  filteredCategory,
+  active,
+  handleSetActive,
   handleSetArtPieceToEdit,
   fileImageUrl,
   handleSetFileImageUrl,
@@ -131,6 +135,10 @@ export default function AdminHomePage({
           onChange={handleImageUpload}
         />
         <ArtPiecesList
+          handleSetFilteredCategory={handleSetFilteredCategory}
+          filteredCategory={filteredCategory}
+          handleSetActive={handleSetActive}
+          active={active}
           artPieceToEdit={artPieceToEdit}
           handleSetArtPieceToEdit={handleSetArtPieceToEdit}
           fileImageUrl={fileImageUrl}

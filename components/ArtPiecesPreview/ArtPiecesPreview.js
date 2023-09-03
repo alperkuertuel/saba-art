@@ -31,8 +31,6 @@ const GalleryWrapper = styled.section`
   grid-gap: 4rem;
   width: 100%;
   max-width: 1280px;
-  padding: 1rem;
-  margin: 0 auto;
 `;
 
 const StyledImage = styled(Image)`

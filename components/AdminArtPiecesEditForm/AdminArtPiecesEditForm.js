@@ -61,7 +61,7 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
   }
   const currentYear = new Date().getFullYear().toString();
   return (
-    <StyledSection>
+    <StyledArticle>
       <StyledForm onSubmit={handleUpdate} autoComplete="off">
         <label htmlFor="name">Change name:</label>
         <Input
@@ -137,12 +137,11 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
         ></Textarea>
         <StyledButton>UPDATE {artPieceToEdit ? artPieceToEdit.name : ""}</StyledButton>
       </StyledForm>
-    </StyledSection>
+    </StyledArticle>
   );
 }
 
-const StyledSection = styled.section`
-  margin: 0 auto;
+const StyledArticle = styled.article`
   font-size: 0.8rem;
 `;
 

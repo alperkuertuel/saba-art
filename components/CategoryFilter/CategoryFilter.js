@@ -29,66 +29,59 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
   }
 
   return (
-    <StyledFilterSection>
-      <StyledCategoryFilter>
-        {isLoading ? (
+    <StyledCategoryFilter>
+      {isLoading ? (
+        <li>
+          Loading <LoadingDots />
+        </li>
+      ) : (
+        <>
           <li>
-            Loading <LoadingDots />
+            <StyledButton
+              $active={active === "All" ? "var(--tertiary-color)" : "none"}
+              onClick={handleFilterAll}
+            >
+              All
+              <CategoryCount>{data.length}</CategoryCount>
+            </StyledButton>
           </li>
-        ) : (
-          <>
-            <li>
+          <li>
+            <StyledButton
+              $active={active === "Newest" ? "var(--tertiary-color)" : "none"}
+              onClick={handleNewestArtPieces}
+            >
+              Newest
+              <CategoryCount>
+                {data.filter((piece) => piece.date === currentYear).length}
+              </CategoryCount>
+            </StyledButton>
+          </li>
+
+          {uniqueCatagories.map((category) => (
+            <li key={category}>
               <StyledButton
-                $active={active === "All" ? "var(--tertiary-color)" : "none"}
-                onClick={handleFilterAll}
+                $active={active === category ? "var(--tertiary-color)" : "none"}
+                onClick={() => handleFilteredCategories(category)}
               >
-                All
-                <CategoryCount>{data.length}</CategoryCount>
-              </StyledButton>
-            </li>
-            <li>
-              <StyledButton
-                $active={active === "Newest" ? "var(--tertiary-color)" : "none"}
-                onClick={handleNewestArtPieces}
-              >
-                Newest
+                {category}
                 <CategoryCount>
-                  {data.filter((piece) => piece.date === currentYear).length}
+                  {data.filter((count) => count.category === category).length}
                 </CategoryCount>
               </StyledButton>
             </li>
-
-            {uniqueCatagories.map((category) => (
-              <li key={category}>
-                <StyledButton
-                  $active={active === category ? "var(--tertiary-color)" : "none"}
-                  onClick={() => handleFilteredCategories(category)}
-                >
-                  {category}
-                  <CategoryCount>
-                    {data.filter((count) => count.category === category).length}
-                  </CategoryCount>
-                </StyledButton>
-              </li>
-            ))}
-          </>
-        )}
-      </StyledCategoryFilter>
-    </StyledFilterSection>
+          ))}
+        </>
+      )}
+    </StyledCategoryFilter>
   );
 }
-
-const StyledFilterSection = styled.section`
-  display: flex;
-  gap: 0.5rem;
-  margin: 1rem;
-`;
 
 const StyledCategoryFilter = styled.ul`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
+  margin: 1rem 0;
 `;
 
 const StyledButton = styled.button`
