@@ -1,8 +1,6 @@
-import { useRouter } from "next/router";
 import styled from "styled-components";
 
 export default function ArtPiecesEditForm({ artPieceToEdit }) {
-  const router = useRouter();
   async function handleUpdate(event) {
     event.preventDefault();
     const form = event.target;
@@ -32,10 +30,8 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
       widthReal: editData.widthReal,
     };
 
-    //console.log(editedArtPiece);
-
     try {
-      const response = await fetch(`/api/${editedArtPiece._id}`, {
+      const response = await fetch(`/api/${artPieceToEdit._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -44,20 +40,15 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
       });
 
       if (response.ok) {
-        alert(`You successfully updated ${editedArtPiece.name}`);
+        alert(`Your update was successfull!`);
       } else
         alert(
           `Something went wrong updating ${editedArtPiece.name}! Please try it again or contact the developer!`
         );
     } catch (error) {
-      console.error(
-        `Something went wrong during sending the patch request of ${editedArtPiece.name}!`,
-        error
-      );
+      console.error(`Something went wrong!`, error);
     }
-
-    // todo: think about routing structure, is it usefull to route to the slug-page?
-    router.push(`/art-pieces/${slug}`);
+    location.reload();
   }
   const currentYear = new Date().getFullYear().toString();
   return (
@@ -72,7 +63,7 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
           placeholder="change the name"
           defaultValue={artPieceToEdit.name}
           minLength={3}
-          maxLength={30}
+          maxLength={100}
           required
         />
         <label htmlFor="date">Change release year: </label>

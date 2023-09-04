@@ -59,7 +59,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
           id="name"
           name="name"
           minLength={3}
-          maxLength={30}
+          maxLength={100}
           autoComplete="name"
           required
         />
