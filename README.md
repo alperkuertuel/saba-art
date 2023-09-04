@@ -1,4 +1,4 @@
-# Ar Gallery App
+# Art Gallery App
 
 Manage your art pieces in your own gallery. The administration area is protected with a login and allows you to upload, edit, update, and delete your art pieces in the cloud. The gallery is only visible to viewers and includes a simple frontend with a CSS grid, along with detail pages for each art piece that you can share on social media.
 
