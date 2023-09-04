@@ -2,10 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ArtPiecesEditForm from "../AdminArtPiecesEditForm/AdminArtPiecesEditForm";
 import { Fragment, useState } from "react";
 import CategoryFilter from "../CategoryFilter/CategoryFilter";
+import useSWR from "swr";
 
 export default function ArtPiecesList({
   handleSetArtPieceToEdit,
@@ -20,6 +21,11 @@ export default function ArtPiecesList({
   filteredCategory,
 }) {
   const [toggleEditForm, setToggleEditForm] = useState(false);
+  // const { data } = useSWR(`/api/`);
+  // function handleDownload(_id) {
+  //   const imageFile = data.filter((img) => img._id === _id);
+  //   console.log(imageFile);
+  // }
   return (
     <section>
       <h2>Update or delete art pieces:</h2>
@@ -47,6 +53,9 @@ export default function ArtPiecesList({
               >
                 <StyledIcon icon={faPencil} />
               </StyledButton>
+              <a href={imageUrl} download>
+                <StyledIcon icon={faDownload} />
+              </a>
               <StyledButton onClick={() => onDelete(_id)} aria-label="delete">
                 <StyledIcon icon={faTrashCan} />
               </StyledButton>
