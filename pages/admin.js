@@ -19,7 +19,7 @@ export default function AdminHomePage({
   handleSetScrollPercentage,
 }) {
   const router = useRouter();
-  const { data } = useSWR("/api", { fallbackData: [] });
+  const { data, mutate } = useSWR("/api", { fallbackData: [] });
   const maxWidth = 800; // maxWidth of detail page
   const maxHeight = 800; // maxHeight of detail page
 
@@ -115,7 +115,7 @@ export default function AdminHomePage({
       await fetch(`/api/${id}`, {
         method: "DELETE",
       });
-      location.reload();
+      // location.reload();
     }
   }
 

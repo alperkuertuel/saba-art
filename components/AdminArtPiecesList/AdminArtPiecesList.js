@@ -64,7 +64,8 @@ export default function ArtPiecesList({
             </StyledItem>
             {artPieceToEdit._id === _id && toggleEditForm && (
               <ArtPiecesEditForm
-                handleSetArtPieceToEdit={handleSetArtPieceToEdit}
+                handleSetFilteredCategory={handleSetFilteredCategory}
+                filteredCategory={filteredCategory}
                 onSubmit={onSubmit}
                 artPieceToEdit={artPieceToEdit}
               />
