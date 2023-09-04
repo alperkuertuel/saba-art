@@ -99,7 +99,7 @@ const CategoryCount = styled.span`
   transition: background-color 0.2s ease;
   padding: 3px 5px;
   margin: 0 0 0 8px;
-  border-radius: 5px;
+  border-radius: 50px;
   background-color: ${(props) => props.$active};
   font-size: 0.8rem;
   vertical-align: top;

@@ -6,7 +6,6 @@ import { faDownload, faPencil, faTrashCan } from "@fortawesome/free-solid-svg-ic
 import ArtPiecesEditForm from "../AdminArtPiecesEditForm/AdminArtPiecesEditForm";
 import { Fragment, useState } from "react";
 import CategoryFilter from "../CategoryFilter/CategoryFilter";
-import useSWR from "swr";
 
 export default function ArtPiecesList({
   handleSetArtPieceToEdit,
@@ -21,11 +20,6 @@ export default function ArtPiecesList({
   filteredCategory,
 }) {
   const [toggleEditForm, setToggleEditForm] = useState(false);
-  // const { data } = useSWR(`/api/`);
-  // function handleDownload(_id) {
-  //   const imageFile = data.filter((img) => img._id === _id);
-  //   console.log(imageFile);
-  // }
   return (
     <section>
       <h2>Update or delete art pieces:</h2>
@@ -34,31 +28,39 @@ export default function ArtPiecesList({
         handleSetActive={handleSetActive}
         active={active}
       />
-      <ul>
+      <StyledList>
         {filteredCategory.map(({ slug, _id, imageUrl, name }) => (
           <Fragment key={_id}>
             <StyledItem>
               <StyledLink href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage(0)}>
-                <StyledImage src={imageUrl} height={50} width={50} alt={name} priority={false} />
+                <StyledImage
+                  src={imageUrl}
+                  width={1000}
+                  height={1000}
+                  alt={name}
+                  priority={false}
+                />
               </StyledLink>
-              <p>
+              <StyledName>
                 <q>{name}</q>
-              </p>
-              <StyledButton
-                aria-label="edit"
-                onClick={() => {
-                  onEdit(_id);
-                  setToggleEditForm(!toggleEditForm);
-                }}
-              >
-                <StyledIcon icon={faPencil} />
-              </StyledButton>
-              <a href={imageUrl} download={name}>
-                <StyledIcon icon={faDownload} />
-              </a>
-              <StyledButton onClick={() => onDelete(_id)} aria-label="delete">
-                <StyledIcon icon={faTrashCan} />
-              </StyledButton>
+              </StyledName>
+              <ButtonContainer>
+                <button
+                  aria-label="edit"
+                  onClick={() => {
+                    onEdit(_id);
+                    setToggleEditForm(!toggleEditForm);
+                  }}
+                >
+                  <StyledIcon icon={faPencil} />
+                </button>
+                <a href={imageUrl} download={name}>
+                  <StyledIcon icon={faDownload} />
+                </a>
+                <button onClick={() => onDelete(_id)} aria-label="delete">
+                  <StyledIcon icon={faTrashCan} />
+                </button>
+              </ButtonContainer>
             </StyledItem>
             {artPieceToEdit._id === _id && toggleEditForm && (
               <ArtPiecesEditForm
@@ -69,27 +71,21 @@ export default function ArtPiecesList({
             )}
           </Fragment>
         ))}
-      </ul>
+      </StyledList>
     </section>
   );
 }
 
-const StyledLink = styled(Link)`
-  padding: 0.2rem;
-  border-radius: 5px;
-`;
-
-const StyledImage = styled(Image)`
-  width: 100%;
-  border-radius: 5px;
-  border: 2px solid var(--border-color);
+const StyledList = styled.ul`
+  width: auto;
 `;
 
 const StyledItem = styled.li`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
   align-items: center;
-  justify-content: space-between;
+  width: auto;
   gap: 0.5rem;
   margin: 1rem 0;
   padding: 0.4rem;
@@ -98,12 +94,33 @@ const StyledItem = styled.li`
   background-color: var(--box-color);
 `;
 
-const StyledButton = styled.button`
-  background: transparent;
+const StyledLink = styled(Link)`
+  padding: 0.2rem;
+  border-radius: 5px;
+  width: 100%;
+`;
+
+const StyledImage = styled(Image)`
+  object-fit: cover;
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
+  border: 1px solid var(--border-color);
+`;
+
+const StyledName = styled.p`
+  align-self: start;
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 1rem;
   color: var(--secondary-color);
-  padding: 0.3rem;
+  padding: 0 1rem;
+`;
+
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 `;
