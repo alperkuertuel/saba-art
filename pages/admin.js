@@ -74,7 +74,7 @@ export default function AdminHomePage({
             );
 
             handleSetFileImageUrl(load.target.result);
-            console.log(load.target.result);
+            // console.log(load.target.result);
           }
         };
         img.src = load.target.result;
