@@ -53,7 +53,7 @@ export default function ArtPiecesList({
               >
                 <StyledIcon icon={faPencil} />
               </StyledButton>
-              <a href={imageUrl} download>
+              <a href={imageUrl} download={name}>
                 <StyledIcon icon={faDownload} />
               </a>
               <StyledButton onClick={() => onDelete(_id)} aria-label="delete">
@@ -103,7 +103,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: var(--secondary-color);
   padding: 0.3rem;
 `;

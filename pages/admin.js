@@ -22,23 +22,13 @@ export default function AdminHomePage({
   const { data } = useSWR("/api", { fallbackData: [] });
   const maxWidth = 800; // maxWidth of detail page
   const maxHeight = 800; // maxHeight of detail page
+
   function handleImageUpload(event) {
     const imageFile = event.target.files[0];
-    // console.log(imageFile);
 
-    if (
-      imageFile.type === "image/webp" ||
-      imageFile.type === "image/vnd.microsoft.icon" ||
-      imageFile.type === "image/gif"
-    ) {
+    if (imageFile.type === "image/vnd.microsoft.icon" || imageFile.type === "image/gif") {
       return alert(
-        `Your image file type is not allowed. Valid image file types are .png, .jpg/jpeg`
-      );
-    }
-
-    if (imageFile.size < 307200) {
-      return alert(
-        `Your image file is smaller than 300kB, try to upload an image which has a bigger size in order to preserve quality!`
+        `Your image file type is not allowed. Valid image file types are .png, .jpg/jpeg, and webp files!`
       );
     }
 
@@ -47,36 +37,45 @@ export default function AdminHomePage({
       reader.onload = function (load) {
         const img = new Image();
         img.onload = function () {
-          const canvas = document.createElement("canvas");
-          let width = img.width;
-          let height = img.height;
+          if (imageFile.type !== "image/webp") {
+            const canvas = document.createElement("canvas");
+            let width = img.width;
+            let height = img.height;
 
-          if (height <= maxHeight && width <= maxWidth) {
-            return alert(
-              `Your image width or height is smaller then 800px. In order to preserve quality upload a bigger sized image!`
+            if (height <= maxHeight && width <= maxWidth) {
+              return alert(
+                `Your image width or height is smaller than 800px. To preserve quality, upload a larger-sized image!`
+              );
+            }
+
+            if (width > maxWidth) {
+              height = (maxWidth / width) * height;
+              width = maxWidth;
+            } else if (height > maxHeight) {
+              width = (maxHeight / height) * width;
+              height = maxHeight;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+
+            const resizedImageData = canvas.toDataURL("image/webp", 0.7);
+            alert(
+              `You successfully created a compressed webp image file, which is ready for the gallery! Fill out the form to add the art piece to the gallery.`
             );
+
+            handleSetFileImageUrl(resizedImageData);
+          } else {
+            alert(
+              `You successfully uploaded a webp image file, which is ready for the gallery! Fill out the form to add the art piece to the gallery.`
+            );
+
+            handleSetFileImageUrl(load.target.result);
+            console.log(load.target.result);
           }
-
-          if (width > maxWidth) {
-            height = (maxWidth / width) * height;
-            width = maxWidth;
-          } else if (height > maxHeight) {
-            width = (maxHeight / height) * width;
-            height = maxHeight;
-          }
-
-          canvas.width = width;
-          canvas.height = height;
-
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0, width, height);
-
-          const resizedImageData = canvas.toDataURL("image/webp", 0.7);
-          alert(
-            `You successfully created a compressed webp image file which is ready for the gallery! Go on full filling the form to finally add the art piece to the gallery!`
-          );
-
-          handleSetFileImageUrl(resizedImageData);
         };
         img.src = load.target.result;
       };
