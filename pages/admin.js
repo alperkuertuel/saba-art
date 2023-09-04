@@ -115,7 +115,7 @@ export default function AdminHomePage({
       await fetch(`/api/${id}`, {
         method: "DELETE",
       });
-      router.push(`/admin`);
+      location.reload();
     }
   }
 
