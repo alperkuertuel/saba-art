@@ -81,6 +81,7 @@ const StyledSection = styled.section`
 
 const StyledImage = styled(Image)`
   object-fit: contain;
+  pointer-events: none;
   width: 100%;
   height: 100%;
   max-height: 800px; // max height of resizing during upload
