@@ -2,7 +2,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import GlobalStyle from "../styles";
 import { useState } from "react";
 import { SWRConfig } from "swr";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 import { SessionProvider } from "next-auth/react";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
@@ -20,7 +20,6 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
   function handleSetArtPieceToEdit(artPieceToEdit) {
     setArtPieceToEdit(artPieceToEdit);
-    mutate(`/api`);
   }
 
   function handleSetFileImageUrl(fileImageUrl) {
@@ -29,7 +28,6 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
   function handleSetFilteredCategory(filteredCategory) {
     setFilteredCategory(filteredCategory);
-    mutate(`/api`);
   }
 
   function handleSetScrollPercentage(scrollPercent) {

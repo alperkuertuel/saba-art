@@ -18,13 +18,13 @@ export default function ShowDetails({
   const { data, isLoading } = useSWR("/api", { fallbackData: [] });
   const foundArtPiece = data.find((artpiece) => artpiece.slug === slug);
 
-  if (isLoading || !foundArtPiece) {
+  if (isLoading || !data || !slug) {
     return (
       <StyledErrorMessage>
         Loading <LoadingDots />
       </StyledErrorMessage>
     );
-  } else if (!slug || !data) {
+  } else if (!foundArtPiece) {
     return (
       <StyledErrorMessage>
         404 art piece not found. <br /> <Link href={`/`}>Go back to the gallery!</Link>

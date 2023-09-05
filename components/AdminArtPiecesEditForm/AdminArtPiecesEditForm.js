@@ -1,6 +1,12 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
-export default function ArtPiecesEditForm({ artPieceToEdit }) {
+export default function ArtPiecesEditForm({
+  artPieceToEdit,
+  filteredCategory,
+  handleSetFilteredCategory,
+}) {
+  const router = useRouter();
   async function handleUpdate(event) {
     event.preventDefault();
     const form = event.target;
@@ -30,6 +36,26 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
       widthReal: editData.widthReal,
     };
 
+    const updatedArtPiecesCategory = filteredCategory.map((piece) =>
+      piece._id === artPieceToEdit._id
+        ? {
+            ...piece,
+            _id: editedArtPiece._id,
+            slug: editedArtPiece.slug,
+            date: editedArtPiece.date,
+            name: editedArtPiece.name,
+            description: editedArtPiece.description,
+            category: editedArtPiece.category,
+            technique: editedArtPiece.technique,
+            imageUrl: artPieceToEdit.imageUrl,
+            heightReal: editedArtPiece.heightReal,
+            widthReal: editedArtPiece.widthReal,
+          }
+        : piece
+    );
+
+    handleSetFilteredCategory(updatedArtPiecesCategory);
+
     try {
       const response = await fetch(`/api/${artPieceToEdit._id}`, {
         method: "PATCH",
@@ -48,7 +74,8 @@ export default function ArtPiecesEditForm({ artPieceToEdit }) {
     } catch (error) {
       console.error(`Something went wrong!`, error);
     }
-    location.reload();
+
+    router.push(`/art-pieces/${editedArtPiece.slug}`);
   }
   const currentYear = new Date().getFullYear().toString();
   return (

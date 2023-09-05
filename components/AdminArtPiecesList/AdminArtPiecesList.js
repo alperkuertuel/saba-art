@@ -8,7 +8,6 @@ import { Fragment, useState } from "react";
 import CategoryFilter from "../CategoryFilter/CategoryFilter";
 
 export default function ArtPiecesList({
-  handleSetArtPieceToEdit,
   handleSetScrollPercentage,
   handleSetFilteredCategory,
   handleSetActive,
@@ -64,7 +63,8 @@ export default function ArtPiecesList({
             </StyledItem>
             {artPieceToEdit._id === _id && toggleEditForm && (
               <ArtPiecesEditForm
-                handleSetArtPieceToEdit={handleSetArtPieceToEdit}
+                handleSetFilteredCategory={handleSetFilteredCategory}
+                filteredCategory={filteredCategory}
                 onSubmit={onSubmit}
                 artPieceToEdit={artPieceToEdit}
               />
