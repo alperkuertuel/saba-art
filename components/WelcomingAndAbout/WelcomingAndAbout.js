@@ -32,7 +32,7 @@ const StyledWelcomingText = styled.h2`
 
 const StyledAvatar = styled(Image)`
   border-radius: 50%;
-  filter: grayscale(1);
+  filter: grayscale(0.8);
 `;
 
 const StyledAboutParagraph = styled.p`

@@ -50,6 +50,10 @@ html {
     margin-bottom: 1rem;
   }
 
+  h3 {
+    margin: 1rem 0 .5rem 0;
+  }
+
   ul {
     list-style-type: none;
   }
