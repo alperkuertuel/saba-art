@@ -34,8 +34,8 @@ export default function AdminImagePreview({
       <StyledImage
         src={fileImageUrl}
         alt="image preview and crop functioniality"
-        height={50}
-        width={50}
+        height={fileImageUrl === "/img/preview.png" ? 50 : 60}
+        width={fileImageUrl === "/img/preview.png" ? 50 : 60}
         onClick={
           fileImageUrl === "/img/preview.png"
             ? () => alert("Upload an image to start the cropping!")
@@ -49,10 +49,10 @@ export default function AdminImagePreview({
 const StyledPreview = styled.article`
   display: flex;
   gap: 1rem;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   align-items: center;
 `;
 
 const StyledImage = styled(Image)`
-  border-radius: 50%;
+  border-radius: 5px;
 `;

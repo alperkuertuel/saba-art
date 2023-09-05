@@ -64,7 +64,7 @@ export default function AdminHomePage({
 
             const resizedImageData = canvas.toDataURL("image/webp");
             alert(
-              `You successfully created a compressed webp image file, which is ready for the gallery! Fill out the form to add the art piece to the gallery.`
+              `You successfully created webp image file, which is ready for the gallery! Fill out the form to add the art piece to the gallery.`
             );
 
             handleSetFileImageUrl(resizedImageData);
