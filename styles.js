@@ -8,7 +8,7 @@ export default createGlobalStyle`
     --box-color: #f4f4f4;
     --box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
     --border-color: #938270;
-    --active-color: #d9cbc4;
+    --cool-brown: #d9cbc4;
     --blue-grey: #dee1e6;
   }
 
@@ -48,6 +48,10 @@ html {
   h2 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
+  }
+
+  h3 {
+    margin: 1rem 0 .5rem 0;
   }
 
   ul {

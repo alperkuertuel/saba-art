@@ -1,7 +1,9 @@
 import ArtPiecesPreview from "@/components/ArtPiecesPreview/ArtPiecesPreview";
 import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
+import FooterComponent from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
+import WelcomingAbout from "@/components/WelcomingAndAbout/WelcomingAndAbout";
 import Head from "next/head";
 
 export default function HomePage({
@@ -20,6 +22,8 @@ export default function HomePage({
       </Head>
       <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
+        <WelcomingAbout />
+        <h3>Select a category:</h3>
         <CategoryFilter
           handleSetFilteredCategory={handleSetFilteredCategory}
           handleSetActive={handleSetActive}
@@ -28,6 +32,7 @@ export default function HomePage({
         <ArtPiecesPreview filteredCategory={filteredCategory} />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
+      <FooterComponent />
     </>
   );
 }

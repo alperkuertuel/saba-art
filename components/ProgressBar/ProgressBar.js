@@ -29,7 +29,7 @@ const ProgressBarContainer = styled.div`
   left: 0;
   width: 100%;
   height: 7px;
-  background-color: var(--primary-color);
+  background-color: var(--cool-brown);
 `;
 const ProgressBarFill = styled.div`
   height: 100%;

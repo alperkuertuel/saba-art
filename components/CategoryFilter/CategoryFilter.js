@@ -39,21 +39,19 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
           <li>
             <StyledButton onClick={handleFilterAll}>
               All
-              <CategoryCount
-                $active={active === "All" ? "var(--active-color)" : "var(--blue-grey)"}
-              >
+              <CategoryCount $active={active === "All" ? "var(--cool-brown)" : "var(--blue-grey)"}>
                 {data.length}
               </CategoryCount>
             </StyledButton>
           </li>
           <li>
             <StyledButton
-              $active={active === "Newest" ? "var(--active-color)" : "var(--blue-grey)"}
+              $active={active === "Newest" ? "var(--cool-brown)" : "var(--blue-grey)"}
               onClick={handleNewestArtPieces}
             >
               Newest from {currentYear}
               <CategoryCount
-                $active={active === "Newest" ? "var(--active-color)" : "var(--blue-grey)"}
+                $active={active === "Newest" ? "var(--cool-brown)" : "var(--blue-grey)"}
               >
                 {data.filter((piece) => piece.date === currentYear).length}
               </CategoryCount>
@@ -65,7 +63,7 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
               <StyledButton onClick={() => handleFilteredCategories(category)}>
                 {category}
                 <CategoryCount
-                  $active={active === category ? "var(--active-color)" : "var(--blue-grey)"}
+                  $active={active === category ? "var(--cool-brown)" : "var(--blue-grey)"}
                 >
                   {data.filter((count) => count.category === category).length}
                 </CategoryCount>
