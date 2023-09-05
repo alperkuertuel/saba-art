@@ -1,11 +1,22 @@
 import Image from "next/image";
+import { useState } from "react";
 import styled from "styled-components";
+import ImageCropDialog from "../ImageCropDialog/ImageCropDialog";
 
 export default function AdminImagePreview({ fileImageUrl }) {
+  const [selectedImageToCrop, setSelectedImageToCrop] = useState(null);
+  console.log(fileImageUrl);
   return (
     <StyledPreview>
       Preview:
-      <StyledImage src={fileImageUrl} alt="upload image preview" height={40} width={40} />
+      {fileImageUrl !== "/img/preview.png" ? <ImageCropDialog fileImageUrl={fileImageUrl} /> : null}
+      <StyledImage
+        src={fileImageUrl}
+        alt="upload image preview"
+        height={40}
+        width={40}
+        onClick={() => setSelectedImageToCrop(fileImageUrl)}
+      />
     </StyledPreview>
   );
 }
