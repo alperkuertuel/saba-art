@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import Cropper from "react-easy-crop";
 import { useState } from "react";
+import getCroppedImg from "./cropImage";
 
 export default function ImageCropDialog({
   fileImageUrl,
@@ -41,7 +42,10 @@ export default function ImageCropDialog({
     setCroppedAreaPixels(croppedAreaPixels);
   }
 
-  function onCrop() {}
+  async function onCrop() {
+    const croppedImageUrl = await getCroppedImg(fileImageUrl, croppedAreaPixels);
+    handleSetFileImageUrl(croppedImageUrl);
+  }
 
   return (
     <BackDrop>
