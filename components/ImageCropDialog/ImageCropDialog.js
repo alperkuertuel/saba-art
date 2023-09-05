@@ -2,7 +2,13 @@ import { styled } from "styled-components";
 import Cropper from "react-easy-crop";
 import { useState } from "react";
 
-export default function ImageCropDialog({ fileImageUrl, cropInit, zoomInit, rotationInit }) {
+export default function ImageCropDialog({
+  fileImageUrl,
+  cropInit,
+  zoomInit,
+  rotationInit,
+  onCancel,
+}) {
   if (zoomInit == null) {
     zoomInit = 1;
   }
@@ -64,7 +70,7 @@ export default function ImageCropDialog({ fileImageUrl, cropInit, zoomInit, rota
             onChange={(event) => onRotateChange(event.target.value)}
           />
           <ButtonArea>
-            <StyledButton>Cancel</StyledButton>
+            <StyledButton onClick={onCancel}>Cancel</StyledButton>
             <StyledButton>Reset</StyledButton>
             <StyledButton>Crop</StyledButton>
           </ButtonArea>

@@ -6,6 +6,9 @@ import ImageCropDialog from "../ImageCropDialog/ImageCropDialog";
 export default function AdminImagePreview({ fileImageUrl, crop, zoom, rotation }) {
   const [selectedImageToCrop, setSelectedImageToCrop] = useState(null);
   console.log(fileImageUrl);
+  function onCancel() {
+    setSelectedImageToCrop(null);
+  }
   return (
     <StyledPreview>
       Preview:
@@ -15,6 +18,7 @@ export default function AdminImagePreview({ fileImageUrl, crop, zoom, rotation }
           cropInit={crop}
           zoomInit={zoom}
           rotationInit={rotation}
+          onCancel={onCancel}
         />
       )}
       <StyledImage
