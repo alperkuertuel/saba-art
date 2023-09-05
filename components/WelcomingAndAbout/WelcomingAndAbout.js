@@ -7,7 +7,7 @@ export default function WelcomingAbout() {
       <StyledAvatar width={100} height={100} src="/img/avatar.jpg" alt="Avatar" />
 
       <StyledWelcomingText>
-        Hello, I am Vincent! Welcome to my online art gallery.
+        Hello, I am Vincent. Welcome to my online art gallery!
       </StyledWelcomingText>
       <StyledAboutParagraph>
         As an artist who enjoys working with oil and acrylic paints, I strive to create paintings
@@ -32,7 +32,7 @@ const StyledWelcomingText = styled.h2`
 
 const StyledAvatar = styled(Image)`
   border-radius: 50%;
-  filter: grayscale(50%);
+  filter: grayscale(1);
 `;
 
 const StyledAboutParagraph = styled.p`

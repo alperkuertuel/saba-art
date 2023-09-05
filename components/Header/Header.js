@@ -53,11 +53,11 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
 
 const StyledHeader = styled.header`
   width: 100%;
-  background-color: white;
+  background-color: var(--active-color);
   position: fixed;
   top: 0;
   padding: 0.5rem;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid var(--border-color);
   text-align: center;
   z-index: 1;
 `;
