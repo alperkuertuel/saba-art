@@ -41,6 +41,8 @@ export default function ImageCropDialog({
     setCroppedAreaPixels(croppedAreaPixels);
   }
 
+  function onCrop() {}
+
   return (
     <BackDrop>
       <CropContainer>
