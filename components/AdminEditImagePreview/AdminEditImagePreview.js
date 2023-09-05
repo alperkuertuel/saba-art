@@ -33,8 +33,8 @@ export default function AdminImagePreview({
       <StyledImage
         src={fileImageUrl}
         alt="image preview and crop functioniality"
-        height={60}
-        width={60}
+        height={50}
+        width={50}
         onClick={
           fileImageUrl === "/img/preview.png"
             ? () => alert("Upload an image to start the cropping!")
