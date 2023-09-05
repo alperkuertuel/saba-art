@@ -8,7 +8,6 @@ import { Fragment, useState } from "react";
 import CategoryFilter from "../CategoryFilter/CategoryFilter";
 
 export default function ArtPiecesList({
-  handleSetArtPieceToEdit,
   handleSetScrollPercentage,
   handleSetFilteredCategory,
   handleSetActive,

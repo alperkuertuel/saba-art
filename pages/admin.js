@@ -72,7 +72,6 @@ export default function AdminHomePage({
             alert(
               `You successfully uploaded a webp image file, which is ready for the gallery! Fill out the form to add the art piece to the gallery.`
             );
-
             handleSetFileImageUrl(load.target.result);
             // console.log(load.target.result);
           }
@@ -99,6 +98,7 @@ export default function AdminHomePage({
         console.error(response.status);
         return;
       }
+      await mutate();
       router.push(`/art-pieces/${newArtPieceData.slug}`);
     }
   }
@@ -115,7 +115,7 @@ export default function AdminHomePage({
       await fetch(`/api/${id}`, {
         method: "DELETE",
       });
-      // location.reload();
+      handleSetFilteredCategory(filteredCategory.filter((piece) => piece._id !== id));
     }
   }
 
