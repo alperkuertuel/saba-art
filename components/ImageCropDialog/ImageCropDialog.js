@@ -18,7 +18,7 @@ export default function ImageCropDialog({ fileImageUrl, cropInit, zoomInit, aspe
   if (aspectInit == null) {
     aspectInit = aspectRatios[0];
   }
-  const [zoom, setZoom] = useState(zoomInit);
+  const [zoom, setZoom] = useState(zoomInit || 1);
   const [crop, setCrop] = useState(cropInit);
   const [aspect, setAspect] = useState(aspectInit);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -44,13 +44,13 @@ export default function ImageCropDialog({ fileImageUrl, cropInit, zoomInit, aspe
       </CropContainer>
       <Controls>
         <ControlsArea>
-          <input
+          <ZoomSlider
             type="range"
             min={1}
             max={3}
             step={0.1}
-            defaultValue={zoom}
-            onInput={(event) => onZoomChange(event.target.value)}
+            value={zoom}
+            onChange={(event) => onZoomChange(event.target.value)}
           />
         </ControlsArea>
       </Controls>
@@ -65,17 +65,33 @@ const BackDrop = styled.span`
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 0;
 `;
 
-const CropContainer = styled.span``;
+const CropContainer = styled.span`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
 
 const Controls = styled.span`
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   width: 100%;
-  height: 100px;
-  text-align: center;
+  height: 80px;
+  background: darkgrey;
 `;
 
-const ControlsArea = styled.span``;
+const ControlsArea = styled.span`
+  display: block;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  color: white;
+`;
+
+const ZoomSlider = styled.input`
+  width: 50%;
+  background-color: var(--cool-brown);
+`;
