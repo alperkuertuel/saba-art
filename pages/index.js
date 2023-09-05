@@ -23,6 +23,7 @@ export default function HomePage({
       <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <WelcomingAbout />
+        <h3>Select a category:</h3>
         <CategoryFilter
           handleSetFilteredCategory={handleSetFilteredCategory}
           handleSetActive={handleSetActive}
