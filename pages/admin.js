@@ -85,6 +85,10 @@ export default function AdminHomePage({
   async function handleAddArtPiece(newArtPieceData) {
     if (data.some((piece) => piece.slug === newArtPieceData.slug)) {
       alert("Name already exists. Please choose a different name.");
+    } else if (data.some((piece) => piece.imageUrl === newArtPieceData.imageUrl)) {
+      window.alert(
+        "Image file is already exsiting in the art gallery. Please choose a different image"
+      );
     } else {
       const response = await fetch("/api", {
         method: "POST",
