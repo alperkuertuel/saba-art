@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function ImageCropDialog({
   fileImageUrl,
+  handleSetFileImageUrl,
   cropInit,
   zoomInit,
   rotationInit,
@@ -36,6 +37,8 @@ export default function ImageCropDialog({
     setRotation(rotation);
   }
 
+  function onCropComplete(croppedArea, croppedAreaPixels) {}
+
   return (
     <BackDrop>
       <CropContainer>
@@ -47,6 +50,7 @@ export default function ImageCropDialog({
           onCropChange={onCropChange}
           onZoomChange={onZoomChange}
           onRotateChange={onRotateChange}
+          onCropComplete={onCropComplete}
         />
       </CropContainer>
       <Controls>
@@ -72,7 +76,7 @@ export default function ImageCropDialog({
           <ButtonArea>
             <StyledButton onClick={onCancel}>Cancel</StyledButton>
             <StyledButton>Reset</StyledButton>
-            <StyledButton>Crop</StyledButton>
+            <StyledButton onClick={onCrop}>Crop</StyledButton>
           </ButtonArea>
         </ControlsArea>
       </Controls>

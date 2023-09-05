@@ -3,18 +3,26 @@ import { useState } from "react";
 import styled from "styled-components";
 import ImageCropDialog from "../ImageCropDialog/ImageCropDialog";
 
-export default function AdminImagePreview({ fileImageUrl, crop, zoom, rotation }) {
+export default function AdminImagePreview({
+  handleSetFileImageUrl,
+  fileImageUrl,
+  crop,
+  zoom,
+  rotation,
+}) {
   const [selectedImageToCrop, setSelectedImageToCrop] = useState(null);
   console.log(fileImageUrl);
   function onCancel() {
     setSelectedImageToCrop(null);
   }
+
   return (
     <StyledPreview>
       Preview:
       {selectedImageToCrop && (
         <ImageCropDialog
           fileImageUrl={fileImageUrl}
+          handleSetFileImageUrl={handleSetFileImageUrl}
           cropInit={crop}
           zoomInit={zoom}
           rotationInit={rotation}
