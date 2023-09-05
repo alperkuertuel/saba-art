@@ -3,6 +3,8 @@ import Link from "next/link";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header({ scrollPercent, handleSetScrollPercentage }) {
   const { data: session } = useSession();
@@ -20,12 +22,16 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
         <q>pictures are memories</q>
       </p>
       <StyledLoginContainer>
-        {session ? (
+        {session && session.user.role === "Admin" ? (
           <>
-            <StyledButton onClick={signOut}>Logout</StyledButton>
+            <button onClick={signOut}>
+              <FontAwesomeIcon icon={faLockOpen} />
+            </button>
           </>
         ) : (
-          <StyledButton onClick={() => signIn()}>Login</StyledButton>
+          <button onClick={() => signIn()}>
+            <FontAwesomeIcon icon={faLock} />
+          </button>
         )}
       </StyledLoginContainer>
       {session && session.user.role === "Admin" ? (
@@ -68,21 +74,6 @@ const StyledLoginContainer = styled.div`
   left: 5px;
   font-size: 0.8rem;
   padding: 0.5rem;
-`;
-
-const StyledButton = styled.button`
-  text-transform: uppercase;
-  background-color: var(--secondary-color);
-  color: white;
-  padding: 0.5rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: inherit;
-  &:hover {
-    background-color: var(--tertiary-color);
-    transition: background-color 0.2s ease;
-    color: black;
-  }
 `;
 
 const Greeting = styled.p`
