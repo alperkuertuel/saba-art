@@ -23,12 +23,14 @@ export default function ImageCropDialog({ fileImageUrl, cropInit, zoomInit, aspe
   const [aspect, setAspect] = useState(aspectInit);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
-  function onCropChange() {}
+  function onCropChange(crop) {
+    setCrop(crop);
+  }
 
   return (
     <BackDrop>
       <CropContainer>
-        <Cropper image={fileImageUrl} zoom={zoom} crop={crop} onCropChange={() => onCropChange()} />
+        <Cropper image={fileImageUrl} zoom={zoom} crop={crop} onCropChange={onCropChange} />
       </CropContainer>
       <Controls></Controls>
     </BackDrop>
