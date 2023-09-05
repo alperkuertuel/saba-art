@@ -56,6 +56,7 @@ export default function ImageCropDialog({
           image={fileImageUrl}
           zoom={zoom}
           crop={crop}
+          aspect={3 / 2}
           rotation={rotation}
           onCropChange={onCropChange}
           onZoomChange={onZoomChange}
