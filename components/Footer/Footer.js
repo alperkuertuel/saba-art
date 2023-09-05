@@ -64,6 +64,6 @@ const GreyShareFacebookIcon = styled(FacebookShareButton)`
   filter: grayscale(0.8);
 `;
 
-const GreyShareWhatsAppIcon = styled(FacebookShareButton)`
+const GreyShareWhatsAppIcon = styled(WhatsappShareButton)`
   filter: grayscale(0.8);
 `;
