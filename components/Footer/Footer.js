@@ -9,7 +9,7 @@ export default function FooterComponent() {
         <FacebookShareButton
           windowWidth={1000}
           windowHeight={400}
-          url={`https://capstone-project-lt3yhzqyj-alper92.vercel.app`}
+          url={`https://capstone-project-art-gallery-alper92.vercel.app/`}
         >
           <FacebookIcon size={32} round={true} />
         </FacebookShareButton>
@@ -17,7 +17,7 @@ export default function FooterComponent() {
           <WhatsappShareButton
             windowWidth={1000}
             windowHeight={1000}
-            url={`https://capstone-project-lt3yhzqyj-alper92.vercel.app`}
+            url={`https://capstone-project-art-gallery-alper92.vercel.app/`}
             title={`I found this beautiful art gallery! Click the link for more: `}
           >
             <WhatsappIcon size={32} round={true} />
@@ -47,7 +47,7 @@ const StyledFooter = styled.footer`
   gap: 1.5rem;
   padding: 0.5rem;
   border-top: 1px solid var(--border-color);
-  background-color: var(--active-color);
+  background-color: var(--cool-brown);
 `;
 
 const ShareButtons = styled.ul`
