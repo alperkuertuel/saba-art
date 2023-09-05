@@ -6,6 +6,7 @@ import Link from "next/link";
 import Head from "next/head";
 import useSWR from "swr";
 import LoadingDots from "@/components/LoadingDots/LoadingDots";
+import FooterComponent from "@/components/Footer/Footer";
 
 export default function ShowDetails({
   scrollPercent,
@@ -57,6 +58,7 @@ export default function ShowDetails({
           active={active}
         />
       </main>
+      <FooterComponent />
     </>
   );
 }

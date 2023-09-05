@@ -11,7 +11,7 @@ export default function FooterComponent() {
           windowHeight={400}
           url={`https://capstone-project-art-gallery-alper92.vercel.app/`}
         >
-          <FacebookIcon size={32} round={true} />
+          <FacebookIcon size={30} round={true} />
         </FacebookShareButton>
         <li>
           <WhatsappShareButton
@@ -20,7 +20,7 @@ export default function FooterComponent() {
             url={`https://capstone-project-art-gallery-alper92.vercel.app/`}
             title={`I found this beautiful art gallery! Click the link for more: `}
           >
-            <WhatsappIcon size={32} round={true} />
+            <WhatsappIcon size={30} round={true} />
           </WhatsappShareButton>
         </li>
       </ShareButtons>
