@@ -105,7 +105,7 @@ const Controls = styled.span`
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 80px;
+  height: 100px;
   background: black;
 `;
 
@@ -118,8 +118,10 @@ const ControlsArea = styled.span`
 
 const ZoomSlider = styled.input`
   width: 50%;
+  margin: 5px;
 `;
 
 const RotateSlider = styled.input`
   width: 50%;
+  margin: 5px;
 `;
