@@ -37,7 +37,9 @@ export default function ImageCropDialog({
     setRotation(rotation);
   }
 
-  function onCropComplete(croppedArea, croppedAreaPixels) {}
+  function onCropComplete(croppedArea, croppedAreaPixels) {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }
 
   return (
     <BackDrop>
