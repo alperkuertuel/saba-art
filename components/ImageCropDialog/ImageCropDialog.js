@@ -8,18 +8,28 @@ const aspectRatios = [
   { value: 1 / 2, text: "1/2" },
 ];
 
-export default function ImageCropDialog({ fileImageUrl, cropInit, zoomInit, aspectInit }) {
+export default function ImageCropDialog({
+  fileImageUrl,
+  cropInit,
+  zoomInit,
+  aspectInit,
+  rotationInit,
+}) {
   if (zoomInit == null) {
     zoomInit = 1;
   }
   if (cropInit == null) {
     cropInit = { x: 0, y: 0 };
   }
+  if (rotationInit == null) {
+    rotation = 0;
+  }
   if (aspectInit == null) {
     aspectInit = aspectRatios[0];
   }
   const [zoom, setZoom] = useState(zoomInit || 1);
   const [crop, setCrop] = useState(cropInit);
+  const [rotation, setRotation] = useState(0);
   const [aspect, setAspect] = useState(aspectInit);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
