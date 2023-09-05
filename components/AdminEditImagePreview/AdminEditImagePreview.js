@@ -3,20 +3,20 @@ import { useState } from "react";
 import styled from "styled-components";
 import ImageCropDialog from "../ImageCropDialog/ImageCropDialog";
 
-export default function AdminImagePreview({ fileImageUrl }) {
+export default function AdminImagePreview({ fileImageUrl, crop, zoom, aspect }) {
   const [selectedImageToCrop, setSelectedImageToCrop] = useState(null);
   console.log(fileImageUrl);
   return (
     <StyledPreview>
       Preview:
-      {fileImageUrl !== "/img/preview.png" ? (
+      {selectedImageToCrop && (
         <ImageCropDialog
           fileImageUrl={fileImageUrl}
           cropInit={crop}
           zoomInit={zoom}
           aspectInit={aspect}
         />
-      ) : null}
+      )}
       <StyledImage
         src={fileImageUrl}
         alt="upload image preview"
@@ -28,7 +28,7 @@ export default function AdminImagePreview({ fileImageUrl }) {
   );
 }
 
-const StyledPreview = styled.p`
+const StyledPreview = styled.article`
   display: flex;
   gap: 1rem;
   align-items: center;
