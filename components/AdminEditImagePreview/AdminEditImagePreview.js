@@ -16,9 +16,6 @@ export default function AdminImagePreview({
   function onCancel() {
     setSelectedImageToCrop(null);
   }
-  function resetImage(fileImageUrl) {
-    handleSetFileImageUrl(fileImageUrl);
-  }
 
   return (
     <StyledPreview>
@@ -31,7 +28,6 @@ export default function AdminImagePreview({
           zoomInit={zoom}
           rotationInit={rotation}
           onCancel={onCancel}
-          onReset={resetImage}
           setSelectedImageToCrop={setSelectedImageToCrop}
         />
       )}
