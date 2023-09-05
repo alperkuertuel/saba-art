@@ -22,14 +22,14 @@ export default function ImageCropDialog({
     cropInit = { x: 0, y: 0 };
   }
   if (rotationInit == null) {
-    rotation = 0;
+    rotationInit = 0;
   }
   if (aspectInit == null) {
     aspectInit = aspectRatios[0];
   }
   const [zoom, setZoom] = useState(zoomInit || 1);
   const [crop, setCrop] = useState(cropInit);
-  const [rotation, setRotation] = useState(0);
+  const [rotation, setRotation] = useState(rotationInit || 0);
   const [aspect, setAspect] = useState(aspectInit);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
@@ -41,6 +41,10 @@ export default function ImageCropDialog({
     setZoom(zoom);
   }
 
+  function onRotateChange(rotation) {
+    setRotation(rotation);
+  }
+
   return (
     <BackDrop>
       <CropContainer>
@@ -48,12 +52,15 @@ export default function ImageCropDialog({
           image={fileImageUrl}
           zoom={zoom}
           crop={crop}
+          rotation={rotation}
           onCropChange={onCropChange}
           onZoomChange={onZoomChange}
+          onRotateChange={onRotateChange}
         />
       </CropContainer>
       <Controls>
         <ControlsArea>
+          Zoom:
           <ZoomSlider
             type="range"
             min={1}
@@ -61,6 +68,15 @@ export default function ImageCropDialog({
             step={0.1}
             value={zoom}
             onChange={(event) => onZoomChange(event.target.value)}
+          />
+          Rotate:
+          <RotateSlider
+            type="range"
+            min={0}
+            max={360}
+            step={1}
+            value={rotation}
+            onChange={(event) => onRotateChange(event.target.value)}
           />
         </ControlsArea>
       </Controls>
@@ -90,18 +106,20 @@ const Controls = styled.span`
   bottom: 0;
   width: 100%;
   height: 80px;
-  background: darkgrey;
+  background: black;
 `;
 
 const ControlsArea = styled.span`
-  display: block;
-  text-align: center;
-  width: 100%;
-  height: 100%;
   color: white;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ZoomSlider = styled.input`
   width: 50%;
-  background-color: var(--cool-brown);
+`;
+
+const RotateSlider = styled.input`
+  width: 50%;
 `;
