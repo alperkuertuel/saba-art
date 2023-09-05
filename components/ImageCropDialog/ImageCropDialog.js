@@ -63,6 +63,11 @@ export default function ImageCropDialog({ fileImageUrl, cropInit, zoomInit, rota
             value={rotation}
             onChange={(event) => onRotateChange(event.target.value)}
           />
+          <ButtonArea>
+            <StyledButton>Cancel</StyledButton>
+            <StyledButton>Reset</StyledButton>
+            <StyledButton>Crop</StyledButton>
+          </ButtonArea>
         </ControlsArea>
       </Controls>
     </BackDrop>
@@ -90,7 +95,7 @@ const Controls = styled.span`
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 100px;
+  height: 150px;
   background: black;
 `;
 
@@ -99,7 +104,7 @@ const ControlsArea = styled.span`
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  position: relative;
+  align-items: center;
 `;
 
 const ZoomSlider = styled.input`
@@ -110,4 +115,18 @@ const ZoomSlider = styled.input`
 const RotateSlider = styled.input`
   width: 50%;
   margin: 5px;
+`;
+
+const ButtonArea = styled.span`
+  display: flex;
+  gap: 1rem;
+  margin: 1rem;
+`;
+
+const StyledButton = styled.button`
+  font-size: 0.9rem;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  text-transform: uppercase;
 `;
