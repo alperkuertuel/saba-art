@@ -1,29 +1,35 @@
 import ArtPiecesPreview from "@/components/ArtPiecesPreview/ArtPiecesPreview";
 import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
-import Header from "@/components/Header/Header";
-import Head from "next/head";
+import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 
 export default function HomePage({
   handleSetFilteredCategory,
   filteredCategory,
-  scrollPercent,
-  handleSetScrollPercentage,
+  handleSetActive,
+  active,
 }) {
   return (
-    <>
-      <Head>
-        <title>ArtistName - pictures are memories</title>
-        <meta name="description" content="the gallery of ArtistName" />
-      </Head>
-      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
-      <main>
-        <CategoryFilter
-          handleSetFilteredCategory={handleSetFilteredCategory}
-          filteredCategory={filteredCategory}
-        />
-        <ArtPiecesPreview filteredCategory={filteredCategory} />
-      </main>
-    </>
+    <div
+      style={{
+        margin: "1rem auto",
+        maxWidth: "1280px",
+        padding: "0 1rem",
+      }}
+    >
+      <Link href="/">
+        <FontAwesomeIcon icon={faArrowLeftLong} />
+        {" BACK"}
+      </Link>
+      <CategoryFilter
+        active={active}
+        handleSetActive={handleSetActive}
+        handleSetFilteredCategory={handleSetFilteredCategory}
+        filteredCategory={filteredCategory}
+      />
+      <ArtPiecesPreview filteredCategory={filteredCategory} />
+    </div>
   );
 }
-/////// INDEX.JS OF ART-PIECES TO DISPLAY AGAIN ALL ART-PIECES ///////
+/////// ONLY PREVIEWS VISIBLE HERE ///////

@@ -87,7 +87,7 @@ export default function AdminHomePage({
       alert("Name already exists. Please choose a different name.");
     } else if (data.some((piece) => piece.imageUrl === newArtPieceData.imageUrl)) {
       window.alert(
-        "Image file is already exsiting in the art gallery. Please choose a different image"
+        "Image file is already exsiting in the art gallery. Please choose a different image!"
       );
     } else {
       const response = await fetch("/api", {
