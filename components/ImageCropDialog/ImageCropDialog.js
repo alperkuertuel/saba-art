@@ -27,10 +27,20 @@ export default function ImageCropDialog({ fileImageUrl, cropInit, zoomInit, aspe
     setCrop(crop);
   }
 
+  function onZoomChange(zoom) {
+    setZoom(zoom);
+  }
+
   return (
     <BackDrop>
       <CropContainer>
-        <Cropper image={fileImageUrl} zoom={zoom} crop={crop} onCropChange={onCropChange} />
+        <Cropper
+          image={fileImageUrl}
+          zoom={zoom}
+          crop={crop}
+          onCropChange={onCropChange}
+          onZoomChange={onZoomChange}
+        />
       </CropContainer>
       <Controls></Controls>
     </BackDrop>
