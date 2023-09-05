@@ -81,6 +81,8 @@ const BackDrop = styled.span`
   left: 0;
   bottom: 0;
   right: 0;
+
+  z-index: 1;
 `;
 
 const CropContainer = styled.span`
@@ -88,7 +90,7 @@ const CropContainer = styled.span`
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 150px;
 `;
 
 const Controls = styled.span`
@@ -124,7 +126,7 @@ const ButtonArea = styled.span`
 `;
 
 const StyledButton = styled.button`
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   background-color: white;
   padding: 5px;
   border-radius: 5px;
