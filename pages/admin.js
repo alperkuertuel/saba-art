@@ -62,7 +62,7 @@ export default function AdminHomePage({
             const ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0, width, height);
 
-            const resizedImageData = canvas.toDataURL("image/webp", 0.7);
+            const resizedImageData = canvas.toDataURL("image/webp");
             alert(
               `You successfully created a compressed webp image file, which is ready for the gallery! Fill out the form to add the art piece to the gallery.`
             );
