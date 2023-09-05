@@ -67,16 +67,16 @@ export default function ImageCropDialog({
       <Controls>
         <ControlsArea>
           Zoom:
-          <ZoomSlider
+          <Slider
             type="range"
             min={1}
             max={3}
-            step={0.1}
+            step={0.01}
             value={zoom}
             onChange={(event) => onZoomChange(event.target.value)}
           />
           Rotate:
-          <RotateSlider
+          <Slider
             type="range"
             min={0}
             max={360}
@@ -96,12 +96,11 @@ export default function ImageCropDialog({
 
 const BackDrop = styled.span`
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-
   z-index: 1;
 `;
 
@@ -110,33 +109,56 @@ const CropContainer = styled.span`
   top: 0;
   left: 0;
   right: 0;
-  bottom: 150px;
+  bottom: 180px;
 `;
 
 const Controls = styled.span`
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 150px;
+  height: 180px;
   background: black;
 `;
 
 const ControlsArea = styled.span`
+  font-size: 1rem;
   color: white;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `;
 
-const ZoomSlider = styled.input`
+const Slider = styled.input`
   width: 50%;
   margin: 5px;
-`;
-
-const RotateSlider = styled.input`
-  width: 50%;
-  margin: 5px;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: var(--blue-grey);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  &:hover {
+    opacity: 1;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: var(--border-color);
+    cursor: pointer;
+  }
+  &::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #04aa6d;
+    cursor: pointer;
+  }
 `;
 
 const ButtonArea = styled.span`
@@ -146,9 +168,17 @@ const ButtonArea = styled.span`
 `;
 
 const StyledButton = styled.button`
-  font-size: 0.8rem;
-  background-color: white;
-  padding: 5px;
-  border-radius: 5px;
   text-transform: uppercase;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  &:hover {
+    background-color: var(--tertiary-color);
+    transition: background-color 0.2s ease;
+    color: black;
+  }
 `;
