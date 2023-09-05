@@ -15,10 +15,10 @@ export default function ShowDetails({
 }) {
   const router = useRouter();
   const { slug } = router.query;
-  const { data, isLoading } = useSWR("/api", { fallbackData: [] });
+  const { data, isLoading, isValidating } = useSWR("/api", { fallbackData: [] });
   const foundArtPiece = data.find((artpiece) => artpiece.slug === slug);
 
-  if (isLoading || !data || !slug) {
+  if (isLoading || !data || !slug || isValidating) {
     return (
       <StyledErrorMessage>
         Loading <LoadingDots />

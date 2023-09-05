@@ -93,7 +93,6 @@ export default function AdminHomePage({
         },
         body: JSON.stringify(newArtPieceData),
       });
-
       if (!response.ok) {
         console.error(response.status);
         return;
@@ -115,7 +114,8 @@ export default function AdminHomePage({
       await fetch(`/api/${id}`, {
         method: "DELETE",
       });
-      handleSetFilteredCategory(filteredCategory.filter((piece) => piece._id !== id));
+      alert(`You successfully deleted ${artPieceToDelete.name}!`);
+      location.reload();
     }
   }
 
