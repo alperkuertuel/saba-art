@@ -6,6 +6,7 @@ import getCroppedImg from "./cropImage";
 export default function ImageCropDialog({
   fileImageUrl,
   handleSetFileImageUrl,
+  setSelectedImageToCrop,
   cropInit,
   zoomInit,
   rotationInit,
@@ -45,6 +46,7 @@ export default function ImageCropDialog({
   async function onCrop() {
     const croppedImageUrl = await getCroppedImg(fileImageUrl, croppedAreaPixels);
     handleSetFileImageUrl(croppedImageUrl);
+    setSelectedImageToCrop(null);
   }
 
   return (
