@@ -9,7 +9,14 @@ export default function AdminImagePreview({ fileImageUrl }) {
   return (
     <StyledPreview>
       Preview:
-      {fileImageUrl !== "/img/preview.png" ? <ImageCropDialog fileImageUrl={fileImageUrl} /> : null}
+      {fileImageUrl !== "/img/preview.png" ? (
+        <ImageCropDialog
+          fileImageUrl={fileImageUrl}
+          cropInit={crop}
+          zoomInit={zoom}
+          aspectInit={aspect}
+        />
+      ) : null}
       <StyledImage
         src={fileImageUrl}
         alt="upload image preview"
