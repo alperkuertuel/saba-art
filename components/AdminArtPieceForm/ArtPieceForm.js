@@ -48,14 +48,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
         <FileLabel htmlFor="imageUrl">
           <FontAwesomeIcon icon={faCloudArrowUp} />
         </FileLabel>
-        <FileInput
-          type="file"
-          id="imageUrl"
-          name="imageUrl"
-          onChange={onChange}
-          accept="image/*"
-          required
-        />
+        <FileInput type="file" id="imageUrl" name="imageUrl" onChange={onChange} accept="image/*" />
         <label htmlFor="name">Name your art piece:</label>
         <Input
           type="text"

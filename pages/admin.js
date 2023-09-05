@@ -89,6 +89,8 @@ export default function AdminHomePage({
       window.alert(
         "Image file is already exsiting in the art gallery. Please choose a different image!"
       );
+    } else if (newArtPieceData.imageUrl === "/img/preview.png" || !newArtPieceData) {
+      alert("You cannot add an art piece without an image!");
     } else {
       const response = await fetch("/api", {
         method: "POST",
