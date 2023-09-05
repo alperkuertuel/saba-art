@@ -42,13 +42,40 @@ export default function ImageCropDialog({ fileImageUrl, cropInit, zoomInit, aspe
           onZoomChange={onZoomChange}
         />
       </CropContainer>
-      <Controls></Controls>
+      <Controls>
+        <ControlsArea>
+          <input
+            type="range"
+            min={1}
+            max={3}
+            step={0.1}
+            defaultValue={zoom}
+            onInput={(event) => onZoomChange(event.target.value)}
+          />
+        </ControlsArea>
+      </Controls>
     </BackDrop>
   );
 }
 
-const BackDrop = styled.span``;
+const BackDrop = styled.span`
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+`;
 
 const CropContainer = styled.span``;
 
-const Controls = styled.span``;
+const Controls = styled.span`
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+`;
+
+const ControlsArea = styled.span``;
