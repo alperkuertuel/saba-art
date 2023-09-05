@@ -12,13 +12,17 @@ export default function AdminImagePreview({
 }) {
   const [selectedImageToCrop, setSelectedImageToCrop] = useState(null);
   console.log(fileImageUrl);
+
   function onCancel() {
     setSelectedImageToCrop(null);
+  }
+  function resetImage(fileImageUrl) {
+    handleSetFileImageUrl(fileImageUrl);
   }
 
   return (
     <StyledPreview>
-      Preview:
+      {fileImageUrl === "/img/preview.png" ? "Upload preview:" : "Crop your image:"}
       {selectedImageToCrop && (
         <ImageCropDialog
           fileImageUrl={fileImageUrl}
@@ -27,14 +31,15 @@ export default function AdminImagePreview({
           zoomInit={zoom}
           rotationInit={rotation}
           onCancel={onCancel}
+          onReset={resetImage}
           setSelectedImageToCrop={setSelectedImageToCrop}
         />
       )}
       <StyledImage
         src={fileImageUrl}
         alt="upload image preview"
-        height={40}
-        width={40}
+        height={50}
+        width={50}
         onClick={() => setSelectedImageToCrop(fileImageUrl)}
       />
     </StyledPreview>
@@ -44,6 +49,7 @@ export default function AdminImagePreview({
 const StyledPreview = styled.article`
   display: flex;
   gap: 1rem;
+  margin: 1rem 0;
   align-items: center;
 `;
 

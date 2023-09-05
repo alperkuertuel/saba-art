@@ -11,6 +11,7 @@ export default function ImageCropDialog({
   zoomInit,
   rotationInit,
   onCancel,
+  onReset,
 }) {
   if (zoomInit == null) {
     zoomInit = 1;
@@ -85,7 +86,7 @@ export default function ImageCropDialog({
           />
           <ButtonArea>
             <StyledButton onClick={onCancel}>Cancel</StyledButton>
-            <StyledButton>Reset</StyledButton>
+            <StyledButton onClick={onReset}>Reset</StyledButton>
             <StyledButton onClick={onCrop}>Crop</StyledButton>
           </ButtonArea>
         </ControlsArea>
