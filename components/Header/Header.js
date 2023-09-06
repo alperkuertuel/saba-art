@@ -63,7 +63,7 @@ const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   padding: 0.5rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--tertiary-color);
   text-align: center;
   z-index: 1;
 `;

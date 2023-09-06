@@ -50,7 +50,7 @@ const StyledFooter = styled.footer`
   align-items: center;
   gap: 1.5rem;
   padding: 0.5rem;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--tertiary-color);
   background-color: var(--cool-brown);
 `;
 

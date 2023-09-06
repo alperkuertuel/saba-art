@@ -105,7 +105,7 @@ const StyledImage = styled(Image)`
   border-radius: 5px;
   width: 100%;
   height: 50px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--tertiary-color);
 `;
 
 const StyledName = styled.p`

@@ -186,7 +186,7 @@ const Slider = styled.input`
     appearance: none;
     width: 25px;
     height: 25px;
-    background: var(--border-color);
+    background: var(--tertiary-color);
     cursor: pointer;
   }
   &::-moz-range-thumb {
@@ -207,7 +207,7 @@ const AspectRatioSelector = styled.select`
   outline: none;
   display: inline-block;
   width: auto;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--tertiary-color);
   border-radius: 5px;
   padding: 2px;
   margin: 5px;
