@@ -15,8 +15,9 @@ export default function AdminImagePreview({
 
   function onCancel() {
     setSelectedImageToCrop(null);
-    handleSetFileImageUrl("/img/preview.png");
   }
+  console.log("fileImageUrl", fileImageUrl);
+  console.log("selectedImageToCrop", selectedImageToCrop);
 
   return (
     <StyledPreview>
