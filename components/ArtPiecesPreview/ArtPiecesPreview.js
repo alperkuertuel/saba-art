@@ -54,6 +54,7 @@ const Caption = styled.figcaption`
 
 const GalleryCard = styled.article`
   background-color: var(--box-color);
+  padding: 3px;
   border-radius: 5px;
   height: fit-content;
   box-shadow: var(--box-shadow);
