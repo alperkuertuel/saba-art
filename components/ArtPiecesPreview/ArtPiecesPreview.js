@@ -47,6 +47,8 @@ const StyledImage = styled(Image)`
 const Caption = styled.figcaption`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   padding: 0.5rem;
 `;
 

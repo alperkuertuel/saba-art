@@ -21,5 +21,5 @@ export default function DisplayGrid({ handleSetGridRepeatMinsize }) {
 const StyledGridButton = styled.button`
   font-size: 1.5rem;
   margin-right: 1rem;
-  color: var(--border-color);
+  color: var(--cool-brown);
 `;
