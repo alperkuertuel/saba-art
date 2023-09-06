@@ -95,6 +95,16 @@ export default function ImageCropDialog({
             value={rotation}
             onChange={(event) => onRotateChange(event.target.value)}
           />
+          Aspect ratio:
+          <select>
+            {aspectRatios.map((ratio) => (
+              <option
+                key={ratio.text}
+                value={ratio.value}
+                selected={ratio.value === aspect.value}
+              ></option>
+            ))}
+          </select>
           <ButtonArea>
             <StyledButton onClick={onCancel}>Cancel</StyledButton>
             <StyledButton onClick={onCrop}>Crop</StyledButton>
