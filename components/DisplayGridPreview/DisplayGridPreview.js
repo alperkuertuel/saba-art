@@ -6,13 +6,13 @@ export default function DisplayGrid({ handleSetGridRepeatMinsize }) {
   return (
     <>
       <StyledGridButton onClick={() => handleSetGridRepeatMinsize("50px")}>
-        <FontAwesomeIcon icon={faTableCells} />
+        <FontAwesomeIcon aria-label="show small grid" icon={faTableCells} />
       </StyledGridButton>
       <StyledGridButton onClick={() => handleSetGridRepeatMinsize("100px")}>
-        <FontAwesomeIcon icon={faTableCellsLarge} />
+        <FontAwesomeIcon aria-label="show middle size grid" icon={faTableCellsLarge} />
       </StyledGridButton>
       <StyledGridButton onClick={() => handleSetGridRepeatMinsize("280px")}>
-        <FontAwesomeIcon icon={faSquare} />
+        <FontAwesomeIcon aria-label="show large grid" icon={faSquare} />
       </StyledGridButton>
     </>
   );
