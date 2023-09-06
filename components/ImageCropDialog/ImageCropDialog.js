@@ -50,6 +50,12 @@ export default function ImageCropDialog({
     setRotation(rotation);
   }
 
+  function onAspectChange(event) {
+    const value = event.target.value;
+    const ratio = aspectRatios.find((ratio) => ratio.value == value);
+    setAspect(ratio);
+  }
+
   function onCropComplete(croppedArea, croppedAreaPixels) {
     setCroppedAreaPixels(croppedAreaPixels);
   }
@@ -67,7 +73,7 @@ export default function ImageCropDialog({
           image={fileImageUrl}
           zoom={zoom}
           crop={crop}
-          aspect={aspect}
+          aspect={aspect.value}
           rotation={rotation}
           onCropChange={onCropChange}
           onZoomChange={onZoomChange}
@@ -95,14 +101,12 @@ export default function ImageCropDialog({
             value={rotation}
             onChange={(event) => onRotateChange(event.target.value)}
           />
-          Aspect ratio:
-          <select>
+          Select aspect ratio:
+          <select onChange={onAspectChange}>
             {aspectRatios.map((ratio) => (
-              <option
-                key={ratio.text}
-                value={ratio.value}
-                selected={ratio.value === aspect.value}
-              ></option>
+              <option key={ratio.text} value={ratio.value} selected={ratio.value === aspect.value}>
+                {ratio.text}
+              </option>
             ))}
           </select>
           <ButtonArea>
