@@ -24,7 +24,12 @@ export default function AdminHomePage({
   const maxHeight = 800; // maxHeight of detail page
 
   function handleImageUpload(event) {
-    const imageFile = event.target.files[0];
+    let imageFile = event.target.files[0];
+    console.log(imageFile);
+
+    if (imageFile === undefined) {
+      return;
+    }
 
     if (imageFile.type === "image/vnd.microsoft.icon" || imageFile.type === "image/gif") {
       return alert(
