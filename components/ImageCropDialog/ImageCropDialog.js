@@ -35,7 +35,7 @@ export default function ImageCropDialog({
   const [zoom, setZoom] = useState(zoomInit || 1);
   const [crop, setCrop] = useState(cropInit);
   const [rotation, setRotation] = useState(rotationInit || 0);
-  const [aspect, setAspect] = useState(aspectInit);
+  const [aspect, setAspect] = useState(aspectInit || aspectRatios[0]);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
   function onCropChange(crop) {
@@ -83,9 +83,11 @@ export default function ImageCropDialog({
       </CropContainer>
       <Controls>
         <ControlsArea>
-          Zoom:
+          <label htmlFor="zoom">Zoom:</label>
           <Slider
             type="range"
+            id="zoom"
+            name="zoom"
             min={1}
             max={3}
             step={0.01}
@@ -93,8 +95,11 @@ export default function ImageCropDialog({
             onChange={(event) => onZoomChange(event.target.value)}
           />
           Rotate:
+          <label htmlFor="rotate"></label>
           <Slider
             type="range"
+            id="rotate"
+            name="rotate"
             min={-360}
             max={360}
             step={0.01}
@@ -102,13 +107,13 @@ export default function ImageCropDialog({
             onChange={(event) => onRotateChange(event.target.value)}
           />
           <SelectContainer>
-            Select aspect ratio:
-            <AspectRatioSelector onChange={onAspectChange}>
+            <label htmlFor="aspect-ratio">Select aspect ratio:</label>
+            <AspectRatioSelector id="aspect-ratio" name="aspect-ratio" onChange={onAspectChange}>
               {aspectRatios.map((ratio) => (
                 <option
                   key={ratio.text}
                   value={ratio.value}
-                  selected={ratio.value === aspect.value}
+                  defaultValue={ratio.value === aspect.value}
                 >
                   {ratio.text}
                 </option>
