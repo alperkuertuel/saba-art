@@ -40,19 +40,15 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
   return (
     <StyledSection>
       <h2>Add a new art piece: </h2>
+      <AdminImagePreview
+        fileImageUrl={fileImageUrl}
+        handleSetFileImageUrl={handleSetFileImageUrl}
+      />
       <StyledForm onSubmit={handleSubmit} autoComplete="off">
         <FileLabel htmlFor="imageUrl">
           <FontAwesomeIcon icon={faCloudArrowUp} />
         </FileLabel>
-        <FileInput
-          type="file"
-          id="imageUrl"
-          name="imageUrl"
-          onChange={onChange}
-          accept="image/*"
-          required
-        />
-        <AdminImagePreview fileImageUrl={fileImageUrl} />
+        <FileInput type="file" id="imageUrl" name="imageUrl" onChange={onChange} accept="image/*" />
         <label htmlFor="name">Name your art piece:</label>
         <Input
           type="text"
