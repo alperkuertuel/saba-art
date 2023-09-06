@@ -101,14 +101,20 @@ export default function ImageCropDialog({
             value={rotation}
             onChange={(event) => onRotateChange(event.target.value)}
           />
-          Select aspect ratio:
-          <select onChange={onAspectChange}>
-            {aspectRatios.map((ratio) => (
-              <option key={ratio.text} value={ratio.value} selected={ratio.value === aspect.value}>
-                {ratio.text}
-              </option>
-            ))}
-          </select>
+          <SelectContainer>
+            Select aspect ratio:
+            <AspectRatioSelector onChange={onAspectChange}>
+              {aspectRatios.map((ratio) => (
+                <option
+                  key={ratio.text}
+                  value={ratio.value}
+                  selected={ratio.value === aspect.value}
+                >
+                  {ratio.text}
+                </option>
+              ))}
+            </AspectRatioSelector>
+          </SelectContainer>
           <ButtonArea>
             <StyledButton onClick={onCancel}>Cancel</StyledButton>
             <StyledButton onClick={onCrop}>Crop</StyledButton>
@@ -134,14 +140,14 @@ const CropContainer = styled.span`
   top: 0;
   left: 0;
   right: 0;
-  bottom: 180px;
+  bottom: 200px;
 `;
 
 const Controls = styled.span`
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 180px;
+  height: 205px;
   background: black;
 `;
 
@@ -186,10 +192,26 @@ const Slider = styled.input`
   }
 `;
 
+const SelectContainer = styled.span`
+  display: flex;
+  align-items: center;
+`;
+
+const AspectRatioSelector = styled.select`
+  text-align: center;
+  outline: none;
+  display: inline-block;
+  width: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 2px;
+  margin: 5px;
+`;
+
 const ButtonArea = styled.span`
   display: flex;
   gap: 1rem;
-  margin: 1rem;
+  margin: 0.5rem;
 `;
 
 const StyledButton = styled.button`
