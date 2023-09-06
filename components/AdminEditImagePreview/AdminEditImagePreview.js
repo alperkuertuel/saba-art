@@ -35,9 +35,10 @@ export default function AdminImagePreview({
       )}
       <StyledImage
         src={fileImageUrl}
+        priority={true}
         alt="image preview and crop functioniality"
-        height={fileImageUrl === "/img/preview.png" ? 50 : 60}
-        width={fileImageUrl === "/img/preview.png" ? 50 : 60}
+        height={512}
+        width={512}
         onClick={
           fileImageUrl === "/img/preview.png"
             ? () => alert("Upload an image to start the cropping!")
@@ -57,4 +58,6 @@ const StyledPreview = styled.article`
 
 const StyledImage = styled(Image)`
   border-radius: 5px;
+  width: auto;
+  height: 50px;
 `;
