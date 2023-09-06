@@ -16,6 +16,12 @@ export default function AdminImagePreview({
   function onCancel() {
     setSelectedImageToCrop(null);
   }
+
+  function onReset() {
+    setSelectedImageToCrop(null);
+    handleSetFileImageUrl("/img/preview.png");
+  }
+
   console.log("fileImageUrl", fileImageUrl);
   console.log("selectedImageToCrop", selectedImageToCrop);
 
@@ -31,6 +37,7 @@ export default function AdminImagePreview({
           aspectInit={aspect}
           rotationInit={rotation}
           onCancel={onCancel}
+          onReset={onReset}
           setSelectedImageToCrop={setSelectedImageToCrop}
         />
       )}
