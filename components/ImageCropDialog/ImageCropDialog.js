@@ -95,9 +95,9 @@ export default function ImageCropDialog({
           Rotate:
           <Slider
             type="range"
-            min={0}
+            min={-360}
             max={360}
-            step={1}
+            step={0.01}
             value={rotation}
             onChange={(event) => onRotateChange(event.target.value)}
           />
