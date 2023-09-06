@@ -3,7 +3,6 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export default function ArtPiecesPreview({ filteredCategory, size }) {
-  console.log(size);
   return (
     <GalleryWrapper size={size}>
       {filteredCategory &&
@@ -33,7 +32,7 @@ export default function ArtPiecesPreview({ filteredCategory, size }) {
 const GalleryWrapper = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(${(props) => props.size}, 1fr));
-  grid-gap: 4rem;
+  grid-gap: 3rem;
   width: 100%;
   max-width: 1280px;
 `;

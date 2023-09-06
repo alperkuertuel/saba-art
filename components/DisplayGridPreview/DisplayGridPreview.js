@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { faSquare, faTableCells, faTableCellsLarge } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from "styled-components";
 
 export default function DisplayGrid({ handleSetGridRepeatMinsize }) {
   return (
     <>
-      <button onClick={() => handleSetGridRepeatMinsize("50px")}>Grid Small</button>
-      <button onClick={() => handleSetGridRepeatMinsize("100px")}>Grid Middle</button>
-      <button onClick={() => handleSetGridRepeatMinsize("280px")}>Grid Big</button>
+      <StyledGridButton onClick={() => handleSetGridRepeatMinsize("50px")}>
+        <FontAwesomeIcon icon={faTableCells} />
+      </StyledGridButton>
+      <StyledGridButton onClick={() => handleSetGridRepeatMinsize("100px")}>
+        <FontAwesomeIcon icon={faTableCellsLarge} />
+      </StyledGridButton>
+      <StyledGridButton onClick={() => handleSetGridRepeatMinsize("280px")}>
+        <FontAwesomeIcon icon={faSquare} />
+      </StyledGridButton>
     </>
   );
 }
+
+const StyledGridButton = styled.button`
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  color: var(--border-color);
+`;
