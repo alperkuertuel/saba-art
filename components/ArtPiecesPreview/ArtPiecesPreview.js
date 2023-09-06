@@ -13,12 +13,16 @@ export default function ArtPiecesPreview({ filteredCategory, size }) {
               <Link href={`/art-pieces/${slug}`}>
                 <StyledImage src={imageUrl} alt={name} width={1000} height={1000} priority={true} />
               </Link>
-              <Caption>
-                <b>
-                  <q>{name}</q>
-                </b>
-                {date}
-              </Caption>
+              {size === "50px" ? (
+                ""
+              ) : (
+                <Caption>
+                  <b>
+                    <q>{name}</q>
+                  </b>
+                  {date}
+                </Caption>
+              )}
             </figure>
           </GalleryCard>
         ))}
@@ -38,7 +42,7 @@ const StyledImage = styled(Image)`
   object-fit: cover;
   width: 100%;
   height: 100%;
-  border-radius: 5px 5px 0 0;
+  border-radius: 5px;
 `;
 
 const Caption = styled.figcaption`
