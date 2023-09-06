@@ -33,7 +33,11 @@ export default function HomePage({
           active={active}
         />
         {active && <DisplayGrid handleSetGridRepeatMinsize={handleSetGridRepeatMinsize} />}
-        <ArtPiecesPreview filteredCategory={filteredCategory} size={size} />
+        <ArtPiecesPreview
+          filteredCategory={filteredCategory}
+          size={size}
+          handleSetScrollPercentage={handleSetScrollPercentage}
+        />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
       <FooterComponent />

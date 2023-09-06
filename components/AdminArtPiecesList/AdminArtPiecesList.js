@@ -31,7 +31,10 @@ export default function ArtPiecesList({
         {filteredCategory.map(({ slug, _id, imageUrl, name }) => (
           <Fragment key={_id}>
             <StyledItem>
-              <StyledLink href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage(0)}>
+              <StyledLink
+                href={`/art-pieces/${slug}`}
+                onClick={() => handleSetScrollPercentage("0")}
+              >
                 <StyledImage
                   src={imageUrl}
                   width={1000}

@@ -41,7 +41,7 @@ export default function ShowDetails({
       </Head>
       <Header
         scrollPercent={scrollPercent}
-        handleSetScrollPercentage={() => handleSetScrollPercentage(0)}
+        handleSetScrollPercentage={handleSetScrollPercentage("0")}
       />
       <main>
         <ArtPieceDetails

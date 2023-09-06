@@ -2,14 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function ArtPiecesPreview({ filteredCategory, size }) {
+export default function ArtPiecesPreview({ filteredCategory, size, handleSetScrollPercentage }) {
   return (
     <GalleryWrapper size={size}>
       {filteredCategory &&
         filteredCategory.map(({ _id, imageUrl, name, date, slug }) => (
           <GalleryCard key={_id}>
             <figure>
-              <Link href={`/art-pieces/${slug}`}>
+              <Link href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage("0")}>
                 <StyledImage src={imageUrl} alt={name} width={1000} height={1000} priority={true} />
               </Link>
               {size === "50px" ? (
