@@ -12,7 +12,7 @@ export default function ArtPiecesPreview({ filteredCategory, size, handleSetScro
               <Link href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage("0")}>
                 <StyledImage src={imageUrl} alt={name} width={1000} height={1000} priority={true} />
               </Link>
-              {size === "50px" ? (
+              {size === "80px" ? (
                 ""
               ) : (
                 <Caption>
@@ -32,7 +32,7 @@ export default function ArtPiecesPreview({ filteredCategory, size, handleSetScro
 const GalleryWrapper = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(${(props) => props.size}, 1fr));
-  grid-gap: 3rem;
+  grid-gap: 2rem;
   width: 100%;
   max-width: 1280px;
 `;

@@ -5,10 +5,10 @@ import styled from "styled-components";
 export default function DisplayGrid({ handleSetGridRepeatMinsize }) {
   return (
     <>
-      <StyledGridButton onClick={() => handleSetGridRepeatMinsize("50px")}>
+      <StyledGridButton onClick={() => handleSetGridRepeatMinsize("80px")}>
         <FontAwesomeIcon aria-label="show small grid" icon={faTableCells} />
       </StyledGridButton>
-      <StyledGridButton onClick={() => handleSetGridRepeatMinsize("100px")}>
+      <StyledGridButton onClick={() => handleSetGridRepeatMinsize("130px")}>
         <FontAwesomeIcon aria-label="show middle size grid" icon={faTableCellsLarge} />
       </StyledGridButton>
       <StyledGridButton onClick={() => handleSetGridRepeatMinsize("280px")}>
