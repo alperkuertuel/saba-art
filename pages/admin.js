@@ -25,7 +25,7 @@ export default function AdminHomePage({
 
   function handleImageUpload(event) {
     let imageFile = event.target.files[0];
-    console.log(imageFile);
+    // console.log(imageFile);
 
     if (imageFile === undefined) {
       return;
