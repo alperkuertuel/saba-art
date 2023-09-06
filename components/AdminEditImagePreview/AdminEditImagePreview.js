@@ -9,6 +9,7 @@ export default function AdminImagePreview({
   crop,
   zoom,
   rotation,
+  aspect,
 }) {
   const [selectedImageToCrop, setSelectedImageToCrop] = useState(null);
 
@@ -26,6 +27,7 @@ export default function AdminImagePreview({
           handleSetFileImageUrl={handleSetFileImageUrl}
           cropInit={crop}
           zoomInit={zoom}
+          aspectInit={aspect}
           rotationInit={rotation}
           onCancel={onCancel}
           setSelectedImageToCrop={setSelectedImageToCrop}

@@ -3,6 +3,12 @@ import Cropper from "react-easy-crop";
 import { useState } from "react";
 import getCroppedImg from "./cropImage";
 
+const aspectRatios = [
+  { value: 4 / 3, text: "4/3" },
+  { value: 16 / 9, text: "16/9" },
+  { value: 9 / 16, text: "9/16" },
+];
+
 export default function ImageCropDialog({
   fileImageUrl,
   handleSetFileImageUrl,
@@ -10,6 +16,7 @@ export default function ImageCropDialog({
   cropInit,
   zoomInit,
   rotationInit,
+  aspectInit,
   onCancel,
 }) {
   if (zoomInit == null) {
@@ -18,6 +25,9 @@ export default function ImageCropDialog({
   if (cropInit == null) {
     cropInit = { x: 0, y: 0 };
   }
+  if (aspectInit == null) {
+    aspectInit = aspectRatios[0];
+  }
   if (rotationInit == null) {
     rotationInit = 0;
   }
@@ -25,6 +35,7 @@ export default function ImageCropDialog({
   const [zoom, setZoom] = useState(zoomInit || 1);
   const [crop, setCrop] = useState(cropInit);
   const [rotation, setRotation] = useState(rotationInit || 0);
+  const [aspect, setAspect] = useState(aspectInit);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
   function onCropChange(crop) {
@@ -56,7 +67,7 @@ export default function ImageCropDialog({
           image={fileImageUrl}
           zoom={zoom}
           crop={crop}
-          aspect={3 / 2}
+          aspect={aspect}
           rotation={rotation}
           onCropChange={onCropChange}
           onZoomChange={onZoomChange}
