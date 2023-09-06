@@ -205,7 +205,6 @@ const SelectContainer = styled.span`
 const AspectRatioSelector = styled.select`
   text-align: center;
   outline: none;
-  display: inline-block;
   width: auto;
   border: 1px solid var(--tertiary-color);
   border-radius: 5px;
