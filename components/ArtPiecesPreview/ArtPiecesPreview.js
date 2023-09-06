@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function ArtPiecesPreview({ filteredCategory }) {
+export default function ArtPiecesPreview({ filteredCategory, size }) {
+  console.log(size);
   return (
-    <GalleryWrapper>
+    <GalleryWrapper size={size}>
       {filteredCategory &&
         filteredCategory.map(({ _id, imageUrl, name, date, slug }) => (
           <GalleryCard key={_id}>
@@ -27,7 +28,7 @@ export default function ArtPiecesPreview({ filteredCategory }) {
 
 const GalleryWrapper = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(${(props) => props.size}, 1fr));
   grid-gap: 4rem;
   width: 100%;
   max-width: 1280px;

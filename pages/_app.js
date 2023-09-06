@@ -16,7 +16,10 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   const [filteredCategory, setFilteredCategory] = useState(data);
 
   const [scrollPercent, setScrollPercent] = useState(0);
+
   const [active, setActive] = useState();
+
+  const [size, setGridRepeatMinSize] = useState("280px");
 
   function handleSetArtPieceToEdit(artPieceToEdit) {
     setArtPieceToEdit(artPieceToEdit);
@@ -38,6 +41,10 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     setActive(active);
   }
 
+  function handleSetGridRepeatMinsize(size) {
+    setGridRepeatMinSize(size);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -50,6 +57,8 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
             fileImageUrl={fileImageUrl}
             scrollPercent={scrollPercent}
             active={active}
+            size={size}
+            handleSetGridRepeatMinsize={handleSetGridRepeatMinsize}
             handleSetFileImageUrl={handleSetFileImageUrl}
             handleSetArtPieceToEdit={handleSetArtPieceToEdit}
             handleSetFilteredCategory={handleSetFilteredCategory}
