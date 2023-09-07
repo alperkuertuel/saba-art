@@ -63,7 +63,7 @@ export default function ImageCropDialog({
 
   async function onCrop() {
     const croppedImageUrl = await getCroppedImg(fileImageUrl, croppedAreaPixels, rotation);
-    handleSetFileImageUrl(croppedImageUrl, rotation, zoom, aspect, crop);
+    handleSetFileImageUrl(croppedImageUrl);
     setSelectedImageToCrop(null);
   }
 

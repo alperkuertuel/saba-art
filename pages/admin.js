@@ -17,6 +17,8 @@ export default function AdminHomePage({
   handleSetFileImageUrl,
   scrollPercent,
   handleSetScrollPercentage,
+  handleSetCurrentFormData,
+  currentFormData,
 }) {
   const router = useRouter();
   const { data, mutate } = useSWR("/api", { fallbackData: [] });
@@ -140,9 +142,11 @@ export default function AdminHomePage({
       <main>
         <ArtPieceForm
           handleSetFileImageUrl={handleSetFileImageUrl}
+          handleSetCurrentFormData={handleSetCurrentFormData}
           fileImageUrl={fileImageUrl}
           onSubmit={handleAddArtPiece}
           onChange={handleImageUpload}
+          currentFormData={currentFormData}
         />
         <ArtPiecesList
           handleSetFilteredCategory={handleSetFilteredCategory}

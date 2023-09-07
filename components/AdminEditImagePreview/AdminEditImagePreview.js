@@ -22,8 +22,8 @@ export default function AdminImagePreview({
     handleSetFileImageUrl("/img/preview.png");
   }
 
-  console.log("fileImageUrl", fileImageUrl);
-  console.log("selectedImageToCrop", selectedImageToCrop);
+  // console.log("fileImageUrl", fileImageUrl);
+  // console.log("selectedImageToCrop", selectedImageToCrop);
 
   return (
     <StyledPreview>

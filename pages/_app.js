@@ -21,6 +21,16 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
   const [size, setGridRepeatMinSize] = useState("280px");
 
+  const [currentFormData, setCurrentFormData] = useState({
+    name: "",
+    date: "",
+    description: "",
+    category: "Impression",
+    technique: "Oil",
+    widthReal: "",
+    heightReal: "",
+  });
+
   function handleSetArtPieceToEdit(artPieceToEdit) {
     setArtPieceToEdit(artPieceToEdit);
   }
@@ -45,6 +55,10 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     setGridRepeatMinSize(size);
   }
 
+  function handleSetCurrentFormData(currentFormData) {
+    setCurrentFormData(currentFormData);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -58,12 +72,14 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
             scrollPercent={scrollPercent}
             active={active}
             size={size}
+            currentFormData={currentFormData}
             handleSetGridRepeatMinsize={handleSetGridRepeatMinsize}
             handleSetFileImageUrl={handleSetFileImageUrl}
             handleSetArtPieceToEdit={handleSetArtPieceToEdit}
             handleSetFilteredCategory={handleSetFilteredCategory}
             handleSetScrollPercentage={handleSetScrollPercentage}
             handleSetActive={handleSetActive}
+            handleSetCurrentFormData={handleSetCurrentFormData}
           />
         </SessionProvider>
       </SWRConfig>
