@@ -35,31 +35,32 @@ const fakeLogin = CredentialsProvider({
   },
 });
 
-const providers =
-  process.env.VERCEL_ENV === "preview"
-    ? [fakeLogin]
-    : [
-        GithubProvider({
-          clientId:
-            process.env.NEXTAUTH_URL === "http://localhost:3000/"
-              ? process.env.GITHUB_ID_LOCALHOST
-              : process.env.GITHUB_ID,
-          clientSecret:
-            process.env.NEXTAUTH_URL === "http://localhost:3000/"
-              ? process.env.GITHUB_SECRET_LOCALHOST
-              : process.env.GITHUB_SECRET,
-        }),
-        GoogleProvider({
-          clientId:
-            process.env.NEXTAUTH_URL === "http://localhost:3000/"
-              ? process.env.GOOGLE_ID_LOCALHOST
-              : process.env.GOOGLE_ID,
-          clientSecret:
-            process.env.NEXTAUTH_URL === "http://localhost:3000/"
-              ? process.env.GOOGLE_SECRET_LOCALHOST
-              : process.env.GOOGLE_SECRET,
-        }),
-      ];
+const providers = [
+  GithubProvider({
+    clientId:
+      process.env.NEXTAUTH_URL === "http://localhost:3000/"
+        ? process.env.GITHUB_ID_LOCALHOST
+        : process.env.GITHUB_ID,
+    clientSecret:
+      process.env.NEXTAUTH_URL === "http://localhost:3000/"
+        ? process.env.GITHUB_SECRET_LOCALHOST
+        : process.env.GITHUB_SECRET,
+  }),
+  GoogleProvider({
+    clientId:
+      process.env.NEXTAUTH_URL === "http://localhost:3000/"
+        ? process.env.GOOGLE_ID_LOCALHOST
+        : process.env.GOOGLE_ID,
+    clientSecret:
+      process.env.NEXTAUTH_URL === "http://localhost:3000/"
+        ? process.env.GOOGLE_SECRET_LOCALHOST
+        : process.env.GOOGLE_SECRET,
+  }),
+];
+
+if (process.env.VERCEL_ENV === "preview") {
+  providers.push(fakeLogin);
+}
 
 export const authOptions = {
   secret: process.env.JWT_SECRET,
