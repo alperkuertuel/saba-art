@@ -92,16 +92,19 @@ const StyledNameDate = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  word-break: break-all;
 `;
 
 const StyledCaption = styled.figcaption`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  word-break: break-all;
 `;
 
 const StyledDescription = styled.p`
   text-align: justify;
+  word-break: break-all;
 `;
 
 const ButtonList = styled.ul`
