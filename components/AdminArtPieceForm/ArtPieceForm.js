@@ -2,7 +2,6 @@ import styled from "styled-components";
 import AdminImagePreview from "../AdminEditImagePreview/AdminEditImagePreview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { uid } from "uid";
 
 export default function ArtPieceForm({
   onSubmit,
