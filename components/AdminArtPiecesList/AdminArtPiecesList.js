@@ -95,7 +95,6 @@ const StyledItem = styled.li`
   border-radius: 5px;
   box-shadow: var(--box-shadow);
   background-color: var(--box-color);
-  word-break: break-all;
 `;
 
 const StyledLink = styled(Link)`
