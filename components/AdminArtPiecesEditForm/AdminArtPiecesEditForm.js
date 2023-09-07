@@ -75,6 +75,7 @@ export default function ArtPiecesEditForm({
       console.error(`Something went wrong!`, error);
     }
     //location.reload();
+    router.push(`/art-pieces/${editedArtPiece.slug}`);
   }
   const currentYear = new Date().getFullYear().toString();
   return (

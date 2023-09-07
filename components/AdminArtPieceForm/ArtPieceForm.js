@@ -2,6 +2,7 @@ import styled from "styled-components";
 import AdminImagePreview from "../AdminEditImagePreview/AdminEditImagePreview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { uid } from "uid";
 
 export default function ArtPieceForm({
   onSubmit,
@@ -40,8 +41,8 @@ export default function ArtPieceForm({
 
     onSubmit(newArtPiece);
     handleSetFileImageUrl("/img/preview.png");
-    handleSetCurrentFormData("");
     form.reset();
+    handleSetCurrentFormData("");
     form.name.focus();
   }
   const currentYear = new Date().getFullYear().toString();
