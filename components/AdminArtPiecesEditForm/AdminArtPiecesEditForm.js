@@ -74,7 +74,8 @@ export default function ArtPiecesEditForm({
     } catch (error) {
       console.error(`Something went wrong!`, error);
     }
-    location.reload();
+    //location.reload();
+    router.push(`/art-pieces/${editedArtPiece.slug}`);
   }
   const currentYear = new Date().getFullYear().toString();
   return (
@@ -170,14 +171,14 @@ const StyledForm = styled.form`
 
 const Input = styled.input`
   width: auto;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--tertiary-color);
   border-radius: 5px 5px 0 0;
 `;
 
 const StyledSelection = styled.select`
   text-align: center;
   width: auto;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--tertiary-color);
   border-radius: 5px;
   padding: 0.3rem 0;
   margin-right: 1rem;
@@ -185,7 +186,7 @@ const StyledSelection = styled.select`
 
 const Textarea = styled.textarea`
   font-family: inherit;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--tertiary-color);
   border-radius: 5px;
   padding: 0.5rem;
 `;

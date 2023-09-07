@@ -15,8 +15,15 @@ export default function AdminImagePreview({
 
   function onCancel() {
     setSelectedImageToCrop(null);
+  }
+
+  function onReset() {
+    setSelectedImageToCrop(null);
     handleSetFileImageUrl("/img/preview.png");
   }
+
+  // console.log("fileImageUrl", fileImageUrl);
+  // console.log("selectedImageToCrop", selectedImageToCrop);
 
   return (
     <StyledPreview>
@@ -30,14 +37,16 @@ export default function AdminImagePreview({
           aspectInit={aspect}
           rotationInit={rotation}
           onCancel={onCancel}
+          onReset={onReset}
           setSelectedImageToCrop={setSelectedImageToCrop}
         />
       )}
       <StyledImage
         src={fileImageUrl}
+        priority={true}
         alt="image preview and crop functioniality"
-        height={fileImageUrl === "/img/preview.png" ? 50 : 60}
-        width={fileImageUrl === "/img/preview.png" ? 50 : 60}
+        height={512}
+        width={512}
         onClick={
           fileImageUrl === "/img/preview.png"
             ? () => alert("Upload an image to start the cropping!")
@@ -57,4 +66,6 @@ const StyledPreview = styled.article`
 
 const StyledImage = styled(Image)`
   border-radius: 5px;
+  width: auto;
+  height: 50px;
 `;

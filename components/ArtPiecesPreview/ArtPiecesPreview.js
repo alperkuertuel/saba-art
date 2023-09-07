@@ -2,22 +2,26 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function ArtPiecesPreview({ filteredCategory }) {
+export default function ArtPiecesPreview({ filteredCategory, size, handleSetScrollPercentage }) {
   return (
-    <GalleryWrapper>
+    <GalleryWrapper size={size}>
       {filteredCategory &&
         filteredCategory.map(({ _id, imageUrl, name, date, slug }) => (
           <GalleryCard key={_id}>
             <figure>
-              <Link href={`/art-pieces/${slug}`}>
+              <Link href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage("0")}>
                 <StyledImage src={imageUrl} alt={name} width={1000} height={1000} priority={true} />
               </Link>
-              <Caption>
-                <b>
-                  <q>{name}</q>
-                </b>
-                {date}
-              </Caption>
+              {size === "80px" ? (
+                ""
+              ) : (
+                <Caption>
+                  <b>
+                    <q>{name}</q>
+                  </b>
+                  {date}
+                </Caption>
+              )}
             </figure>
           </GalleryCard>
         ))}
@@ -27,8 +31,8 @@ export default function ArtPiecesPreview({ filteredCategory }) {
 
 const GalleryWrapper = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  grid-gap: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(${(props) => props.size}, 1fr));
+  grid-gap: 2rem;
   width: 100%;
   max-width: 1280px;
 `;
@@ -37,17 +41,21 @@ const StyledImage = styled(Image)`
   object-fit: cover;
   width: 100%;
   height: 100%;
-  border-radius: 5px 5px 0 0;
+  border-radius: 5px;
 `;
 
 const Caption = styled.figcaption`
   display: flex;
+  word-break: break-all;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   padding: 0.5rem;
 `;
 
 const GalleryCard = styled.article`
   background-color: var(--box-color);
+  padding: 3px;
   border-radius: 5px;
   height: fit-content;
   box-shadow: var(--box-shadow);

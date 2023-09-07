@@ -1,5 +1,6 @@
 import ArtPiecesPreview from "@/components/ArtPiecesPreview/ArtPiecesPreview";
 import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
+import DisplayGrid from "@/components/DisplayGridPreview/DisplayGridPreview";
 import FooterComponent from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
@@ -13,6 +14,8 @@ export default function HomePage({
   handleSetScrollPercentage,
   handleSetActive,
   active,
+  size,
+  handleSetGridRepeatMinsize,
 }) {
   return (
     <>
@@ -29,7 +32,12 @@ export default function HomePage({
           handleSetActive={handleSetActive}
           active={active}
         />
-        <ArtPiecesPreview filteredCategory={filteredCategory} />
+        {active && <DisplayGrid handleSetGridRepeatMinsize={handleSetGridRepeatMinsize} />}
+        <ArtPiecesPreview
+          filteredCategory={filteredCategory}
+          size={size}
+          handleSetScrollPercentage={handleSetScrollPercentage}
+        />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
       <FooterComponent />

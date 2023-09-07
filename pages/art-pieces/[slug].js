@@ -16,7 +16,7 @@ export default function ShowDetails({
 }) {
   const router = useRouter();
   const { slug } = router.query;
-  const { data, isLoading, isValidating } = useSWR("/api", { fallbackData: [] });
+  const { data, isLoading, isValidating } = useSWR(`/api`, { fallbackData: [] });
   const foundArtPiece = data.find((artpiece) => artpiece.slug === slug);
 
   if (isLoading || !data || !slug || isValidating) {
@@ -39,10 +39,7 @@ export default function ShowDetails({
         <title>{foundArtPiece.name}</title>
         <meta name="description" content={foundArtPiece.description} />
       </Head>
-      <Header
-        scrollPercent={scrollPercent}
-        handleSetScrollPercentage={() => handleSetScrollPercentage(0)}
-      />
+      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <ArtPieceDetails
           imageUrl={foundArtPiece.imageUrl}

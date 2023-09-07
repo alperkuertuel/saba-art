@@ -17,15 +17,17 @@ export default function AdminHomePage({
   handleSetFileImageUrl,
   scrollPercent,
   handleSetScrollPercentage,
+  handleSetCurrentFormData,
+  currentFormData,
 }) {
   const router = useRouter();
-  const { data, mutate } = useSWR("/api", { fallbackData: [] });
+  const { data } = useSWR("/api", { fallbackData: [] });
   const maxWidth = 800; // maxWidth of detail page
   const maxHeight = 800; // maxHeight of detail page
 
   function handleImageUpload(event) {
     let imageFile = event.target.files[0];
-    console.log(imageFile);
+    // console.log(imageFile);
 
     if (imageFile === undefined) {
       return;
@@ -108,8 +110,7 @@ export default function AdminHomePage({
         console.error(response.status);
         return;
       }
-      await mutate();
-      router.push(`/art-pieces/${newArtPieceData.slug}`);
+      router.reload();
     }
   }
 
@@ -126,8 +127,9 @@ export default function AdminHomePage({
         method: "DELETE",
       });
       alert(`You successfully deleted ${artPieceToDelete.name}!`);
-      location.reload();
     }
+    const artPiecesWithoutDeletedArtPiece = filteredCategory.filter((piece) => piece._id !== id);
+    handleSetFilteredCategory(artPiecesWithoutDeletedArtPiece);
   }
 
   return (
@@ -140,9 +142,11 @@ export default function AdminHomePage({
       <main>
         <ArtPieceForm
           handleSetFileImageUrl={handleSetFileImageUrl}
+          handleSetCurrentFormData={handleSetCurrentFormData}
           fileImageUrl={fileImageUrl}
           onSubmit={handleAddArtPiece}
           onChange={handleImageUpload}
+          currentFormData={currentFormData}
         />
         <ArtPiecesList
           handleSetFilteredCategory={handleSetFilteredCategory}

@@ -28,7 +28,7 @@ const StyledScrollUpButton = styled.button`
   z-index: 1;
   bottom: 5px;
   right: 10px;
-  background-color: var(--border-color);
+  background-color: var(--tertiary-color);
   border-radius: 50%;
 `;
 

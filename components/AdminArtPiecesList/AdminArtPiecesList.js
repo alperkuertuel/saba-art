@@ -31,7 +31,10 @@ export default function ArtPiecesList({
         {filteredCategory.map(({ slug, _id, imageUrl, name }) => (
           <Fragment key={_id}>
             <StyledItem>
-              <StyledLink href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage(0)}>
+              <StyledLink
+                href={`/art-pieces/${slug}`}
+                onClick={() => handleSetScrollPercentage("0")}
+              >
                 <StyledImage
                   src={imageUrl}
                   width={1000}
@@ -92,6 +95,7 @@ const StyledItem = styled.li`
   border-radius: 5px;
   box-shadow: var(--box-shadow);
   background-color: var(--box-color);
+  word-break: break-all;
 `;
 
 const StyledLink = styled(Link)`
@@ -105,7 +109,7 @@ const StyledImage = styled(Image)`
   border-radius: 5px;
   width: 100%;
   height: 50px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--tertiary-color);
 `;
 
 const StyledName = styled.p`

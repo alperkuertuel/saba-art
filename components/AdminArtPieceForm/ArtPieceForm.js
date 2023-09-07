@@ -3,7 +3,14 @@ import AdminImagePreview from "../AdminEditImagePreview/AdminEditImagePreview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
 
-export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleSetFileImageUrl }) {
+export default function ArtPieceForm({
+  onSubmit,
+  fileImageUrl,
+  onChange,
+  handleSetFileImageUrl,
+  currentFormData,
+  handleSetCurrentFormData,
+}) {
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -34,6 +41,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
     onSubmit(newArtPiece);
     handleSetFileImageUrl("/img/preview.png");
     form.reset();
+    handleSetCurrentFormData("");
     form.name.focus();
   }
   const currentYear = new Date().getFullYear().toString();
@@ -44,7 +52,7 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
         fileImageUrl={fileImageUrl}
         handleSetFileImageUrl={handleSetFileImageUrl}
       />
-      <StyledForm onSubmit={handleSubmit} autoComplete="off">
+      <StyledForm onSubmit={handleSubmit} autoComplete="on">
         <FileLabel htmlFor="imageUrl">
           <FontAwesomeIcon icon={faCloudArrowUp} />
         </FileLabel>
@@ -58,12 +66,34 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
           maxLength={100}
           autoComplete="name"
           required
+          defaultValue={currentFormData.name}
+          onChange={(event) =>
+            handleSetCurrentFormData({ ...currentFormData, name: event.target.value })
+          }
         />
         <label htmlFor="date">Release Year: </label>
-        <Input type="number" id="date" name="date" min="0" max={currentYear} required />
+        <Input
+          type="number"
+          id="date"
+          name="date"
+          min="0"
+          max={currentYear}
+          defaultValue={currentFormData.date}
+          onChange={(event) =>
+            handleSetCurrentFormData({ ...currentFormData, date: event.target.value })
+          }
+          required
+        />
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
-          <StyledSelection name="category" id="category">
+          <StyledSelection
+            name="category"
+            id="category"
+            defaultValue={currentFormData.category}
+            onChange={(event) =>
+              handleSetCurrentFormData({ ...currentFormData, category: event.target.value })
+            }
+          >
             <option>Impression</option>
             <option>Landscape</option>
             <option>Abstract</option>
@@ -73,7 +103,14 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
           </StyledSelection>
 
           <label htmlFor="technique">Technique: </label>
-          <StyledSelection name="technique" id="technique">
+          <StyledSelection
+            name="technique"
+            id="technique"
+            defaultValue={currentFormData.technique}
+            onChange={(event) =>
+              handleSetCurrentFormData({ ...currentFormData, technique: event.target.value })
+            }
+          >
             <option>Oil</option>
             <option>Acryl</option>
           </StyledSelection>
@@ -87,6 +124,10 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
             min="0"
             max="400"
             placeholder="cm"
+            defaultValue={currentFormData.widthReal}
+            onChange={(event) =>
+              handleSetCurrentFormData({ ...currentFormData, widthReal: event.target.value })
+            }
             required
           />
           <label htmlFor="widthReal"> height: </label>
@@ -97,11 +138,25 @@ export default function ArtPieceForm({ onSubmit, fileImageUrl, onChange, handleS
             id="heightReal"
             name="heightReal"
             placeholder="cm"
+            defaultValue={currentFormData.heightReal}
+            onChange={(event) =>
+              handleSetCurrentFormData({ ...currentFormData, heightReal: event.target.value })
+            }
             required
           />
         </StyledFieldset>
         <label htmlFor="description">Describe your painting:</label>
-        <Textarea name="description" maxLength="300" id="description" cols="30" rows="5"></Textarea>
+        <Textarea
+          name="description"
+          maxLength="300"
+          id="description"
+          cols="30"
+          rows="5"
+          defaultValue={currentFormData.description}
+          onChange={(event) =>
+            handleSetCurrentFormData({ ...currentFormData, description: event.target.value })
+          }
+        ></Textarea>
         <StyledButton>ADD</StyledButton>
       </StyledForm>
     </StyledSection>
@@ -124,7 +179,7 @@ const FileLabel = styled.label`
   cursor: pointer;
   font-size: 2rem;
   color: var(--tertiary-color);
-  border: 1px dotted var(--border-color);
+  border: 1px dotted var(--tertiary-color);
   background: hsl(0 0 0/0);
   border-radius: 5px;
   transition: 0.5s;
@@ -142,14 +197,14 @@ const FileInput = styled.input`
 
 const Input = styled.input`
   width: auto;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--tertiary-color);
   border-radius: 5px 5px 0 0;
 `;
 
 const StyledSelection = styled.select`
   text-align: center;
   width: auto;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--tertiary-color);
   border-radius: 5px;
   padding: 0.3rem 0;
   margin-right: 1rem;
@@ -157,7 +212,7 @@ const StyledSelection = styled.select`
 
 const Textarea = styled.textarea`
   font-family: inherit;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--tertiary-color);
   border-radius: 5px;
   padding: 0.5rem;
 `;

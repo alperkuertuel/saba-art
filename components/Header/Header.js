@@ -24,13 +24,13 @@ export default function Header({ scrollPercent, handleSetScrollPercentage }) {
       <StyledLoginContainer>
         {session && session.user.role === "Admin" ? (
           <>
-            <button onClick={signOut}>
-              <FontAwesomeIcon icon={faLockOpen} />
+            <button onClick={signOut} aria-label="sign out">
+              <StyledLoginLock icon={faLockOpen} aria-label="opened lock" />
             </button>
           </>
         ) : (
-          <button onClick={() => signIn()}>
-            <FontAwesomeIcon icon={faLock} />
+          <button onClick={() => signIn()} aria-label="sign in">
+            <StyledLoginLock icon={faLock} aria-label="closed lock" />
           </button>
         )}
       </StyledLoginContainer>
@@ -63,15 +63,15 @@ const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   padding: 0.5rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--tertiary-color);
   text-align: center;
   z-index: 1;
 `;
 
 const StyledLoginContainer = styled.div`
   position: fixed;
-  top: 5px;
-  left: 5px;
+  top: 10px;
+  left: 15px;
   font-size: 0.8rem;
   padding: 0.5rem;
 `;
@@ -86,6 +86,10 @@ const Greeting = styled.p`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const StyledLoginLock = styled(FontAwesomeIcon)`
+  color: var(--secondary-color);
 `;
 
 const StyledLoginAvatar = styled(Image)`

@@ -6,15 +6,18 @@ export default function FooterComponent() {
   return (
     <StyledFooter>
       <ShareButtons>
-        <GreyShareFacebookIcon
-          windowWidth={1000}
-          windowHeight={400}
-          url={`https://capstone-project-art-gallery-alper92.vercel.app/`}
-        >
-          <FacebookIcon size={30} round={true} />
-        </GreyShareFacebookIcon>
+        <li>
+          <GreyShareFacebookIcon
+            windowWidth={1000}
+            windowHeight={400}
+            url={`https://capstone-project-art-gallery-alper92.vercel.app/`}
+          >
+            <FacebookIcon size={30} round={true} aria-label="share on facebook" />
+          </GreyShareFacebookIcon>
+        </li>
         <li>
           <GreyShareWhatsAppIcon
+            aria-label="share on whats app"
             windowWidth={1000}
             windowHeight={1000}
             url={`https://capstone-project-art-gallery-alper92.vercel.app/`}
@@ -47,7 +50,7 @@ const StyledFooter = styled.footer`
   align-items: center;
   gap: 1.5rem;
   padding: 0.5rem;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--tertiary-color);
   background-color: var(--cool-brown);
 `;
 

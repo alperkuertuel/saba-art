@@ -18,6 +18,7 @@ export default function ImageCropDialog({
   rotationInit,
   aspectInit,
   onCancel,
+  onReset,
 }) {
   if (zoomInit == null) {
     zoomInit = 1;
@@ -35,7 +36,7 @@ export default function ImageCropDialog({
   const [zoom, setZoom] = useState(zoomInit || 1);
   const [crop, setCrop] = useState(cropInit);
   const [rotation, setRotation] = useState(rotationInit || 0);
-  const [aspect, setAspect] = useState(aspectInit);
+  const [aspect, setAspect] = useState(aspectInit || aspectRatios[0]);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
   function onCropChange(crop) {
@@ -83,9 +84,11 @@ export default function ImageCropDialog({
       </CropContainer>
       <Controls>
         <ControlsArea>
-          Zoom:
+          <label htmlFor="zoom">Zoom:</label>
           <Slider
             type="range"
+            id="zoom"
+            name="zoom"
             min={1}
             max={3}
             step={0.01}
@@ -93,8 +96,11 @@ export default function ImageCropDialog({
             onChange={(event) => onZoomChange(event.target.value)}
           />
           Rotate:
+          <label htmlFor="rotate"></label>
           <Slider
             type="range"
+            id="rotate"
+            name="rotate"
             min={-360}
             max={360}
             step={0.01}
@@ -102,13 +108,13 @@ export default function ImageCropDialog({
             onChange={(event) => onRotateChange(event.target.value)}
           />
           <SelectContainer>
-            Select aspect ratio:
-            <AspectRatioSelector onChange={onAspectChange}>
+            <label htmlFor="aspect-ratio">Select aspect ratio:</label>
+            <AspectRatioSelector id="aspect-ratio" name="aspect-ratio" onChange={onAspectChange}>
               {aspectRatios.map((ratio) => (
                 <option
                   key={ratio.text}
                   value={ratio.value}
-                  selected={ratio.value === aspect.value}
+                  defaultValue={ratio.value === aspect.value}
                 >
                   {ratio.text}
                 </option>
@@ -117,6 +123,7 @@ export default function ImageCropDialog({
           </SelectContainer>
           <ButtonArea>
             <StyledButton onClick={onCancel}>Cancel</StyledButton>
+            <StyledButton onClick={onReset}>Reset</StyledButton>
             <StyledButton onClick={onCrop}>Crop</StyledButton>
           </ButtonArea>
         </ControlsArea>
@@ -181,7 +188,7 @@ const Slider = styled.input`
     appearance: none;
     width: 25px;
     height: 25px;
-    background: var(--border-color);
+    background: var(--tertiary-color);
     cursor: pointer;
   }
   &::-moz-range-thumb {
@@ -200,9 +207,8 @@ const SelectContainer = styled.span`
 const AspectRatioSelector = styled.select`
   text-align: center;
   outline: none;
-  display: inline-block;
   width: auto;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--tertiary-color);
   border-radius: 5px;
   padding: 2px;
   margin: 5px;
