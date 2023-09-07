@@ -89,7 +89,7 @@ export default function ArtPieceForm({
           <StyledSelection
             name="category"
             id="category"
-            value={currentFormData.category}
+            defaultValue={currentFormData.category}
             onChange={(event) =>
               handleSetCurrentFormData({ ...currentFormData, category: event.target.value })
             }
@@ -106,7 +106,7 @@ export default function ArtPieceForm({
           <StyledSelection
             name="technique"
             id="technique"
-            value={currentFormData.technique}
+            defaultValue={currentFormData.technique}
             onChange={(event) =>
               handleSetCurrentFormData({ ...currentFormData, technique: event.target.value })
             }
@@ -124,7 +124,7 @@ export default function ArtPieceForm({
             min="0"
             max="400"
             placeholder="cm"
-            value={currentFormData.widthReal}
+            defaultValue={currentFormData.widthReal}
             onChange={(event) =>
               handleSetCurrentFormData({ ...currentFormData, widthReal: event.target.value })
             }
@@ -138,7 +138,7 @@ export default function ArtPieceForm({
             id="heightReal"
             name="heightReal"
             placeholder="cm"
-            value={currentFormData.heightReal}
+            defaultValue={currentFormData.heightReal}
             onChange={(event) =>
               handleSetCurrentFormData({ ...currentFormData, heightReal: event.target.value })
             }
@@ -152,7 +152,7 @@ export default function ArtPieceForm({
           id="description"
           cols="30"
           rows="5"
-          value={currentFormData.description}
+          defaultValue={currentFormData.description}
           onChange={(event) =>
             handleSetCurrentFormData({ ...currentFormData, description: event.target.value })
           }

@@ -128,7 +128,7 @@ export default function AdminHomePage({
         method: "DELETE",
       });
       alert(`You successfully deleted ${artPieceToDelete.name}!`);
-      location.reload();
+      // location.reload();
     }
   }
 

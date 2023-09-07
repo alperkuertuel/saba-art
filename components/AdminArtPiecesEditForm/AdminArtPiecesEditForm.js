@@ -74,7 +74,7 @@ export default function ArtPiecesEditForm({
     } catch (error) {
       console.error(`Something went wrong!`, error);
     }
-    location.reload();
+    //location.reload();
   }
   const currentYear = new Date().getFullYear().toString();
   return (
