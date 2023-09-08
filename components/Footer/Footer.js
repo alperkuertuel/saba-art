@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FacebookIcon, WhatsappIcon, WhatsappShareButton, FacebookShareButton } from "react-share";
 import ThemeChanger from "../Theme/Themes";
 
-export default function FooterComponent({ handleSetTheme }) {
+export default function FooterComponent({ handleSetTheme, handleSetCurrentTheme, currentTheme }) {
   return (
     <StyledFooter>
       <ShareButtons>
@@ -37,7 +37,11 @@ export default function FooterComponent({ handleSetTheme }) {
           <Link href="/privacy-policy">Privacy Policy</Link>
         </DataItem>
       </ul>
-      <ThemeChanger handleSetTheme={handleSetTheme} />
+      <ThemeChanger
+        handleSetTheme={handleSetTheme}
+        handleSetCurrentTheme={handleSetCurrentTheme}
+        currentTheme={currentTheme}
+      />
     </StyledFooter>
   );
 }
