@@ -11,7 +11,7 @@ export default function FooterComponent({ handleSetTheme, handleSetCurrentTheme,
           <GreyShareFacebookIcon
             windowWidth={1000}
             windowHeight={400}
-            url={`https://capstone-project-art-gallery-alper92.vercel.app/`}
+            url={`https://art-gallery-alper.vercel.app/`}
           >
             <FacebookIcon size={30} round={true} aria-label="share on facebook" />
           </GreyShareFacebookIcon>
@@ -21,7 +21,7 @@ export default function FooterComponent({ handleSetTheme, handleSetCurrentTheme,
             aria-label="share on whats app"
             windowWidth={1000}
             windowHeight={1000}
-            url={`https://capstone-project-art-gallery-alper92.vercel.app/`}
+            url={`https://art-gallery-alper.vercel.app/`}
             title={`I found this beautiful art gallery! Click the link for more: `}
           >
             <WhatsappIcon size={30} round={true} />
