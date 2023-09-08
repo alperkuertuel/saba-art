@@ -2,13 +2,14 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    --primary-color: white;
-    --secondary-color: #391b0e;
-    --tertiary-color: #a48676;
-    --box-color: #f4f4f4;
-    --box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-    --cool-brown: #d9cbc4;
-    --blue-grey: #dee1e6;
+    --primary-color: ${(props) => props.$primarycolor};
+    --font-color: ${(props) => props.$fontcolor};
+    --secondary-color: ${(props) => props.$secondarycolor};
+    --tertiary-color: ${(props) => props.$tertiarycolor};
+    --box-color: ${(props) => props.$boxcolor};
+    --box-shadow: ${(props) => props.$boxShadow};
+    --cool-brown: ${(props) => props.$coolbrown};
+    --blue-grey: ${(props) => props.$bluegrey};
   }
 
   *,
@@ -28,6 +29,7 @@ html {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 100%;
     background-color: var(--primary-color);
+    color: var(--font-color);
   }
 
   main {
@@ -81,6 +83,7 @@ html {
 
   button {
     font-size: 1rem;
+    color: var(--font-color);
     border: none;
     cursor: pointer;
     background: none;

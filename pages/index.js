@@ -16,6 +16,7 @@ export default function HomePage({
   active,
   size,
   handleSetGridRepeatMinsize,
+  handleSetTheme,
 }) {
   return (
     <>
@@ -40,7 +41,7 @@ export default function HomePage({
         />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
-      <FooterComponent />
+      <FooterComponent handleSetTheme={handleSetTheme} />
     </>
   );
 }
