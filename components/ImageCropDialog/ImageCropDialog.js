@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import Cropper from "react-easy-crop";
 import { useState } from "react";
 import getCroppedImg from "./cropImage";
