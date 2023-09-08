@@ -200,7 +200,7 @@ const Textarea = styled.textarea`
 
 const StyledButton = styled.button`
   background-color: var(--cool-brown);
-  color: white;
+  color: black;
   padding: 0.8rem;
   border-radius: 5px;
   text-decoration: none;
