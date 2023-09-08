@@ -173,26 +173,33 @@ const Input = styled.input`
   width: auto;
   border-bottom: 1px solid var(--tertiary-color);
   border-radius: 5px 5px 0 0;
+  background: var(--primary-color);
 `;
 
 const StyledSelection = styled.select`
   text-align: center;
   width: auto;
   border: 1px solid var(--tertiary-color);
+  background: var(--primary-color);
+  color: var(--secondary-color);
   border-radius: 5px;
   padding: 0.3rem 0;
   margin-right: 1rem;
+  outline: none;
 `;
 
 const Textarea = styled.textarea`
+  background: var(--primary-color);
   font-family: inherit;
   border: 1px solid var(--tertiary-color);
   border-radius: 5px;
   padding: 0.5rem;
+  color: var(--secondary-color);
+  outline: none;
 `;
 
 const StyledButton = styled.button`
-  background-color: var(--secondary-color);
+  background-color: var(--cool-brown);
   color: white;
   padding: 0.8rem;
   border-radius: 5px;

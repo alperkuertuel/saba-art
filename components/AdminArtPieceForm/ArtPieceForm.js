@@ -180,7 +180,7 @@ const FileLabel = styled.label`
   font-size: 2rem;
   color: var(--tertiary-color);
   border: 1px dotted var(--tertiary-color);
-  background: hsl(0 0 0/0);
+  background: var(--primary-color);
   border-radius: 5px;
   transition: 0.5s;
   &:hover,
@@ -198,6 +198,7 @@ const FileInput = styled.input`
 const Input = styled.input`
   width: auto;
   border-bottom: 1px solid var(--tertiary-color);
+  background: var(--primary-color);
   border-radius: 5px 5px 0 0;
 `;
 
@@ -208,17 +209,20 @@ const StyledSelection = styled.select`
   border-radius: 5px;
   padding: 0.3rem 0;
   margin-right: 1rem;
+  background: var(--primary-color);
+  color: var(--font-color);
 `;
 
 const Textarea = styled.textarea`
   font-family: inherit;
   border: 1px solid var(--tertiary-color);
+  background: var(--primary-color);
   border-radius: 5px;
   padding: 0.5rem;
 `;
 
 const StyledButton = styled.button`
-  background-color: var(--secondary-color);
+  background-color: var(--cool-brown);
   color: white;
   padding: 0.8rem;
   border-radius: 5px;

@@ -222,8 +222,7 @@ const ButtonArea = styled.span`
 
 const StyledButton = styled.button`
   text-transform: uppercase;
-  background-color: var(--secondary-color);
-  color: white;
+  background-color: var(--cool-brown);
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 5px;

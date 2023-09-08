@@ -7,7 +7,7 @@ export default createGlobalStyle`
     --secondary-color: ${(props) => props.$secondarycolor};
     --tertiary-color: ${(props) => props.$tertiarycolor};
     --box-color: ${(props) => props.$boxcolor};
-    --box-shadow: ${(props) => props.$boxShadow};
+    --box-shadow: ${(props) => props.$boxshadow};
     --cool-brown: ${(props) => props.$coolbrown};
     --blue-grey: ${(props) => props.$bluegrey};
   }
@@ -79,6 +79,7 @@ html {
       line-height: 1.5rem;
       outline: none;
       border: none;
+      color: var(--font-color);
   }
 
   button {
