@@ -21,7 +21,7 @@ export default function Header({
         handleSetScrollPercentage={handleSetScrollPercentage}
       />
       <h1>
-        <Link href={`/`}>ArtistName</Link>
+        <Link href={`/`}>VincentArt</Link>
       </h1>
       <p>
         <q>pictures are memories</q>
@@ -60,7 +60,7 @@ const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   padding: 0.5rem;
-  border-bottom: 1px solid var(--tertiary-color);
+  box-shadow: 0px 0px 10px black;
   text-align: center;
   z-index: 1;
 `;
@@ -68,10 +68,8 @@ const StyledHeader = styled.header`
 const Greeting = styled.p`
   font-size: 0.8rem;
   position: fixed;
-  right: 5px;
-  top: 5px;
-  width: 50px;
-  padding: 0.5rem;
+  right: 20px;
+  top: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,6 +77,4 @@ const Greeting = styled.p`
 
 const StyledLoginAvatar = styled(Image)`
   border-radius: 50%;
-  display: block;
-  text-align: center;
 `;

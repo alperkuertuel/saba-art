@@ -91,10 +91,15 @@ const GreyShareWhatsAppIcon = styled(WhatsappShareButton)`
 
 const StyledLoginContainer = styled.div`
   font-size: 0.8rem;
-  padding: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 5px;
+  opacity: 0.7;
+  background-color: var(--box-color);
+  &:focus {
+    background-color: var(--highlight);
+  }
 `;
 
 const StyledLoginLock = styled(FontAwesomeIcon)`
   color: var(--secondary-color);
-  opacity: 0.7;
 `;
