@@ -114,11 +114,10 @@ const ButtonList = styled.ul`
 const StyledBackButton = styled(Link)`
   background-color: var(--cool-brown);
   color: var(--font-color);
-  padding: 0.8rem;
+  padding: .3rem .5rem;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
-  font-size: inherit;
   &:hover {
     background-color: var(--tertiary-color);
     transition: background-color 0.2s ease;
