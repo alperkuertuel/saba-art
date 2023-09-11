@@ -31,8 +31,8 @@ export default function ArtPieceDetails({
 
       <ButtonList>
         <li>
-          <StyledBackButton onClick={() => handlePreserveActiveState} href={`/`} scroll={false}>
-            BACK
+          <StyledBackButton onClick={() => handlePreserveActiveState} href={`/`}>
+            Back
           </StyledBackButton>
         </li>
         <li>
@@ -114,8 +114,9 @@ const ButtonList = styled.ul`
 const StyledBackButton = styled(Link)`
   background-color: var(--cool-brown);
   color: var(--font-color);
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.5rem 0.3rem 0.5rem;
   border-radius: 5px;
+  text-transform: uppercase;
   text-decoration: none;
   font-weight: bold;
   &:hover {

@@ -22,4 +22,7 @@ const StyledGridButton = styled.button`
   font-size: 1.5rem;
   margin-right: 1rem;
   color: var(--tertiary-color);
+  &:focus {
+    color: var(--secondary-color);
+  }
 `;
