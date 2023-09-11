@@ -1,9 +1,12 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { FacebookIcon, WhatsappIcon, WhatsappShareButton, FacebookShareButton } from "react-share";
-import ThemeChanger from "../Theme/Themes";
+import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSession, signIn, signOut } from "next-auth/react";
 
-export default function FooterComponent({ handleSetTheme, handleSetCurrentTheme, currentTheme }) {
+export default function FooterComponent() {
+  const { data: session } = useSession();
   return (
     <StyledFooter>
       <ShareButtons>
@@ -37,11 +40,20 @@ export default function FooterComponent({ handleSetTheme, handleSetCurrentTheme,
           <Link href="/privacy-policy">Privacy Policy</Link>
         </DataItem>
       </ul>
-      <ThemeChanger
-        handleSetTheme={handleSetTheme}
-        handleSetCurrentTheme={handleSetCurrentTheme}
-        currentTheme={currentTheme}
-      />
+
+      <StyledLoginContainer>
+        {session && session.user.role === "Admin" ? (
+          <>
+            <button onClick={signOut} aria-label="sign out">
+              <StyledLoginLock icon={faLockOpen} aria-label="opened lock" />
+            </button>
+          </>
+        ) : (
+          <button onClick={() => signIn()} aria-label="sign in">
+            <StyledLoginLock icon={faLock} aria-label="closed lock" />
+          </button>
+        )}
+      </StyledLoginContainer>
     </StyledFooter>
   );
 }
@@ -75,4 +87,14 @@ const GreyShareFacebookIcon = styled(FacebookShareButton)`
 
 const GreyShareWhatsAppIcon = styled(WhatsappShareButton)`
   filter: grayscale(0.8);
+`;
+
+const StyledLoginContainer = styled.div`
+  font-size: 0.8rem;
+  padding: 0.5rem;
+`;
+
+const StyledLoginLock = styled(FontAwesomeIcon)`
+  color: var(--secondary-color);
+  opacity: 0.7;
 `;

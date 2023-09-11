@@ -47,6 +47,9 @@ export default function ThemeChanger({ handleSetTheme, handleSetCurrentTheme, cu
 }
 
 const ThemeSwitcher = styled.button`
+  position: fixed;
+  top: 15px;
+  left: 15px;
   font-size: 1.5rem;
   color: var(--secondary-color);
   opacity: 0.8;
