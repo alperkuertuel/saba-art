@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { FacebookIcon, WhatsappIcon, WhatsappShareButton, FacebookShareButton } from "react-share";
+import ThemeChanger from "../Theme/Themes";
 
-export default function FooterComponent() {
+export default function FooterComponent({ handleSetTheme, handleSetCurrentTheme, currentTheme }) {
   return (
     <StyledFooter>
       <ShareButtons>
@@ -10,7 +11,7 @@ export default function FooterComponent() {
           <GreyShareFacebookIcon
             windowWidth={1000}
             windowHeight={400}
-            url={`https://capstone-project-art-gallery-alper92.vercel.app/`}
+            url={`https://art-gallery-alper.vercel.app/`}
           >
             <FacebookIcon size={30} round={true} aria-label="share on facebook" />
           </GreyShareFacebookIcon>
@@ -20,7 +21,7 @@ export default function FooterComponent() {
             aria-label="share on whats app"
             windowWidth={1000}
             windowHeight={1000}
-            url={`https://capstone-project-art-gallery-alper92.vercel.app/`}
+            url={`https://art-gallery-alper.vercel.app/`}
             title={`I found this beautiful art gallery! Click the link for more: `}
           >
             <WhatsappIcon size={30} round={true} />
@@ -36,6 +37,11 @@ export default function FooterComponent() {
           <Link href="/privacy-policy">Privacy Policy</Link>
         </DataItem>
       </ul>
+      <ThemeChanger
+        handleSetTheme={handleSetTheme}
+        handleSetCurrentTheme={handleSetCurrentTheme}
+        currentTheme={currentTheme}
+      />
     </StyledFooter>
   );
 }

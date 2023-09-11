@@ -39,7 +39,7 @@ export default function ArtPieceDetails({
           <FacebookShareButton
             windowWidth={1000}
             windowHeight={400}
-            url={`https://capstone-project-art-gallery-alper92.vercel.app/art-pieces/${slug}`}
+            url={`https://art-gallery-alper.vercel.app/art-pieces/${slug}`}
           >
             <FacebookIcon size={32} round={true} />
           </FacebookShareButton>
@@ -48,7 +48,7 @@ export default function ArtPieceDetails({
           <WhatsappShareButton
             windowWidth={1000}
             windowHeight={1000}
-            url={`https://capstone-project-art-gallery-alper92.vercel.app/art-pieces/${slug}`}
+            url={`https://art-gallery-alper.vercel.app/art-pieces/${slug}`}
             title={`I found this beautiful art piece called "${name}"! Click the link for more: `}
           >
             <WhatsappIcon size={32} round={true} />
@@ -112,15 +112,14 @@ const ButtonList = styled.ul`
 `;
 
 const StyledBackButton = styled(Link)`
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  background-color: var(--secondary-color);
+  background-color: var(--cool-brown);
+  color: var(--font-color);
+  padding: .3rem .5rem;
+  border-radius: 5px;
   text-decoration: none;
-  color: white;
-  width: fit-content;
-  padding: 5px 20px;
+  font-weight: bold;
   &:hover {
     background-color: var(--tertiary-color);
+    transition: background-color 0.2s ease;
   }
 `;

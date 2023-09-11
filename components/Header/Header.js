@@ -70,7 +70,7 @@ const StyledHeader = styled.header`
 
 const StyledLoginContainer = styled.div`
   position: fixed;
-  top: 10px;
+  top: 15px;
   left: 15px;
   font-size: 0.8rem;
   padding: 0.5rem;
@@ -90,6 +90,7 @@ const Greeting = styled.p`
 
 const StyledLoginLock = styled(FontAwesomeIcon)`
   color: var(--secondary-color);
+  opacity: 0.7;
 `;
 
 const StyledLoginAvatar = styled(Image)`

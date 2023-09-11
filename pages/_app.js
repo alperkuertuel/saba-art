@@ -31,6 +31,19 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     heightReal: "",
   });
 
+  const [currentTheme, setCurrentTheme] = useState("dark");
+
+  const [theme, setTheme] = useState({
+    primarycolor: "white",
+    fontcolor: "black",
+    secondarycolor: "#391b0e",
+    tertiarycolor: "#a48676",
+    boxcolor: "#f4f4f4",
+    boxshadow: "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
+    coolbrown: "#d9cbc4",
+    highlight: "#dee1e6",
+  });
+
   function handleSetArtPieceToEdit(artPieceToEdit) {
     setArtPieceToEdit(artPieceToEdit);
   }
@@ -59,9 +72,27 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     setCurrentFormData(currentFormData);
   }
 
+  function handleSetTheme(theme) {
+    setTheme(theme);
+  }
+
+  function handleSetCurrentTheme(currentTheme) {
+    setCurrentTheme(currentTheme);
+  }
+
   return (
     <>
-      <GlobalStyle />
+      <GlobalStyle
+        $primarycolor={theme.primarycolor}
+        $fontcolor={theme.fontcolor}
+        $secondarycolor={theme.secondarycolor}
+        $tertiarycolor={theme.tertiarycolor}
+        $boxcolor={theme.boxcolor}
+        $boxshadow={theme.boxshadow}
+        $coolbrown={theme.coolbrown}
+        $highlight={theme.highlight}
+      />
+
       <SWRConfig value={{ fetcher }}>
         <SessionProvider session={session}>
           <Component
@@ -72,6 +103,8 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
             scrollPercent={scrollPercent}
             active={active}
             size={size}
+            currentTheme={currentTheme}
+            handleSetCurrentTheme={handleSetCurrentTheme}
             currentFormData={currentFormData}
             handleSetGridRepeatMinsize={handleSetGridRepeatMinsize}
             handleSetFileImageUrl={handleSetFileImageUrl}
@@ -80,6 +113,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
             handleSetScrollPercentage={handleSetScrollPercentage}
             handleSetActive={handleSetActive}
             handleSetCurrentFormData={handleSetCurrentFormData}
+            handleSetTheme={handleSetTheme}
           />
         </SessionProvider>
       </SWRConfig>
