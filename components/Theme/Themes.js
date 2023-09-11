@@ -13,20 +13,20 @@ export default function ThemeChanger({ handleSetTheme, handleSetCurrentTheme, cu
         boxcolor: "#f4f4f4",
         boxshadow: "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
         coolbrown: "#d9cbc4",
-        bluegrey: "#dee1e6",
+        highlight: "#dee1e6",
       });
       handleSetCurrentTheme("dark");
     } else {
       if (currentTheme === "dark") {
         handleSetTheme({
           primarycolor: "#282828",
-          fontcolor: "#d9cbc4",
+          fontcolor: "#F8F8FF",
           secondarycolor: "#d9cbc4",
           tertiarycolor: "#a48676",
           boxcolor: "#382F2A",
           boxshadow: "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
           coolbrown: "#391b0e",
-          bluegrey: "#4E3524",
+          highlight: "#4E3524",
         });
         handleSetCurrentTheme("light");
       }

@@ -9,7 +9,7 @@ export default createGlobalStyle`
     --box-color: ${(props) => props.$boxcolor};
     --box-shadow: ${(props) => props.$boxshadow};
     --cool-brown: ${(props) => props.$coolbrown};
-    --blue-grey: ${(props) => props.$bluegrey};
+    --highlight: ${(props) => props.$highlight};
   }
 
   *,

@@ -112,15 +112,15 @@ const ButtonList = styled.ul`
 `;
 
 const StyledBackButton = styled(Link)`
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  background-color: var(--secondary-color);
+  background-color: var(--cool-brown);
+  color: var(--font-color);
+  padding: 0.8rem;
+  border-radius: 5px;
   text-decoration: none;
-  color: white;
-  width: fit-content;
-  padding: 5px 20px;
+  font-weight: bold;
+  font-size: inherit;
   &:hover {
     background-color: var(--tertiary-color);
+    transition: background-color 0.2s ease;
   }
 `;

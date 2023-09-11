@@ -108,11 +108,11 @@ const StyledImage = styled(Image)`
   border-radius: 5px;
   width: 100%;
   height: 50px;
-  border: 1px solid var(--tertiary-color);
 `;
 
 const StyledName = styled.p`
   align-self: start;
+  font-weight: bold;
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`

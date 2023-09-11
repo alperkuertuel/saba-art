@@ -41,7 +41,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     boxcolor: "#f4f4f4",
     boxshadow: "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
     coolbrown: "#d9cbc4",
-    bluegrey: "#dee1e6",
+    highlight: "#dee1e6",
   });
 
   function handleSetArtPieceToEdit(artPieceToEdit) {
@@ -90,7 +90,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
         $boxcolor={theme.boxcolor}
         $boxshadow={theme.boxshadow}
         $coolbrown={theme.coolbrown}
-        $bluegrey={theme.bluegrey}
+        $highlight={theme.highlight}
       />
 
       <SWRConfig value={{ fetcher }}>
