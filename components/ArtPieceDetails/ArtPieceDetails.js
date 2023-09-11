@@ -114,7 +114,7 @@ const ButtonList = styled.ul`
 const StyledBackButton = styled(Link)`
   background-color: var(--cool-brown);
   color: var(--font-color);
-  padding: .3rem .5rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
