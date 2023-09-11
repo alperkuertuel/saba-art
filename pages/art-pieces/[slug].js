@@ -13,6 +13,9 @@ export default function ShowDetails({
   handleSetScrollPercentage,
   handleSetActive,
   active,
+  handleSetTheme,
+  handleSetCurrentTheme,
+  currentTheme,
 }) {
   const router = useRouter();
   const { slug } = router.query;
@@ -39,7 +42,13 @@ export default function ShowDetails({
         <title>{foundArtPiece.name}</title>
         <meta name="description" content={foundArtPiece.description} />
       </Head>
-      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
+      <Header
+        scrollPercent={scrollPercent}
+        handleSetScrollPercentage={handleSetScrollPercentage}
+        handleSetTheme={handleSetTheme}
+        handleSetCurrentTheme={handleSetCurrentTheme}
+        currentTheme={currentTheme}
+      />
       <main>
         <ArtPieceDetails
           imageUrl={foundArtPiece.imageUrl}

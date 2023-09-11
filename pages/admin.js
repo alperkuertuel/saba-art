@@ -19,6 +19,9 @@ export default function AdminHomePage({
   handleSetScrollPercentage,
   handleSetCurrentFormData,
   currentFormData,
+  handleSetTheme,
+  handleSetCurrentTheme,
+  currentTheme,
 }) {
   const router = useRouter();
   const { data } = useSWR("/api", { fallbackData: [] });
@@ -138,7 +141,13 @@ export default function AdminHomePage({
         <title>ArtistName - pictures are memories</title>
         <meta name="description" content="the gallery of ArtistName" />
       </Head>
-      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
+      <Header
+        scrollPercent={scrollPercent}
+        handleSetScrollPercentage={handleSetScrollPercentage}
+        handleSetTheme={handleSetTheme}
+        handleSetCurrentTheme={handleSetCurrentTheme}
+        currentTheme={currentTheme}
+      />
       <main>
         <ArtPieceForm
           handleSetFileImageUrl={handleSetFileImageUrl}

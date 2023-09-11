@@ -95,6 +95,9 @@ const StyledItem = styled.li`
   border-radius: 5px;
   box-shadow: var(--box-shadow);
   background-color: var(--box-color);
+  &:hover {
+    background-color: var(--highlight);
+  }
 `;
 
 const StyledLink = styled(Link)`
