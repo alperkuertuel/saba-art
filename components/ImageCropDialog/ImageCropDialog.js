@@ -4,7 +4,11 @@ import { useState } from "react";
 import getCroppedImg from "./cropImage";
 
 const aspectRatios = [
+  { value: 1 / 1, text: "1/1" },
+  { value: 2 / 1, text: "2/1" },
+  { value: 2 / 3, text: "2/3" },
   { value: 4 / 3, text: "4/3" },
+  { value: 3 / 4, text: "3/4" },
   { value: 16 / 9, text: "16/9" },
   { value: 9 / 16, text: "9/16" },
 ];
