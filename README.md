@@ -1,16 +1,17 @@
 # Art Gallery App
 
-Manage your art pieces in your own gallery. The administration area is protected with a login and allows you to upload, edit, update, and delete your art pieces in the cloud. The gallery is only visible to viewers and includes a simple frontend with a CSS grid, along with detail pages for each art piece that you can share on social media.
+Manage your art pieces effortlessly as an artist. The admin area, secured with a login system, enables cropping before uploading, updating, and deleting artworks in the cloud. The gallery is exclusively visible to viewers, featuring a user-friendly frontend with a CSS grid and individual detail pages for sharing on social media.
 
-<kbd>![Bildschirmfoto 2023-09-04 um 06 37 32](https://github.com/alper92/capstone-project/assets/83625276/59d2f43b-5141-4c7c-9e0a-e6fce11dfed3)</kbd>
-
-------------
-
-You can [🔗 **use this template on CodeSandbox**](https://codesandbox.io/p/sandbox/github/neuefische/web-exercises/tree/main/templates/next?file=/README.md) or locally by running this command in your Terminal:
-
-```bash
-npx -y ghcd@latest neuefische/web-exercises/tree/main/templates/next my-app -i
-```
+<kbd><a href="https://github.com/alper92"><img src="https://github.com/alper92/capstone-project/blob/main/public/img/1_admin.PNG" 
+alt="add new pcitures as admin" width="200" height="350"/></a></kbd>
+<kbd><a href="https://github.com/alper92"><img src="https://github.com/alper92/capstone-project/blob/main/public/img/5_edit.PNG" 
+alt="edit pictures" width="200" height="350"/></a></kbd>
+<kbd><a href="https://github.com/alper92"><img src="https://github.com/alper92/capstone-project/blob/main/public/img/2_cropper.PNG" 
+alt="image cropper" width="200" height="350"/></a></kbd>
+<kbd><a href="https://github.com/alper92"><img src="https://github.com/alper92/capstone-project/blob/main/public/img/3_small_grid.PNG" 
+alt="small grid view" width="200" height="350"/></a></kbd>
+<kbd><a href="https://github.com/alper92"><img src="https://github.com/alper92/capstone-project/blob/main/public/img/4_darkmode.PNG" 
+alt="darkmode" width="200" height="350"/></a></kbd>
 
 ## Development
 
@@ -21,14 +22,6 @@ To work locally, please install the dependencies using `npm i` first.
 Run `npm run dev` to start a development server and open the displayed URL in a browser.
 
 Use `npm run test` to run the tests.
-
-### CodeSandbox Cloud
-
-Select the "Preview: 3000" tab to view this project.
-
-Select the "Tests: logs" tab to view the tests.
-
-> The `npm run dev` and `npm run test` scripts run automatically.
 
 ### Scripts
 
