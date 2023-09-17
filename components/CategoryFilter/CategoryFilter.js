@@ -20,12 +20,12 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
   function handleNewestArtPieces() {
     const yearFilter = data.filter((piece) => piece.date === currentYear);
     handleSetFilteredCategory(yearFilter);
-    handleSetActive("Newest");
+    handleSetActive("Neue");
   }
 
   function handleFilterAll() {
     handleSetFilteredCategory(data);
-    handleSetActive("All");
+    handleSetActive("Alle");
   }
 
   return (
@@ -38,21 +38,19 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
         <>
           <li>
             <StyledButton onClick={handleFilterAll}>
-              All
-              <CategoryCount $active={active === "All" ? "var(--cool-brown)" : "var(--highlight)"}>
+              Alle
+              <CategoryCount $active={active === "Alle" ? "var(--cool-brown)" : "var(--highlight)"}>
                 {data.length}
               </CategoryCount>
             </StyledButton>
           </li>
           <li>
             <StyledButton
-              $active={active === "Newest" ? "var(--cool-brown)" : "var(--highlight)"}
+              $active={active === "Neue" ? "var(--cool-brown)" : "var(--highlight)"}
               onClick={handleNewestArtPieces}
             >
-              Newest from {currentYear}
-              <CategoryCount
-                $active={active === "Newest" ? "var(--cool-brown)" : "var(--highlight)"}
-              >
+              Neueste Bilder aus {currentYear}
+              <CategoryCount $active={active === "Neue" ? "var(--cool-brown)" : "var(--highlight)"}>
                 {data.filter((piece) => piece.date === currentYear).length}
               </CategoryCount>
             </StyledButton>

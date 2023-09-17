@@ -35,7 +35,7 @@ export default function HomePage({
       />
       <main>
         <WelcomingAbout />
-        <h3>Select a category:</h3>
+        <h3>Wähle eine Kategorie aus:</h3>
         <CategoryFilter
           handleSetFilteredCategory={handleSetFilteredCategory}
           handleSetActive={handleSetActive}
