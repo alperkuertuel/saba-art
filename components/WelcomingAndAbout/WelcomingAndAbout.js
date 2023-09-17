@@ -4,15 +4,18 @@ import styled from "styled-components";
 export default function WelcomingAbout() {
   return (
     <WelcomingSection>
-      <StyledAvatar width={100} height={100} src="/img/avatar.jpg" alt="Avatar" />
+      <StyledAvatar priority={true} width={150} height={150} src="/img/saba-art.jpg" alt="Saba" />
 
       <StyledWelcomingText>
-        Hello, I am Vincent. Welcome to my online art gallery!
+        Hallo und herzlich willkommen in meiner online Kunst-Galerie!
       </StyledWelcomingText>
       <StyledAboutParagraph>
-        As an artist who enjoys working with oil and acrylic paints, I strive to create paintings
-        that incorporate vibrant colors and intricate details, with the goal of immersing viewers in
-        a world of imagination.
+        Meine Bilder in Öl verbinden orientalische Empfindsamkeit mit dem Stil der europäischen
+        Moderne.
+      </StyledAboutParagraph>
+      <StyledAboutParagraph>
+        Die Bilder in der Galerie werden regelmäßig aktualisiert, es lohnt sich also öfter mal
+        vorbeizuschauen.
       </StyledAboutParagraph>
     </WelcomingSection>
   );
@@ -27,12 +30,13 @@ const WelcomingSection = styled.section`
 `;
 
 const StyledWelcomingText = styled.h2`
-  width: 200px;
+  width: 50%;
+  text-align: left;
 `;
 
 const StyledAvatar = styled(Image)`
   border-radius: 50%;
-  filter: grayscale(0.8);
+  border: 1px solid var(--tertiary-color);
 `;
 
 const StyledAboutParagraph = styled.p`

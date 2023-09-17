@@ -139,7 +139,7 @@ export default function AdminHomePage({
     <>
       <Head>
         <title>saba-art - Bilder sind Erinnerungen</title>
-        <meta name="description" content="the gallery of ArtistName" />
+        <meta name="description" content="Die online Kunst-Galerie von Saba." />
       </Head>
       <Header
         scrollPercent={scrollPercent}
