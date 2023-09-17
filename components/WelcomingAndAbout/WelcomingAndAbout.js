@@ -4,11 +4,10 @@ import styled from "styled-components";
 export default function WelcomingAbout() {
   return (
     <WelcomingSection>
-      <StyledAvatar priority={true} width={150} height={150} src="/img/saba-art.jpg" alt="Saba" />
-
       <StyledWelcomingText>
         Hallo und herzlich willkommen in meiner online Kunst-Galerie!
       </StyledWelcomingText>
+      <StyledAvatar priority={true} width={150} height={150} src="/img/saba-art.jpg" alt="Saba" />
       <StyledAboutParagraph>
         Meine Bilder in Öl verbinden orientalische Empfindsamkeit mit dem Stil der europäischen
         Moderne.
@@ -31,7 +30,8 @@ const WelcomingSection = styled.section`
 
 const StyledWelcomingText = styled.h2`
   width: 50%;
-  text-align: left;
+  text-align: center;
+  color: var(--secondary-color);
 `;
 
 const StyledAvatar = styled(Image)`
