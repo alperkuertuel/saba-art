@@ -138,7 +138,7 @@ export default function AdminHomePage({
   return (
     <>
       <Head>
-        <title>ArtistName - pictures are memories</title>
+        <title>saba-art - Bilder sind Erinnerungen</title>
         <meta name="description" content="the gallery of ArtistName" />
       </Head>
       <Header

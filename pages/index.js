@@ -23,8 +23,8 @@ export default function HomePage({
   return (
     <>
       <Head>
-        <title>ArtistName - pictures are memories</title>
-        <meta name="description" content="the gallery of ArtistName" />
+        <title>saba-art - Bilder sind Erinnerungen</title>
+        <meta name="description" content="Die online Kunst-Galerie von Saba." />
       </Head>
       <Header
         scrollPercent={scrollPercent}
