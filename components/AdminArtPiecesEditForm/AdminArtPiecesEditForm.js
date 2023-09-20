@@ -27,7 +27,7 @@ export default function ArtPiecesEditForm({
       _id: artPieceToEdit._id,
       slug: slug,
       date: editData.date,
-      name: editData.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
+      name: editData.name,
       description: editData.description,
       category: editData.category,
       technique: editData.technique,
@@ -106,18 +106,16 @@ export default function ArtPiecesEditForm({
         <StyledFieldset>
           <label htmlFor="category">Category: </label>
           <StyledSelection name="category" id="category" defaultValue={artPieceToEdit.category}>
-            <option>Impression</option>
-            <option>Landscape</option>
-            <option>Abstract</option>
-            <option>Portrait</option>
-            <option>New Category 1</option> {/* for testing */}
-            <option>New Category 2</option> {/* for testing */}
+            <option>Impressionen</option>
+            <option>Naturlandschaften</option>
+            <option>Abstrakte Werke</option>
+            <option>Aktmalerei</option>
+            <option>Vielfältige Kunstformen</option>
           </StyledSelection>
 
           <label htmlFor="technique">Technique: </label>
           <StyledSelection name="technique" id="technique" defaultValue={artPieceToEdit.technique}>
-            <option>Oil</option>
-            <option>Acryl</option>
+            <option>Öl auf Leindwand</option>
           </StyledSelection>
         </StyledFieldset>
         <StyledFieldset>
