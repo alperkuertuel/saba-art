@@ -1,9 +1,9 @@
 {
-  "name": "art-gallery",
-  "short_name": "art-gallery",
+  "name": "saba-art.com",
+  "short_name": "saba-art",
   "scope": "/",
   "start_url": "/",
-  "id": "7777777",
+  "id": "0344",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

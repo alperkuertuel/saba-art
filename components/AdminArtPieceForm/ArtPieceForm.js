@@ -30,7 +30,7 @@ export default function ArtPieceForm({
     const newArtPiece = {
       slug: slug,
       date: data.date,
-      name: data.name.replace(/^"+|"+$/g, "").replace(/[^\w\s-]/g, ""),
+      name: data.name,
       description: data.description,
       category: data.category,
       technique: data.technique,
@@ -72,7 +72,7 @@ export default function ArtPieceForm({
             handleSetCurrentFormData({ ...currentFormData, name: event.target.value })
           }
         />
-        <label htmlFor="date">Release Year: </label>
+        <label htmlFor="date">Erscheinungsjahr: </label>
         <Input
           type="number"
           id="date"
@@ -86,7 +86,7 @@ export default function ArtPieceForm({
           required
         />
         <StyledFieldset>
-          <label htmlFor="category">Category: </label>
+          <label htmlFor="category">Kategorie: </label>
           <StyledSelection
             name="category"
             id="category"
@@ -95,15 +95,14 @@ export default function ArtPieceForm({
               handleSetCurrentFormData({ ...currentFormData, category: event.target.value })
             }
           >
-            <option>Impression</option>
-            <option>Landscape</option>
-            <option>Abstract</option>
-            <option>Portrait</option>
-            <option>New Category 1</option> {/* for testing */}
-            <option>New Category 2</option> {/* for testing */}
+            <option>Impressionen</option>
+            <option>Naturlandschaften</option>
+            <option>Abstrakte Werke</option>
+            <option>Aktmalerei</option>
+            <option>Vielfältige Kunstformen</option>
           </StyledSelection>
 
-          <label htmlFor="technique">Technique: </label>
+          <label htmlFor="technique">Technik: </label>
           <StyledSelection
             name="technique"
             id="technique"
@@ -112,12 +111,11 @@ export default function ArtPieceForm({
               handleSetCurrentFormData({ ...currentFormData, technique: event.target.value })
             }
           >
-            <option>Oil</option>
-            <option>Acryl</option>
+            <option>Öl auf Leinwand</option>
           </StyledSelection>
         </StyledFieldset>
         <StyledFieldset>
-          <label htmlFor="heightReal">width: </label>
+          <label htmlFor="heightReal">Breite: </label>
           <Input
             type="number"
             id="widthReal"
@@ -131,7 +129,7 @@ export default function ArtPieceForm({
             }
             required
           />
-          <label htmlFor="widthReal"> height: </label>
+          <label htmlFor="widthReal"> Höhe: </label>
           <Input
             type="number"
             min="0"
@@ -146,7 +144,7 @@ export default function ArtPieceForm({
             required
           />
         </StyledFieldset>
-        <label htmlFor="description">Describe your painting:</label>
+        <label htmlFor="description">Füge eine Beschreibung hinzu:</label>
         <Textarea
           name="description"
           maxLength="300"
@@ -158,7 +156,7 @@ export default function ArtPieceForm({
             handleSetCurrentFormData({ ...currentFormData, description: event.target.value })
           }
         ></Textarea>
-        <StyledButton>ADD</StyledButton>
+        <StyledButton>Hinzufügen</StyledButton>
       </StyledForm>
     </StyledSection>
   );

@@ -21,11 +21,17 @@ export default function Header({
         handleSetScrollPercentage={handleSetScrollPercentage}
       />
       <h1>
-        <Link href={`/`}>VincentArt</Link>
+        <Link href={`/`}>
+          <StyledLogo
+            priority={true}
+            src="/img/logo.png"
+            alt="saba-art"
+            width={1000}
+            height={1000}
+          />
+        </Link>
       </h1>
-      <p>
-        <q>pictures are memories</q>
-      </p>
+      <StyledSlogan>Bilder sind Erinnerungen</StyledSlogan>
       <ThemeChanger
         handleSetTheme={handleSetTheme}
         handleSetCurrentTheme={handleSetCurrentTheme}
@@ -60,9 +66,21 @@ const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   padding: 0.5rem;
-  box-shadow: 0px 0px 7px black;
+  border-bottom: 1px solid var(--tertiary-color);
   text-align: center;
   z-index: 1;
+`;
+
+const StyledLogo = styled(Image)`
+  max-width: 200px;
+  height: 50px;
+  margin: 0 auto;
+`;
+
+const StyledSlogan = styled.p`
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 `;
 
 const Greeting = styled.p`
