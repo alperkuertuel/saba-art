@@ -36,16 +36,6 @@ const fakeLogin = CredentialsProvider({
 });
 
 const providers = [
-  GithubProvider({
-    clientId:
-      process.env.NEXTAUTH_URL === "http://localhost:3000/"
-        ? process.env.GITHUB_ID_LOCALHOST
-        : process.env.GITHUB_ID,
-    clientSecret:
-      process.env.NEXTAUTH_URL === "http://localhost:3000/"
-        ? process.env.GITHUB_SECRET_LOCALHOST
-        : process.env.GITHUB_SECRET,
-  }),
   GoogleProvider({
     clientId:
       process.env.NEXTAUTH_URL === "http://localhost:3000/"
