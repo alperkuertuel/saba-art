@@ -52,11 +52,12 @@ export default function AdminHomePage({
             let width = img.width;
             let height = img.height;
 
-            if (height <= maxHeight && width <= maxWidth) {
+            /* if (height <= maxHeight && width <= maxWidth) {
               return alert(
                 `Your image width or height is smaller than 800px. To preserve quality, upload a larger-sized image!`
               );
             }
+            */
 
             if (width > maxWidth) {
               height = (maxWidth / width) * height;

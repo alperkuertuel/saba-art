@@ -34,11 +34,12 @@ export default function FooterComponent() {
 
       <ul>
         <DataItem>
-          <Link href="/imprint">Imprint</Link>
+          <Link href="/imprint">Impressum</Link>
         </DataItem>
         <DataItem>
-          <Link href="/privacy-policy">Privacy Policy</Link>
+          <Link href="/privacy-policy">Datenschutz</Link>
         </DataItem>
+        <DataItem>&copy; saba-art 2023</DataItem>
       </ul>
 
       <StyledLoginContainer>

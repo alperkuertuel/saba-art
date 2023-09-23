@@ -74,7 +74,7 @@ const StyledHeader = styled.header`
 const StyledLogo = styled(Image)`
   max-width: 200px;
   height: 50px;
-  margin: 0 auto;
+  margin: 0.5rem auto;
 `;
 
 const StyledSlogan = styled.p`

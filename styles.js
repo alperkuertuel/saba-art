@@ -33,7 +33,7 @@ html {
   }
 
   main {
-    margin: 6rem auto;
+    margin: 8rem auto;
     max-width: 1280px;
     padding: 0 1rem;
   }
