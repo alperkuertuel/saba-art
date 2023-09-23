@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="de">
         <Head>
-          <meta name="theme-color" content="var(--primary-color)" />
+          <meta name="theme-color" content="#d9cbc4" />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
