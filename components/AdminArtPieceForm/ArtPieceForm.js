@@ -99,7 +99,7 @@ export default function ArtPieceForm({
             <option>Naturlandschaften</option>
             <option>Abstrakte Werke</option>
             <option>Aktmalerei</option>
-            <option>Vielfältige Kunstformen</option>
+            <option>Andere Kunstformen</option>
           </StyledSelection>
 
           <label htmlFor="technique">Technik: </label>
@@ -202,11 +202,11 @@ const Input = styled.input`
 
 const StyledSelection = styled.select`
   text-align: center;
-  width: auto;
+  width: 120px;
   border: 1px solid var(--tertiary-color);
   border-radius: 5px;
   padding: 0.3rem 0;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   background: var(--primary-color);
   color: var(--font-color);
   outline: none;
