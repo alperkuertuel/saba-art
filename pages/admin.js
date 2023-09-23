@@ -38,7 +38,7 @@ export default function AdminHomePage({
 
     if (imageFile.type === "image/vnd.microsoft.icon" || imageFile.type === "image/gif") {
       return alert(
-        `Your image file type is not allowed. Valid image file types are .png, .jpg/jpeg, and webp files!`
+        `Der Dateityp Ihrer Bilddatei ist nicht erlaubt. Gültige Bilddateitypen sind .png, .jpg/jpeg und .webp Dateien!`
       );
     }
 
@@ -54,7 +54,7 @@ export default function AdminHomePage({
 
             if (height <= maxHeight && width <= maxWidth) {
               return alert(
-                `Your image width or height is smaller than 800px. To preserve quality, upload a larger-sized image!`
+                `Ihre Bildbreite oder -höhe ist kleiner als 800px. Um die Qualität zu erhalten, laden Sie ein Bild in größerer Größe hoch!`
               );
             }
 
@@ -74,13 +74,13 @@ export default function AdminHomePage({
 
             const resizedImageData = canvas.toDataURL("image/webp");
             alert(
-              `You successfully created webp image file, which is ready for the gallery! Fill out the form to add the art piece to the gallery.`
+              `Sie haben erfolgreich eine WebP-Bilddatei erstellt, die für die Galerie bereit ist! Füllen Sie das Formular aus, um das Kunstwerk zur Galerie hinzuzufügen.`
             );
 
             handleSetFileImageUrl(resizedImageData);
           } else {
             alert(
-              `You successfully uploaded a webp image file, which is ready for the gallery! Fill out the form to add the art piece to the gallery.`
+              `Sie haben erfolgreich eine WebP-Bilddatei hochgeladen, die für die Galerie bereit ist! Füllen Sie das Formular aus, um das Kunstwerk zur Galerie hinzuzufügen.`
             );
             handleSetFileImageUrl(load.target.result);
             // console.log(load.target.result);
@@ -94,13 +94,13 @@ export default function AdminHomePage({
 
   async function handleAddArtPiece(newArtPieceData) {
     if (data.some((piece) => piece.slug === newArtPieceData.slug)) {
-      alert("Name already exists. Please choose a different name.");
+      alert("Der Name existiert bereits. Bitte wählen Sie einen anderen Namen.");
     } else if (data.some((piece) => piece.imageUrl === newArtPieceData.imageUrl)) {
       window.alert(
-        "Image file is already exsiting in the art gallery. Please choose a different image!"
+        "Die Bilddatei existiert bereits in der Kunstgalerie. Bitte wählen Sie ein anderes Bild aus!"
       );
     } else if (newArtPieceData.imageUrl === "/img/preview.png" || !newArtPieceData) {
-      alert("You cannot add an art piece without an image!");
+      alert("Sie können kein Kunstwerk ohne ein Bild hinzufügen!");
     } else {
       const response = await fetch("/api", {
         method: "POST",
@@ -124,12 +124,14 @@ export default function AdminHomePage({
 
   async function handleDeleteArtPiece(id) {
     const artPieceToDelete = data.find((piece) => piece._id === id);
-    const sureToDelete = confirm(`Are you sure you want to delete "${artPieceToDelete.name}"?`);
+    const sureToDelete = confirm(
+      `Sind Sie sicher, dass Sie "${artPieceToDelete.name}" löschen möchten?`
+    );
     if (sureToDelete) {
       await fetch(`/api/${id}`, {
         method: "DELETE",
       });
-      alert(`You successfully deleted ${artPieceToDelete.name}!`);
+      alert(`Sie haben "${artPieceToDelete.name}" erfolgriech gelöscht!`);
     }
     const artPiecesWithoutDeletedArtPiece = filteredCategory.filter((piece) => piece._id !== id);
     handleSetFilteredCategory(artPiecesWithoutDeletedArtPiece);
