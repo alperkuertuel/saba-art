@@ -3,6 +3,12 @@ import ArtPiece from "@/db/ArtPiece";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
 
+export const config = {
+  api: {
+    responseLimit: false,
+  },
+};
+
 export default async function handler(request, response) {
   await dbConnect();
   const { id } = request.query;
