@@ -26,8 +26,8 @@ export default function ScrollUp({ scrollPercent }) {
 const StyledScrollUpButton = styled.button`
   position: fixed;
   z-index: 1;
-  bottom: 5px;
-  right: 10px;
+  bottom: 15px;
+  right: 15px;
   background-color: var(--tertiary-color);
   border-radius: 50%;
 `;
