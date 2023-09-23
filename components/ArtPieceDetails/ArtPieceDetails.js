@@ -32,7 +32,7 @@ export default function ArtPieceDetails({
       <ButtonList>
         <li>
           <StyledBackButton onClick={() => handlePreserveActiveState} href={`/`}>
-            Back
+            Zurück
           </StyledBackButton>
         </li>
         <li>
@@ -60,10 +60,10 @@ export default function ArtPieceDetails({
           <h1>{name}</h1>
           <p>{date}</p>
         </StyledNameDate>
-        <p>Category: {category}</p>
-        <p>Technique: {technique}</p>
+        <p>Kategorie: {category}</p>
+        <p>Verwendete Technik: {technique}</p>
         <p>
-          Sizes: {widthReal}cm x {heightReal}cm
+          Größe: {widthReal}cm x {heightReal}cm
         </p>
         <StyledDescription>{description}</StyledDescription>
       </StyledCaption>

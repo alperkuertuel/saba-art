@@ -27,7 +27,7 @@ export default function AdminImagePreview({
 
   return (
     <StyledPreview>
-      {fileImageUrl === "/img/preview.png" ? "Upload preview:" : "Crop your image:"}
+      {fileImageUrl === "/img/preview.png" ? "Vorschau:" : "Schneide dein Bild zu recht:"}
       {selectedImageToCrop && (
         <ImageCropDialog
           fileImageUrl={fileImageUrl}
