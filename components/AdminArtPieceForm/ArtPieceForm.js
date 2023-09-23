@@ -48,7 +48,7 @@ export default function ArtPieceForm({
   const currentYear = new Date().getFullYear().toString();
   return (
     <StyledSection>
-      <h2>Add a new art piece: </h2>
+      <h2>Füge ein neues Kunstwerk hinzu: </h2>
       <AdminImagePreview
         fileImageUrl={fileImageUrl}
         handleSetFileImageUrl={handleSetFileImageUrl}
@@ -58,7 +58,7 @@ export default function ArtPieceForm({
           <FontAwesomeIcon icon={faCloudArrowUp} />
         </FileLabel>
         <FileInput type="file" id="imageUrl" name="imageUrl" onChange={onChange} accept="image/*" />
-        <label htmlFor="name">Name your art piece:</label>
+        <label htmlFor="name">Benenne dein Kunstwerk:</label>
         <Input
           type="text"
           id="name"
