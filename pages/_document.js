@@ -24,7 +24,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en">
+      <Html lang="de">
         <Head>
           <meta name="theme-color" content="var(--primary-color)" />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
