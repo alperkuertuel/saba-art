@@ -9,8 +9,14 @@ export default function WelcomingAbout() {
       </StyledWelcomingText>
       <StyledAvatar priority={true} width={150} height={150} src="/img/saba-art.jpg" alt="Saba" />
       <StyledAboutParagraph>
-        Meine Bilder in Öl verbinden orientalische Empfindsamkeit mit dem Stil der europäischen
-        Moderne.
+        Als gebürtiger Türke habe ich von 1969 bis 2018 in deutschland gelebt und mich dann in der
+        Türkei zur Ruhe gesetzt.
+      </StyledAboutParagraph>
+      <StyledAboutParagraph>
+        <q>Bilder sind Erinnerungen</q> finde ich, deshalb greife ich immer dann zu Pinsel und
+        Farbe, wenn mich ein Erlebnis stark beeindruckt hat. Meine Bilder in Öl verbinden
+        orientalische Empfindsamkeit mit dem Stil der europäischen Moderne. In meinen Werken setze
+        ich mich überwiegend mit realen und phantastischen Formen auseinander.
       </StyledAboutParagraph>
       <StyledAboutParagraph>
         Die Bilder in der Galerie werden regelmäßig aktualisiert, es lohnt sich also öfter mal
