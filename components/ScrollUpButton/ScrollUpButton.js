@@ -7,7 +7,7 @@ export default function ScrollUp({ scrollPercent }) {
   const [backToTopButton, setBackToTopButton] = useState(false);
 
   useEffect(() => {
-    if (scrollPercent >= 30) {
+    if (scrollPercent >= 15) {
       setBackToTopButton(true);
     } else setBackToTopButton(false);
   }, [scrollPercent]);
