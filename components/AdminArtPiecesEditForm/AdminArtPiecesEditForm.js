@@ -81,7 +81,7 @@ export default function ArtPiecesEditForm({
   return (
     <StyledArticle>
       <StyledForm onSubmit={handleUpdate} autoComplete="off">
-        <label htmlFor="name">Change name:</label>
+        <label htmlFor="name">Ändere den Namen:</label>
         <Input
           type="text"
           id="name"
@@ -93,7 +93,7 @@ export default function ArtPiecesEditForm({
           maxLength={100}
           required
         />
-        <label htmlFor="date">Change release year: </label>
+        <label htmlFor="date">Ändere das Erscheinungsjahr: </label>
         <Input
           type="number"
           id="date"
@@ -104,7 +104,7 @@ export default function ArtPiecesEditForm({
         />
 
         <StyledFieldset>
-          <label htmlFor="category">Category: </label>
+          <label htmlFor="category">Kategorie: </label>
           <StyledSelection name="category" id="category" defaultValue={artPieceToEdit.category}>
             <option>Impressionen</option>
             <option>Naturlandschaften</option>
@@ -113,13 +113,13 @@ export default function ArtPiecesEditForm({
             <option>Vielfältige Kunstformen</option>
           </StyledSelection>
 
-          <label htmlFor="technique">Technique: </label>
+          <label htmlFor="technique">Technik: </label>
           <StyledSelection name="technique" id="technique" defaultValue={artPieceToEdit.technique}>
             <option>Öl auf Leindwand</option>
           </StyledSelection>
         </StyledFieldset>
         <StyledFieldset>
-          <label htmlFor="heightReal">width: </label>
+          <label htmlFor="heightReal">Breite: </label>
           <Input
             type="number"
             min="0"
@@ -130,7 +130,7 @@ export default function ArtPiecesEditForm({
             defaultValue={artPieceToEdit.heightReal}
             required
           />
-          <label htmlFor="widthReal"> height: </label>
+          <label htmlFor="widthReal"> Höhe: </label>
           <Input
             type="number"
             min="0"
@@ -142,7 +142,7 @@ export default function ArtPiecesEditForm({
             required
           />
         </StyledFieldset>
-        <label htmlFor="description">Change description:</label>
+        <label htmlFor="description">Ändere die Beschreibung:</label>
         <Textarea
           name="description"
           maxLength="300"
