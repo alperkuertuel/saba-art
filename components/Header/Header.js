@@ -26,8 +26,8 @@ export default function Header({
             priority={true}
             src={currentTheme === "light" ? "/img/logo_dark.png" : "/img/logo.png"}
             alt="saba-art"
-            width={213}
-            height={56}
+            width={170}
+            height={45}
           />
         </Link>
       </h1>
@@ -65,7 +65,7 @@ const StyledHeader = styled.header`
   background-color: var(--cool-brown);
   position: fixed;
   top: 0;
-  padding: 0.5rem;
+  padding: 0.2rem;
   border-bottom: 1px solid var(--tertiary-color);
   text-align: center;
   z-index: 1;
@@ -78,7 +78,7 @@ const StyledLogo = styled(Image)`
 const StyledSlogan = styled.p`
   font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 `;
 
 const Greeting = styled.p`

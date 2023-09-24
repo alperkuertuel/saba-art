@@ -66,8 +66,7 @@ const StyledFooter = styled.footer`
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 0.5rem;
+  gap: 1rem;
   border-top: 1px solid var(--tertiary-color);
   background-color: var(--cool-brown);
 `;
@@ -75,6 +74,7 @@ const StyledFooter = styled.footer`
 const ShareButtons = styled.ul`
   display: flex;
   gap: 1rem;
+  margin-left: 0.5rem;
 `;
 
 const DataItem = styled.li`
