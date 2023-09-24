@@ -32,9 +32,8 @@ export default async function handler(request, response) {
           });
         }
         if (
-          session.user.role === "Admin" &&
-          session.user.email === process.env.ADMIN_MAIL &&
-          session.user.email === process.env.ADMIN_2
+          (session.user.role === "Admin" && session.user.email === process.env.ADMIN_MAIL) ||
+          (session.user.role === "Admin" && session.user.email === process.env.ADMIN_2)
         ) {
           const artPieceData = request.body;
           await ArtPiece.findByIdAndUpdate(id, artPieceData);
@@ -55,9 +54,8 @@ export default async function handler(request, response) {
           });
         }
         if (
-          session.user.role === "Admin" &&
-          session.user.email === process.env.ADMIN_MAIL &&
-          session.user.email === process.env.ADMIN_2
+          (session.user.role === "Admin" && session.user.email === process.env.ADMIN_MAIL) ||
+          (session.user.role === "Admin" && session.user.email === process.env.ADMIN_2)
         ) {
           await ArtPiece.findByIdAndDelete(id);
           response.status(200).json({ message: "Art piece was deleted successfully!" });
