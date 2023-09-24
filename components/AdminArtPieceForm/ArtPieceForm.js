@@ -117,31 +117,31 @@ export default function ArtPieceForm({
           </StyledSelection>
         </StyledFieldset>
         <StyledFieldset>
-          <label htmlFor="heightReal">Breite: </label>
+          <label htmlFor="widthReal"> Breite: </label>
           <Input
             type="number"
+            min="0"
+            max="400"
             id="widthReal"
             name="widthReal"
+            placeholder="cm"
+            defaultValue={currentFormData.heightReal}
+            onChange={(event) =>
+              handleSetCurrentFormData({ ...currentFormData, heightReal: event.target.value })
+            }
+            required
+          />
+          <label htmlFor="heightReal">Höhe: </label>
+          <Input
+            type="number"
+            id="heightReal"
+            name="heightReal"
             min="0"
             max="400"
             placeholder="cm"
             defaultValue={currentFormData.widthReal}
             onChange={(event) =>
               handleSetCurrentFormData({ ...currentFormData, widthReal: event.target.value })
-            }
-            required
-          />
-          <label htmlFor="widthReal"> Höhe: </label>
-          <Input
-            type="number"
-            min="0"
-            max="400"
-            id="heightReal"
-            name="heightReal"
-            placeholder="cm"
-            defaultValue={currentFormData.heightReal}
-            onChange={(event) =>
-              handleSetCurrentFormData({ ...currentFormData, heightReal: event.target.value })
             }
             required
           />
