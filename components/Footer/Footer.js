@@ -14,7 +14,7 @@ export default function FooterComponent() {
           <GreyShareFacebookIcon
             windowWidth={1000}
             windowHeight={400}
-            url={`https://art-gallery-alper.vercel.app/`}
+            url={`https://saba-art.com/`}
           >
             <FacebookIcon size={30} round={true} aria-label="share on facebook" />
           </GreyShareFacebookIcon>
@@ -24,8 +24,7 @@ export default function FooterComponent() {
             aria-label="share on whats app"
             windowWidth={1000}
             windowHeight={1000}
-            url={`https://art-gallery-alper.vercel.app/`}
-            title={`I found this beautiful art gallery! Click the link for more: `}
+            url={`https://saba-art.com/`}
           >
             <WhatsappIcon size={30} round={true} />
           </GreyShareWhatsAppIcon>

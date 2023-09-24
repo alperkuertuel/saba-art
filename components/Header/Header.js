@@ -24,10 +24,10 @@ export default function Header({
         <Link href={`/`}>
           <StyledLogo
             priority={true}
-            src="/img/logo.png"
+            src={currentTheme === "light" ? "/img/logo_dark.png" : "/img/logo.png"}
             alt="saba-art"
-            width={1000}
-            height={1000}
+            width={213}
+            height={56}
           />
         </Link>
       </h1>
@@ -72,8 +72,6 @@ const StyledHeader = styled.header`
 `;
 
 const StyledLogo = styled(Image)`
-  max-width: 200px;
-  height: 50px;
   margin: 0.5rem auto;
 `;
 

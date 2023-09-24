@@ -35,11 +35,11 @@ export default function ThemeChanger({ handleSetTheme, handleSetCurrentTheme, cu
 
   return (
     <>
-      <ThemeSwitcher onClick={handleToggleTheme}>
+      <ThemeSwitcher onClick={handleToggleTheme} aria-label="theme switcher">
         {currentTheme === "light" ? (
-          <FontAwesomeIcon icon={faSun} />
+          <FontAwesomeIcon icon={faSun} aria-label="light mode off" />
         ) : (
-          <FontAwesomeIcon icon={faMoon} />
+          <FontAwesomeIcon icon={faMoon} aria-label="dark mode off" />
         )}
       </ThemeSwitcher>
     </>

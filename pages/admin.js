@@ -113,7 +113,7 @@ export default function AdminHomePage({
         console.error(response.status);
         return;
       }
-      router.push(`/art-pieces/${newArtPieceData.name}`);
+      router.push(`/art-pieces/${newArtPieceData.slug}`);
     }
   }
 
