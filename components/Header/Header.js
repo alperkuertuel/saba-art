@@ -22,13 +22,7 @@ export default function Header({
       />
       <h1>
         <Link href={`/`}>
-          <StyledLogo
-            priority={true}
-            src="/img/logo.png"
-            alt="saba-art"
-            width={1000}
-            height={1000}
-          />
+          <StyledLogo priority={true} src="/img/logo.png" alt="saba-art" width={213} height={56} />
         </Link>
       </h1>
       <StyledSlogan>Bilder sind Erinnerungen</StyledSlogan>
@@ -72,8 +66,6 @@ const StyledHeader = styled.header`
 `;
 
 const StyledLogo = styled(Image)`
-  max-width: 200px;
-  height: 50px;
   margin: 0.5rem auto;
 `;
 

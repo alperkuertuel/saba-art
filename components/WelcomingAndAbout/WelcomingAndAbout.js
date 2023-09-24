@@ -7,7 +7,7 @@ export default function WelcomingAbout() {
       <StyledWelcomingText>
         Hallo und herzlich willkommen in meiner online Kunst-Galerie!
       </StyledWelcomingText>
-      <StyledAvatar priority={true} width={150} height={150} src="/img/saba-art.jpg" alt="Saba" />
+      <StyledAvatar priority={true} width={192} height={200} src="/img/saba-art.jpg" alt="Saba" />
       <StyledAboutParagraph>
         Als gebürtiger Türke habe ich von 1969 bis 2018 in deutschland gelebt und mich dann in der
         Türkei zur Ruhe gesetzt.
@@ -35,7 +35,6 @@ const WelcomingSection = styled.section`
 `;
 
 const StyledWelcomingText = styled.h2`
-  width: 50%;
   text-align: center;
   color: var(--secondary-color);
 `;
