@@ -33,8 +33,8 @@ export default async function handler(request, response) {
         }
         if (
           session.user.role === "Admin" &&
-          session.user.email === process.env.ADMIN_MAIL /*
-        todo: add more emails */
+          session.user.email === process.env.ADMIN_MAIL &&
+          session.user.email === process.env.ADMIN_2
         ) {
           const artPieceData = request.body;
           await ArtPiece.findByIdAndUpdate(id, artPieceData);
@@ -54,7 +54,11 @@ export default async function handler(request, response) {
             message: "Status 401: You are not authorized! Only administrators can delete pictures!",
           });
         }
-        if (session.user.role === "Admin" && session.user.email === process.env.ADMIN_MAIL) {
+        if (
+          session.user.role === "Admin" &&
+          session.user.email === process.env.ADMIN_MAIL &&
+          session.user.email === process.env.ADMIN_2
+        ) {
           await ArtPiece.findByIdAndDelete(id);
           response.status(200).json({ message: "Art piece was deleted successfully!" });
         }

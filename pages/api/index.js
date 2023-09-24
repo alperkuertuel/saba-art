@@ -29,8 +29,8 @@ export default async function handler(request, response) {
         }
         if (
           session.user.role === "Admin" &&
-          session.user.email === process.env.ADMIN_MAIL
-          /* todo: add more admin mails */
+          session.user.email === process.env.ADMIN_MAIL &&
+          session.user.email === process.env.ADMIN_2
         ) {
           const newArtPieceData = request.body;
           await ArtPiece.create(newArtPieceData);
