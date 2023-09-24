@@ -22,7 +22,13 @@ export default function Header({
       />
       <h1>
         <Link href={`/`}>
-          <StyledLogo priority={true} src="/img/logo.png" alt="saba-art" width={213} height={56} />
+          <StyledLogo
+            priority={true}
+            src={currentTheme === "light" ? "/img/logo_dark.png" : "/img/logo.png"}
+            alt="saba-art"
+            width={213}
+            height={56}
+          />
         </Link>
       </h1>
       <StyledSlogan>Bilder sind Erinnerungen</StyledSlogan>
