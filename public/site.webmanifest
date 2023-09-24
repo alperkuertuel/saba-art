@@ -1,6 +1,7 @@
 {
   "name": "saba-art.com",
   "short_name": "saba-art",
+  "orientation": "landscape",
   "scope": "/",
   "start_url": "/",
   "id": "0344",
