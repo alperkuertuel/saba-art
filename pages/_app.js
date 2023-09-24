@@ -19,7 +19,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
   const [active, setActive] = useState();
 
-  const [size, setGridRepeatMinSize] = useState("280px");
+  const [size, setGridRepeatMinSize] = useState("130px");
 
   const [currentFormData, setCurrentFormData] = useState({
     name: "",
