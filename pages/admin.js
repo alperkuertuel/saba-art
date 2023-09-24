@@ -5,6 +5,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import Head from "next/head";
+import FooterComponent from "@/components/Footer/Footer";
 
 export default function AdminHomePage({
   artPieceToEdit,
@@ -174,6 +175,7 @@ export default function AdminHomePage({
         />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
+      <FooterComponent />
     </>
   );
 }
