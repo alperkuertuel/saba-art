@@ -9,10 +9,6 @@ export default function WelcomingAbout() {
       </StyledWelcomingText>
       <StyledAvatar priority={true} width={192} height={200} src="/img/saba-art.jpg" alt="Saba" />
       <StyledAboutParagraph>
-        Als gebürtiger Türke habe ich von 1969 bis 2018 in deutschland gelebt und mich dann in der
-        Türkei zur Ruhe gesetzt.
-      </StyledAboutParagraph>
-      <StyledAboutParagraph>
         <q>Bilder sind Erinnerungen</q> finde ich, deshalb greife ich immer dann zu Pinsel und
         Farbe, wenn mich ein Erlebnis stark beeindruckt hat. Meine Bilder in Öl verbinden
         orientalische Empfindsamkeit mit dem Stil der europäischen Moderne. In meinen Werken setze
