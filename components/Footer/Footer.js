@@ -60,6 +60,7 @@ export default function FooterComponent() {
 
 const StyledFooter = styled.footer`
   font-size: 0.7rem;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -90,15 +91,13 @@ const GreyShareWhatsAppIcon = styled(WhatsappShareButton)`
 
 const StyledLoginContainer = styled.div`
   font-size: 0.8rem;
-  padding: 0.3rem;
+
   border-radius: 5px;
   opacity: 0.7;
   background-color: var(--box-color);
-  &:focus {
-    background-color: var(--highlight);
-  }
 `;
 
 const StyledLoginLock = styled(FontAwesomeIcon)`
   color: var(--secondary-color);
+  padding: 0.5rem;
 `;
