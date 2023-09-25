@@ -50,11 +50,11 @@ const ThemeSwitcher = styled.button`
   position: fixed;
   top: 20px;
   left: 20px;
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: var(--secondary-color);
   opacity: 0.8;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   background-color: var(--box-color);
   border-radius: 5px;
   &:focus {
