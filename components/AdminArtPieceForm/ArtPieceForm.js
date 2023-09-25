@@ -125,9 +125,9 @@ export default function ArtPieceForm({
             id="widthReal"
             name="widthReal"
             placeholder="cm"
-            defaultValue={currentFormData.heightReal}
+            defaultValue={currentFormData.widthReal}
             onChange={(event) =>
-              handleSetCurrentFormData({ ...currentFormData, heightReal: event.target.value })
+              handleSetCurrentFormData({ ...currentFormData, widthReal: event.target.value })
             }
             required
           />
@@ -139,9 +139,9 @@ export default function ArtPieceForm({
             min="0"
             max="400"
             placeholder="cm"
-            defaultValue={currentFormData.widthReal}
+            defaultValue={currentFormData.heightReal}
             onChange={(event) =>
-              handleSetCurrentFormData({ ...currentFormData, widthReal: event.target.value })
+              handleSetCurrentFormData({ ...currentFormData, heightReal: event.target.value })
             }
             required
           />
