@@ -112,6 +112,7 @@ export default function ArtPieceForm({
             }
           >
             <option>Öl auf Leinwand</option>
+            <option>Aquarell</option>
             <option>Steinhauerei</option>
             <option>Diverse</option>
           </StyledSelection>

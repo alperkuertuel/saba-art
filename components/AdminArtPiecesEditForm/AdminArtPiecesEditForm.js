@@ -116,6 +116,7 @@ export default function ArtPiecesEditForm({
           <label htmlFor="technique">Technik: </label>
           <StyledSelection name="technique" id="technique" defaultValue={artPieceToEdit.technique}>
             <option>Öl auf Leinwand</option>
+            <option>Aquarell</option>
             <option>Steinhauerei</option>
             <option>Diverse</option>
           </StyledSelection>

@@ -67,6 +67,7 @@ const StyledFooter = styled.footer`
   display: flex;
   align-items: center;
   gap: 1rem;
+  padding: 0.5rem;
   border-top: 1px solid var(--tertiary-color);
   background-color: var(--cool-brown);
 `;
@@ -90,8 +91,7 @@ const GreyShareWhatsAppIcon = styled(WhatsappShareButton)`
 `;
 
 const StyledLoginContainer = styled.div`
-  font-size: 0.8rem;
-
+  font-size: 0.5rem;
   border-radius: 5px;
   opacity: 0.7;
   background-color: var(--box-color);
@@ -99,5 +99,5 @@ const StyledLoginContainer = styled.div`
 
 const StyledLoginLock = styled(FontAwesomeIcon)`
   color: var(--secondary-color);
-  padding: 0.5rem;
+  padding: 0.3rem;
 `;
