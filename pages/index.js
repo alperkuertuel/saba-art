@@ -3,6 +3,7 @@ import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
 import DisplayGrid from "@/components/DisplayGridPreview/DisplayGridPreview";
 import FooterComponent from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
+import PressCarousel from "@/components/PressCarousel/PressCarousel";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import WelcomingAbout from "@/components/WelcomingAndAbout/WelcomingAndAbout";
 import Head from "next/head";
@@ -35,6 +36,7 @@ export default function HomePage({
       />
       <main>
         <WelcomingAbout />
+        <PressCarousel />
         <h3>Wähle eine Kategorie aus:</h3>
         <CategoryFilter
           handleSetFilteredCategory={handleSetFilteredCategory}

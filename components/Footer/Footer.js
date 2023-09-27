@@ -37,6 +37,7 @@ export default function FooterComponent() {
 const StyledFooter = styled.footer`
   font-size: 0.7rem;
   position: fixed;
+  z-index: 2;
   bottom: 0;
   left: 0;
   width: 100%;
