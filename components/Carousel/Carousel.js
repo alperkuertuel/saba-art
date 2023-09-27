@@ -4,12 +4,12 @@ import useSWR from "swr";
 import Image from "next/image";
 import styled from "styled-components";
 
-export default function PressCarousel() {
+export default function PressCarousel({ filteredCategory }) {
   const { data } = useSWR("/api", { fallbackData: [] });
   // console.log(data);
   return (
     <StyledCarousel showIndicators={false} dynamicHeight={true} showThumbs={false}>
-      {data.map(({ imageUrl, name, _id }) => (
+      {filteredCategory.map(({ imageUrl, name, _id }) => (
         <div key={_id}>
           <StyledImage src={imageUrl} alt={name} aria-label={name} width={1000} height={1000} />
         </div>
