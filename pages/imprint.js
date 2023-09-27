@@ -6,11 +6,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Imprint({ scrollPercent, handleSetScrollPercentage }) {
+export default function Imprint({
+  scrollPercent,
+  handleSetScrollPercentage,
+  handleSetTheme,
+  handleSetCurrentTheme,
+  currentTheme,
+}) {
   const router = useRouter();
   return (
     <>
-      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
+      <Header
+        scrollPercent={scrollPercent}
+        handleSetScrollPercentage={handleSetScrollPercentage}
+        handleSetTheme={handleSetTheme}
+        handleSetCurrentTheme={handleSetCurrentTheme}
+        currentTheme={currentTheme}
+      />
       <main>
         <Link href="/">
           <FontAwesomeIcon icon={faArrowLeftLong} /> Zurück

@@ -6,10 +6,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function PrivacyPolicy({ scrollPercent, handleSetScrollPercentage }) {
+export default function PrivacyPolicy({
+  scrollPercent,
+  handleSetScrollPercentage,
+  handleSetTheme,
+  handleSetCurrentTheme,
+  currentTheme,
+}) {
   return (
     <>
-      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
+      <Header
+        scrollPercent={scrollPercent}
+        handleSetScrollPercentage={handleSetScrollPercentage}
+        handleSetTheme={handleSetTheme}
+        handleSetCurrentTheme={handleSetCurrentTheme}
+        currentTheme={currentTheme}
+      />
       <main>
         <Link href="/">
           <FontAwesomeIcon icon={faArrowLeftLong} /> BACK
