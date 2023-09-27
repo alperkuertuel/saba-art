@@ -1,9 +1,9 @@
 import ArtPiecesPreview from "@/components/ArtPiecesPreview/ArtPiecesPreview";
 import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
-import DisplayGrid from "@/components/DisplayGridPreview/DisplayGridPreview";
+import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/DisplayPreviewOptions";
 import FooterComponent from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
-import PressCarousel from "@/components/Carousel/Carousel";
+import ImageCarousel from "@/components/Carousel/Carousel";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import WelcomingAbout from "@/components/WelcomingAndAbout/WelcomingAndAbout";
 import Head from "next/head";
@@ -36,19 +36,22 @@ export default function HomePage({
       />
       <main>
         <WelcomingAbout />
-        <PressCarousel filteredCategory={filteredCategory} />
+
         <h3>Wähle eine Kategorie aus:</h3>
         <CategoryFilter
           handleSetFilteredCategory={handleSetFilteredCategory}
           handleSetActive={handleSetActive}
           active={active}
         />
-        {active && <DisplayGrid handleSetGridRepeatMinsize={handleSetGridRepeatMinsize} />}
+        {active && (
+          <DisplayPreviewOptions handleSetGridRepeatMinsize={handleSetGridRepeatMinsize} />
+        )}
         <ArtPiecesPreview
           filteredCategory={filteredCategory}
           size={size}
           handleSetScrollPercentage={handleSetScrollPercentage}
         />
+        <ImageCarousel filteredCategory={filteredCategory} />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
       <FooterComponent />

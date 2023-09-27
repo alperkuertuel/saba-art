@@ -1,12 +1,9 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import useSWR from "swr";
 import Image from "next/image";
 import styled from "styled-components";
 
-export default function PressCarousel({ filteredCategory }) {
-  const { data } = useSWR("/api", { fallbackData: [] });
-  // console.log(data);
+export default function ImageCarousel({ filteredCategory }) {
   return (
     <StyledCarousel showIndicators={false} dynamicHeight={true} showThumbs={false}>
       {filteredCategory.map(({ imageUrl, name, _id }) => (
