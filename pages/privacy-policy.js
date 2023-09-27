@@ -1,7 +1,7 @@
 import FooterComponent from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
-import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeftLong, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import styled from "styled-components";
@@ -14,7 +14,7 @@ export default function PrivacyPolicy({ scrollPercent, handleSetScrollPercentage
         <Link href="/">
           <FontAwesomeIcon icon={faArrowLeftLong} /> BACK
         </Link>
-        <h2 id="m4158">Datenschutzerklärung</h2>
+        <h2>Datenschutzerklärung</h2>
         <StyledParagraph>
           Mit der folgenden Datenschutzerklärung möchten wir Sie darüber aufklären, welche Arten
           Ihrer personenbezogenen Daten (nachfolgend auch kurz als Daten bezeichnet) wir zu welchen
@@ -25,50 +25,29 @@ export default function PrivacyPolicy({ scrollPercent, handleSetScrollPercentage
           Die verwendeten Begriffe sind nicht geschlechtsspezifisch.
         </StyledParagraph>
         <StyledParagraph>Stand: 21. September 2023</StyledParagraph>
-        <h3>Inhaltsübersicht</h3>
-        <ul>
-          <li>
-            <Link href="#m4158">Präambel</Link>
-          </li>
-          <li>
-            <Link href="#m3">Verantwortlicher</Link>
-          </li>
-          <li>
-            <Link href="#m11">Kontakt Datenschutzbeauftragter</Link>
-          </li>
-          <li>
-            <Link href="#mOverview">Übersicht der Verarbeitungen</Link>
-          </li>
-          <li>
-            <Link href="#m2427">Maßgebliche Rechtsgrundlagen</Link>
-          </li>
-          <li>
-            <Link href="#m27">Sicherheitsmaßnahmen</Link>
-          </li>
-          <li>
-            <Link href="#m136">Präsenzen in sozialen Netzwerken (Social Media)</Link>
-          </li>
-          <li>
-            <Link href="#m328">Plugins und eingebettete Funktionen sowie Inhalte</Link>
-          </li>
-        </ul>
-        <h3 id="m3">Verantwortlicher</h3>
+        <h3>Verantwortlicher</h3>
         <StyledParagraph>
-          Alper Kürtül
+          Sabahaddin Kürtül & Alper Kürtül
           <br />
           Schwanitzstr. 3
           <br />
           98693 Ilmenau
         </StyledParagraph>
-        E-Mail:
+
         <StyledParagraph>
-          <Link href="mailto:alperkuertuel@hotmail.de">alperkuertuel@hotmail.de</Link>
+          E-Mail:{" "}
+          <Link href="mailto:alperkuertuel@hotmail.de">
+            <FontAwesomeIcon icon={faEnvelope} />
+          </Link>
         </StyledParagraph>
-        <h3 id="m11">Kontakt Datenschutzbeauftragter</h3>
+        <h3>Kontakt Datenschutzbeauftragter</h3>
         <StyledParagraph>
-          <Link href="mailto:alperkuertuel@hotmail.de">alperkuertuel@hotmail.de</Link>
+          E-Mail:{" "}
+          <Link href="mailto:alperkuertuel@hotmail.de">
+            <FontAwesomeIcon icon={faEnvelope} />
+          </Link>
         </StyledParagraph>
-        <h3 id="mOverview">Übersicht der Verarbeitungen</h3>
+        <h3>Übersicht der Verarbeitungen</h3>
         <StyledParagraph>
           Die nachfolgende Übersicht fasst die Arten der verarbeiteten Daten und die Zwecke ihrer
           Verarbeitung zusammen und verweist auf die betroffenen Personen.
@@ -93,8 +72,8 @@ export default function PrivacyPolicy({ scrollPercent, handleSetScrollPercentage
           <li>Profile mit nutzerbezogenen Informationen.</li>
           <li>Bereitstellung unseres Onlineangebotes und Nutzerfreundlichkeit.</li>
         </ul>
-        <h3 id="m2427">Maßgebliche Rechtsgrundlagen</h3>
-        <h3 id="m27">Sicherheitsmaßnahmen</h3>
+        <h3>Maßgebliche Rechtsgrundlagen</h3>
+        <h3>Sicherheitsmaßnahmen</h3>
         <StyledParagraph>
           Wir treffen nach Maßgabe der gesetzlichen Vorgaben unter Berücksichtigung des Stands der
           Technik, der Implementierungskosten und der Art, des Umfangs, der Umstände und der Zwecke
@@ -123,7 +102,7 @@ export default function PrivacyPolicy({ scrollPercent, handleSetScrollPercentage
           sicherere Version von SSL. Hyper Text Transfer Protocol Secure (HTTPS) wird in der URL
           angezeigt, wenn eine Website durch ein SSL/TLS-Zertifikat gesichert ist.
         </StyledParagraph>
-        <h3 id="m136">Präsenzen in sozialen Netzwerken (Social Media)</h3>
+        <h3>Präsenzen in sozialen Netzwerken (Social Media)</h3>
         <StyledParagraph>
           Wir unterhalten Onlinepräsenzen innerhalb sozialer Netzwerke und verarbeiten in diesem
           Rahmen Daten der Nutzer, um mit den dort aktiven Nutzern zu kommunizieren oder um
@@ -175,7 +154,7 @@ export default function PrivacyPolicy({ scrollPercent, handleSetScrollPercentage
             http://instagram.com/about/legal/privacy/
           </Link>
         </StyledParagraph>
-        <h3 id="m328">Plugins und eingebettete Funktionen sowie Inhalte</h3>
+        <h3>Plugins und eingebettete Funktionen sowie Inhalte</h3>
         <StyledParagraph>
           Innerhalb unseres Onlineangebotes setzen wir auf Grundlage unserer berechtigten Interessen
           (d.h. Interesse an der Analyse, Optimierung und wirtschaftlichem Betrieb unseres
@@ -207,12 +186,10 @@ export default function PrivacyPolicy({ scrollPercent, handleSetScrollPercentage
             https://www.google.com/policies/privacy/
           </Link>
           <br />
-          Opt-Out:
-          <br />
+          Opt-Out:{" "}
           <Link href="https://adssettings.google.com/authenticated" target="_blank">
             https://adssettings.google.com/authenticated
           </Link>
-          .
         </StyledParagraph>
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
