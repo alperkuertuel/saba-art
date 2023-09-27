@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import ProgressBar from "../ProgressBar/ProgressBar";
-import ThemeChanger from "../Theme/Themes";
+import ThemeChanger from "../ThemeChanger/Themes";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 
