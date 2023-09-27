@@ -1,3 +1,4 @@
+import FooterComponent from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import { faArrowLeftLong, faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -5,11 +6,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Imprint({ scrollPercent, handleSetScrollPercentage }) {
+export default function Imprint({
+  scrollPercent,
+  handleSetScrollPercentage,
+  handleSetTheme,
+  handleSetCurrentTheme,
+  currentTheme,
+}) {
   const router = useRouter();
   return (
     <>
-      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
+      <Header
+        scrollPercent={scrollPercent}
+        handleSetScrollPercentage={handleSetScrollPercentage}
+        handleSetTheme={handleSetTheme}
+        handleSetCurrentTheme={handleSetCurrentTheme}
+        currentTheme={currentTheme}
+      />
       <main>
         <Link href="/">
           <FontAwesomeIcon icon={faArrowLeftLong} /> Zurück
@@ -35,6 +48,7 @@ export default function Imprint({ scrollPercent, handleSetScrollPercentage }) {
         </p>
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
+      <FooterComponent />
     </>
   );
 }
