@@ -14,6 +14,7 @@ export default function DisplayGrid({ handleSetGridRepeatMinsize }) {
       <StyledGridButton onClick={() => handleSetGridRepeatMinsize("280px")}>
         <FontAwesomeIcon aria-label="show large grid" icon={faSquare} />
       </StyledGridButton>
+      <StyledCarouselButton>Show Carousel</StyledCarouselButton>
     </>
   );
 }
@@ -23,3 +24,5 @@ const StyledGridButton = styled.button`
   margin-right: 1.5rem;
   color: var(--tertiary-color);
 `;
+
+const StyledCarouselButton = styled.button``;
