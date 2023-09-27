@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { FacebookIcon, WhatsappIcon, WhatsappShareButton, FacebookShareButton } from "react-share";
 import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -9,28 +8,6 @@ export default function FooterComponent() {
   const { data: session } = useSession();
   return (
     <StyledFooter>
-      <ShareButtons>
-        <li>
-          <GreyShareFacebookIcon
-            windowWidth={1000}
-            windowHeight={400}
-            url={`https://saba-art.com/`}
-          >
-            <FacebookIcon size={30} round={true} aria-label="share on facebook" />
-          </GreyShareFacebookIcon>
-        </li>
-        <li>
-          <GreyShareWhatsAppIcon
-            aria-label="share on whats app"
-            windowWidth={1000}
-            windowHeight={1000}
-            url={`https://saba-art.com/`}
-          >
-            <WhatsappIcon size={30} round={true} />
-          </GreyShareWhatsAppIcon>
-        </li>
-      </ShareButtons>
-
       <ul>
         <DataItem>
           <Link href="/imprint">Impressum</Link>
@@ -40,7 +17,6 @@ export default function FooterComponent() {
         </DataItem>
         <DataItem>&copy; saba-art 2023</DataItem>
       </ul>
-
       <StyledLoginContainer>
         {session && session.user.role === "Admin" ? (
           <>
@@ -72,22 +48,8 @@ const StyledFooter = styled.footer`
   background-color: var(--cool-brown);
 `;
 
-const ShareButtons = styled.ul`
-  display: flex;
-  gap: 1rem;
-  margin-left: 0.5rem;
-`;
-
 const DataItem = styled.li`
   margin: 5px;
-`;
-
-const GreyShareFacebookIcon = styled(FacebookShareButton)`
-  filter: grayscale(0.8);
-`;
-
-const GreyShareWhatsAppIcon = styled(WhatsappShareButton)`
-  filter: grayscale(0.8);
 `;
 
 const StyledLoginContainer = styled.div`
