@@ -39,7 +39,7 @@ export default function PrivacyPolicy({
         <StyledParagraph>Stand: 21. September 2023</StyledParagraph>
         <h3>Verantwortlicher</h3>
         <StyledParagraph>
-          Sabahaddin Kürtül & Alper Kürtül
+          Alper Kürtül
           <br />
           Schwanitzstr. 3
           <br />
