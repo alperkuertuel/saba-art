@@ -94,7 +94,7 @@ export default function ImageCropDialog({
             type="range"
             id="zoom"
             name="zoom"
-            min={1}
+            min={0.8}
             max={3}
             step={0.01}
             value={zoom}
@@ -152,7 +152,7 @@ const CropContainer = styled.span`
   top: 0;
   left: 0;
   right: 0;
-  bottom: 200px;
+  bottom: 205px;
 `;
 
 const Controls = styled.span`
