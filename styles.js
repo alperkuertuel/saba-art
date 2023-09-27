@@ -33,8 +33,9 @@ html {
   }
 
   main {
-    margin: 6rem auto;
-    max-width: 1280px;
+    margin: 7rem auto;
+    max-width: 800px;
+
     padding: 0 1rem;
   }
 
@@ -48,7 +49,6 @@ html {
 
   h2 {
     font-size: 1.3rem;
-    margin-bottom: 1rem;
   }
 
   h3 {
