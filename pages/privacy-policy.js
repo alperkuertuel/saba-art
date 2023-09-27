@@ -5,6 +5,7 @@ import { faArrowLeftLong, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 export default function PrivacyPolicy({
   scrollPercent,
@@ -13,6 +14,7 @@ export default function PrivacyPolicy({
   handleSetCurrentTheme,
   currentTheme,
 }) {
+  const router = useRouter();
   return (
     <>
       <Header
@@ -47,17 +49,15 @@ export default function PrivacyPolicy({
         </StyledParagraph>
 
         <StyledParagraph>
-          E-Mail:{" "}
-          <Link href="mailto:alperkuertuel@hotmail.de">
-            <FontAwesomeIcon icon={faEnvelope} />
-          </Link>
+          <button type="button" onClick={() => router.push("mailto:alperkuertuel@hotmail.de")}>
+            E-Mail <FontAwesomeIcon icon={faEnvelope} />
+          </button>
         </StyledParagraph>
         <h3>Kontakt Datenschutzbeauftragter</h3>
         <StyledParagraph>
-          E-Mail:{" "}
-          <Link href="mailto:alperkuertuel@hotmail.de">
-            <FontAwesomeIcon icon={faEnvelope} />
-          </Link>
+          <button type="button" onClick={() => router.push("mailto:alperkuertuel@hotmail.de")}>
+            E-Mail <FontAwesomeIcon icon={faEnvelope} />
+          </button>
         </StyledParagraph>
         <h3>Übersicht der Verarbeitungen</h3>
         <StyledParagraph>
