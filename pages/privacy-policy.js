@@ -1,3 +1,4 @@
+import FooterComponent from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
@@ -254,6 +255,7 @@ export default function PrivacyPolicy({ scrollPercent, handleSetScrollPercentage
         </p>
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
+      <FooterComponent />
     </>
   );
 }
