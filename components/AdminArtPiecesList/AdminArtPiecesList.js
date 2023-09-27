@@ -21,7 +21,7 @@ export default function ArtPiecesList({
   const [toggleEditForm, setToggleEditForm] = useState(false);
   return (
     <section>
-      <h2>Update or delete art pieces:</h2>
+      <h2>Bearbeite oder lösche Kunstwerke:</h2>
       <CategoryFilter
         handleSetFilteredCategory={handleSetFilteredCategory}
         handleSetActive={handleSetActive}
