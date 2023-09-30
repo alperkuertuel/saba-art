@@ -34,7 +34,7 @@ html {
 
   main {
     margin: 7rem auto;
-    max-width: 800px;
+    max-width: 600px;
 
     padding: 0 1rem;
   }
