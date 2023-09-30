@@ -1,7 +1,5 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function FooterComponent() {
@@ -15,21 +13,20 @@ export default function FooterComponent() {
         <DataItem>
           <Link href="/privacy-policy">Datenschutz</Link>
         </DataItem>
-        <DataItem>&copy; saba-art 2023</DataItem>
+        <DataItem>
+          {session && session.user.role === "Admin" ? (
+            <>
+              <span onClick={signOut} aria-label="sign out">
+                &copy; saba-art 2023
+              </span>
+            </>
+          ) : (
+            <span onClick={() => signIn()} aria-label="sign in">
+              &copy; saba-art 2023
+            </span>
+          )}
+        </DataItem>
       </ul>
-      <StyledLoginContainer>
-        {session && session.user.role === "Admin" ? (
-          <>
-            <button onClick={signOut} aria-label="sign out">
-              <StyledLoginLock icon={faLockOpen} aria-label="opened lock" />
-            </button>
-          </>
-        ) : (
-          <button onClick={() => signIn()} aria-label="sign in">
-            <StyledLoginLock icon={faLock} aria-label="closed lock" />
-          </button>
-        )}
-      </StyledLoginContainer>
     </StyledFooter>
   );
 }
@@ -51,16 +48,4 @@ const StyledFooter = styled.footer`
 
 const DataItem = styled.li`
   margin: 5px;
-`;
-
-const StyledLoginContainer = styled.div`
-  font-size: 0.5rem;
-  border-radius: 5px;
-  opacity: 0.7;
-  background-color: var(--box-color);
-`;
-
-const StyledLoginLock = styled(FontAwesomeIcon)`
-  color: var(--secondary-color);
-  padding: 0.3rem;
 `;
