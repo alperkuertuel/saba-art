@@ -1,10 +1,6 @@
-import {
-  faLeftRight,
-  faSquare,
-  faTableCells,
-  faTableCellsLarge,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSquare, faTableCells, faTableCellsLarge } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import styled from "styled-components";
 
 export default function DisplayPreviewOptions({ handleSetGridRepeatMinsize }) {
@@ -18,9 +14,6 @@ export default function DisplayPreviewOptions({ handleSetGridRepeatMinsize }) {
       </StyledPreviewOptionButton>
       <StyledPreviewOptionButton onClick={() => handleSetGridRepeatMinsize("280px")}>
         <FontAwesomeIcon aria-label="show large grid" icon={faSquare} />
-      </StyledPreviewOptionButton>
-      <StyledPreviewOptionButton>
-        <FontAwesomeIcon aria-label="show carousel" icon={faLeftRight} />
       </StyledPreviewOptionButton>
     </>
   );

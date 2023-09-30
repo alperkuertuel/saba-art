@@ -6,15 +6,26 @@ import Link from "next/link";
 
 export default function ImageCarousel({ filteredCategory }) {
   return (
-    <StyledCarousel showIndicators={false} dynamicHeight={true} showThumbs={false}>
-      {filteredCategory.map(({ imageUrl, name, _id, slug }) => (
+    <Carousel
+      showIndicators={false}
+      dynamicHeight={true}
+      showThumbs={false}
+      infiniteLoop={true}
+      selectedItem={item}
+    >
+      {filteredCategory.map(({ imageUrl, name, date, _id, slug }) => (
         <Link key={_id} href={`/art-pieces/${slug}`}>
-          <div>
+          <div style={{ position: "relative" }}>
             <StyledImage src={imageUrl} alt={name} aria-label={name} width={1000} height={1000} />
+            <StyledLegend>
+              <p className="legend">
+                <q>{name}</q> {date}
+              </p>
+            </StyledLegend>
           </div>
         </Link>
       ))}
-    </StyledCarousel>
+    </Carousel>
   );
 }
 
@@ -25,4 +36,10 @@ const StyledImage = styled(Image)`
   border-radius: 5px;
 `;
 
-const StyledCarousel = styled(Carousel)``;
+const StyledLegend = styled.span`
+  position: absolute;
+  display: flex;
+  bottom: 0px;
+  width: 100%;
+  margin: 0 auto;
+`;
