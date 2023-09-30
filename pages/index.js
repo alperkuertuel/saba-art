@@ -36,6 +36,7 @@ export default function HomePage({
       />
       <main>
         <WelcomingAbout />
+        <ImageCarousel filteredCategory={filteredCategory} />
         <h3>Wähle eine Kategorie aus:</h3>
         <CategoryFilter
           handleSetFilteredCategory={handleSetFilteredCategory}
@@ -45,7 +46,6 @@ export default function HomePage({
         {active && (
           <DisplayPreviewOptions handleSetGridRepeatMinsize={handleSetGridRepeatMinsize} />
         )}
-        <ImageCarousel filteredCategory={filteredCategory} />
         <ArtPiecesPreview
           filteredCategory={filteredCategory}
           size={size}

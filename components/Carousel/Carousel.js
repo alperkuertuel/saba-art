@@ -6,13 +6,7 @@ import Link from "next/link";
 
 export default function ImageCarousel({ filteredCategory }) {
   return (
-    <Carousel
-      showIndicators={false}
-      dynamicHeight={true}
-      showThumbs={false}
-      infiniteLoop={true}
-      selectedItem={item}
-    >
+    <Carousel showIndicators={false} dynamicHeight={true} showThumbs={false} infiniteLoop={true}>
       {filteredCategory.map(({ imageUrl, name, date, _id, slug }) => (
         <Link key={_id} href={`/art-pieces/${slug}`}>
           <div style={{ position: "relative" }}>
