@@ -24,7 +24,7 @@ export default function ImageCarousel() {
             />
             <StyledLegend>
               <p className="legend">
-                <q>Vom Bospurus zum Bodensee</q> 20.03.1986
+                <q>Vom Bospurus zum Bodensee</q> - 20.03.1986
               </p>
             </StyledLegend>
           </div>
@@ -44,7 +44,7 @@ export default function ImageCarousel() {
             />
             <StyledLegend>
               <p className="legend">
-                <q>An den Ufern zweier Meere</q> 29.06.1989
+                <q>An den Ufern zweier Meere</q> - 29.06.1989
               </p>
             </StyledLegend>
           </div>
@@ -64,7 +64,7 @@ export default function ImageCarousel() {
             />
             <StyledLegend>
               <p className="legend">
-                <q>Kultur am Ort</q> 25.02.1998
+                <q>Kultur am Ort</q> - 25.02.1998
               </p>
             </StyledLegend>
           </div>
@@ -84,7 +84,7 @@ export default function ImageCarousel() {
             />
             <StyledLegend>
               <p className="legend">
-                <q>Peruanische Geschichten</q> 17.12.2003
+                <q>Peruanische Geschichten</q> - 17.12.2003
               </p>
             </StyledLegend>
           </div>
