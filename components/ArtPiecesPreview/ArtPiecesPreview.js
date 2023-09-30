@@ -34,7 +34,6 @@ const GalleryWrapper = styled.section`
   grid-template-columns: repeat(auto-fit, minmax(${(props) => props.size}, 1fr));
   grid-gap: 2rem;
   width: 100%;
-  max-width: 1280px;
 `;
 
 const StyledImage = styled(Image)`
