@@ -39,7 +39,7 @@ export default function ArtPieceDetails({
           <FacebookShareButton
             windowWidth={1000}
             windowHeight={400}
-            url={`https://art-gallery-alper.vercel.app/art-pieces/${slug}`}
+            url={`https://www.saba-art.com/art-pieces/${slug}`}
           >
             <FacebookIcon size={32} round={true} />
           </FacebookShareButton>
@@ -48,8 +48,7 @@ export default function ArtPieceDetails({
           <WhatsappShareButton
             windowWidth={1000}
             windowHeight={1000}
-            url={`https://art-gallery-alper.vercel.app/art-pieces/${slug}`}
-            title={`I found this beautiful art piece called "${name}"! Click the link for more: `}
+            url={`https://www.saba-art.com/art-pieces/${slug}`}
           >
             <WhatsappIcon size={32} round={true} />
           </WhatsappShareButton>
