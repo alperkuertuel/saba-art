@@ -150,7 +150,7 @@ export default function ArtPieceForm({
         <label htmlFor="description">Füge eine Beschreibung hinzu:</label>
         <Textarea
           name="description"
-          maxLength="300"
+          maxLength="500"
           id="description"
           cols="30"
           rows="5"
