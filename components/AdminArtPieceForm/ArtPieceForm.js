@@ -2,7 +2,6 @@ import styled from "styled-components";
 import AdminImagePreview from "../AdminEditImagePreview/AdminEditImagePreview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
 
 export default function ArtPieceForm({
   onSubmit,
@@ -159,6 +158,7 @@ export default function ArtPieceForm({
             handleSetCurrentFormData({ ...currentFormData, description: event.target.value })
           }
         ></Textarea>
+        <LetterCounter>{500 - currentFormData.description.length}</LetterCounter>
         <StyledButton>Hinzufügen</StyledButton>
       </StyledForm>
     </StyledSection>
@@ -241,4 +241,8 @@ const StyledButton = styled.button`
 
 const StyledFieldset = styled.fieldset`
   border: none;
+`;
+
+const LetterCounter = styled.span`
+  text-align: right;
 `;

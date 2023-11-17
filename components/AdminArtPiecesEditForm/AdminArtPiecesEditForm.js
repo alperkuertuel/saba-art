@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import styled from "styled-components";
 
 export default function ArtPiecesEditForm({
@@ -6,6 +7,7 @@ export default function ArtPiecesEditForm({
   filteredCategory,
   handleSetFilteredCategory,
 }) {
+  const [lettersLeft, setLettersLeft] = useState(artPieceToEdit.description.length);
   const router = useRouter();
   async function handleUpdate(event) {
     event.preventDefault();
@@ -153,7 +155,9 @@ export default function ArtPiecesEditForm({
           cols="30"
           rows="5"
           defaultValue={artPieceToEdit.description}
+          onChange={(event) => setLettersLeft(event.target.value.length)}
         ></Textarea>
+        <LetterCounter>{500 - lettersLeft}</LetterCounter>
         <StyledButton>UPDATE {artPieceToEdit ? artPieceToEdit.name : ""}</StyledButton>
       </StyledForm>
     </StyledArticle>
@@ -215,4 +219,8 @@ const StyledButton = styled.button`
 
 const StyledFieldset = styled.fieldset`
   border: none;
+`;
+
+const LetterCounter = styled.span`
+  text-align: right;
 `;
