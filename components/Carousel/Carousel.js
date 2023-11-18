@@ -195,7 +195,7 @@ export default function ImageCarousel() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <StyledLegend width={1000} height={1000}>
+              <StyledLegend>
                 Eine der schönsten Kollektivausstellungen im Bürgertreff Thingers - 2012
               </StyledLegend>
             </StyledCarouselLinkWrapper>
