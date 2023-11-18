@@ -9,8 +9,6 @@ export default function ImageCarousel() {
       <h3>Presseartikel über Saba:</h3>
       <CarouselWrapper>
         <Carousel
-          autoPlay={true}
-          interval={5000}
           showIndicators={false}
           dynamicHeight={false}
           showThumbs={false}
