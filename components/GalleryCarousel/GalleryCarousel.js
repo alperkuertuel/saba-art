@@ -14,14 +14,14 @@ export default function GallerySlider({ filteredCategory }) {
     <Wrapper>
       <Carousel
         showIndicators={false}
-        dynamicHeight={false}
+        dynamicHeight={true}
         showThumbs={false}
         swipeScrollTolerance={100}
         selectedItem={selectedIndex}
         onChange={(index) => setSelectedIndex(index)}
       >
         {filteredCategory.map((category) => (
-          <div key={category.id}>
+          <div key={category.name}>
             <SliderImage src={category.imageUrl} width={1000} height={1000} alt={category.name} />
           </div>
         ))}
@@ -31,9 +31,8 @@ export default function GallerySlider({ filteredCategory }) {
 }
 
 const SliderImage = styled(Image)`
-  object-fit: cover;
-  width: 100%;
-  height: 60vh;
+  width: auto;
+  height: auto;
   border-radius: 5px;
 `;
 
