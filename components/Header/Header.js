@@ -68,7 +68,7 @@ const StyledHeader = styled.header`
   padding: 0.2rem;
   border-bottom: 1px solid var(--tertiary-color);
   text-align: center;
-  z-index: 3;
+  z-index: 3; // needed for the slide-show
 `;
 
 const StyledLogo = styled(Image)`
