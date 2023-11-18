@@ -3,6 +3,7 @@ import ImageCarousel from "@/components/Carousel/Carousel";
 import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
 import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/DisplayPreviewOptions";
 import FooterComponent from "@/components/Footer/Footer";
+import GallerySlider from "@/components/GalleryCarousel/GalleryCarousel";
 import Header from "@/components/Header/Header";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import WelcomingAbout from "@/components/WelcomingAndAbout/WelcomingAndAbout";
@@ -46,6 +47,7 @@ export default function HomePage({
         {active && (
           <DisplayPreviewOptions handleSetGridRepeatMinsize={handleSetGridRepeatMinsize} />
         )}
+        <GallerySlider filteredCategory={filteredCategory} />
         <ArtPiecesPreview
           filteredCategory={filteredCategory}
           size={size}
