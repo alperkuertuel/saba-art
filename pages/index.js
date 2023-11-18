@@ -47,12 +47,14 @@ export default function HomePage({
         {active && (
           <DisplayPreviewOptions handleSetGridRepeatMinsize={handleSetGridRepeatMinsize} />
         )}
-        <GallerySlider filteredCategory={filteredCategory} />
-        <ArtPiecesPreview
-          filteredCategory={filteredCategory}
-          size={size}
-          handleSetScrollPercentage={handleSetScrollPercentage}
-        />
+        {active && size === "slideShow" && <GallerySlider filteredCategory={filteredCategory} />}
+        {active && size != "slideShow" && (
+          <ArtPiecesPreview
+            filteredCategory={filteredCategory}
+            size={size}
+            handleSetScrollPercentage={handleSetScrollPercentage}
+          />
+        )}
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
       <FooterComponent />

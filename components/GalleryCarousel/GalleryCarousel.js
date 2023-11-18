@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
-import artPiecesData from "@/db/TestData/SampleDataForTests";
 import styled from "styled-components";
 
 export default function GallerySlider({ filteredCategory }) {
@@ -16,7 +15,7 @@ export default function GallerySlider({ filteredCategory }) {
       <Carousel
         showIndicators={false}
         dynamicHeight={false}
-        showThumbs={true}
+        showThumbs={false}
         swipeScrollTolerance={100}
         selectedItem={selectedIndex}
         onChange={(index) => setSelectedIndex(index)}
