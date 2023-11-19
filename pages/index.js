@@ -1,5 +1,5 @@
 import ArtPiecesPreview from "@/components/ArtPiecesPreview/ArtPiecesPreview";
-import ImageCarousel from "@/components/Carousel/Carousel";
+import PressCarousel from "@/components/PressCarousel/PressCarousel";
 import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
 import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/DisplayPreviewOptions";
 import FooterComponent from "@/components/Footer/Footer";
@@ -37,7 +37,7 @@ export default function HomePage({
       />
       <main>
         <WelcomingAbout />
-        <ImageCarousel filteredCategory={filteredCategory} />
+        <PressCarousel filteredCategory={filteredCategory} />
         <h3>Wähle eine Kategorie aus:</h3>
         <CategoryFilter
           handleSetFilteredCategory={handleSetFilteredCategory}
