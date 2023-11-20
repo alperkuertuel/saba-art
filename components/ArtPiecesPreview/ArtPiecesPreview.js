@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 export default function ArtPiecesPreview({
   filteredCategory,
-  previewOption,
+  previewoption,
   handleSetScrollPercentage,
 }) {
   return (
-    <GalleryWrapper previewOption={previewOption}>
+    <GalleryWrapper previewoption={previewoption}>
       {filteredCategory &&
         filteredCategory.map(({ _id, imageUrl, name, date, slug }) => (
           <GalleryCard key={_id}>
@@ -16,7 +16,7 @@ export default function ArtPiecesPreview({
               <Link href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage("0")}>
                 <StyledImage src={imageUrl} alt={name} width={1000} height={1000} priority={true} />
               </Link>
-              {previewOption === "80px" ? (
+              {previewoption === "80px" ? (
                 ""
               ) : (
                 <Caption>
@@ -35,7 +35,7 @@ export default function ArtPiecesPreview({
 
 const GalleryWrapper = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(${(props) => props.previewOption}, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(${(props) => props.previewoption}, 1fr));
   grid-gap: 2rem;
   width: 100%;
 `;

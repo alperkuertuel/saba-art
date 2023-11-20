@@ -1,13 +1,13 @@
 import ArtPiecesPreview from "@/components/ArtPiecesPreview/ArtPiecesPreview";
 import PressCarousel from "@/components/PressCarousel/PressCarousel";
 import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
-import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/DisplayPreviewOptions";
 import FooterComponent from "@/components/Footer/Footer";
 import GallerySlider from "@/components/GalleryCarousel/GalleryCarousel";
 import Header from "@/components/Header/Header";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import WelcomingAbout from "@/components/WelcomingAndAbout/WelcomingAndAbout";
 import Head from "next/head";
+import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/DisplayPreviewOptions";
 
 export default function HomePage({
   handleSetFilteredCategory,
@@ -16,7 +16,7 @@ export default function HomePage({
   handleSetScrollPercentage,
   handleSetActiveCategory,
   activeCategory,
-  previewOption,
+  previewoption,
   handleSetPreviewOption,
   handleSetTheme,
   handleSetCurrentTheme,
@@ -47,16 +47,16 @@ export default function HomePage({
         {activeCategory && (
           <DisplayPreviewOptions
             handleSetPreviewOption={handleSetPreviewOption}
-            previewOption={previewOption}
+            previewoption={previewoption}
           />
         )}
-        {activeCategory && previewOption === "slideShow" && (
+        {activeCategory && previewoption === "slideShow" && (
           <GallerySlider filteredCategory={filteredCategory} />
         )}
-        {activeCategory && previewOption != "slideShow" && (
+        {activeCategory && previewoption != "slideShow" && (
           <ArtPiecesPreview
             filteredCategory={filteredCategory}
-            previewOption={previewOption}
+            previewoption={previewoption}
             handleSetScrollPercentage={handleSetScrollPercentage}
           />
         )}

@@ -19,7 +19,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
   const [activeCategory, setActiveCategory] = useState();
 
-  const [previewOption, setPreviewOption] = useState("slideShow");
+  const [previewoption, setpreviewoption] = useState("slideShow");
 
   const [currentFormData, setCurrentFormData] = useState({
     name: "",
@@ -64,8 +64,8 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     setActiveCategory(activeCategory);
   }
 
-  function handleSetPreviewOption(previewOption) {
-    setPreviewOption(previewOption);
+  function handleSetPreviewOption(previewoption) {
+    setpreviewoption(previewoption);
   }
 
   function handleSetCurrentFormData(currentFormData) {
@@ -102,7 +102,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
             fileImageUrl={fileImageUrl}
             scrollPercent={scrollPercent}
             activeCategory={activeCategory}
-            previewOption={previewOption}
+            previewoption={previewoption}
             currentTheme={currentTheme}
             handleSetCurrentTheme={handleSetCurrentTheme}
             currentFormData={currentFormData}

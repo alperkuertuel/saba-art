@@ -226,14 +226,13 @@ const StyledImage = styled(Image)`
   width: 100%;
   height: 60vh;
   opacity: 0.4;
-  border-radius: 5px;
 `;
 
 const StyledLegend = styled.span`
   position: absolute;
   text-align: justify;
   color: var(--font-color);
-  background-color: var(--primary-color);
+  background-color: var(--box-color);
   display: block;
   padding: 0.5rem;
   border-top: 2px solid var(--tertiary-color);

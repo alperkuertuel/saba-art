@@ -8,30 +8,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styled from "styled-components";
 
-export default function DisplayPreviewOptions({ handleSetPreviewOption, previewOption }) {
+export default function DisplayPreviewOptions({ handleSetPreviewOption, previewoption }) {
   return (
     <>
       <StyledPreviewOptionButton
         onClick={() => handleSetPreviewOption("slideShow")}
-        $previewOption={previewOption === "slideShow" ? "var(--cool-brown)" : "var(--highlight)"}
+        $previewoption={previewoption === "slideShow" ? "var(--cool-brown)" : "var(--box-color)"}
       >
         <FontAwesomeIcon aria-label="show slider" icon={faArrowRightArrowLeft} />
       </StyledPreviewOptionButton>
       <StyledPreviewOptionButton
         onClick={() => handleSetPreviewOption("80px")}
-        $previewOption={previewOption === "80px" ? "var(--cool-brown)" : "var(--highlight)"}
+        $previewoption={previewoption === "80px" ? "var(--cool-brown)" : "var(--box-color)"}
       >
         <FontAwesomeIcon aria-label="show small grid" icon={faTableCells} />
       </StyledPreviewOptionButton>
       <StyledPreviewOptionButton
         onClick={() => handleSetPreviewOption("130px")}
-        $previewOption={previewOption === "130px" ? "var(--cool-brown)" : "var(--highlight)"}
+        $previewoption={previewoption === "130px" ? "var(--cool-brown)" : "var(--box-color)"}
       >
         <FontAwesomeIcon aria-label="show middle size grid" icon={faTableCellsLarge} />
       </StyledPreviewOptionButton>
       <StyledPreviewOptionButton
         onClick={() => handleSetPreviewOption("280px")}
-        $previewOption={previewOption === "280px" ? "var(--cool-brown)" : "var(--highlight)"}
+        $previewoption={previewoption === "280px" ? "var(--cool-brown)" : "var(--box-color)"}
       >
         <FontAwesomeIcon aria-label="show large grid" icon={faSquare} />
       </StyledPreviewOptionButton>
@@ -44,7 +44,8 @@ const StyledPreviewOptionButton = styled.button`
   margin-right: 1.5rem;
   padding: 0.5rem;
   border-radius: 5px;
+  box-shadow: var(--box-shadow);
   color: var(--tertiary-color);
-  background-color: ${(props) => props.$previewOption};
+  background-color: ${(props) => props.$previewoption};
   transition: background-color 0.1s ease-in-out;
 `;
