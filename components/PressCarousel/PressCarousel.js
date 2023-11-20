@@ -1,4 +1,4 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import also needed for GalleryCarousel!
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import styled from "styled-components";

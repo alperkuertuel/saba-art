@@ -2,7 +2,11 @@ import styled from "styled-components";
 import useSWR from "swr";
 import LoadingDots from "../LoadingDots/LoadingDots";
 
-export default function CategoryFilter({ handleSetFilteredCategory, handleSetActive, active }) {
+export default function CategoryFilter({
+  handleSetFilteredCategory,
+  handleSetActiveCategory,
+  activeCategory,
+}) {
   const { data, isLoading } = useSWR("/api", { fallbackData: [] });
   const allCategories = data.map((piece) => piece.category);
   const currentYear = new Date().getFullYear().toString();
@@ -13,19 +17,19 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
     if (uniqueCatagories.includes(category)) {
       const filter = data.filter((piece) => piece.category === category);
       handleSetFilteredCategory(filter);
-      handleSetActive(category);
+      handleSetActiveCategory(category);
     }
   }
 
   function handleNewestArtPieces() {
     const yearFilter = data.filter((piece) => piece.date === currentYear);
     handleSetFilteredCategory(yearFilter);
-    handleSetActive("Neue");
+    handleSetActiveCategory("Neue");
   }
 
   function handleFilterAll() {
     handleSetFilteredCategory(data);
-    handleSetActive("Alle");
+    handleSetActiveCategory("Alle");
   }
 
   return (
@@ -39,18 +43,26 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
           <li>
             <StyledButton onClick={handleFilterAll}>
               Alle
-              <CategoryCount $active={active === "Alle" ? "var(--cool-brown)" : "var(--highlight)"}>
+              <CategoryCount
+                $activeCategory={
+                  activeCategory === "Alle" ? "var(--cool-brown)" : "var(--highlight)"
+                }
+              >
                 {data.length}
               </CategoryCount>
             </StyledButton>
           </li>
           <li>
             <StyledButton
-              $active={active === "Neue" ? "var(--cool-brown)" : "var(--highlight)"}
+              $activeCategory={activeCategory === "Neue" ? "var(--cool-brown)" : "var(--highlight)"}
               onClick={handleNewestArtPieces}
             >
               Neueste Bilder aus {currentYear}
-              <CategoryCount $active={active === "Neue" ? "var(--cool-brown)" : "var(--highlight)"}>
+              <CategoryCount
+                $activeCategory={
+                  activeCategory === "Neue" ? "var(--cool-brown)" : "var(--highlight)"
+                }
+              >
                 {data.filter((piece) => piece.date === currentYear).length}
               </CategoryCount>
             </StyledButton>
@@ -61,7 +73,9 @@ export default function CategoryFilter({ handleSetFilteredCategory, handleSetAct
               <StyledButton onClick={() => handleFilteredCategories(category)}>
                 {category}
                 <CategoryCount
-                  $active={active === category ? "var(--cool-brown)" : "var(--highlight)"}
+                  $activeCategory={
+                    activeCategory === category ? "var(--cool-brown)" : "var(--highlight)"
+                  }
                 >
                   {data.filter((count) => count.category === category).length}
                 </CategoryCount>
@@ -96,7 +110,7 @@ const CategoryCount = styled.span`
   padding: 3px 5px;
   margin: 0 0 0 8px;
   border-radius: 5px;
-  background-color: ${(props) => props.$active};
+  background-color: ${(props) => props.$activeCategory};
   font-size: 0.8rem;
   vertical-align: top;
 `;

@@ -13,15 +13,15 @@ export default function ArtPieceDetails({
   widthReal,
   heightReal,
   slug,
-  handleSetActive,
-  active,
+  handleSetActiveCategory,
+  activeCategory,
 }) {
   function handlePreserveActiveState() {
-    if (active === "All") {
-      handleSetActive("All");
-    } else if (active === "Newest") {
-      handleSetActive("Newest");
-    } else handleSetActive(category);
+    if (activeCategory === "All") {
+      handleSetActiveCategory("All");
+    } else if (activeCategory === "Newest") {
+      handleSetActiveCategory("Newest");
+    } else handleSetActiveCategory(category);
   }
   return (
     <StyledSection>

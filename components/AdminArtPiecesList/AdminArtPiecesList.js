@@ -10,8 +10,8 @@ import CategoryFilter from "../CategoryFilter/CategoryFilter";
 export default function ArtPiecesList({
   handleSetScrollPercentage,
   handleSetFilteredCategory,
-  handleSetActive,
-  active,
+  handleSetActiveCategory,
+  activeCategory,
   onDelete,
   onEdit,
   artPieceToEdit,
@@ -24,8 +24,8 @@ export default function ArtPiecesList({
       <h2>Bearbeite oder lösche Kunstwerke:</h2>
       <CategoryFilter
         handleSetFilteredCategory={handleSetFilteredCategory}
-        handleSetActive={handleSetActive}
-        active={active}
+        handleSetActiveCategory={handleSetActiveCategory}
+        activeCategory={activeCategory}
       />
       <StyledList>
         {filteredCategory.map(({ slug, _id, imageUrl, name }) => (

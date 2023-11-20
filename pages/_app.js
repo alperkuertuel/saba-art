@@ -17,9 +17,10 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
   const [scrollPercent, setScrollPercent] = useState(0);
 
-  const [active, setActive] = useState();
+  const [activeCategory, setActiveCategory] = useState();
 
-  const [size, setGridRepeatMinSize] = useState("130px");
+  const [size, setGridRepeatMinSize] = useState("slideShow");
+  // shared state: sets grid repeat min size but also slide show as default
 
   const [currentFormData, setCurrentFormData] = useState({
     name: "",
@@ -60,8 +61,8 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     setScrollPercent(scrollPercent);
   }
 
-  function handleSetActive(active) {
-    setActive(active);
+  function handleSetActiveCategory(activeCategory) {
+    setActiveCategory(activeCategory);
   }
 
   function handleSetGridRepeatMinsize(size) {
@@ -101,7 +102,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
             filteredCategory={filteredCategory}
             fileImageUrl={fileImageUrl}
             scrollPercent={scrollPercent}
-            active={active}
+            activeCategory={activeCategory}
             size={size}
             currentTheme={currentTheme}
             handleSetCurrentTheme={handleSetCurrentTheme}
@@ -111,7 +112,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
             handleSetArtPieceToEdit={handleSetArtPieceToEdit}
             handleSetFilteredCategory={handleSetFilteredCategory}
             handleSetScrollPercentage={handleSetScrollPercentage}
-            handleSetActive={handleSetActive}
+            handleSetActiveCategory={handleSetActiveCategory}
             handleSetCurrentFormData={handleSetCurrentFormData}
             handleSetTheme={handleSetTheme}
           />

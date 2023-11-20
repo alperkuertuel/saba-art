@@ -10,8 +10,8 @@ import LoadingDots from "@/components/LoadingDots/LoadingDots";
 export default function ShowDetails({
   scrollPercent,
   handleSetScrollPercentage,
-  handleSetActive,
-  active,
+  handleSetActiveCategory,
+  activeCategory,
   handleSetTheme,
   handleSetCurrentTheme,
   currentTheme,
@@ -59,8 +59,8 @@ export default function ShowDetails({
           widthReal={foundArtPiece.widthReal}
           heightReal={foundArtPiece.heightReal}
           slug={foundArtPiece.slug}
-          handleSetActive={handleSetActive}
-          active={active}
+          handleSetActiveCategory={handleSetActiveCategory}
+          activeCategory={activeCategory}
         />
       </main>
     </>
