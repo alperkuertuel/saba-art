@@ -45,7 +45,10 @@ export default function HomePage({
           activeCategory={activeCategory}
         />
         {activeCategory && (
-          <DisplayPreviewOptions handleSetGridRepeatMinsize={handleSetGridRepeatMinsize} />
+          <DisplayPreviewOptions
+            handleSetGridRepeatMinsize={handleSetGridRepeatMinsize}
+            size={size}
+          />
         )}
         {activeCategory && size === "slideShow" && (
           <GallerySlider filteredCategory={filteredCategory} />
