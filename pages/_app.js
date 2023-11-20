@@ -19,7 +19,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
   const [activeCategory, setActiveCategory] = useState();
 
-  const [size, setGridRepeatMinSize] = useState("slideShow");
+  const [previewOption, setPreviewOption] = useState("slideShow");
   // shared state: sets grid repeat min size but also slide show as default
 
   const [currentFormData, setCurrentFormData] = useState({
@@ -65,8 +65,8 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     setActiveCategory(activeCategory);
   }
 
-  function handleSetGridRepeatMinsize(size) {
-    setGridRepeatMinSize(size);
+  function handleSetPreviewOption(previewOption) {
+    setPreviewOption(previewOption);
   }
 
   function handleSetCurrentFormData(currentFormData) {
@@ -103,11 +103,11 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
             fileImageUrl={fileImageUrl}
             scrollPercent={scrollPercent}
             activeCategory={activeCategory}
-            size={size}
+            previewOption={previewOption}
             currentTheme={currentTheme}
             handleSetCurrentTheme={handleSetCurrentTheme}
             currentFormData={currentFormData}
-            handleSetGridRepeatMinsize={handleSetGridRepeatMinsize}
+            handleSetPreviewOption={handleSetPreviewOption}
             handleSetFileImageUrl={handleSetFileImageUrl}
             handleSetArtPieceToEdit={handleSetArtPieceToEdit}
             handleSetFilteredCategory={handleSetFilteredCategory}

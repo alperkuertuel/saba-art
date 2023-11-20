@@ -16,8 +16,8 @@ export default function HomePage({
   handleSetScrollPercentage,
   handleSetActiveCategory,
   activeCategory,
-  size,
-  handleSetGridRepeatMinsize,
+  previewOption,
+  handleSetPreviewOption,
   handleSetTheme,
   handleSetCurrentTheme,
   currentTheme,
@@ -46,17 +46,17 @@ export default function HomePage({
         />
         {activeCategory && (
           <DisplayPreviewOptions
-            handleSetGridRepeatMinsize={handleSetGridRepeatMinsize}
-            size={size}
+            handleSetPreviewOption={handleSetPreviewOption}
+            previewOption={previewOption}
           />
         )}
-        {activeCategory && size === "slideShow" && (
+        {activeCategory && previewOption === "slideShow" && (
           <GallerySlider filteredCategory={filteredCategory} />
         )}
-        {activeCategory && size != "slideShow" && (
+        {activeCategory && previewOption != "slideShow" && (
           <ArtPiecesPreview
             filteredCategory={filteredCategory}
-            size={size}
+            previewOption={previewOption}
             handleSetScrollPercentage={handleSetScrollPercentage}
           />
         )}

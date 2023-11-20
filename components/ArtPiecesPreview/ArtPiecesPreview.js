@@ -2,9 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function ArtPiecesPreview({ filteredCategory, size, handleSetScrollPercentage }) {
+export default function ArtPiecesPreview({
+  filteredCategory,
+  previewOption,
+  handleSetScrollPercentage,
+}) {
   return (
-    <GalleryWrapper size={size}>
+    <GalleryWrapper previewOption={previewOption}>
       {filteredCategory &&
         filteredCategory.map(({ _id, imageUrl, name, date, slug }) => (
           <GalleryCard key={_id}>
@@ -12,7 +16,7 @@ export default function ArtPiecesPreview({ filteredCategory, size, handleSetScro
               <Link href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage("0")}>
                 <StyledImage src={imageUrl} alt={name} width={1000} height={1000} priority={true} />
               </Link>
-              {size === "80px" ? (
+              {previewOption === "80px" ? (
                 ""
               ) : (
                 <Caption>
@@ -31,7 +35,7 @@ export default function ArtPiecesPreview({ filteredCategory, size, handleSetScro
 
 const GalleryWrapper = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(${(props) => props.size}, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(${(props) => props.previewOption}, 1fr));
   grid-gap: 2rem;
   width: 100%;
 `;

@@ -8,30 +8,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styled from "styled-components";
 
-export default function DisplayPreviewOptions({ handleSetGridRepeatMinsize, size }) {
+export default function DisplayPreviewOptions({ handleSetPreviewOption, previewOption }) {
   return (
     <>
       <StyledPreviewOptionButton
-        onClick={() => handleSetGridRepeatMinsize("slideShow")}
-        $size={size === "slideShow" ? "var(--cool-brown)" : "var(--highlight)"}
+        onClick={() => handleSetPreviewOption("slideShow")}
+        $previewOption={previewOption === "slideShow" ? "var(--cool-brown)" : "var(--highlight)"}
       >
         <FontAwesomeIcon aria-label="show slider" icon={faArrowRightArrowLeft} />
       </StyledPreviewOptionButton>
       <StyledPreviewOptionButton
-        onClick={() => handleSetGridRepeatMinsize("80px")}
-        $size={size === "80px" ? "var(--cool-brown)" : "var(--highlight)"}
+        onClick={() => handleSetPreviewOption("80px")}
+        $previewOption={previewOption === "80px" ? "var(--cool-brown)" : "var(--highlight)"}
       >
         <FontAwesomeIcon aria-label="show small grid" icon={faTableCells} />
       </StyledPreviewOptionButton>
       <StyledPreviewOptionButton
-        onClick={() => handleSetGridRepeatMinsize("130px")}
-        $size={size === "130px" ? "var(--cool-brown)" : "var(--highlight)"}
+        onClick={() => handleSetPreviewOption("130px")}
+        $previewOption={previewOption === "130px" ? "var(--cool-brown)" : "var(--highlight)"}
       >
         <FontAwesomeIcon aria-label="show middle size grid" icon={faTableCellsLarge} />
       </StyledPreviewOptionButton>
       <StyledPreviewOptionButton
-        onClick={() => handleSetGridRepeatMinsize("280px")}
-        $size={size === "280px" ? "var(--cool-brown)" : "var(--highlight)"}
+        onClick={() => handleSetPreviewOption("280px")}
+        $previewOption={previewOption === "280px" ? "var(--cool-brown)" : "var(--highlight)"}
       >
         <FontAwesomeIcon aria-label="show large grid" icon={faSquare} />
       </StyledPreviewOptionButton>
@@ -45,6 +45,6 @@ const StyledPreviewOptionButton = styled.button`
   padding: 0.5rem;
   border-radius: 5px;
   color: var(--tertiary-color);
-  background-color: ${(props) => props.$size};
+  background-color: ${(props) => props.$previewOption};
   transition: background-color 0.1s ease-in-out;
 `;
