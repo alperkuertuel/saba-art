@@ -19,7 +19,8 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
   const [activeCategory, setActiveCategory] = useState();
 
-  const [size, setGridRepeatMinSize] = useState("130px");
+  const [size, setGridRepeatMinSize] = useState("slideShow");
+  // shared state: sets grid repeat min size but also slide show as default
 
   const [currentFormData, setCurrentFormData] = useState({
     name: "",
