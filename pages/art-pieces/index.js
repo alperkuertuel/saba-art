@@ -7,8 +7,8 @@ import Link from "next/link";
 export default function HomePage({
   handleSetFilteredCategory,
   filteredCategory,
-  handleSetActive,
-  active,
+  handleSetActiveCategory,
+  activeCategory,
 }) {
   return (
     <div
@@ -23,8 +23,8 @@ export default function HomePage({
         {" BACK"}
       </Link>
       <CategoryFilter
-        active={active}
-        handleSetActive={handleSetActive}
+        activeCategory={activeCategory}
+        handleSetActiveCategory={handleSetActiveCategory}
         handleSetFilteredCategory={handleSetFilteredCategory}
         filteredCategory={filteredCategory}
       />

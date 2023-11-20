@@ -14,8 +14,8 @@ export default function HomePage({
   filteredCategory,
   scrollPercent,
   handleSetScrollPercentage,
-  handleSetActive,
-  active,
+  handleSetActiveCategory,
+  activeCategory,
   size,
   handleSetGridRepeatMinsize,
   handleSetTheme,
@@ -41,14 +41,16 @@ export default function HomePage({
         <h3>Wähle eine Kategorie aus:</h3>
         <CategoryFilter
           handleSetFilteredCategory={handleSetFilteredCategory}
-          handleSetActive={handleSetActive}
-          active={active}
+          handleSetActiveCategory={handleSetActiveCategory}
+          activeCategory={activeCategory}
         />
-        {active && (
+        {activeCategory && (
           <DisplayPreviewOptions handleSetGridRepeatMinsize={handleSetGridRepeatMinsize} />
         )}
-        {active && size === "slideShow" && <GallerySlider filteredCategory={filteredCategory} />}
-        {active && size != "slideShow" && (
+        {activeCategory && size === "slideShow" && (
+          <GallerySlider filteredCategory={filteredCategory} />
+        )}
+        {activeCategory && size != "slideShow" && (
           <ArtPiecesPreview
             filteredCategory={filteredCategory}
             size={size}

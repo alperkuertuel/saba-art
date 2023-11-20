@@ -11,8 +11,8 @@ export default function AdminHomePage({
   artPieceToEdit,
   handleSetFilteredCategory,
   filteredCategory,
-  active,
-  handleSetActive,
+  activeCategory,
+  handleSetActiveCategory,
   handleSetArtPieceToEdit,
   fileImageUrl,
   handleSetFileImageUrl,
@@ -164,8 +164,8 @@ export default function AdminHomePage({
           handleSetFilteredCategory={handleSetFilteredCategory}
           handleSetScrollPercentage={handleSetScrollPercentage}
           filteredCategory={filteredCategory}
-          handleSetActive={handleSetActive}
-          active={active}
+          handleSetActiveCategory={handleSetActiveCategory}
+          activeCategory={activeCategory}
           artPieceToEdit={artPieceToEdit}
           handleSetArtPieceToEdit={handleSetArtPieceToEdit}
           fileImageUrl={fileImageUrl}
