@@ -1,3 +1,5 @@
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import { FacebookIcon, WhatsappIcon, WhatsappShareButton, FacebookShareButton } from "react-share";
@@ -31,9 +33,11 @@ export default function ArtPieceDetails({
 
       <ButtonList>
         <li>
-          <StyledBackButton onClick={() => handlePreserveActiveState} href={`/`}>
-            Zurück
-          </StyledBackButton>
+          {activeCategory && (
+            <StyledBackButton onClick={() => handlePreserveActiveState} href={`/`}>
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </StyledBackButton>
+          )}
         </li>
         <li>
           <FacebookShareButton
