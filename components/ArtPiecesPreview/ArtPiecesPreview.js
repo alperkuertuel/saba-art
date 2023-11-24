@@ -35,7 +35,7 @@ export default function ArtPiecesPreview({
 
 const GalleryWrapper = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(${(props) => props.previewoption}, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(${(props) => props.$previewoption}, 1fr));
   grid-gap: 2rem;
   width: 100%;
 `;
