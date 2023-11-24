@@ -1,13 +1,13 @@
 import ArtPiecesPreview from "@/components/ArtPiecesPreview/ArtPiecesPreview";
 import PressCarousel from "@/components/PressCarousel/PressCarousel";
 import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
-import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/DisplayPreviewOptions";
 import FooterComponent from "@/components/Footer/Footer";
 import GallerySlider from "@/components/GalleryCarousel/GalleryCarousel";
 import Header from "@/components/Header/Header";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import WelcomingAbout from "@/components/WelcomingAndAbout/WelcomingAndAbout";
 import Head from "next/head";
+import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/DisplayPreviewOptions";
 
 export default function HomePage({
   handleSetFilteredCategory,
@@ -16,8 +16,8 @@ export default function HomePage({
   handleSetScrollPercentage,
   handleSetActiveCategory,
   activeCategory,
-  size,
-  handleSetGridRepeatMinsize,
+  previewoption,
+  handleSetPreviewOption,
   handleSetTheme,
   handleSetCurrentTheme,
   currentTheme,
@@ -45,17 +45,16 @@ export default function HomePage({
           activeCategory={activeCategory}
         />
         {activeCategory && (
-          <DisplayPreviewOptions handleSetGridRepeatMinsize={handleSetGridRepeatMinsize} />
+          <DisplayPreviewOptions
+            handleSetPreviewOption={handleSetPreviewOption}
+            previewoption={previewoption}
+          />
         )}
-        {activeCategory && size === "slideShow" && (
+        {activeCategory && previewoption === "slideShow" && (
           <GallerySlider filteredCategory={filteredCategory} />
         )}
-        {activeCategory && size != "slideShow" && (
-          <ArtPiecesPreview
-            filteredCategory={filteredCategory}
-            size={size}
-            handleSetScrollPercentage={handleSetScrollPercentage}
-          />
+        {activeCategory && previewoption != "slideShow" && (
+          <ArtPiecesPreview filteredCategory={filteredCategory} previewoption={previewoption} />
         )}
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
