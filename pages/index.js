@@ -54,11 +54,7 @@ export default function HomePage({
           <GallerySlider filteredCategory={filteredCategory} />
         )}
         {activeCategory && previewoption != "slideShow" && (
-          <ArtPiecesPreview
-            filteredCategory={filteredCategory}
-            previewoption={previewoption}
-            handleSetScrollPercentage={handleSetScrollPercentage}
-          />
+          <ArtPiecesPreview filteredCategory={filteredCategory} previewoption={previewoption} />
         )}
         <ScrollUp scrollPercent={scrollPercent} />
       </main>

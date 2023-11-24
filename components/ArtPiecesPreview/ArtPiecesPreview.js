@@ -1,34 +1,79 @@
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
 import styled from "styled-components";
+import ArtPieceDetails from "../ArtPieceDetails/ArtPieceDetails";
+import { useEffect } from "react";
 
-export default function ArtPiecesPreview({
-  filteredCategory,
-  previewoption,
-  handleSetScrollPercentage,
-}) {
+export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedArtPiece, setSelectedArtPiece] = useState(null);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isModalOpen]);
+
+  const openModal = (artPiece) => {
+    setSelectedArtPiece(artPiece);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedArtPiece(null);
+    setIsModalOpen(false);
+  };
+
   return (
     <GalleryWrapper $previewoption={previewoption}>
       {filteredCategory &&
-        filteredCategory.map(({ _id, imageUrl, name, date, slug }) => (
-          <GalleryCard key={_id}>
+        filteredCategory.map((artPiece) => (
+          <GalleryCard key={artPiece._id}>
             <figure>
-              <Link href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage("0")}>
-                <StyledImage src={imageUrl} alt={name} width={1000} height={1000} priority={true} />
-              </Link>
+              <span onClick={() => openModal(artPiece)}>
+                <StyledImage
+                  src={artPiece.imageUrl}
+                  alt={artPiece.name}
+                  width={1000}
+                  height={1000}
+                  priority={true}
+                />
+              </span>
               {previewoption === "80px" ? (
                 ""
               ) : (
                 <Caption>
                   <b>
-                    <q>{name}</q>
+                    <q>{artPiece.name}</q>
                   </b>
-                  {date}
+                  {artPiece.date}
                 </Caption>
               )}
             </figure>
           </GalleryCard>
         ))}
+      {isModalOpen && selectedArtPiece && (
+        <ModalContent>
+          <CloseButton onClick={closeModal}>
+            <FontAwesomeIcon icon={faXmark} />
+          </CloseButton>
+          <ArtPieceDetails
+            imageUrl={selectedArtPiece.imageUrl}
+            name={selectedArtPiece.name}
+            date={selectedArtPiece.date}
+            description={selectedArtPiece.description}
+            category={selectedArtPiece.category}
+            technique={selectedArtPiece.technique}
+            widthReal={selectedArtPiece.widthReal}
+            heightReal={selectedArtPiece.heightReal}
+            slug={selectedArtPiece.slug}
+          />
+        </ModalContent>
+      )}
     </GalleryWrapper>
   );
 }
@@ -61,4 +106,25 @@ const GalleryCard = styled.article`
   border-radius: 5px;
   height: fit-content;
   box-shadow: var(--box-shadow);
+`;
+
+const ModalContent = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0.5rem;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--primary-color);
+  opacity: 0.95;
+  z-index: 5;
+  overflow: auto;
+`;
+
+const CloseButton = styled.span`
+  display: flex;
+  justify-content: center;
+  color: var(--tertiary-color);
+  font-size: 2rem;
+  cursor: pointer;
 `;

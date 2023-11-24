@@ -118,11 +118,13 @@ const ModalContent = styled.div`
   height: 100vh;
   background-color: var(--primary-color);
   opacity: 0.95;
-  z-index: 6;
+  z-index: 5;
   overflow: auto;
 `;
 
 const CloseButton = styled.span`
+  display: flex;
+  justify-content: center;
   color: var(--tertiary-color);
   font-size: 2rem;
   cursor: pointer;

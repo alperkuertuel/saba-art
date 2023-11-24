@@ -40,7 +40,7 @@ html {
   }
 
   section {
-    margin: 2rem auto;
+    margin: 1rem auto;
   }
 
   h1 {
