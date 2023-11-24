@@ -33,7 +33,7 @@ export default function ArtPieceDetails({
 
       <ButtonList>
         <li>
-          {activeCategory && (
+          {!activeCategory && (
             <StyledBackButton onClick={() => handlePreserveActiveState} href={`/`}>
               <FontAwesomeIcon icon={faChevronLeft} />
             </StyledBackButton>
