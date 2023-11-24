@@ -12,6 +12,14 @@ export default function GallerySlider({ filteredCategory }) {
   const [selectedArtPiece, setSelectedArtPiece] = useState(null);
 
   useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isModalOpen]);
+
+  useEffect(() => {
     setSelectedIndex(0);
   }, [filteredCategory]);
 
@@ -49,24 +57,22 @@ export default function GallerySlider({ filteredCategory }) {
         ))}
       </Carousel>
       {isModalOpen && selectedArtPiece && (
-        <Modal>
-          <ModalContent>
-            <CloseButton onClick={closeModal}>
-              <FontAwesomeIcon icon={faXmark} />
-            </CloseButton>
-            <ArtPieceDetails
-              imageUrl={selectedArtPiece.imageUrl}
-              name={selectedArtPiece.name}
-              date={selectedArtPiece.date}
-              description={selectedArtPiece.description}
-              category={selectedArtPiece.category}
-              technique={selectedArtPiece.technique}
-              widthReal={selectedArtPiece.widthReal}
-              heightReal={selectedArtPiece.heightReal}
-              slug={selectedArtPiece.slug}
-            />
-          </ModalContent>
-        </Modal>
+        <ModalContent>
+          <CloseButton onClick={closeModal}>
+            <FontAwesomeIcon icon={faXmark} />
+          </CloseButton>
+          <ArtPieceDetails
+            imageUrl={selectedArtPiece.imageUrl}
+            name={selectedArtPiece.name}
+            date={selectedArtPiece.date}
+            description={selectedArtPiece.description}
+            category={selectedArtPiece.category}
+            technique={selectedArtPiece.technique}
+            widthReal={selectedArtPiece.widthReal}
+            heightReal={selectedArtPiece.heightReal}
+            slug={selectedArtPiece.slug}
+          />
+        </ModalContent>
       )}
     </Wrapper>
   );
@@ -103,31 +109,21 @@ const StyledLegend = styled.span`
   height: auto;
 `;
 
-const Modal = styled.div`
-  /* Style your modal container */
+const ModalContent = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  padding: 0.5rem;
+  width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 5;
+  background-color: var(--primary-color);
+  opacity: 0.95;
+  z-index: 6;
   overflow: auto;
 `;
 
-const ModalContent = styled.div`
-  /* Style your modal content */
-  background-color: #fff;
-  padding: 1rem;
-  height: 100vh;
-  overflow: hidden;
-`;
-
 const CloseButton = styled.span`
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  color: red;
+  color: var(--tertiary-color);
   font-size: 2rem;
   cursor: pointer;
 `;

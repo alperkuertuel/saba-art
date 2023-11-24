@@ -8,7 +8,7 @@ export default function ArtPiecesPreview({
   handleSetScrollPercentage,
 }) {
   return (
-    <GalleryWrapper previewoption={previewoption}>
+    <GalleryWrapper $previewoption={previewoption}>
       {filteredCategory &&
         filteredCategory.map(({ _id, imageUrl, name, date, slug }) => (
           <GalleryCard key={_id}>
