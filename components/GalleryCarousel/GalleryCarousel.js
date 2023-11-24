@@ -108,26 +108,26 @@ const Modal = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 5;
+  overflow: auto;
 `;
 
 const ModalContent = styled.div`
   /* Style your modal content */
   background-color: #fff;
   padding: 1rem;
+  height: 100vh;
+  overflow: hidden;
 `;
 
 const CloseButton = styled.span`
   position: absolute;
   top: 20px;
   left: 20px;
-  color: white;
+  color: red;
   font-size: 2rem;
   cursor: pointer;
 `;
