@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import ArtPieceDetails from "../ArtPieceDetails/ArtPieceDetails";
 
-export default function GallerySlider({ filteredCategory }) {
+export default function GallerySlider({ filteredCategory, handleSetActiveCategory }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArtPiece, setSelectedArtPiece] = useState(null);
@@ -62,6 +62,7 @@ export default function GallerySlider({ filteredCategory }) {
             <FontAwesomeIcon icon={faXmark} />
           </CloseButton>
           <ArtPieceDetails
+            handleSetActiveCategory={handleSetActiveCategory}
             imageUrl={selectedArtPiece.imageUrl}
             name={selectedArtPiece.name}
             date={selectedArtPiece.date}
@@ -71,6 +72,7 @@ export default function GallerySlider({ filteredCategory }) {
             widthReal={selectedArtPiece.widthReal}
             heightReal={selectedArtPiece.heightReal}
             slug={selectedArtPiece.slug}
+            closeModal={closeModal}
           />
         </ModalContent>
       )}

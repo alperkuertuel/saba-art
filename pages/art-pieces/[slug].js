@@ -15,6 +15,7 @@ export default function ShowDetails({
   handleSetTheme,
   handleSetCurrentTheme,
   currentTheme,
+  closeModal,
 }) {
   const router = useRouter();
   const { slug } = router.query;

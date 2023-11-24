@@ -1,7 +1,6 @@
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import Link from "next/link";
 import { FacebookIcon, WhatsappIcon, WhatsappShareButton, FacebookShareButton } from "react-share";
 import styled from "styled-components";
 
@@ -17,13 +16,16 @@ export default function ArtPieceDetails({
   slug,
   handleSetActiveCategory,
   activeCategory,
+  closeModal,
 }) {
   function handlePreserveActiveState() {
     if (activeCategory === "All") {
       handleSetActiveCategory("All");
     } else if (activeCategory === "Newest") {
       handleSetActiveCategory("Newest");
-    } else handleSetActiveCategory(category);
+    } else {
+      handleSetActiveCategory(category);
+    }
   }
   return (
     <StyledSection>
@@ -33,11 +35,14 @@ export default function ArtPieceDetails({
 
       <ButtonList>
         <li>
-          {!activeCategory && (
-            <StyledBackButton onClick={() => handlePreserveActiveState} href={`/`}>
-              <FontAwesomeIcon icon={faChevronLeft} />
-            </StyledBackButton>
-          )}
+          <StyledBackButton
+            onClick={() => {
+              handlePreserveActiveState();
+              closeModal();
+            }}
+          >
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </StyledBackButton>
         </li>
         <li>
           <FacebookShareButton
@@ -114,7 +119,7 @@ const ButtonList = styled.ul`
   gap: 0.5rem;
 `;
 
-const StyledBackButton = styled(Link)`
+const StyledBackButton = styled.span`
   background-color: var(--cool-brown);
   color: var(--font-color);
   padding: 0.3rem 0.5rem 0.3rem 0.5rem;
