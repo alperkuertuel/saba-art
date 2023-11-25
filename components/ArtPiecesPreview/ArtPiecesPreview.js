@@ -18,15 +18,15 @@ export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
     }
   }, [isModalOpen]);
 
-  const openModal = (artPiece) => {
+  function openModal(artPiece) {
     setSelectedArtPiece(artPiece);
     setIsModalOpen(true);
-  };
+  }
 
-  const closeModal = () => {
+  function closeModal() {
     setSelectedArtPiece(null);
     setIsModalOpen(false);
-  };
+  }
 
   return (
     <GalleryWrapper $previewoption={previewoption}>

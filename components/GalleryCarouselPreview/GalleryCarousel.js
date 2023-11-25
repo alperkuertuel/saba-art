@@ -23,15 +23,15 @@ export default function GallerySliderPreview({ filteredCategory }) {
     setSelectedIndex(0);
   }, [filteredCategory]);
 
-  const openModal = (artPiece) => {
+  function openModal(artPiece) {
     setSelectedArtPiece(artPiece);
     setIsModalOpen(true);
-  };
+  }
 
-  const closeModal = () => {
+  function closeModal() {
     setSelectedArtPiece(null);
     setIsModalOpen(false);
-  };
+  }
 
   return (
     <Wrapper>
