@@ -5,6 +5,7 @@ import { SWRConfig } from "swr";
 import useSWR from "swr";
 import { SessionProvider } from "next-auth/react";
 import { useEffect } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
@@ -32,17 +33,19 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     heightReal: "",
   });
 
-  const [currentTheme, setCurrentTheme] = useState("dark");
+  const [currentTheme, setCurrentTheme] = useLocalStorageState("mode", { defaultValue: "dark" });
 
-  const [theme, setTheme] = useState({
-    primarycolor: "white",
-    fontcolor: "black",
-    secondarycolor: "#391b0e",
-    tertiarycolor: "#a48676",
-    boxcolor: "#f4f4f4",
-    boxshadow: "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
-    coolbrown: "#d9cbc4",
-    highlight: "#dee1e6",
+  const [theme, setTheme] = useLocalStorageState("theme-color-set", {
+    defaultValue: {
+      primarycolor: "white",
+      fontcolor: "black",
+      secondarycolor: "#391b0e",
+      tertiarycolor: "#a48676",
+      boxcolor: "#f4f4f4",
+      boxshadow: "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
+      coolbrown: "#d9cbc4",
+      highlight: "#dee1e6",
+    },
   });
 
   function handleSetArtPieceToEdit(artPieceToEdit) {
@@ -84,10 +87,10 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   // update the meta tag dynamically based on the current theme color
   useEffect(() => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
+    if (metaThemeColor && theme && theme.coolbrown) {
       metaThemeColor.setAttribute("content", theme.coolbrown);
     }
-  }, [theme.coolbrown]);
+  }, [theme]);
 
   return (
     <>
