@@ -107,7 +107,7 @@ const StyledLegend = styled.span`
   height: auto;
 `;
 
-const ModalContent = styled.div`
+export const ModalContent = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -119,7 +119,7 @@ const ModalContent = styled.div`
   overflow: auto;
 `;
 
-const CloseButton = styled.button`
+export const CloseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -5,6 +5,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import ArtPieceDetails from "../ArtPieceDetails/ArtPieceDetails";
 import { useEffect } from "react";
+import { CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
 
 export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -108,28 +109,4 @@ const GalleryCard = styled.article`
   box-shadow: var(--box-shadow);
 `;
 
-const ModalContent = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0.5rem;
-  width: 100%;
-  height: 100vh;
-  background-color: var(--primary-color);
-  z-index: 5;
-  overflow: auto;
-`;
-
-const CloseButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  color: var(--font-color);
-  background-color: var(--box-color);
-  box-shadow: var(--box-shadow);
-  padding: 0.5rem;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-`;
+// Model Styles imported!
