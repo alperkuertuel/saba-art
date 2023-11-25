@@ -81,8 +81,8 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     setCurrentTheme(currentTheme);
   }
 
+  // update the meta tag dynamically based on the current theme color
   useEffect(() => {
-    // Update the meta tag dynamically based on the current theme color
     document.documentElement.style.setProperty("--theme-color", theme.coolbrown);
   }, [theme.coolbrown]);
 
