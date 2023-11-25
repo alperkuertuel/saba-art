@@ -41,8 +41,9 @@ export default function GallerySliderPreview({ filteredCategory }) {
         showThumbs={false}
         infiniteLoop={true}
         selectedItem={selectedIndex}
-        swipeScrollTolerance={100}
         onChange={(index) => setSelectedIndex(index)}
+        preventMovementUntilSwipeScrollTolerance={true}
+        swipeScrollTolerance={50}
       >
         {filteredCategory.map((artPiece) => (
           <div key={artPiece.name}>
