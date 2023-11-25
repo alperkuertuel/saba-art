@@ -23,12 +23,12 @@ export default function GallerySliderPreview({ filteredCategory }) {
     setSelectedIndex(0);
   }, [filteredCategory]);
 
-  function openModal(artPiece) {
+  function openModalGallerySlider(artPiece) {
     setSelectedArtPiece(artPiece);
     setIsModalOpen(true);
   }
 
-  function closeModal() {
+  function closeModalGallerySlider() {
     setSelectedArtPiece(null);
     setIsModalOpen(false);
   }
@@ -46,7 +46,7 @@ export default function GallerySliderPreview({ filteredCategory }) {
         {filteredCategory.map((artPiece) => (
           <div key={artPiece.name}>
             <SliderImage src={artPiece.imageUrl} width={1000} height={1000} alt={artPiece.name} />
-            <StyledLink onClick={() => openModal(artPiece)}>
+            <StyledLink onClick={() => openModalGallerySlider(artPiece)}>
               <StyledLegend>
                 <q>{artPiece.name}</q> / {artPiece.date}
               </StyledLegend>
@@ -56,7 +56,7 @@ export default function GallerySliderPreview({ filteredCategory }) {
       </Carousel>
       {isModalOpen && selectedArtPiece && (
         <ModalContent>
-          <CloseButton onClick={closeModal}>
+          <CloseButton onClick={closeModalGallerySlider}>
             Schließen <FontAwesomeIcon icon={faXmark} />
           </CloseButton>
           <ArtPieceDetails
@@ -69,7 +69,6 @@ export default function GallerySliderPreview({ filteredCategory }) {
             widthReal={selectedArtPiece.widthReal}
             heightReal={selectedArtPiece.heightReal}
             slug={selectedArtPiece.slug}
-            closeModal={closeModal}
           />
         </ModalContent>
       )}
