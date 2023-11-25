@@ -2,7 +2,7 @@ import ArtPiecesPreview from "@/components/ArtPiecesPreview/ArtPiecesPreview";
 import PressCarousel from "@/components/PressCarousel/PressCarousel";
 import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
 import FooterComponent from "@/components/Footer/Footer";
-import GallerySlider from "@/components/GalleryCarousel/GalleryCarousel";
+import GallerySliderPreview from "@/components/GalleryCarouselPreview/GalleryCarousel";
 import Header from "@/components/Header/Header";
 import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
 import WelcomingAbout from "@/components/WelcomingAndAbout/WelcomingAndAbout";
@@ -51,7 +51,7 @@ export default function HomePage({
           />
         )}
         {activeCategory && previewoption === "slideShow" && (
-          <GallerySlider filteredCategory={filteredCategory} />
+          <GallerySliderPreview filteredCategory={filteredCategory} />
         )}
         {activeCategory && previewoption != "slideShow" && (
           <ArtPiecesPreview filteredCategory={filteredCategory} previewoption={previewoption} />

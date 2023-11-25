@@ -117,7 +117,6 @@ const ModalContent = styled.div`
   width: 100%;
   height: 100vh;
   background-color: var(--primary-color);
-  opacity: 0.95;
   z-index: 5;
   overflow: auto;
 `;

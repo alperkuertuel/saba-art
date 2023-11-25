@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import ArtPieceDetails from "../ArtPieceDetails/ArtPieceDetails";
 
-export default function GallerySlider({ filteredCategory }) {
+export default function GallerySliderPreview({ filteredCategory }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArtPiece, setSelectedArtPiece] = useState(null);
@@ -116,7 +116,6 @@ const ModalContent = styled.div`
   width: 100%;
   height: 100vh;
   background-color: var(--primary-color);
-  opacity: 0.95;
   z-index: 5;
   overflow: auto;
 `;
