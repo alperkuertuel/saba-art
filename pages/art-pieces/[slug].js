@@ -9,13 +9,10 @@ import LoadingDots from "@/components/LoadingDots/LoadingDots";
 
 export default function ShowDetails({
   scrollPercent,
-  handleSetScrollPercentage,
-  handleSetActiveCategory,
-  activeCategory,
   handleSetTheme,
+  handleSetScrollPercentage,
   handleSetCurrentTheme,
   currentTheme,
-  closeModal,
 }) {
   const router = useRouter();
   const { slug } = router.query;
@@ -34,10 +31,6 @@ export default function ShowDetails({
         404 art piece not found. <br /> <Link href={`/`}>Go back to the gallery!</Link>
       </StyledErrorMessage>
     );
-  }
-
-  if (closeModal) {
-    router.push("/");
   }
 
   return (
@@ -64,9 +57,6 @@ export default function ShowDetails({
           widthReal={foundArtPiece.widthReal}
           heightReal={foundArtPiece.heightReal}
           slug={foundArtPiece.slug}
-          handleSetActiveCategory={handleSetActiveCategory}
-          activeCategory={activeCategory}
-          closeModal={closeModal}
         />
       </main>
     </>
