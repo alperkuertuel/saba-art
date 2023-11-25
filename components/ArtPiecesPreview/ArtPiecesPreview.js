@@ -18,12 +18,12 @@ export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
     }
   }, [isModalOpen]);
 
-  function openModal(artPiece) {
+  function openModalFromGridView(artPiece) {
     setSelectedArtPiece(artPiece);
     setIsModalOpen(true);
   }
 
-  function closeModal() {
+  function closeModalFromGridView() {
     setSelectedArtPiece(null);
     setIsModalOpen(false);
   }
@@ -34,7 +34,7 @@ export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
         filteredCategory.map((artPiece) => (
           <GalleryCard key={artPiece._id}>
             <figure>
-              <span onClick={() => openModal(artPiece)}>
+              <span onClick={() => openModalFromGridView(artPiece)}>
                 <StyledImage
                   src={artPiece.imageUrl}
                   alt={artPiece.name}
@@ -58,11 +58,10 @@ export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
         ))}
       {isModalOpen && selectedArtPiece && (
         <ModalContent>
-          <CloseButton onClick={closeModal}>
+          <CloseButton onClick={closeModalFromGridView}>
             Schließen <FontAwesomeIcon icon={faXmark} />
           </CloseButton>
           <ArtPieceDetails
-            closeModal={closeModal}
             imageUrl={selectedArtPiece.imageUrl}
             name={selectedArtPiece.name}
             date={selectedArtPiece.date}
