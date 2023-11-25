@@ -68,10 +68,10 @@ export default function ArtPiecesEditForm({
       });
 
       if (response.ok) {
-        alert(`Your update was successfull!`);
+        alert(`Deine Änderungen waren erfolgreich.`);
       } else
         alert(
-          `Something went wrong updating ${editedArtPiece.name}! Please try it again or contact the developer!`
+          `Etwas ist beim Ändern von "${editedArtPiece.name}" schief geflaufen! Versuche es später noch einmal.`
         );
     } catch (error) {
       console.error(`Something went wrong!`, error);
