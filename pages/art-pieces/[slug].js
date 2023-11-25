@@ -36,6 +36,10 @@ export default function ShowDetails({
     );
   }
 
+  if (closeModal) {
+    router.push("/");
+  }
+
   return (
     <>
       <Head>
@@ -62,6 +66,7 @@ export default function ShowDetails({
           slug={foundArtPiece.slug}
           handleSetActiveCategory={handleSetActiveCategory}
           activeCategory={activeCategory}
+          closeModal={closeModal}
         />
       </main>
     </>

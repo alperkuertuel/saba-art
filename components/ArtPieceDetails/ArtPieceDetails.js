@@ -14,36 +14,13 @@ export default function ArtPieceDetails({
   widthReal,
   heightReal,
   slug,
-  handleSetActiveCategory,
-  activeCategory,
-  closeModal,
 }) {
-  function handlePreserveActiveState() {
-    if (activeCategory === "All") {
-      handleSetActiveCategory("All");
-    } else if (activeCategory === "Newest") {
-      handleSetActiveCategory("Newest");
-    } else {
-      handleSetActiveCategory(category);
-    }
-  }
   return (
     <StyledSection>
       <figure>
         <StyledImage src={imageUrl} width={1000} height={1000} alt={name} priority={true} />
       </figure>
-
       <ButtonList>
-        <li>
-          <StyledBackButton
-            onClick={() => {
-              handlePreserveActiveState();
-              closeModal();
-            }}
-          >
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </StyledBackButton>
-        </li>
         <li>
           <FacebookShareButton
             windowWidth={1000}
@@ -113,22 +90,8 @@ const StyledDescription = styled.p`
 `;
 
 const ButtonList = styled.ul`
-  display: grid;
-  grid-template-columns: 1fr 32px 32px;
+  display: flex;
+  justify-content: end;
   align-items: center;
   gap: 0.5rem;
-`;
-
-const StyledBackButton = styled.span`
-  background-color: var(--cool-brown);
-  color: var(--font-color);
-  padding: 0.3rem 0.5rem 0.3rem 0.5rem;
-  border-radius: 5px;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-weight: bold;
-  &:hover {
-    background-color: var(--tertiary-color);
-    transition: background-color 0.2s ease;
-  }
 `;
