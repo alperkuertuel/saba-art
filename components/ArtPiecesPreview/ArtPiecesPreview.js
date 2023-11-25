@@ -63,7 +63,7 @@ export default function ArtPiecesPreview({
       {isModalOpen && selectedArtPiece && (
         <ModalContent>
           <CloseButton onClick={closeModal}>
-            <FontAwesomeIcon icon={faXmark} />
+            Schließen <FontAwesomeIcon icon={faXmark} />
           </CloseButton>
           <ArtPieceDetails
             closeModal={closeModal}
@@ -127,10 +127,16 @@ const ModalContent = styled.div`
   overflow: auto;
 `;
 
-const CloseButton = styled.span`
+const CloseButton = styled.button`
   display: flex;
   justify-content: center;
-  color: var(--tertiary-color);
-  font-size: 2rem;
+  align-items: center;
+  gap: 1rem;
+  color: var(--font-color);
+  background-color: var(--box-color);
+  box-shadow: var(--box-shadow);
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
 `;
