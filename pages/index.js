@@ -51,17 +51,10 @@ export default function HomePage({
           />
         )}
         {activeCategory && previewoption === "slideShow" && (
-          <GallerySlider
-            handleSetActiveCategory={handleSetActiveCategory}
-            filteredCategory={filteredCategory}
-          />
+          <GallerySlider filteredCategory={filteredCategory} />
         )}
         {activeCategory && previewoption != "slideShow" && (
-          <ArtPiecesPreview
-            handleSetActiveCategory={handleSetActiveCategory}
-            filteredCategory={filteredCategory}
-            previewoption={previewoption}
-          />
+          <ArtPiecesPreview filteredCategory={filteredCategory} previewoption={previewoption} />
         )}
         <ScrollUp scrollPercent={scrollPercent} />
       </main>

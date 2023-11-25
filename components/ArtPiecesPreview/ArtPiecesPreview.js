@@ -6,11 +6,7 @@ import styled from "styled-components";
 import ArtPieceDetails from "../ArtPieceDetails/ArtPieceDetails";
 import { useEffect } from "react";
 
-export default function ArtPiecesPreview({
-  filteredCategory,
-  previewoption,
-  handleSetActiveCategory,
-}) {
+export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArtPiece, setSelectedArtPiece] = useState(null);
 
@@ -67,7 +63,6 @@ export default function ArtPiecesPreview({
           </CloseButton>
           <ArtPieceDetails
             closeModal={closeModal}
-            handleSetActiveCategory={handleSetActiveCategory}
             imageUrl={selectedArtPiece.imageUrl}
             name={selectedArtPiece.name}
             date={selectedArtPiece.date}
