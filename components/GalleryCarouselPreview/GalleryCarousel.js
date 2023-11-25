@@ -43,7 +43,7 @@ export default function GallerySliderPreview({ filteredCategory }) {
         selectedItem={selectedIndex}
         onChange={(index) => setSelectedIndex(index)}
         preventMovementUntilSwipeScrollTolerance={true}
-        swipeScrollTolerance={50}
+        swipeScrollTolerance={100}
       >
         {filteredCategory.map((artPiece) => (
           <div key={artPiece.name}>

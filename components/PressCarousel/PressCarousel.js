@@ -17,7 +17,7 @@ export default function ImageCarousel() {
           infiniteLoop={true}
           stopSwipingPropagation={true}
           preventMovementUntilSwipeScrollTolerance={true}
-          swipeScrollTolerance={50}
+          swipeScrollTolerance={100}
         >
           <div>
             <StyledImage
