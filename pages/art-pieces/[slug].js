@@ -9,13 +9,10 @@ import LoadingDots from "@/components/LoadingDots/LoadingDots";
 
 export default function ShowDetails({
   scrollPercent,
-  handleSetScrollPercentage,
-  handleSetActiveCategory,
-  activeCategory,
   handleSetTheme,
+  handleSetScrollPercentage,
   handleSetCurrentTheme,
   currentTheme,
-  closeModal,
 }) {
   const router = useRouter();
   const { slug } = router.query;
@@ -25,13 +22,13 @@ export default function ShowDetails({
   if (isLoading || !data || !slug || isValidating) {
     return (
       <StyledErrorMessage>
-        Loading <LoadingDots />
+        Wird geladen <LoadingDots />
       </StyledErrorMessage>
     );
   } else if (!foundArtPiece) {
     return (
       <StyledErrorMessage>
-        404 art piece not found. <br /> <Link href={`/`}>Go back to the gallery!</Link>
+        404 das Bild wurde nicht gefunden. <br /> <Link href={`/`}>Gehe zurück zur Galerie!</Link>
       </StyledErrorMessage>
     );
   }
@@ -60,8 +57,6 @@ export default function ShowDetails({
           widthReal={foundArtPiece.widthReal}
           heightReal={foundArtPiece.heightReal}
           slug={foundArtPiece.slug}
-          handleSetActiveCategory={handleSetActiveCategory}
-          activeCategory={activeCategory}
         />
       </main>
     </>

@@ -5,12 +5,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import ArtPieceDetails from "../ArtPieceDetails/ArtPieceDetails";
 import { useEffect } from "react";
+import { CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
 
-export default function ArtPiecesPreview({
-  filteredCategory,
-  previewoption,
-  handleSetActiveCategory,
-}) {
+export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArtPiece, setSelectedArtPiece] = useState(null);
 
@@ -22,15 +19,15 @@ export default function ArtPiecesPreview({
     }
   }, [isModalOpen]);
 
-  const openModal = (artPiece) => {
+  function openModalFromGridView(artPiece) {
     setSelectedArtPiece(artPiece);
     setIsModalOpen(true);
-  };
+  }
 
-  const closeModal = () => {
+  function closeModalFromGridView() {
     setSelectedArtPiece(null);
     setIsModalOpen(false);
-  };
+  }
 
   return (
     <GalleryWrapper $previewoption={previewoption}>
@@ -38,7 +35,7 @@ export default function ArtPiecesPreview({
         filteredCategory.map((artPiece) => (
           <GalleryCard key={artPiece._id}>
             <figure>
-              <span onClick={() => openModal(artPiece)}>
+              <span onClick={() => openModalFromGridView(artPiece)}>
                 <StyledImage
                   src={artPiece.imageUrl}
                   alt={artPiece.name}
@@ -62,12 +59,10 @@ export default function ArtPiecesPreview({
         ))}
       {isModalOpen && selectedArtPiece && (
         <ModalContent>
-          <CloseButton onClick={closeModal}>
-            <FontAwesomeIcon icon={faXmark} />
+          <CloseButton onClick={closeModalFromGridView}>
+            Schließen <FontAwesomeIcon icon={faXmark} />
           </CloseButton>
           <ArtPieceDetails
-            closeModal={closeModal}
-            handleSetActiveCategory={handleSetActiveCategory}
             imageUrl={selectedArtPiece.imageUrl}
             name={selectedArtPiece.name}
             date={selectedArtPiece.date}
@@ -114,23 +109,4 @@ const GalleryCard = styled.article`
   box-shadow: var(--box-shadow);
 `;
 
-const ModalContent = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0.5rem;
-  width: 100%;
-  height: 100vh;
-  background-color: var(--primary-color);
-  opacity: 0.95;
-  z-index: 5;
-  overflow: auto;
-`;
-
-const CloseButton = styled.span`
-  display: flex;
-  justify-content: center;
-  color: var(--tertiary-color);
-  font-size: 2rem;
-  cursor: pointer;
-`;
+// Model Styles imported!

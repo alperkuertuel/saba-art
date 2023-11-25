@@ -40,7 +40,6 @@ export default function ArtPieceForm({
 
     onSubmit(newArtPiece);
     handleSetFileImageUrl("/img/preview.png");
-    form.reset();
     handleSetCurrentFormData("");
     form.name.focus();
   }
@@ -158,7 +157,7 @@ export default function ArtPieceForm({
             handleSetCurrentFormData({ ...currentFormData, description: event.target.value })
           }
         ></Textarea>
-        <LetterCounter>{500 - currentFormData.description.length}</LetterCounter>
+        <LetterCounter>{currentFormData && 500 - currentFormData.description.length}</LetterCounter>
         <StyledButton>Hinzufügen</StyledButton>
       </StyledForm>
     </StyledSection>

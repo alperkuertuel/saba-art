@@ -54,7 +54,7 @@ export default function Header({
           </Greeting>
         </Link>
       ) : (
-        <Greeting>{session && `Hello, ` + session.user.name}</Greeting>
+        <Greeting>{session && `Hallo, ` + session.user.name}</Greeting>
       )}
     </StyledHeader>
   );

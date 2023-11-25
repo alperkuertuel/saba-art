@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import ArtPieceDetails from "../ArtPieceDetails/ArtPieceDetails";
 
-export default function GallerySlider({ filteredCategory, handleSetActiveCategory }) {
+export default function GallerySliderPreview({ filteredCategory }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArtPiece, setSelectedArtPiece] = useState(null);
@@ -23,17 +23,15 @@ export default function GallerySlider({ filteredCategory, handleSetActiveCategor
     setSelectedIndex(0);
   }, [filteredCategory]);
 
-  const openModal = (artPiece) => {
+  function openModalGallerySlider(artPiece) {
     setSelectedArtPiece(artPiece);
     setIsModalOpen(true);
-  };
+  }
 
-  const closeModal = () => {
+  function closeModalGallerySlider() {
     setSelectedArtPiece(null);
     setIsModalOpen(false);
-  };
-
-  // console.log(selectedArtPiece);
+  }
 
   return (
     <Wrapper>
@@ -48,7 +46,7 @@ export default function GallerySlider({ filteredCategory, handleSetActiveCategor
         {filteredCategory.map((artPiece) => (
           <div key={artPiece.name}>
             <SliderImage src={artPiece.imageUrl} width={1000} height={1000} alt={artPiece.name} />
-            <StyledLink onClick={() => openModal(artPiece)}>
+            <StyledLink onClick={() => openModalGallerySlider(artPiece)}>
               <StyledLegend>
                 <q>{artPiece.name}</q> / {artPiece.date}
               </StyledLegend>
@@ -58,11 +56,10 @@ export default function GallerySlider({ filteredCategory, handleSetActiveCategor
       </Carousel>
       {isModalOpen && selectedArtPiece && (
         <ModalContent>
-          <CloseButton onClick={closeModal}>
-            <FontAwesomeIcon icon={faXmark} />
+          <CloseButton onClick={closeModalGallerySlider}>
+            Schließen <FontAwesomeIcon icon={faXmark} />
           </CloseButton>
           <ArtPieceDetails
-            handleSetActiveCategory={handleSetActiveCategory}
             imageUrl={selectedArtPiece.imageUrl}
             name={selectedArtPiece.name}
             date={selectedArtPiece.date}
@@ -72,7 +69,6 @@ export default function GallerySlider({ filteredCategory, handleSetActiveCategor
             widthReal={selectedArtPiece.widthReal}
             heightReal={selectedArtPiece.heightReal}
             slug={selectedArtPiece.slug}
-            closeModal={closeModal}
           />
         </ModalContent>
       )}
@@ -111,7 +107,7 @@ const StyledLegend = styled.span`
   height: auto;
 `;
 
-const ModalContent = styled.div`
+export const ModalContent = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -119,15 +115,20 @@ const ModalContent = styled.div`
   width: 100%;
   height: 100vh;
   background-color: var(--primary-color);
-  opacity: 0.95;
   z-index: 5;
   overflow: auto;
 `;
 
-const CloseButton = styled.span`
+export const CloseButton = styled.button`
   display: flex;
   justify-content: center;
-  color: var(--tertiary-color);
-  font-size: 2rem;
+  align-items: center;
+  gap: 1rem;
+  color: var(--font-color);
+  background-color: var(--box-color);
+  box-shadow: var(--box-shadow);
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
 `;
