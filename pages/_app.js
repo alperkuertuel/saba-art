@@ -83,7 +83,10 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
   // update the meta tag dynamically based on the current theme color
   useEffect(() => {
-    document.documentElement.style.setProperty("--theme-color", theme.coolbrown);
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute("content", theme.coolbrown);
+    }
   }, [theme.coolbrown]);
 
   return (

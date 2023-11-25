@@ -10,7 +10,6 @@ export default createGlobalStyle`
     --box-shadow: ${(props) => props.$boxshadow};
     --cool-brown: ${(props) => props.$coolbrown};
     --highlight: ${(props) => props.$highlight};
-    --theme-color: ${(props) => props.$coolbrown};
   }
 
   *,
