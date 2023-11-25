@@ -10,11 +10,14 @@ export default function ImageCarousel() {
       <h3>Presseartikel über Saba:</h3>
       <CarouselWrapper>
         <Carousel
+          axis={"horizontal"}
           showIndicators={false}
           dynamicHeight={false}
           showThumbs={false}
           infiniteLoop={true}
-          swipeScrollTolerance={100}
+          stopSwipingPropagation={true}
+          preventMovementUntilSwipeScrollTolerance={true}
+          swipeScrollTolerance={50}
         >
           <div>
             <StyledImage
