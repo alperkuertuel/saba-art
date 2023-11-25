@@ -125,10 +125,11 @@ export const CloseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   color: var(--font-color);
   background-color: var(--box-color);
   box-shadow: var(--box-shadow);
+  margin-top: 1rem;
   padding: 0.5rem;
   border-radius: 5px;
   font-size: 1rem;
