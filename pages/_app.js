@@ -4,6 +4,7 @@ import { useState } from "react";
 import { SWRConfig } from "swr";
 import useSWR from "swr";
 import { SessionProvider } from "next-auth/react";
+import { useEffect } from "react";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
@@ -79,6 +80,11 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   function handleSetCurrentTheme(currentTheme) {
     setCurrentTheme(currentTheme);
   }
+
+  useEffect(() => {
+    // Update the meta tag dynamically based on the current theme color
+    document.documentElement.style.setProperty("--theme-color", theme.coolbrown);
+  }, [theme.coolbrown]);
 
   return (
     <>
