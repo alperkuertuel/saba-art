@@ -36,7 +36,7 @@ export default function CategoryFilter({
     <StyledCategoryFilter>
       {isLoading ? (
         <li>
-          Loading <LoadingDots />
+          Wird geladen <LoadingDots />
         </li>
       ) : (
         <>
