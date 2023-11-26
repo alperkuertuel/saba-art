@@ -112,4 +112,4 @@ const StyledLegend = styled.span`
   opacity: 0.9;
 `;
 
-// The model styles imported from GalleryCarousel.js!
+// The model styles are imported from GalleryCarousel.js!
