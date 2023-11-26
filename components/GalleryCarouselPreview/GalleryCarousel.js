@@ -110,6 +110,9 @@ const StyledLegend = styled.span`
 `;
 
 export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -129,7 +132,7 @@ export const CloseButton = styled.button`
   color: var(--font-color);
   background-color: var(--box-color);
   box-shadow: var(--box-shadow);
-  margin-top: 1rem;
+  margin: 1rem auto;
   padding: 0.5rem;
   border-radius: 5px;
   font-size: 1rem;

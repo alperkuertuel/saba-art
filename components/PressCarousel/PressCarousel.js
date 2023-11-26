@@ -5,20 +5,12 @@ import styled from "styled-components";
 import pressCarouselData from "./pressCarouselData";
 import { CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function ImageCarousel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [isModalOpen]);
 
   function openModalPressSlider(article) {
     setSelectedArticle(article);
