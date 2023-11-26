@@ -59,7 +59,15 @@ export default function ImageCarousel() {
             <CloseButton onClick={closeModalPressSlider}>
               Schließen <FontAwesomeIcon icon={faXmark} />
             </CloseButton>
-            <iframe src={selectedArticle.pdfLink} height="100%" width="100%" />
+            <iframe
+              src={selectedArticle.pdfLink}
+              height="100%"
+              width="100%"
+              name={selectedArticle.name}
+              title={selectedArticle.name}
+              frameBorder={0}
+              allowFullScreen
+            />
           </ModalContent>
         )}
       </CarouselWrapper>
