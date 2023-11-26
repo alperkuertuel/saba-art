@@ -39,7 +39,7 @@ export default function HomePage({
         <WelcomingAbout />
         <PressCarousel filteredCategory={filteredCategory} />
         <section>
-          <h3>Wähle eine Kategorie aus:</h3>
+          <h2>Wähle eine Kategorie aus:</h2>
           <CategoryFilter
             handleSetFilteredCategory={handleSetFilteredCategory}
             handleSetActiveCategory={handleSetActiveCategory}

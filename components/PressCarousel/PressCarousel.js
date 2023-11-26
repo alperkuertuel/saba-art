@@ -9,7 +9,7 @@ import pressCarouselData from "./pressCarouselData";
 export default function ImageCarousel() {
   return (
     <section>
-      <h3>Presseartikel über Saba:</h3>
+      <h2>Presseartikel über Saba:</h2>
       <CarouselWrapper>
         <Carousel
           axis={"horizontal"}
