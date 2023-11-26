@@ -109,4 +109,4 @@ const GalleryCard = styled.article`
   box-shadow: var(--box-shadow);
 `;
 
-// Model Styles imported!
+// The model styles are imported from GalleryCarousel.js!

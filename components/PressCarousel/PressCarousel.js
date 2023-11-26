@@ -2,14 +2,29 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import also n
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import styled from "styled-components";
-import Link from "next/link";
-import { uid } from "uid";
 import pressCarouselData from "./pressCarouselData";
+import { CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function ImageCarousel() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState(null);
+
+  function openModalPressSlider(article) {
+    setSelectedArticle(article);
+    setIsModalOpen(true);
+  }
+
+  function closeModalPressSlider() {
+    setSelectedArticle(null);
+    setIsModalOpen(false);
+  }
+
   return (
     <section>
-      <h3>Presseartikel über Saba:</h3>
+      <h2>Presseartikel über Saba:</h2>
       <CarouselWrapper>
         <Carousel
           axis={"horizontal"}
@@ -22,7 +37,7 @@ export default function ImageCarousel() {
           swipeScrollTolerance={100}
         >
           {pressCarouselData.map((article) => (
-            <div key={uid()}>
+            <div key={article._id}>
               <StyledImage
                 src={article.imageUrl}
                 alt={article.name}
@@ -31,11 +46,7 @@ export default function ImageCarousel() {
                 width={1000}
                 height={1000}
               />
-              <StyledCarouselLinkWrapper
-                href={article.pdfLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <StyledCarouselLinkWrapper onClick={() => openModalPressSlider(article)}>
                 <StyledLegend>
                   {article.legendText} - {article.dateOfArticle}
                 </StyledLegend>
@@ -43,6 +54,22 @@ export default function ImageCarousel() {
             </div>
           ))}
         </Carousel>
+        {isModalOpen && selectedArticle && (
+          <ModalContent>
+            <CloseButton onClick={closeModalPressSlider}>
+              Schließen <FontAwesomeIcon icon={faXmark} />
+            </CloseButton>
+            <iframe
+              src={selectedArticle.pdfLink}
+              height="100%"
+              width="100%"
+              name={selectedArticle.name}
+              title={selectedArticle.name}
+              frameBorder={0}
+              allowFullScreen
+            />
+          </ModalContent>
+        )}
       </CarouselWrapper>
     </section>
   );
@@ -54,7 +81,7 @@ const CarouselWrapper = styled.div`
   position: relative;
 `;
 
-const StyledCarouselLinkWrapper = styled(Link)`
+const StyledCarouselLinkWrapper = styled.button`
   position: absolute;
   top: 0;
   right: 0;
@@ -84,3 +111,5 @@ const StyledLegend = styled.span`
   height: auto;
   opacity: 0.9;
 `;
+
+// The model styles are imported from GalleryCarousel.js!
