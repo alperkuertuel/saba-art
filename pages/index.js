@@ -38,24 +38,26 @@ export default function HomePage({
       <main>
         <WelcomingAbout />
         <PressCarousel filteredCategory={filteredCategory} />
-        <h3>Wähle eine Kategorie aus:</h3>
-        <CategoryFilter
-          handleSetFilteredCategory={handleSetFilteredCategory}
-          handleSetActiveCategory={handleSetActiveCategory}
-          activeCategory={activeCategory}
-        />
-        {activeCategory && (
-          <DisplayPreviewOptions
-            handleSetPreviewOption={handleSetPreviewOption}
-            previewoption={previewoption}
+        <section>
+          <h3>Wähle eine Kategorie aus:</h3>
+          <CategoryFilter
+            handleSetFilteredCategory={handleSetFilteredCategory}
+            handleSetActiveCategory={handleSetActiveCategory}
+            activeCategory={activeCategory}
           />
-        )}
-        {activeCategory && previewoption === "slideShow" && (
-          <GallerySliderPreview filteredCategory={filteredCategory} />
-        )}
-        {activeCategory && previewoption != "slideShow" && (
-          <ArtPiecesPreview filteredCategory={filteredCategory} previewoption={previewoption} />
-        )}
+          {activeCategory && (
+            <DisplayPreviewOptions
+              handleSetPreviewOption={handleSetPreviewOption}
+              previewoption={previewoption}
+            />
+          )}
+          {activeCategory && previewoption === "slideShow" && (
+            <GallerySliderPreview filteredCategory={filteredCategory} />
+          )}
+          {activeCategory && previewoption != "slideShow" && (
+            <ArtPiecesPreview filteredCategory={filteredCategory} previewoption={previewoption} />
+          )}
+        </section>
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
       <FooterComponent />
