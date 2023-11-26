@@ -74,7 +74,7 @@ export default function ArtPiecesEditForm({
           `Etwas ist beim Ändern von "${editedArtPiece.name}" schief geflaufen! Versuche es später noch einmal.`
         );
     } catch (error) {
-      console.error(`Something went wrong!`, error);
+      console.error(`Etwas ist schief gelaufen!`, error);
     }
     //location.reload();
     router.push(`/art-pieces/${editedArtPiece.slug}`);
