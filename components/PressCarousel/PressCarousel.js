@@ -1,3 +1,4 @@
+import { pdfjs } from "react-pdf";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import also needed for GalleryCarousel!
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
@@ -7,6 +8,7 @@ import { CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCaro
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { Viewer, Worker } from "@react-pdf-viewer/core";
 
 export default function ImageCarousel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,15 +61,11 @@ export default function ImageCarousel() {
             <CloseButton onClick={closeModalPressSlider}>
               Schließen <FontAwesomeIcon icon={faXmark} />
             </CloseButton>
-            <iframe
-              src={selectedArticle.pdfLink}
-              height="100%"
-              width="100%"
-              name={selectedArticle.name}
-              title={selectedArticle.name}
-              frameBorder={0}
-              allowFullScreen
-            />
+            <Worker
+              workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
+            >
+              <Viewer fileUrl={selectedArticle.pdfLink} />
+            </Worker>
           </ModalContent>
         )}
       </CarouselWrapper>
