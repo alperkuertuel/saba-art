@@ -1,14 +1,15 @@
-import { pdfjs } from "react-pdf";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import also needed for GalleryCarousel!
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import styled from "styled-components";
 import pressCarouselData from "./pressCarouselData";
 import { CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { pdfjs } from "react-pdf";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
 
 export default function ImageCarousel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
