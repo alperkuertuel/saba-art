@@ -4,9 +4,15 @@ import Image from "next/image";
 import styled from "styled-components";
 import pressCarouselData from "./pressCarouselData";
 import { CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { pdfjs } from "react-pdf";
+import { Viewer, Worker } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import "@react-pdf-viewer/zoom/lib/styles/index.css";
+import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
+import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
 export default function ImageCarousel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,6 +27,9 @@ export default function ImageCarousel() {
     setSelectedArticle(null);
     setIsModalOpen(false);
   }
+  const defaultLayoutPluginInstance = defaultLayoutPlugin({
+    sidebarTabs: () => [], // remove sidebarTabs
+  });
 
   return (
     <section>
@@ -59,15 +68,23 @@ export default function ImageCarousel() {
             <CloseButton onClick={closeModalPressSlider}>
               Schließen <FontAwesomeIcon icon={faXmark} />
             </CloseButton>
-            <iframe
-              src={selectedArticle.pdfLink}
-              height="100%"
-              width="100%"
-              name={selectedArticle.name}
-              title={selectedArticle.name}
-              frameBorder={0}
-              allowFullScreen
-            />
+            <Worker
+              workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
+            >
+              <ViewerWrapper>
+                <div
+                  style={{
+                    border: "1px solid rgba(0, 0, 0, 0.3)",
+                    height: "750px",
+                  }}
+                >
+                  <Viewer
+                    fileUrl={selectedArticle.pdfLink}
+                    plugins={[defaultLayoutPluginInstance]}
+                  />
+                </div>
+              </ViewerWrapper>
+            </Worker>
           </ModalContent>
         )}
       </CarouselWrapper>
@@ -112,4 +129,9 @@ const StyledLegend = styled.span`
   opacity: 0.9;
 `;
 
+const ViewerWrapper = styled.div`
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+`;
 // The model styles are imported from GalleryCarousel.js!
