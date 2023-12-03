@@ -33,10 +33,9 @@ export default createGlobalStyle`
   }
 
   main {
-    margin: 7rem auto;
+    margin: 6rem auto;
     max-width: 600px;
-
-    padding: 0 1rem;
+    padding: 0 .5rem;
   }
 
   section {
