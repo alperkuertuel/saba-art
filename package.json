@@ -10,13 +10,12 @@
     "test": "jest --watchAll"
   },
   "dependencies": {
-    "@react-pdf-viewer/core": "^3.12.0",
-    "@react-pdf-viewer/default-layout": "^3.12.0",
+    "@react-pdf-viewer/core": "3.12.0",
+    "@react-pdf-viewer/default-layout": "3.12.0",
     "eslint-config-next": "^14.0.3",
     "mongoose": "^8.0.2",
     "next": "^14.0.3",
     "next-auth": "^4.23.1",
-    "node": "^21.2.0",
     "pdfjs-dist": "3.11.174",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
