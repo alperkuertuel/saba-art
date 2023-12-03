@@ -133,7 +133,6 @@ export const CloseButton = styled.button`
   color: var(--font-color);
   background-color: var(--box-color);
   box-shadow: var(--box-shadow);
-  margin: 1rem auto;
   padding: 0.5rem;
   border-radius: 5px;
   font-size: 1rem;
