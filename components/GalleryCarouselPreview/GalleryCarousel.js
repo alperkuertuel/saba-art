@@ -93,7 +93,7 @@ const SliderImage = styled(Image)`
 `;
 
 const Wrapper = styled.div`
-  margin: 1rem 0;
+  margin: 2rem 0;
   position: relative;
 `;
 
@@ -116,6 +116,7 @@ export const ModalContent = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  gap: 1rem;
   padding: 0.5rem;
   width: 100%;
   height: 100vh;

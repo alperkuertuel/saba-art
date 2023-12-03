@@ -4,7 +4,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import pressCarouselData from "./pressCarouselData";
 import { CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { pdfjs } from "react-pdf";
@@ -17,6 +17,14 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 export default function ImageCarousel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isModalOpen]);
 
   function openModalPressSlider(article) {
     setSelectedArticle(article);
