@@ -58,7 +58,6 @@ const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  min-width: 280px;
   max-width: 800px; // max width of resizing during upload
 `;
 
@@ -90,6 +89,5 @@ const StyledDescription = styled.p`
 const ButtonList = styled.ul`
   display: flex;
   justify-content: end;
-  align-items: center;
   gap: 0.5rem;
 `;

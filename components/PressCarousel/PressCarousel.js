@@ -93,8 +93,7 @@ export default function ImageCarousel() {
 }
 
 const CarouselWrapper = styled.div`
-  width: 85%;
-  margin: 2rem auto;
+  margin: 1rem auto;
   position: relative;
 `;
 
@@ -110,7 +109,7 @@ const StyledImage = styled(Image)`
   position: relative;
   object-fit: cover;
   width: 100%;
-  height: 60vh;
+  height: 50vh;
   opacity: 0.4;
 `;
 

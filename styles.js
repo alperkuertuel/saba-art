@@ -33,14 +33,13 @@ export default createGlobalStyle`
   }
 
   main {
-    margin: 7rem auto;
-    max-width: 600px;
-
-    padding: 0 1rem;
+    margin: 6rem auto;
+    max-width: 768px;
+    padding: 0 .5rem;
   }
 
   section {
-    margin: 1rem auto;
+    margin: 2rem auto;
   }
 
   h1 {
