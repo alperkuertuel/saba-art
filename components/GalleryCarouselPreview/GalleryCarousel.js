@@ -116,6 +116,7 @@ export const ModalContent = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  gap: 1rem;
   padding: 0.5rem;
   width: 100%;
   height: 100vh;

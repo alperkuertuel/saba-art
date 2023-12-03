@@ -14,7 +14,7 @@ export default function ArtPieceDetails({
   slug,
 }) {
   return (
-    <StyledSection>
+    <StyledContainer>
       <figure>
         <StyledImage src={imageUrl} width={1000} height={1000} alt={name} priority={true} />
       </figure>
@@ -50,15 +50,15 @@ export default function ArtPieceDetails({
         </p>
         <StyledDescription>{description}</StyledDescription>
       </StyledCaption>
-    </StyledSection>
+    </StyledContainer>
   );
 }
 
-const StyledSection = styled.section`
+const StyledContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
   max-width: 800px; // max width of resizing during upload
+  gap: 1rem;
+  flex-direction: column;
 `;
 
 const StyledImage = styled(Image)`
