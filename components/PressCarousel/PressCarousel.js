@@ -109,7 +109,7 @@ const StyledImage = styled(Image)`
   position: relative;
   object-fit: cover;
   width: 100%;
-  height: 70vh;
+  height: 50vh;
   opacity: 0.4;
 `;
 

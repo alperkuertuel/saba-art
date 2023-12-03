@@ -89,11 +89,11 @@ const StyledLink = styled.span`
 
 const SliderImage = styled(Image)`
   object-fit: contain;
-  height: 60vh;
+  height: 50vh;
 `;
 
 const Wrapper = styled.div`
-  margin: 2rem 0;
+  margin: 1rem 0;
   position: relative;
 `;
 
@@ -113,7 +113,6 @@ export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  gap: 1rem;
   position: fixed;
   top: 0;
   left: 0;

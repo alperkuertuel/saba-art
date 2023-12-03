@@ -89,6 +89,5 @@ const StyledDescription = styled.p`
 const ButtonList = styled.ul`
   display: flex;
   justify-content: end;
-  align-items: center;
   gap: 0.5rem;
 `;
