@@ -93,7 +93,6 @@ export default function ArtPieceForm({
             onChange={(event) =>
               handleSetCurrentFormData({ ...currentFormData, available: event.target.checked })
             }
-            required
           />
         </label>
 

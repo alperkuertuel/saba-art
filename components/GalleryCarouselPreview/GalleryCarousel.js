@@ -134,7 +134,7 @@ export const ModalContent = styled.div`
   padding: 0.5rem;
   width: 95%;
   max-width: 768px;
-  max-height: 85vh;
+  max-height: 90vh;
   background-color: var(--primary-color);
   z-index: 5;
   overflow-y: auto;
@@ -142,6 +142,8 @@ export const ModalContent = styled.div`
 `;
 
 export const CloseButton = styled.button`
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -152,6 +154,6 @@ export const CloseButton = styled.button`
   box-shadow: var(--box-shadow);
   padding: 0.5rem;
   border-radius: 5px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
 `;

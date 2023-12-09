@@ -48,4 +48,5 @@ const StyledFooter = styled.footer`
 const DataItem = styled.li`
   margin: 5px;
   display: inline-block;
+  color: var(--secondary-color);
 `;

@@ -31,7 +31,6 @@ export default function Header({
           />
         </Link>
       </h1>
-      <StyledSlogan>Bilder sind Erinnerungen</StyledSlogan>
       <ThemeChanger
         handleSetTheme={handleSetTheme}
         handleSetCurrentTheme={handleSetCurrentTheme}
@@ -73,12 +72,6 @@ const StyledHeader = styled.header`
 
 const StyledLogo = styled(Image)`
   margin: 0.5rem auto;
-`;
-
-const StyledSlogan = styled.p`
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 `;
 
 const Greeting = styled.p`

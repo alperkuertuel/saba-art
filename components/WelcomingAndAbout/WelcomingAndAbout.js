@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
 
 export default function WelcomingAbout() {
@@ -7,7 +8,17 @@ export default function WelcomingAbout() {
       <StyledWelcomingText>
         Hallo und herzlich willkommen in meiner online Kunst-Galerie!
       </StyledWelcomingText>
-      <StyledAvatar priority={true} width={192} height={200} src="/img/saba-art.jpg" alt="Saba" />
+      <StyledAvatarContainer>
+        <StyledAvatar priority={true} width={192} height={200} src="/img/saba-art.jpg" alt="Saba" />
+
+        <StyledLink
+          target="_blank"
+          href="https://www.instagram.com/sezenkansu/"
+          rel="noopener noreferrer"
+        >
+          Foto: @sezenkansu
+        </StyledLink>
+      </StyledAvatarContainer>
       <StyledAboutParagraph>
         <q>Bilder sind Erinnerungen</q> finde ich, deshalb greife ich immer dann zu Pinsel und
         Farbe, wenn mich ein Erlebnis stark beeindruckt hat. Meine Bilder in Öl verbinden
@@ -24,6 +35,7 @@ export default function WelcomingAbout() {
 
 const WelcomingSection = styled.section`
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
@@ -35,9 +47,26 @@ const StyledWelcomingText = styled.h2`
   color: var(--secondary-color);
 `;
 
+const StyledAvatarContainer = styled.div`
+  position: relative;
+  border-radius: 50%;
+`;
+
 const StyledAvatar = styled(Image)`
   border-radius: 50%;
-  border: 1px solid var(--tertiary-color);
+  width: 100%;
+  height: 100%;
+`;
+
+const StyledLink = styled(Link)`
+  position: absolute;
+  font-size: 0.7rem;
+  padding: 5px;
+  bottom: 0px;
+  left: 70px;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  background-color: var(--box-color);
 `;
 
 const StyledAboutParagraph = styled.p`
