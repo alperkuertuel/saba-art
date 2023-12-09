@@ -5,7 +5,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import ArtPieceDetails from "../ArtPieceDetails/ArtPieceDetails";
 import { useEffect } from "react";
-import { CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
+import { BackDrop, CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
 
 export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,22 +58,24 @@ export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
           </GalleryCard>
         ))}
       {isModalOpen && selectedArtPiece && (
-        <ModalContent>
-          <CloseButton onClick={closeModalFromGridView}>
-            Schließen <FontAwesomeIcon icon={faXmark} />
-          </CloseButton>
-          <ArtPieceDetails
-            imageUrl={selectedArtPiece.imageUrl}
-            name={selectedArtPiece.name}
-            date={selectedArtPiece.date}
-            description={selectedArtPiece.description}
-            category={selectedArtPiece.category}
-            technique={selectedArtPiece.technique}
-            widthReal={selectedArtPiece.widthReal}
-            heightReal={selectedArtPiece.heightReal}
-            slug={selectedArtPiece.slug}
-          />
-        </ModalContent>
+        <BackDrop>
+          <ModalContent>
+            <CloseButton onClick={closeModalFromGridView}>
+              Schließen <FontAwesomeIcon icon={faXmark} />
+            </CloseButton>
+            <ArtPieceDetails
+              imageUrl={selectedArtPiece.imageUrl}
+              name={selectedArtPiece.name}
+              date={selectedArtPiece.date}
+              description={selectedArtPiece.description}
+              category={selectedArtPiece.category}
+              technique={selectedArtPiece.technique}
+              widthReal={selectedArtPiece.widthReal}
+              heightReal={selectedArtPiece.heightReal}
+              slug={selectedArtPiece.slug}
+            />
+          </ModalContent>
+        </BackDrop>
       )}
     </GalleryWrapper>
   );
