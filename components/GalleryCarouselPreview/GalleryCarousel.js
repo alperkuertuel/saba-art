@@ -50,29 +50,31 @@ export default function GallerySliderPreview({ filteredCategory }) {
             <SliderImage src={artPiece.imageUrl} width={1000} height={1000} alt={artPiece.name} />
             <StyledLink onClick={() => openModalGallerySlider(artPiece)}>
               <StyledLegend>
-                <q>{artPiece.name}</q> / {artPiece.date}
+                {artPiece.name} - {artPiece.date}
               </StyledLegend>
             </StyledLink>
           </div>
         ))}
       </Carousel>
       {isModalOpen && selectedArtPiece && (
-        <ModalContent>
-          <CloseButton onClick={closeModalGallerySlider}>
-            Schließen <FontAwesomeIcon icon={faXmark} />
-          </CloseButton>
-          <ArtPieceDetails
-            imageUrl={selectedArtPiece.imageUrl}
-            name={selectedArtPiece.name}
-            date={selectedArtPiece.date}
-            description={selectedArtPiece.description}
-            category={selectedArtPiece.category}
-            technique={selectedArtPiece.technique}
-            widthReal={selectedArtPiece.widthReal}
-            heightReal={selectedArtPiece.heightReal}
-            slug={selectedArtPiece.slug}
-          />
-        </ModalContent>
+        <BackDrop>
+          <ModalContent>
+            <CloseButton onClick={closeModalGallerySlider}>
+              Schließen <FontAwesomeIcon icon={faXmark} />
+            </CloseButton>
+            <ArtPieceDetails
+              imageUrl={selectedArtPiece.imageUrl}
+              name={selectedArtPiece.name}
+              date={selectedArtPiece.date}
+              description={selectedArtPiece.description}
+              category={selectedArtPiece.category}
+              technique={selectedArtPiece.technique}
+              widthReal={selectedArtPiece.widthReal}
+              heightReal={selectedArtPiece.heightReal}
+              slug={selectedArtPiece.slug}
+            />
+          </ModalContent>
+        </BackDrop>
       )}
     </Wrapper>
   );
@@ -109,32 +111,47 @@ const StyledLegend = styled.span`
   height: auto;
 `;
 
-export const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
+export const BackDrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 6;
+`;
+
+export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   gap: 1rem;
   padding: 0.5rem;
-  width: 100%;
+  width: 95%;
+  max-width: 768px;
+  max-height: 95vh;
   height: 100vh;
   background-color: var(--primary-color);
   z-index: 5;
-  overflow: auto;
+  overflow-y: auto;
+  border-radius: 5px;
 `;
 
 export const CloseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   gap: 0.5rem;
   color: var(--font-color);
   background-color: var(--box-color);
   box-shadow: var(--box-shadow);
   padding: 0.5rem;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
 `;

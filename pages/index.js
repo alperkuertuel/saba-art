@@ -37,7 +37,7 @@ export default function HomePage({
       />
       <main>
         <WelcomingAbout />
-        <PressCarousel filteredCategory={filteredCategory} />
+        <PressCarousel filteredCategory={filteredCategory} currentTheme={currentTheme} />
         <section>
           <h2>Wähle eine Kategorie aus:</h2>
           <CategoryFilter

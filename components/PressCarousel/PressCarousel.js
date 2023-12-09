@@ -3,7 +3,7 @@ import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import styled from "styled-components";
 import pressCarouselData from "./pressCarouselData";
-import { CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
+import { BackDrop, CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +14,7 @@ import "@react-pdf-viewer/zoom/lib/styles/index.css";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
-export default function ImageCarousel() {
+export default function ImageCarousel({ currentTheme }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
 
@@ -72,28 +72,31 @@ export default function ImageCarousel() {
           ))}
         </Carousel>
         {isModalOpen && selectedArticle && (
-          <ModalContent>
-            <CloseButton onClick={closeModalPressSlider}>
-              Schließen <FontAwesomeIcon icon={faXmark} />
-            </CloseButton>
-            <Worker
-              workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
-            >
-              <ViewerWrapper>
-                <div
-                  style={{
-                    border: "1px solid rgba(0, 0, 0, 0.3)",
-                    height: "750px",
-                  }}
-                >
-                  <Viewer
-                    fileUrl={selectedArticle.pdfLink}
-                    plugins={[defaultLayoutPluginInstance]}
-                  />
-                </div>
-              </ViewerWrapper>
-            </Worker>
-          </ModalContent>
+          <BackDrop>
+            <ModalContent>
+              <CloseButton onClick={closeModalPressSlider}>
+                Schließen <FontAwesomeIcon icon={faXmark} />
+              </CloseButton>
+              <Worker
+                workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
+              >
+                <ViewerWrapper>
+                  <div
+                    style={{
+                      border: "1px solid rgba(0, 0, 0, 0.3)",
+                      height: "750px",
+                    }}
+                  >
+                    <Viewer
+                      theme={currentTheme === "dark" ? "light" : "dark"}
+                      fileUrl={selectedArticle.pdfLink}
+                      plugins={[defaultLayoutPluginInstance]}
+                    />
+                  </div>
+                </ViewerWrapper>
+              </Worker>
+            </ModalContent>
+          </BackDrop>
         )}
       </CarouselWrapper>
     </section>

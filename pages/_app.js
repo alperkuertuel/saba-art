@@ -10,30 +10,57 @@ import useLocalStorageState from "use-local-storage-state";
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function App({ Component, pageProps: { session, ...pageProps } }) {
+  /* -- data-fetching states: -- */
   const { data } = useSWR("/api", fetcher, { fallbackData: [] });
+  const [filteredCategory, setFilteredCategory] = useState(data);
+  function handleSetFilteredCategory(filteredCategory) {
+    setFilteredCategory(filteredCategory);
+  }
 
   const [artPieceToEdit, setArtPieceToEdit] = useState([]);
+  function handleSetArtPieceToEdit(artPieceToEdit) {
+    setArtPieceToEdit(artPieceToEdit);
+  }
+
   const [fileImageUrl, setfileImageUrl] = useState("/img/preview.png");
-
-  const [filteredCategory, setFilteredCategory] = useState(data);
-
-  const [scrollPercent, setScrollPercent] = useState(0);
-
-  const [activeCategory, setActiveCategory] = useState();
-
-  const [previewoption, setpreviewoption] = useState("slideShow");
+  function handleSetFileImageUrl(fileImageUrl) {
+    setfileImageUrl(fileImageUrl);
+  }
 
   const [currentFormData, setCurrentFormData] = useState({
     name: "",
-    date: "",
+    date: new Date().getFullYear(),
     description: "",
-    category: "Impression",
-    technique: "Oil",
+    category: "Impressionen",
+    technique: "Öl auf Leinwand",
     widthReal: "",
     heightReal: "",
   });
+  function handleSetCurrentFormData(currentFormData) {
+    setCurrentFormData(currentFormData);
+  }
 
+  /* -- gallery-view states: -- */
+  const [scrollPercent, setScrollPercent] = useState(0);
+  function handleSetScrollPercentage(scrollPercent) {
+    setScrollPercent(scrollPercent);
+  }
+
+  const [activeCategory, setActiveCategory] = useState();
+  function handleSetActiveCategory(activeCategory) {
+    setActiveCategory(activeCategory);
+  }
+
+  const [previewoption, setpreviewoption] = useState("slideShow");
+  function handleSetPreviewOption(previewoption) {
+    setpreviewoption(previewoption);
+  }
+
+  /* -- theme-states: -- */
   const [currentTheme, setCurrentTheme] = useLocalStorageState("mode", { defaultValue: "dark" });
+  function handleSetCurrentTheme(currentTheme) {
+    setCurrentTheme(currentTheme);
+  }
 
   const [theme, setTheme] = useLocalStorageState("theme-color-set", {
     defaultValue: {
@@ -47,43 +74,10 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
       highlight: "#dee1e6",
     },
   });
-
-  function handleSetArtPieceToEdit(artPieceToEdit) {
-    setArtPieceToEdit(artPieceToEdit);
-  }
-
-  function handleSetFileImageUrl(fileImageUrl) {
-    setfileImageUrl(fileImageUrl);
-  }
-
-  function handleSetFilteredCategory(filteredCategory) {
-    setFilteredCategory(filteredCategory);
-  }
-
-  function handleSetScrollPercentage(scrollPercent) {
-    setScrollPercent(scrollPercent);
-  }
-
-  function handleSetActiveCategory(activeCategory) {
-    setActiveCategory(activeCategory);
-  }
-
-  function handleSetPreviewOption(previewoption) {
-    setpreviewoption(previewoption);
-  }
-
-  function handleSetCurrentFormData(currentFormData) {
-    setCurrentFormData(currentFormData);
-  }
-
   function handleSetTheme(theme) {
     setTheme(theme);
   }
-
-  function handleSetCurrentTheme(currentTheme) {
-    setCurrentTheme(currentTheme);
-  }
-
+  /* -- set meta-tag for mobile devices -- */
   useEffect(() => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor && theme && theme.coolbrown) {
