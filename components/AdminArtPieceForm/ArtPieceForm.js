@@ -30,6 +30,7 @@ export default function ArtPieceForm({
       slug: slug,
       date: data.date,
       name: data.name,
+      available: false,
       description: data.description,
       category: data.category,
       technique: data.technique,
@@ -80,6 +81,17 @@ export default function ArtPieceForm({
           defaultValue={currentFormData.date}
           onChange={(event) =>
             handleSetCurrentFormData({ ...currentFormData, date: event.target.value })
+          }
+          required
+        />
+        <label htmlFor="available">Verfügbar: </label>
+        <Input
+          type="checkbox"
+          id="available"
+          name="available"
+          defaultChecked={currentFormData.available}
+          onChange={(event) =>
+            handleSetCurrentFormData({ ...currentFormData, available: event.target.value })
           }
           required
         />

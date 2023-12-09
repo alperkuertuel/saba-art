@@ -30,6 +30,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   const [currentFormData, setCurrentFormData] = useState({
     name: "",
     date: new Date().getFullYear(),
+    available: true,
     description: "",
     category: "Impressionen",
     technique: "Öl auf Leinwand",
