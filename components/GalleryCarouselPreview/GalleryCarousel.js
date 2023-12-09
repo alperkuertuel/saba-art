@@ -50,7 +50,7 @@ export default function GallerySliderPreview({ filteredCategory }) {
             <SliderImage src={artPiece.imageUrl} width={1000} height={1000} alt={artPiece.name} />
             <StyledLink onClick={() => openModalGallerySlider(artPiece)}>
               <StyledLegend>
-                <q>{artPiece.name}</q> / {artPiece.date}
+                {artPiece.name} - {artPiece.date}
               </StyledLegend>
             </StyledLink>
           </div>
