@@ -29,6 +29,7 @@ export default function ArtPiecesEditForm({
       _id: artPieceToEdit._id,
       slug: slug,
       date: editData.date,
+      available: editData.available === "on",
       name: editData.name,
       description: editData.description,
       category: editData.category,
@@ -45,6 +46,7 @@ export default function ArtPiecesEditForm({
             _id: editedArtPiece._id,
             slug: editedArtPiece.slug,
             date: editedArtPiece.date,
+            available: editedArtPiece.available,
             name: editedArtPiece.name,
             description: editedArtPiece.description,
             category: editedArtPiece.category,
@@ -104,7 +106,14 @@ export default function ArtPiecesEditForm({
           defaultValue={artPieceToEdit.date}
           required
         />
-
+        <label htmlFor="available">Ändere die Verfügbarkeit: </label>
+        <Input
+          type="checkbox"
+          id="available"
+          name="available"
+          defaultChecked={artPieceToEdit?.available}
+          required
+        />
         <StyledFieldset>
           <label htmlFor="category">Kategorie: </label>
           <StyledSelection name="category" id="category" defaultValue={artPieceToEdit.category}>

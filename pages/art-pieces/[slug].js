@@ -46,7 +46,6 @@ export default function ShowDetails({
         handleSetCurrentTheme={handleSetCurrentTheme}
         currentTheme={currentTheme}
       />
-
       <main>
         <StyledBackLink href="/">
           <b>Zur online Kunst-Galerie!</b>

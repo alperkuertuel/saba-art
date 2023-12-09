@@ -66,6 +66,7 @@ export default function GallerySliderPreview({ filteredCategory }) {
               imageUrl={selectedArtPiece.imageUrl}
               name={selectedArtPiece.name}
               date={selectedArtPiece.date}
+              available={selectedArtPiece.available}
               description={selectedArtPiece.description}
               category={selectedArtPiece.category}
               technique={selectedArtPiece.technique}
