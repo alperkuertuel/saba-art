@@ -113,7 +113,6 @@ export default function ArtPiecesEditForm({
             id="available"
             name="available"
             defaultChecked={artPieceToEdit?.available}
-            required
           />
         </label>
         <StyledFieldset>
