@@ -76,7 +76,7 @@ const StyledImage = styled(Image)`
   object-fit: contain;
   pointer-events: none;
   width: 100%;
-  height: 70vh;
+  height: auto;
   max-height: 800px; // max height of resizing during upload
   border-radius: 5px;
 `;
