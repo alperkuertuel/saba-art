@@ -1,3 +1,5 @@
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { FacebookIcon, WhatsappIcon, WhatsappShareButton, FacebookShareButton } from "react-share";
 import styled from "styled-components";
@@ -6,6 +8,7 @@ export default function ArtPieceDetails({
   imageUrl,
   name,
   date,
+  available,
   category,
   technique,
   description,
@@ -43,6 +46,14 @@ export default function ArtPieceDetails({
           <h1>{name}</h1>
           <p>{date}</p>
         </StyledNameDate>
+        <StyledAvailable>
+          Verfügbar:
+          {available === true ? (
+            <FontAwesomeIcon icon={faCheck} title="Das Bild ist noch Verfügbar!" />
+          ) : (
+            <FontAwesomeIcon icon={faXmark} title="Das Bild ist leider nicht mehr Verfügbar!" />
+          )}
+        </StyledAvailable>
         <p>Kategorie: {category}</p>
         <p>Verwendete Technik: {technique}</p>
         <p>
@@ -65,7 +76,7 @@ const StyledImage = styled(Image)`
   object-fit: contain;
   pointer-events: none;
   width: 100%;
-  height: 70vh;
+  height: auto;
   max-height: 800px; // max height of resizing during upload
   border-radius: 5px;
 `;
@@ -74,6 +85,12 @@ const StyledNameDate = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const StyledAvailable = styled.p`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;
 
 const StyledCaption = styled.figcaption`

@@ -33,7 +33,6 @@ export default function ShowDetails({
       </StyledErrorMessage>
     );
   }
-
   return (
     <>
       <Head>
@@ -47,7 +46,6 @@ export default function ShowDetails({
         handleSetCurrentTheme={handleSetCurrentTheme}
         currentTheme={currentTheme}
       />
-
       <main>
         <StyledBackLink href="/">
           <b>Zur online Kunst-Galerie!</b>
@@ -58,6 +56,7 @@ export default function ShowDetails({
           date={foundArtPiece.date}
           description={foundArtPiece.description}
           category={foundArtPiece.category}
+          available={foundArtPiece.available}
           technique={foundArtPiece.technique}
           widthReal={foundArtPiece.widthReal}
           heightReal={foundArtPiece.heightReal}

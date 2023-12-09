@@ -66,6 +66,7 @@ export default function GallerySliderPreview({ filteredCategory }) {
               imageUrl={selectedArtPiece.imageUrl}
               name={selectedArtPiece.name}
               date={selectedArtPiece.date}
+              available={selectedArtPiece.available}
               description={selectedArtPiece.description}
               category={selectedArtPiece.category}
               technique={selectedArtPiece.technique}
@@ -134,7 +135,6 @@ export const ModalContent = styled.div`
   width: 95%;
   max-width: 768px;
   max-height: 85vh;
-  height: 85vh;
   background-color: var(--primary-color);
   z-index: 5;
   overflow-y: auto;

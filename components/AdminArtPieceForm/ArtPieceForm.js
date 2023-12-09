@@ -30,6 +30,7 @@ export default function ArtPieceForm({
       slug: slug,
       date: data.date,
       name: data.name,
+      available: data.available === "on",
       description: data.description,
       category: data.category,
       technique: data.technique,
@@ -37,7 +38,6 @@ export default function ArtPieceForm({
       widthReal: data.widthReal,
       heightReal: data.heightReal,
     };
-
     onSubmit(newArtPiece);
     handleSetFileImageUrl("/img/preview.png");
     handleSetCurrentFormData("");
@@ -83,6 +83,20 @@ export default function ArtPieceForm({
           }
           required
         />
+        <label htmlFor="available">
+          Verfügbar:
+          <StyledCheckbox
+            type="checkbox"
+            id="available"
+            name="available"
+            defaultChecked={currentFormData.available}
+            onChange={(event) =>
+              handleSetCurrentFormData({ ...currentFormData, available: event.target.checked })
+            }
+            required
+          />
+        </label>
+
         <StyledFieldset>
           <label htmlFor="category">Kategorie: </label>
           <StyledSelection
@@ -160,7 +174,9 @@ export default function ArtPieceForm({
             handleSetCurrentFormData({ ...currentFormData, description: event.target.value })
           }
         ></Textarea>
-        <LetterCounter>{currentFormData && 500 - currentFormData.description.length}</LetterCounter>
+        <LetterCounter>
+          {currentFormData && 500 - currentFormData.description?.length}
+        </LetterCounter>
         <StyledButton>Hinzufügen</StyledButton>
       </StyledForm>
     </StyledSection>
@@ -203,6 +219,14 @@ const Input = styled.input`
   width: auto;
   border-bottom: 1px solid var(--tertiary-color);
   background: var(--primary-color);
+`;
+
+const StyledCheckbox = styled.input`
+  vertical-align: top;
+  width: 20px;
+  height: 20px;
+  margin-left: 0.5rem;
+  accent-color: var(--tertiary-color);
 `;
 
 const StyledSelection = styled.select`
