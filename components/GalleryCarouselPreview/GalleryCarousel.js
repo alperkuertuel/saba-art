@@ -124,7 +124,6 @@ export const BackDrop = styled.div`
 export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   position: fixed;
   top: 50%;
