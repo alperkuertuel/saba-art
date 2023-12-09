@@ -83,17 +83,20 @@ export default function ArtPieceForm({
           }
           required
         />
-        <label htmlFor="available">Verfügbar: </label>
-        <Input
-          type="checkbox"
-          id="available"
-          name="available"
-          defaultChecked={currentFormData.available}
-          onChange={(event) =>
-            handleSetCurrentFormData({ ...currentFormData, available: event.target.checked })
-          }
-          required
-        />
+        <label htmlFor="available">
+          Verfügbar:
+          <StyledCheckbox
+            type="checkbox"
+            id="available"
+            name="available"
+            defaultChecked={currentFormData.available}
+            onChange={(event) =>
+              handleSetCurrentFormData({ ...currentFormData, available: event.target.checked })
+            }
+            required
+          />
+        </label>
+
         <StyledFieldset>
           <label htmlFor="category">Kategorie: </label>
           <StyledSelection
@@ -216,6 +219,14 @@ const Input = styled.input`
   width: auto;
   border-bottom: 1px solid var(--tertiary-color);
   background: var(--primary-color);
+`;
+
+const StyledCheckbox = styled.input`
+  vertical-align: top;
+  width: 20px;
+  height: 20px;
+  margin-left: 0.5rem;
+  accent-color: var(--tertiary-color);
 `;
 
 const StyledSelection = styled.select`

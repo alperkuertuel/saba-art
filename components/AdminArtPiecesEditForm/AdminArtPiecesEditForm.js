@@ -106,14 +106,16 @@ export default function ArtPiecesEditForm({
           defaultValue={artPieceToEdit.date}
           required
         />
-        <label htmlFor="available">Ändere die Verfügbarkeit: </label>
-        <Input
-          type="checkbox"
-          id="available"
-          name="available"
-          defaultChecked={artPieceToEdit?.available}
-          required
-        />
+        <label htmlFor="available">
+          Ändere die Verfügbarkeit:
+          <StyledCheckbox
+            type="checkbox"
+            id="available"
+            name="available"
+            defaultChecked={artPieceToEdit?.available}
+            required
+          />
+        </label>
         <StyledFieldset>
           <label htmlFor="category">Kategorie: </label>
           <StyledSelection name="category" id="category" defaultValue={artPieceToEdit.category}>
@@ -187,6 +189,14 @@ const Input = styled.input`
   width: auto;
   border-bottom: 1px solid var(--tertiary-color);
   background: var(--primary-color);
+`;
+
+const StyledCheckbox = styled.input`
+  vertical-align: top;
+  width: 20px;
+  height: 20px;
+  margin-left: 0.5rem;
+  accent-color: var(--tertiary-color);
 `;
 
 const StyledSelection = styled.select`
