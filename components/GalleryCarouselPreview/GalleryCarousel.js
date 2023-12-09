@@ -57,22 +57,24 @@ export default function GallerySliderPreview({ filteredCategory }) {
         ))}
       </Carousel>
       {isModalOpen && selectedArtPiece && (
-        <ModalContent>
-          <CloseButton onClick={closeModalGallerySlider}>
-            Schließen <FontAwesomeIcon icon={faXmark} />
-          </CloseButton>
-          <ArtPieceDetails
-            imageUrl={selectedArtPiece.imageUrl}
-            name={selectedArtPiece.name}
-            date={selectedArtPiece.date}
-            description={selectedArtPiece.description}
-            category={selectedArtPiece.category}
-            technique={selectedArtPiece.technique}
-            widthReal={selectedArtPiece.widthReal}
-            heightReal={selectedArtPiece.heightReal}
-            slug={selectedArtPiece.slug}
-          />
-        </ModalContent>
+        <BackDrop>
+          <ModalContent>
+            <CloseButton onClick={closeModalGallerySlider}>
+              Schließen <FontAwesomeIcon icon={faXmark} />
+            </CloseButton>
+            <ArtPieceDetails
+              imageUrl={selectedArtPiece.imageUrl}
+              name={selectedArtPiece.name}
+              date={selectedArtPiece.date}
+              description={selectedArtPiece.description}
+              category={selectedArtPiece.category}
+              technique={selectedArtPiece.technique}
+              widthReal={selectedArtPiece.widthReal}
+              heightReal={selectedArtPiece.heightReal}
+              slug={selectedArtPiece.slug}
+            />
+          </ModalContent>
+        </BackDrop>
       )}
     </Wrapper>
   );
@@ -109,21 +111,34 @@ const StyledLegend = styled.span`
   height: auto;
 `;
 
+export const BackDrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 6;
+`;
+
 export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   gap: 1rem;
   padding: 0.5rem;
-  width: 100%;
-  height: 100vh;
+  width: 90%;
+  max-width: 700px;
+  height: 95vh;
   background-color: var(--primary-color);
   z-index: 5;
   overflow: auto;
+  border-radius: 5px;
 `;
 
 export const CloseButton = styled.button`
