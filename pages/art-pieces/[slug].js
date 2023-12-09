@@ -6,8 +6,6 @@ import Link from "next/link";
 import Head from "next/head";
 import useSWR from "swr";
 import LoadingDots from "@/components/LoadingDots/LoadingDots";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowCircleLeft, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShowDetails({
   scrollPercent,
