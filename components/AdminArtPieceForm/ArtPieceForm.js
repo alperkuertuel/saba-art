@@ -109,10 +109,13 @@ export default function ArtPieceForm({
               handleSetCurrentFormData({ ...currentFormData, technique: event.target.value })
             }
           >
-            <option>Öl auf Leinwand</option>
             <option>Aquarell</option>
-            <option>Steinhauerei</option>
             <option>Diverse</option>
+            <option>Öl auf Leinwand</option>
+            <option>Öl auf Malpappe</option>
+            <option>Spachtel</option>
+            <option>Spachtel und Pinsel</option>
+            <option>Steinhauerei</option>
           </StyledSelection>
         </StyledFieldset>
         <StyledFieldset>
