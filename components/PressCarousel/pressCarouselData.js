@@ -5,7 +5,7 @@ const pressCarouselData = [
     name: "Auszug meines Gästebuchs",
     legendText:
       "Das Zitat 'Erfolg ist so einsam und eiskalt wie der Nordpol' aus meinem Ausstellungs-Gästebuch betont, dass der Weg zum Erfolg oft von Isolation und emotionaler Kälte begleitet wird, bedingt durch die erforderlichen Herausforderungen und Opfer.",
-    dateOfArticle: "01.01.2023",
+    dateOfArticle: "15.03.1986",
     pdfLink: "/documents/auszug_allgemein.pdf",
   },
   {
