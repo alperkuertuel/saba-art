@@ -14,7 +14,7 @@ import "@react-pdf-viewer/zoom/lib/styles/index.css";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
-export default function ImageCarousel() {
+export default function ImageCarousel({ currentTheme }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
 
@@ -88,6 +88,7 @@ export default function ImageCarousel() {
                     }}
                   >
                     <Viewer
+                      theme={currentTheme === "dark" ? "light" : "dark"}
                       fileUrl={selectedArticle.pdfLink}
                       plugins={[defaultLayoutPluginInstance]}
                     />
