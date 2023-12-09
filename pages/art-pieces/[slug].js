@@ -6,6 +6,8 @@ import Link from "next/link";
 import Head from "next/head";
 import useSWR from "swr";
 import LoadingDots from "@/components/LoadingDots/LoadingDots";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowCircleLeft, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShowDetails({
   scrollPercent,
@@ -28,7 +30,8 @@ export default function ShowDetails({
   } else if (!foundArtPiece) {
     return (
       <StyledErrorMessage>
-        404 das Bild wurde nicht gefunden. <br /> <Link href={`/`}>Gehe zurück zur Galerie!</Link>
+        Error 404 - Das Bild ist nicht vorhanden. <br />{" "}
+        <Link href={`/`}>Gehe zurück zur Galerie!</Link>
       </StyledErrorMessage>
     );
   }
@@ -46,7 +49,11 @@ export default function ShowDetails({
         handleSetCurrentTheme={handleSetCurrentTheme}
         currentTheme={currentTheme}
       />
+
       <main>
+        <StyledBackLink href="/">
+          <b>Zur online Kunst-Galerie!</b>
+        </StyledBackLink>
         <ArtPieceDetails
           imageUrl={foundArtPiece.imageUrl}
           name={foundArtPiece.name}
@@ -62,6 +69,20 @@ export default function ShowDetails({
     </>
   );
 }
+
+const StyledBackLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--box-color);
+  box-shadow: var(--box-shadow);
+  font-size: 1.2rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+`;
 
 const StyledErrorMessage = styled.h1`
   position: fixed;
