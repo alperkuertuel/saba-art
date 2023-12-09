@@ -30,7 +30,7 @@ export default function ArtPieceForm({
       slug: slug,
       date: data.date,
       name: data.name,
-      available: false,
+      available: data.available === "on",
       description: data.description,
       category: data.category,
       technique: data.technique,
@@ -38,7 +38,6 @@ export default function ArtPieceForm({
       widthReal: data.widthReal,
       heightReal: data.heightReal,
     };
-
     onSubmit(newArtPiece);
     handleSetFileImageUrl("/img/preview.png");
     handleSetCurrentFormData("");
@@ -91,7 +90,7 @@ export default function ArtPieceForm({
           name="available"
           defaultChecked={currentFormData.available}
           onChange={(event) =>
-            handleSetCurrentFormData({ ...currentFormData, available: event.target.value })
+            handleSetCurrentFormData({ ...currentFormData, available: event.target.checked })
           }
           required
         />
@@ -172,7 +171,9 @@ export default function ArtPieceForm({
             handleSetCurrentFormData({ ...currentFormData, description: event.target.value })
           }
         ></Textarea>
-        <LetterCounter>{currentFormData && 500 - currentFormData.description.length}</LetterCounter>
+        <LetterCounter>
+          {currentFormData && 500 - currentFormData.description?.length}
+        </LetterCounter>
         <StyledButton>Hinzufügen</StyledButton>
       </StyledForm>
     </StyledSection>
