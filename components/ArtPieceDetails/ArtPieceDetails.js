@@ -49,9 +49,12 @@ export default function ArtPieceDetails({
         <StyledAvailable>
           Verfügbar:
           {available === true ? (
-            <FontAwesomeIcon icon={faCheck} title="Das Bild ist noch Verfügbar!" />
+            <FontAwesomeIcon icon={faCheck} aria-label="Das Kunstwerk ist noch Verfügbar!" />
           ) : (
-            <FontAwesomeIcon icon={faXmark} title="Das Bild ist leider nicht mehr Verfügbar!" />
+            <FontAwesomeIcon
+              icon={faXmark}
+              aria-label="Das Kunstwerk ist leider nicht mehr Verfügbar!"
+            />
           )}
         </StyledAvailable>
         <p>Kategorie: {category}</p>
