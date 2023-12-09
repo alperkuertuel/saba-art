@@ -133,8 +133,8 @@ export const ModalContent = styled.div`
   padding: 0.5rem;
   width: 95%;
   max-width: 768px;
-  max-height: 95vh;
-  height: 100vh;
+  max-height: 85vh;
+  height: 85vh;
   background-color: var(--primary-color);
   z-index: 5;
   overflow-y: auto;
