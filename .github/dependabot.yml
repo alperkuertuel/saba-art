@@ -6,6 +6,9 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/" 
+    directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      - "pdfjs-dist"
+      - "use-local-storage-state"
