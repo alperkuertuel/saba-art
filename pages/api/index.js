@@ -14,7 +14,7 @@ export default async function handler(request, response) {
 
   // todo: CORS?
   if (request.method === "GET") {
-    const artPieces = await ArtPiece.find();
+    const artPieces = await ArtPiece.find().setOptions({ lean: true });
     return response.status(200).json(artPieces);
   }
 
