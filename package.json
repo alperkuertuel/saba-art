@@ -24,7 +24,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-share": "^5.0.3",
     "styled-components": "^6.1.6",
-    "swr": "^2.1.1",
+    "swr": "^2.2.4",
     "uid": "^2.0.2",
     "use-local-storage-state": "^19.1.0"
   },
