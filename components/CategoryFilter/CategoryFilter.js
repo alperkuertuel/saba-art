@@ -52,21 +52,25 @@ export default function CategoryFilter({
               </CategoryCount>
             </StyledButton>
           </li>
-          <li>
-            <StyledButton
-              $activeCategory={activeCategory === "Neue" ? "var(--cool-brown)" : "var(--highlight)"}
-              onClick={handleNewestArtPieces}
-            >
-              Neueste Bilder aus {currentYear}
-              <CategoryCount
+          {data.filter((piece) => piece.date === currentYear).length > 0 && (
+            <li>
+              <StyledButton
                 $activeCategory={
                   activeCategory === "Neue" ? "var(--cool-brown)" : "var(--highlight)"
                 }
+                onClick={handleNewestArtPieces}
               >
-                {data.filter((piece) => piece.date === currentYear).length}
-              </CategoryCount>
-            </StyledButton>
-          </li>
+                Neueste Bilder aus {currentYear}
+                <CategoryCount
+                  $activeCategory={
+                    activeCategory === "Neue" ? "var(--cool-brown)" : "var(--highlight)"
+                  }
+                >
+                  {data.filter((piece) => piece.date === currentYear).length}
+                </CategoryCount>
+              </StyledButton>
+            </li>
+          )}
 
           {uniqueCatagories.map((category) => (
             <li key={category}>

@@ -1,7 +1,6 @@
 import {
   faArrowRightArrowLeft,
   faSquare,
-  faTableCells,
   faTableCellsLarge,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,12 +15,6 @@ export default function DisplayPreviewOptions({ handleSetPreviewOption, previewo
         $previewoption={previewoption === "slideShow" ? "var(--cool-brown)" : "var(--box-color)"}
       >
         <FontAwesomeIcon aria-label="show slider" icon={faArrowRightArrowLeft} />
-      </StyledPreviewOptionButton>
-      <StyledPreviewOptionButton
-        onClick={() => handleSetPreviewOption("80px")}
-        $previewoption={previewoption === "80px" ? "var(--cool-brown)" : "var(--box-color)"}
-      >
-        <FontAwesomeIcon aria-label="show small grid" icon={faTableCells} />
       </StyledPreviewOptionButton>
       <StyledPreviewOptionButton
         onClick={() => handleSetPreviewOption("130px")}
