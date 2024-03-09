@@ -20,7 +20,7 @@ jobs:
 
       - name: Run Linter
         run: yarn lint
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Check if autofixes available
         run: |
