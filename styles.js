@@ -2,14 +2,14 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    --primary-color: ${(props) => props.$primarycolor};
-    --font-color: ${(props) => props.$fontcolor};
-    --secondary-color: ${(props) => props.$secondarycolor};
-    --tertiary-color: ${(props) => props.$tertiarycolor};
-    --box-color: ${(props) => props.$boxcolor};
-    --box-shadow: ${(props) => props.$boxshadow};
-    --cool-brown: ${(props) => props.$coolbrown};
-    --highlight: ${(props) => props.$highlight};
+    --primary-color: ${(properties) => properties.$primarycolor};
+    --font-color: ${(properties) => properties.$fontcolor};
+    --secondary-color: ${(properties) => properties.$secondarycolor};
+    --tertiary-color: ${(properties) => properties.$tertiarycolor};
+    --box-color: ${(properties) => properties.$boxcolor};
+    --box-shadow: ${(properties) => properties.$boxshadow};
+    --cool-brown: ${(properties) => properties.$coolbrown};
+    --highlight: ${(properties) => properties.$highlight};
   }
 
   *,

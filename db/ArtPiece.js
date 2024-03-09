@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/filename-case */
 import mongoose from "mongoose";
 
 const { Schema } = mongoose;

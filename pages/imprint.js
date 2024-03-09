@@ -1,6 +1,6 @@
-import FooterComponent from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
-import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
+import FooterComponent from "@/components/Footer/footer";
+import Header from "@/components/Header/header";
+import ScrollUp from "@/components/ScrollUpButton/scroll-up-button";
 import { faArrowLeftLong, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";

@@ -2,8 +2,12 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import also n
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import styled from "styled-components";
-import pressCarouselData from "./pressCarouselData";
-import { BackDrop, CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
+import pressCarouselData from "./press-carousel-data";
+import {
+  BackDrop,
+  CloseButton,
+  ModalContent,
+} from "../GalleryCarouselPreview/gallery-carousel-preview";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -16,14 +20,10 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
 export default function ImageCarousel({ currentTheme }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [selectedArticle, setSelectedArticle] = useState();
 
   useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = isModalOpen ? "hidden" : "auto";
   }, [isModalOpen]);
 
   function openModalPressSlider(article) {
@@ -32,7 +32,7 @@ export default function ImageCarousel({ currentTheme }) {
   }
 
   function closeModalPressSlider() {
-    setSelectedArticle(null);
+    setSelectedArticle(undefined);
     setIsModalOpen(false);
   }
   const defaultLayoutPluginInstance = defaultLayoutPlugin({

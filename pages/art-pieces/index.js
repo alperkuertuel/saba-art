@@ -1,5 +1,5 @@
-import ArtPiecesPreview from "@/components/ArtPiecesPreview/ArtPiecesPreview";
-import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
+import ArtPiecesPreview from "@/components/ArtPiecesPreview/art-pieces-preview";
+import CategoryFilter from "@/components/CategoryFilter/category-filter";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";

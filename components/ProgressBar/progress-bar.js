@@ -34,6 +34,6 @@ const ProgressBarContainer = styled.div`
 const ProgressBarFill = styled.div`
   height: 100%;
   background-color: var(--tertiary-color);
-  width: ${(props) => props.width}%;
+  width: ${(properties) => properties.width}%;
   transition: width 0.1s ease-in-out;
 `;

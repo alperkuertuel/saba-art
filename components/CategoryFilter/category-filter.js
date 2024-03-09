@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import useSWR from "swr";
-import LoadingDots from "../LoadingDots/LoadingDots";
+import LoadingDots from "../LoadingDots/loading-dots";
 
 export default function CategoryFilter({
   handleSetFilteredCategory,
@@ -52,7 +52,7 @@ export default function CategoryFilter({
               </CategoryCount>
             </StyledButton>
           </li>
-          {data.filter((piece) => piece.date === currentYear).length > 0 && (
+          {data.some((piece) => piece.date === currentYear).length > 0 && (
             <li>
               <StyledButton
                 $activeCategory={
@@ -114,7 +114,7 @@ const CategoryCount = styled.span`
   padding: 3px 5px;
   margin: 0 0 0 8px;
   border-radius: 5px;
-  background-color: ${(props) => props.$activeCategory};
+  background-color: ${(properties) => properties.$activeCategory};
   font-size: 0.8rem;
   vertical-align: top;
 `;

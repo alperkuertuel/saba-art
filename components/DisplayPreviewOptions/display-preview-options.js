@@ -39,6 +39,6 @@ const StyledPreviewOptionButton = styled.button`
   border-radius: 5px;
   box-shadow: var(--box-shadow);
   color: var(--tertiary-color);
-  background-color: ${(props) => props.$previewoption};
+  background-color: ${(properties) => properties.$previewoption};
   transition: background-color 0.1s ease-in-out;
 `;

@@ -17,13 +17,13 @@ export default function ArtPiecesEditForm({
     const slug = editData.name
       .toLowerCase()
       .trim()
-      .replace(/[ö]/g, "oe")
-      .replace(/[ü]/g, "ue")
-      .replace(/[ä]/g, "ae")
-      .replace(/[ß]/g, "ss")
-      .replace(/[^\w\s-]/g, "") // remove any characters which are not word characters
-      .replace(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
-      .replace(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
+      .replaceAll("ö", "oe")
+      .replaceAll("ü", "ue")
+      .replaceAll("ä", "ae")
+      .replaceAll("ß", "ss")
+      .replaceAll(/[^\s\w-]/g, "") // remove any characters which are not word characters
+      .replaceAll(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
+      .replaceAll(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
 
     const editedArtPiece = {
       _id: artPieceToEdit._id,

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
-import ProgressBar from "../ProgressBar/ProgressBar";
-import ThemeChanger from "../ThemeChanger/Themes";
+import ProgressBar from "../ProgressBar/progress-bar";
+import ThemeChanger from "../ThemeChanger/themes";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 
@@ -41,9 +41,8 @@ export default function Header({
           <Greeting>
             <StyledLoginAvatar
               src={
-                session.user.image
-                  ? session.user.image
-                  : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAPklEQVR42u3OsQ0AAAQAMBIvm73uDtJe0KyOiWNSWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlr6eXoBiucrxq1KGkAAAAAASUVORK5CYII="
+                session.user.image ??
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAPklEQVR42u3OsQ0AAAQAMBIvm73uDtJe0KyOiWNSWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlr6eXoBiucrxq1KGkAAAAAASUVORK5CYII="
               }
               width={30}
               height={30}

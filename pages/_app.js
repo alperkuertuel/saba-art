@@ -9,7 +9,7 @@ import useLocalStorageState from "use-local-storage-state";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
-export default function App({ Component, pageProps: { session, ...pageProps } }) {
+export default function App({ Component, pageProps: { session, ...pageProperties } }) {
   /* -- data-fetching states: -- */
   const { data } = useSWR("/api", fetcher, { fallbackData: [] });
   const [filteredCategory, setFilteredCategory] = useState(data);
@@ -102,7 +102,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
       <SWRConfig value={{ fetcher }}>
         <SessionProvider session={session}>
           <Component
-            {...pageProps}
+            {...pageProperties}
             artPieceToEdit={artPieceToEdit}
             filteredCategory={filteredCategory}
             fileImageUrl={fileImageUrl}

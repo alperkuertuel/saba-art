@@ -3,20 +3,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useState } from "react";
 import styled from "styled-components";
-import ArtPieceDetails from "../ArtPieceDetails/ArtPieceDetails";
+import ArtPieceDetails from "../ArtPieceDetails/art-piece-details";
 import { useEffect } from "react";
-import { BackDrop, CloseButton, ModalContent } from "../GalleryCarouselPreview/GalleryCarousel";
+import {
+  BackDrop,
+  CloseButton,
+  ModalContent,
+} from "../GalleryCarouselPreview/gallery-carousel-preview";
 
 export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedArtPiece, setSelectedArtPiece] = useState(null);
+  const [selectedArtPiece, setSelectedArtPiece] = useState();
 
   useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = isModalOpen ? "hidden" : "auto";
   }, [isModalOpen]);
 
   function openModalFromGridView(artPiece) {
@@ -25,7 +25,7 @@ export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
   }
 
   function closeModalFromGridView() {
-    setSelectedArtPiece(null);
+    setSelectedArtPiece(undefined);
     setIsModalOpen(false);
   }
 
@@ -84,7 +84,10 @@ export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
 
 const GalleryWrapper = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(${(props) => props.$previewoption}, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(${(properties) => properties.$previewoption}, 1fr)
+  );
   grid-gap: 2rem;
   width: 100%;
 `;
