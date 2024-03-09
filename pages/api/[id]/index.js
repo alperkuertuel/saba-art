@@ -23,7 +23,7 @@ export default async function handler(request, response) {
   }
 
   switch (request.method) {
-    case "PATCH":
+    case "PATCH": {
       try {
         const session = await getServerSession(request, response, authOptions);
         if (!session || !session.user) {
@@ -44,8 +44,9 @@ export default async function handler(request, response) {
         return response.status(500).json({ error: "Error!" });
       }
       break;
+    }
 
-    case "DELETE":
+    case "DELETE": {
       try {
         const session = await getServerSession(request, response, authOptions);
         if (!session || !session.user) {
@@ -65,7 +66,9 @@ export default async function handler(request, response) {
         return response.status(500).json({ error: "Error!" });
       }
       break;
-    default:
+    }
+    default: {
       response.status(405).json({ error: "Method not allowed" });
+    }
   }
 }

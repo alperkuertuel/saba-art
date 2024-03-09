@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prevent-abbreviations */
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -14,7 +15,7 @@ if (!MONGODB_URI) {
 let cached = global.mongoose;
 
 if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+  cached = global.mongoose = { conn: undefined, promise: undefined };
 }
 
 async function dbConnect() {
@@ -34,9 +35,9 @@ async function dbConnect() {
 
   try {
     cached.conn = await cached.promise;
-  } catch (e) {
-    cached.promise = null;
-    throw e;
+  } catch (error) {
+    cached.promise = undefined;
+    throw error;
   }
 
   return cached.conn;

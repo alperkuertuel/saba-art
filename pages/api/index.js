@@ -19,7 +19,7 @@ export default async function handler(request, response) {
   }
 
   switch (request.method) {
-    case "POST":
+    case "POST": {
       try {
         const session = await getServerSession(request, response, authOptions);
         if (!session || !session.user) {
@@ -39,7 +39,9 @@ export default async function handler(request, response) {
         console.error("Error:", error);
         return response.status(500).json({ error: "Error!" });
       }
-    default:
+    }
+    default: {
       response.status(405).json({ error: "Method not allowed" });
+    }
   }
 }

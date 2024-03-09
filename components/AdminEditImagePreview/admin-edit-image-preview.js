@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import styled from "styled-components";
-import ImageCropDialog from "../ImageCropDialog/ImageCropDialog";
+import ImageCropDialog from "../ImageCropDialog/image-crop-dialog";
 
 export default function AdminImagePreview({
   handleSetFileImageUrl,
@@ -11,14 +11,14 @@ export default function AdminImagePreview({
   rotation,
   aspect,
 }) {
-  const [selectedImageToCrop, setSelectedImageToCrop] = useState(null);
+  const [selectedImageToCrop, setSelectedImageToCrop] = useState();
 
   function onCancel() {
-    setSelectedImageToCrop(null);
+    setSelectedImageToCrop(undefined);
   }
 
   function onReset() {
-    setSelectedImageToCrop(null);
+    setSelectedImageToCrop(undefined);
     handleSetFileImageUrl("/img/preview.png");
   }
 

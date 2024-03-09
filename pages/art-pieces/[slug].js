@@ -1,11 +1,11 @@
-import Header from "@/components/Header/Header";
-import ArtPieceDetails from "@/components/ArtPieceDetails/ArtPieceDetails";
+import Header from "@/components/Header/header";
+import ArtPieceDetails from "@/components/ArtPieceDetails/art-piece-details";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
 import useSWR from "swr";
-import LoadingDots from "@/components/LoadingDots/LoadingDots";
+import LoadingDots from "@/components/LoadingDots/loading-dots";
 
 export default function ShowDetails({
   scrollPercent,

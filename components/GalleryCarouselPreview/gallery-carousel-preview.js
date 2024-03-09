@@ -4,19 +4,15 @@ import Image from "next/image";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import ArtPieceDetails from "../ArtPieceDetails/ArtPieceDetails";
+import ArtPieceDetails from "../ArtPieceDetails/art-piece-details";
 
 export default function GallerySliderPreview({ filteredCategory }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedArtPiece, setSelectedArtPiece] = useState(null);
+  const [selectedArtPiece, setSelectedArtPiece] = useState();
 
   useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = isModalOpen ? "hidden" : "auto";
   }, [isModalOpen]);
 
   useEffect(() => {
@@ -29,7 +25,7 @@ export default function GallerySliderPreview({ filteredCategory }) {
   }
 
   function closeModalGallerySlider() {
-    setSelectedArtPiece(null);
+    setSelectedArtPiece(undefined);
     setIsModalOpen(false);
   }
 

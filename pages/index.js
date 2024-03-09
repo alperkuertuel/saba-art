@@ -1,13 +1,13 @@
-import ArtPiecesPreview from "@/components/ArtPiecesPreview/ArtPiecesPreview";
-import PressCarousel from "@/components/PressCarousel/PressCarousel";
-import CategoryFilter from "@/components/CategoryFilter/CategoryFilter";
-import FooterComponent from "@/components/Footer/Footer";
-import GallerySliderPreview from "@/components/GalleryCarouselPreview/GalleryCarousel";
-import Header from "@/components/Header/Header";
-import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
-import WelcomingAbout from "@/components/WelcomingAndAbout/WelcomingAndAbout";
+import ArtPiecesPreview from "@/components/ArtPiecesPreview/art-pieces-preview";
+import PressCarousel from "@/components/PressCarousel/press-carousel";
+import CategoryFilter from "@/components/CategoryFilter/category-filter";
+import FooterComponent from "@/components/Footer/footer";
+import GallerySliderPreview from "@/components/GalleryCarouselPreview/gallery-carousel-preview";
+import Header from "@/components/Header/header";
+import ScrollUp from "@/components/ScrollUpButton/scroll-up-button";
+import WelcomingAbout from "@/components/WelcomingAndAbout/welcoming-and-about";
 import Head from "next/head";
-import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/DisplayPreviewOptions";
+import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/display-preview-options";
 
 export default function HomePage({
   handleSetFilteredCategory,

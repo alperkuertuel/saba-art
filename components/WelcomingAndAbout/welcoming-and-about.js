@@ -49,6 +49,9 @@ const StyledWelcomingText = styled.h2`
 
 const StyledAvatarContainer = styled.div`
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   border-radius: 50%;
 `;
 
@@ -60,10 +63,8 @@ const StyledAvatar = styled(Image)`
 
 const StyledLink = styled(Link)`
   position: absolute;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   padding: 5px;
-  bottom: 0px;
-  left: 70px;
   border-radius: 5px;
   box-shadow: var(--box-shadow);
   background-color: var(--box-color);

@@ -1,11 +1,11 @@
-import ArtPieceForm from "@/components/AdminArtPieceForm/ArtPieceForm";
-import Header from "@/components/Header/Header";
-import ArtPiecesList from "@/components/AdminArtPiecesList/AdminArtPiecesList";
+import ArtPieceForm from "@/components/AdminArtPieceForm/arti-piece-form";
+import Header from "@/components/Header/header";
+import ArtPiecesList from "@/components/AdminArtPiecesList/admin-art-pieces-list";
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import ScrollUp from "@/components/ScrollUpButton/ScrollUpButton";
+import ScrollUp from "@/components/ScrollUpButton/scroll-up-button";
 import Head from "next/head";
-import FooterComponent from "@/components/Footer/Footer";
+import FooterComponent from "@/components/Footer/footer";
 
 export default function AdminHomePage({
   artPieceToEdit,
@@ -45,10 +45,16 @@ export default function AdminHomePage({
 
     if (imageFile) {
       const reader = new FileReader();
-      reader.onload = function (load) {
+      reader.addEventListener("load", function (load) {
         const img = new Image();
-        img.onload = function () {
-          if (imageFile.type !== "image/webp") {
+        img.addEventListener("load", function () {
+          if (imageFile.type === "image/webp") {
+            alert(
+              `Sie haben erfolgreich eine WebP-Bilddatei hochgeladen, die für die Galerie bereit ist! Füllen Sie das Formular aus, um das Kunstwerk zur Galerie hinzuzufügen.`
+            );
+            handleSetFileImageUrl(load.target.result);
+            // console.log(load.target.result);
+          } else {
             const canvas = document.createElement("canvas");
             let width = img.width;
             let height = img.height;
@@ -70,8 +76,8 @@ export default function AdminHomePage({
             canvas.width = width;
             canvas.height = height;
 
-            const ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, width, height);
+            const context = canvas.getContext("2d");
+            context.drawImage(img, 0, 0, width, height);
 
             const resizedImageData = canvas.toDataURL("image/webp");
             alert(
@@ -79,16 +85,10 @@ export default function AdminHomePage({
             );
 
             handleSetFileImageUrl(resizedImageData);
-          } else {
-            alert(
-              `Sie haben erfolgreich eine WebP-Bilddatei hochgeladen, die für die Galerie bereit ist! Füllen Sie das Formular aus, um das Kunstwerk zur Galerie hinzuzufügen.`
-            );
-            handleSetFileImageUrl(load.target.result);
-            // console.log(load.target.result);
           }
-        };
+        });
         img.src = load.target.result;
-      };
+      });
       reader.readAsDataURL(imageFile);
     }
   }

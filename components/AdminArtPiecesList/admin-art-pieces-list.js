@@ -3,9 +3,9 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import ArtPiecesEditForm from "../AdminArtPiecesEditForm/AdminArtPiecesEditForm";
+import ArtPiecesEditForm from "../AdminArtPiecesEditForm/admin-art-pieces-edit-form";
 import { Fragment, useState } from "react";
-import CategoryFilter from "../CategoryFilter/CategoryFilter";
+import CategoryFilter from "../CategoryFilter/category-filter";
 
 export default function ArtPiecesList({
   handleSetScrollPercentage,

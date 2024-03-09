@@ -21,16 +21,14 @@ const fakeLogin = CredentialsProvider({
     const fakePassword = process.env.FAKE_PASSWORD;
     const fakeEmail = process.env.FAKE_EMAIL;
     const role = process.env.ROLE;
-    if (credentials.username === fakeUser && credentials.password === fakePassword) {
-      return {
-        id: "1",
-        name: fakeUser,
-        email: fakeEmail,
-        role: role,
-      };
-    } else {
-      return null;
-    }
+    return credentials.username === fakeUser && credentials.password === fakePassword
+      ? {
+          id: "1",
+          name: fakeUser,
+          email: fakeEmail,
+          role: role,
+        }
+      : undefined;
   },
 });
 
