@@ -1,11 +1,11 @@
 import ArtPieceForm from "@/components/AdminArtPieceForm/arti-piece-form";
-import Header from "@/components/Header/header";
+import Header from "@/components/Header/page-header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/admin-art-pieces-list";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import ScrollUp from "@/components/ScrollUpButton/scroll-up-button";
 import Head from "next/head";
-import FooterComponent from "@/components/Footer/footer";
+import FooterComponent from "@/components/Footer/page-footer";
 
 export default function AdminHomePage({
   artPieceToEdit,

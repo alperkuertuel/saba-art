@@ -1,4 +1,4 @@
-import Header from "@/components/Header/header";
+import Header from "@/components/Header/page-header";
 import ArtPieceDetails from "@/components/ArtPieceDetails/art-piece-details";
 import { useRouter } from "next/router";
 import styled from "styled-components";
