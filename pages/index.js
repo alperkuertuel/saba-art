@@ -7,7 +7,7 @@ import Header from "@/components/Header/header";
 import ScrollUp from "@/components/ScrollUpButton/scroll-up-button";
 import WelcomingAbout from "@/components/WelcomingAndAbout/welcoming-and-about";
 import Head from "next/head";
-import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/display-preview-options";
+import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/display-preview-Options";
 
 export default function HomePage({
   handleSetFilteredCategory,
