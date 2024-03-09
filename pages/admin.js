@@ -1,5 +1,5 @@
 import ArtPieceForm from "@/components/AdminArtPieceForm/arti-piece-form";
-import Header from "@/components/Header/header";
+import Header from "@/components/Header/page-header";
 import ArtPiecesList from "@/components/AdminArtPiecesList/admin-art-pieces-list";
 import useSWR from "swr";
 import { useRouter } from "next/router";

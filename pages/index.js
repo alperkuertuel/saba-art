@@ -3,11 +3,11 @@ import PressCarousel from "@/components/PressCarousel/press-carousel";
 import CategoryFilter from "@/components/CategoryFilter/category-filter";
 import FooterComponent from "@/components/Footer/footer";
 import GallerySliderPreview from "@/components/GalleryCarouselPreview/gallery-carousel-preview";
-import Header from "@/components/Header/header";
+import Header from "@/components/Header/page-header";
 import ScrollUp from "@/components/ScrollUpButton/scroll-up-button";
 import WelcomingAbout from "@/components/WelcomingAndAbout/welcoming-and-about";
 import Head from "next/head";
-import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/display-preview-Options";
+import DisplayPreviewOptions from "@/components/DisplayPreviewOptions/display-preview-options";
 
 export default function HomePage({
   handleSetFilteredCategory,
