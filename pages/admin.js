@@ -5,7 +5,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import ScrollUp from "@/components/ScrollUpButton/scroll-up-button";
 import Head from "next/head";
-import FooterComponent from "@/components/Footer/footer";
+import FooterComponent from "@/components/Footer/page-footer";
 
 export default function AdminHomePage({
   artPieceToEdit,
