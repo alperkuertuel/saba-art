@@ -25,7 +25,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-share": "^5.1.0",
     "styled-components": "^6.1.6",
-    "swr": "^2.2.4",
+    "swr": "^2.2.5",
     "uid": "^2.0.2",
     "use-local-storage-state": "^19.1.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
