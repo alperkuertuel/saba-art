@@ -37,6 +37,7 @@ export default function App({ Component, pageProps: { session, ...pageProperties
     widthReal: "",
     heightReal: "",
   });
+
   function handleSetCurrentFormData(currentFormData) {
     setCurrentFormData(currentFormData);
   }
@@ -52,7 +53,7 @@ export default function App({ Component, pageProps: { session, ...pageProperties
     setActiveCategory(activeCategory);
   }
 
-  const [previewoption, setpreviewoption] = useState("slideShow");
+  const [previewoption, setpreviewoption] = useState("130px");
   function handleSetPreviewOption(previewoption) {
     setpreviewoption(previewoption);
   }
