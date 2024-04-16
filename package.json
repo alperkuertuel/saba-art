@@ -38,7 +38,7 @@
     "styled-components": "^6.1.6",
     "swr": "^2.2.5",
     "uid": "^2.0.2",
-    "use-local-storage-state": "^19.1.0"
+    "use-local-storage-state": "^19.2.0"
   },
   "description": "Next.js (incl. Styled Components and Jest)",
   "dependencies": {
