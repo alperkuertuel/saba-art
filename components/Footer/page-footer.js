@@ -15,15 +15,13 @@ export default function FooterComponent() {
         </DataItem>
         <DataItem>
           {session && session.user.role === "Admin" ? (
-            <>
-              <span onClick={signOut} aria-label="sign out">
-                &copy; saba-art 2023
-              </span>
-            </>
-          ) : (
-            <span onClick={() => signIn()} aria-label="sign in">
+            <button onClick={signOut} aria-label="sign out">
               &copy; saba-art 2023
-            </span>
+            </button>
+          ) : (
+            <button onClick={() => signIn()} aria-label="sign in">
+              &copy; saba-art 2023
+            </button>
           )}
         </DataItem>
       </ul>

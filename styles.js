@@ -82,7 +82,6 @@ export default createGlobalStyle`
   }
 
   button {
-    font-size: 1rem;
     color: var(--font-color);
     border: none;
     cursor: pointer;

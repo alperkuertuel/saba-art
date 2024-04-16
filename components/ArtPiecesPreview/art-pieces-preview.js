@@ -35,7 +35,14 @@ export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
         filteredCategory.map((artPiece) => (
           <GalleryCard key={artPiece._id}>
             <figure>
-              <span onClick={() => openModalFromGridView(artPiece)}>
+              <button
+                onClick={() => openModalFromGridView(artPiece)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === "Space") {
+                    openModalFromGridView(artPiece);
+                  }
+                }}
+              >
                 <StyledImage
                   src={artPiece.imageUrl}
                   alt={artPiece.name}
@@ -43,7 +50,7 @@ export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
                   height={1000}
                   priority={true}
                 />
-              </span>
+              </button>
               {previewoption === "80px" ? (
                 ""
               ) : (
