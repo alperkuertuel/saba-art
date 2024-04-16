@@ -100,8 +100,7 @@ export default function ImageCropDialog({
             value={zoom}
             onChange={(event) => onZoomChange(event.target.value)}
           />
-          Rotate:
-          <label htmlFor="rotate"></label>
+          <label htmlFor="rotate">Rotate:</label>
           <Slider
             type="range"
             id="rotate"
