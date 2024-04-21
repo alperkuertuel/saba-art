@@ -94,24 +94,25 @@ export default function CategoryFilter({
               </StyledButton>
             </li>
           ))}
-
-          <li>
-            <StyledButton
-              $activeCategory={
-                activeCategory === "liked" ? "var(--cool-brown)" : "var(--highlight)"
-              }
-              onClick={handleLikedArtPieces}
-            >
-              Liked
-              <CategoryCount
+          {likedArtPieces.length > 0 && likedArtPieces && (
+            <li>
+              <StyledButton
                 $activeCategory={
                   activeCategory === "liked" ? "var(--cool-brown)" : "var(--highlight)"
                 }
+                onClick={handleLikedArtPieces}
               >
-                {likedArtPieces.length}
-              </CategoryCount>
-            </StyledButton>
-          </li>
+                Favoriten
+                <CategoryCount
+                  $activeCategory={
+                    activeCategory === "liked" ? "var(--cool-brown)" : "var(--highlight)"
+                  }
+                >
+                  {likedArtPieces.length}
+                </CategoryCount>
+              </StyledButton>
+            </li>
+          )}
         </>
       )}
     </StyledCategoryFilter>
