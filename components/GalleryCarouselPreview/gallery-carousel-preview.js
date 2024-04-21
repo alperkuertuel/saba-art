@@ -3,10 +3,15 @@ import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import ArtPieceDetails from "../ArtPieceDetails/art-piece-details";
 
-export default function GallerySliderPreview({ filteredCategory }) {
+export default function GallerySliderPreview({
+  filteredCategory,
+  likedArtPieces,
+  handleSetLikedArtPieces,
+}) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArtPiece, setSelectedArtPiece] = useState();
@@ -29,6 +34,16 @@ export default function GallerySliderPreview({ filteredCategory }) {
     setIsModalOpen(false);
   }
 
+  function handleLikeButton(artPieceId) {
+    const isLiked = likedArtPieces.includes(artPieceId);
+    if (isLiked) {
+      const updatedLikedArtPieces = likedArtPieces.filter((id) => id !== artPieceId);
+      handleSetLikedArtPieces(updatedLikedArtPieces);
+    } else {
+      handleSetLikedArtPieces([...likedArtPieces, artPieceId]);
+    }
+  }
+
   return (
     <Wrapper>
       <Carousel
@@ -49,9 +64,17 @@ export default function GallerySliderPreview({ filteredCategory }) {
                 {artPiece.name} - {artPiece.date}
               </StyledLegend>
             </StyledLink>
+            <LikeButton onClick={() => handleLikeButton(artPiece._id)}>
+              {likedArtPieces.includes(artPiece._id) ? (
+                <FontAwesomeIcon icon={faHeart} />
+              ) : (
+                <FontAwesomeIcon icon={farHeart} />
+              )}
+            </LikeButton>
           </div>
         ))}
       </Carousel>
+
       {isModalOpen && selectedArtPiece && (
         <BackDrop>
           <ModalContent>
@@ -106,6 +129,15 @@ const StyledLegend = styled.span`
   right: 0px;
   width: 100%;
   height: auto;
+`;
+
+const LikeButton = styled.button`
+  position: absolute;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  top: 0px;
+  left: 47%;
+  color: red;
 `;
 
 export const BackDrop = styled.div`

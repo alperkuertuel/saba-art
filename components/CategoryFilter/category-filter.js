@@ -5,7 +5,9 @@ import LoadingDots from "../LoadingDots/loading-dots";
 export default function CategoryFilter({
   handleSetFilteredCategory,
   handleSetActiveCategory,
+  handleSetLikedArtPieces,
   activeCategory,
+  likedArtPieces,
 }) {
   const { data, isLoading } = useSWR("/api", { fallbackData: [] });
   const allCategories = data.map((piece) => piece.category);
@@ -30,6 +32,12 @@ export default function CategoryFilter({
   function handleFilterAll() {
     handleSetFilteredCategory(data);
     handleSetActiveCategory("Alle");
+  }
+
+  function handleLikedArtPieces() {
+    const likedFilter = data.filter((piece) => likedArtPieces.includes(piece._id));
+    handleSetFilteredCategory(likedFilter);
+    handleSetActiveCategory("Liked");
   }
 
   return (
@@ -86,6 +94,24 @@ export default function CategoryFilter({
               </StyledButton>
             </li>
           ))}
+
+          <li>
+            <StyledButton
+              $activeCategory={
+                activeCategory === "liked" ? "var(--cool-brown)" : "var(--highlight)"
+              }
+              onClick={handleLikedArtPieces}
+            >
+              Liked
+              <CategoryCount
+                $activeCategory={
+                  activeCategory === "liked" ? "var(--cool-brown)" : "var(--highlight)"
+                }
+              >
+                {likedArtPieces.length}
+              </CategoryCount>
+            </StyledButton>
+          </li>
         </>
       )}
     </StyledCategoryFilter>

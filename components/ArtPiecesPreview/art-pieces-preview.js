@@ -1,4 +1,5 @@
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useState } from "react";
@@ -10,8 +11,14 @@ import {
   CloseButton,
   ModalContent,
 } from "../GalleryCarouselPreview/gallery-carousel-preview";
+import artPiecesData from "@/db/TestData/sample-data-for-test";
 
-export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
+export default function ArtPiecesPreview({
+  filteredCategory,
+  previewoption,
+  likedArtPieces,
+  handleSetLikedArtPieces,
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArtPiece, setSelectedArtPiece] = useState();
 
@@ -29,12 +36,22 @@ export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
     setIsModalOpen(false);
   }
 
+  function handleLikeButton(artPieceId) {
+    const isLiked = likedArtPieces.includes(artPieceId);
+    if (isLiked) {
+      const updatedLikedArtPieces = likedArtPieces.filter((id) => id !== artPieceId);
+      handleSetLikedArtPieces(updatedLikedArtPieces);
+    } else {
+      handleSetLikedArtPieces([...likedArtPieces, artPieceId]);
+    }
+  }
+
   return (
     <GalleryWrapper $previewoption={previewoption}>
       {filteredCategory &&
         filteredCategory.map((artPiece) => (
           <GalleryCard key={artPiece._id}>
-            <figure>
+            <Figure>
               <button
                 onClick={() => openModalFromGridView(artPiece)}
                 onKeyDown={(event) => {
@@ -51,17 +68,21 @@ export default function ArtPiecesPreview({ filteredCategory, previewoption }) {
                   priority={true}
                 />
               </button>
-              {previewoption === "80px" ? (
-                ""
-              ) : (
-                <Caption>
-                  <b>
-                    <q>{artPiece.name}</q>
-                  </b>
-                  {artPiece.date}
-                </Caption>
-              )}
-            </figure>
+              <LikeButton onClick={() => handleLikeButton(artPiece._id)}>
+                {likedArtPieces.includes(artPiece._id) ? (
+                  <FontAwesomeIcon icon={faHeart} />
+                ) : (
+                  <FontAwesomeIcon icon={farHeart} />
+                )}
+              </LikeButton>
+
+              <Caption>
+                <b>
+                  <q>{artPiece.name}</q>
+                </b>
+                {artPiece.date}
+              </Caption>
+            </Figure>
           </GalleryCard>
         ))}
       {isModalOpen && selectedArtPiece && (
@@ -120,6 +141,19 @@ const GalleryCard = styled.article`
   border-radius: 5px;
   height: fit-content;
   box-shadow: var(--box-shadow);
+`;
+
+const Figure = styled.figure`
+  position: relative;
+`;
+
+const LikeButton = styled.button`
+  position: absolute;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  top: 0px;
+  left: 0px;
+  color: red;
 `;
 
 // The model styles are imported from GalleryCarousel.js!

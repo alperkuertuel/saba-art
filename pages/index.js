@@ -21,6 +21,8 @@ export default function HomePage({
   handleSetTheme,
   handleSetCurrentTheme,
   currentTheme,
+  likedArtPieces,
+  handleSetLikedArtPieces,
 }) {
   return (
     <>
@@ -43,7 +45,9 @@ export default function HomePage({
           <CategoryFilter
             handleSetFilteredCategory={handleSetFilteredCategory}
             handleSetActiveCategory={handleSetActiveCategory}
+            handleSetLikedArtPieces={handleSetLikedArtPieces}
             activeCategory={activeCategory}
+            likedArtPieces={likedArtPieces}
           />
           {activeCategory && (
             <DisplayPreviewOptions
@@ -52,10 +56,19 @@ export default function HomePage({
             />
           )}
           {activeCategory && previewoption === "slideShow" && (
-            <GallerySliderPreview filteredCategory={filteredCategory} />
+            <GallerySliderPreview
+              filteredCategory={filteredCategory}
+              likedArtPieces={likedArtPieces}
+              handleSetLikedArtPieces={handleSetLikedArtPieces}
+            />
           )}
           {activeCategory && previewoption != "slideShow" && (
-            <ArtPiecesPreview filteredCategory={filteredCategory} previewoption={previewoption} />
+            <ArtPiecesPreview
+              filteredCategory={filteredCategory}
+              likedArtPieces={likedArtPieces}
+              handleSetLikedArtPieces={handleSetLikedArtPieces}
+              previewoption={previewoption}
+            />
           )}
         </section>
         <ScrollUp scrollPercent={scrollPercent} />

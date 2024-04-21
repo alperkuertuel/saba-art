@@ -64,6 +64,14 @@ export default function App({ Component, pageProps: { session, ...pageProperties
     setCurrentTheme(currentTheme);
   }
 
+  const [likedArtPieces, setLikedArtPieces] = useLocalStorageState("likedArtPieces", {
+    defaultValue: [],
+  });
+
+  function handleSetLikedArtPieces(likedArtPieces) {
+    setLikedArtPieces(likedArtPieces);
+  }
+
   const [theme, setTheme] = useLocalStorageState("theme-color-set", {
     defaultValue: {
       primarycolor: "white",
@@ -99,13 +107,13 @@ export default function App({ Component, pageProps: { session, ...pageProperties
         $coolbrown={theme.coolbrown}
         $highlight={theme.highlight}
       />
-
       <SWRConfig value={{ fetcher }}>
         <SessionProvider session={session}>
           <Component
             {...pageProperties}
             artPieceToEdit={artPieceToEdit}
             filteredCategory={filteredCategory}
+            likedArtPieces={likedArtPieces}
             fileImageUrl={fileImageUrl}
             scrollPercent={scrollPercent}
             activeCategory={activeCategory}
@@ -117,6 +125,7 @@ export default function App({ Component, pageProps: { session, ...pageProperties
             handleSetFileImageUrl={handleSetFileImageUrl}
             handleSetArtPieceToEdit={handleSetArtPieceToEdit}
             handleSetFilteredCategory={handleSetFilteredCategory}
+            handleSetLikedArtPieces={handleSetLikedArtPieces}
             handleSetScrollPercentage={handleSetScrollPercentage}
             handleSetActiveCategory={handleSetActiveCategory}
             handleSetCurrentFormData={handleSetCurrentFormData}
