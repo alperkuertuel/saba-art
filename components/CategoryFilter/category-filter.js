@@ -94,7 +94,7 @@ export default function CategoryFilter({
               </StyledButton>
             </li>
           ))}
-          {likedArtPieces.length > 0 && likedArtPieces && (
+          {likedArtPieces && likedArtPieces.length > 0 && (
             <li>
               <StyledButton
                 $activeCategory={
