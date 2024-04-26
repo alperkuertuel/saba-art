@@ -5,7 +5,6 @@ import LoadingDots from "../LoadingDots/loading-dots";
 export default function CategoryFilter({
   handleSetFilteredCategory,
   handleSetActiveCategory,
-  handleSetLikedArtPieces,
   activeCategory,
   likedArtPieces,
 }) {
@@ -35,9 +34,9 @@ export default function CategoryFilter({
   }
 
   function handleLikedArtPieces() {
-    const likedFilter = data.filter((piece) => likedArtPieces.includes(piece._id));
-    handleSetFilteredCategory(likedFilter);
-    handleSetActiveCategory("Liked");
+    const favoriteArtPieces = data.filter((piece) => likedArtPieces.includes(piece._id));
+    handleSetFilteredCategory(favoriteArtPieces);
+    handleSetActiveCategory("Favoriten");
   }
 
   return (
@@ -94,18 +93,18 @@ export default function CategoryFilter({
               </StyledButton>
             </li>
           ))}
-          {likedArtPieces && likedArtPieces.length > 0 && (
+          {likedArtPieces?.length > 0 && (
             <li>
               <StyledButton
                 $activeCategory={
-                  activeCategory === "liked" ? "var(--cool-brown)" : "var(--highlight)"
+                  activeCategory === "Favoriten" ? "var(--cool-brown)" : "var(--highlight)"
                 }
                 onClick={handleLikedArtPieces}
               >
                 Favoriten
                 <CategoryCount
                   $activeCategory={
-                    activeCategory === "liked" ? "var(--cool-brown)" : "var(--highlight)"
+                    activeCategory === "Favoriten" ? "var(--cool-brown)" : "var(--highlight)"
                   }
                 >
                   {likedArtPieces.length}
