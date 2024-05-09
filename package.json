@@ -37,7 +37,7 @@
     "react-pdf": "^7.7.1",
     "react-responsive-carousel": "^3.2.23",
     "react-share": "^5.1.0",
-    "styled-components": "^6.1.6",
+    "styled-components": "^6.1.9",
     "swr": "^2.2.5",
     "uid": "^2.0.2",
     "use-local-storage-state": "^19.2.0"
