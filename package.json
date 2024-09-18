@@ -3,6 +3,8 @@
   "version": "1.4.2",
   "private": true,
   "scripts": {
+    "setup": "pnpm clean && pnpm i",
+    "clean": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\;",
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
@@ -18,7 +20,7 @@
     "@react-pdf-viewer/default-layout": "^3.12.0",
     "@svgr/webpack": "^8.0.1",
     "@testing-library/dom": ">=7.21.4",
-    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "^15.0.7",
     "@testing-library/user-event": "^14.4.3",
     "eslint": "^8.55.0",
@@ -42,5 +44,6 @@
     "swr": "^2.2.5",
     "uid": "^2.0.2",
     "use-local-storage-state": "^19.2.0"
-  }
+  },
+  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
 }
