@@ -37,7 +37,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-easy-crop": "^5.0.7",
-    "react-pdf": "^8.0.2",
+    "react-pdf": "^9.1.1",
     "react-responsive-carousel": "^3.2.23",
     "react-share": "^5.1.0",
     "styled-components": "^6.1.11",
