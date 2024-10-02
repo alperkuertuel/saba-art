@@ -22,6 +22,8 @@
     "@testing-library/dom": ">=7.21.4",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.4.3",
+    "@types/node": "^22.7.4",
+    "@types/react": "^18.3.10",
     "eslint": "^8.55.0",
     "eslint-config-next": "^14.2.14",
     "eslint-plugin-jest": "^28.2.0",
@@ -41,6 +43,7 @@
     "react-share": "^5.1.0",
     "styled-components": "^6.1.11",
     "swr": "^2.2.5",
+    "typescript": "^5.6.2",
     "uid": "^2.0.2",
     "use-local-storage-state": "^19.2.0"
   },
