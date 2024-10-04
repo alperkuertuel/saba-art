@@ -1,4 +1,4 @@
-name: "Lint"
+name: "Code Quality Check"
 
 on:
   pull_request:
@@ -10,16 +10,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-          cache: yarn
+          cache: pnpm
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install
 
       - name: Run Linter
-        run: yarn lint
+        run: pnpm next lint --fix
+        continue-on-error: false
+
+      - name: Run Type Checker
+        run: pnpm tsc
         continue-on-error: false
 
       - name: Check if autofixes available
@@ -28,6 +35,6 @@ jobs:
           changes=$(git diff --cached --name-only)
 
           if [ -n "$changes" ]; then
-            echo "Error: There are autofixes available. Run 'yarn lint --fix'. Make sure your dependencies are updated!"
+            echo "Error: There are autofixes available. Run 'pnpm lint --fix'. Make sure your dependencies are updated!"
             exit 1
           fi

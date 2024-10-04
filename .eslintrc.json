@@ -6,15 +6,30 @@
     "next/core-web-vitals",
     "plugin:jest/recommended",
     "plugin:unicorn/recommended",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["jest", "@typescript-eslint", "unused-imports", "simple-import-sort"],
   "rules": {
+    "unicorn/no-null": "off",
+    "unicorn/prevent-abbreviations": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
     "import/no-anonymous-default-export": [
       "error",
       {
         "allowObject": true
       }
     ]
-  },
-  "plugins": ["jest"]
+  }
 }
