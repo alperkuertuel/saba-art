@@ -7,7 +7,7 @@ const artPieceSchema = new Schema(
   {
     slug: { type: String, required: true },
     name: { type: String, required: true },
-    date: { type: String, required: true },
+    date: { type: Number, required: true },
     available: { type: Boolean, required: true },
     description: { type: String, required: true },
     category: { type: String, required: true },

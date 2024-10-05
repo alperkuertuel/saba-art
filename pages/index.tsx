@@ -11,7 +11,7 @@ import PressCarousel from "@/PressCarousel/press-carousel";
 import ScrollUp from "@/ScrollUpButton/scroll-up-button";
 import WelcomingAbout from "@/WelcomingAndAbout/welcoming-and-about";
 
-import { AppTheme, ArtPiece } from "./_app";
+import { ArtPiece } from "./_app";
 
 type HomePageProperties = {
   handleSetFilteredCategory: (filteredCategory: ArtPiece[]) => void;
@@ -28,9 +28,6 @@ type HomePageProperties = {
   handleSetScrollPercentage: (scrollPercent: number) => void;
   handleSetCurrentFormData: (currentFormData: ArtPiece) => void;
   currentFormData: ArtPiece;
-  handleSetTheme: (theme: AppTheme) => void;
-  handleSetCurrentTheme: (currentTheme: string) => void;
-  currentTheme: string;
 };
 
 export default function HomePage({
@@ -42,9 +39,6 @@ export default function HomePage({
   activeCategory,
   previewoption,
   handleSetPreviewOption,
-  handleSetTheme,
-  handleSetCurrentTheme,
-  currentTheme,
   likedArtPieces,
   handleSetLikedArtPieces,
 }: HomePageProperties) {
@@ -54,16 +48,10 @@ export default function HomePage({
         <title>saba-art - Bilder sind Erinnerungen</title>
         <meta name="description" content="Die online Kunst-Galerie von Saba." />
       </Head>
-      <Header
-        scrollPercent={scrollPercent}
-        handleSetScrollPercentage={handleSetScrollPercentage}
-        handleSetTheme={handleSetTheme}
-        handleSetCurrentTheme={handleSetCurrentTheme}
-        currentTheme={currentTheme}
-      />
+      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <WelcomingAbout />
-        <PressCarousel currentTheme={currentTheme} />
+        <PressCarousel />
         <section>
           <h2>Wähle eine Kategorie aus:</h2>
           <CategoryFilter

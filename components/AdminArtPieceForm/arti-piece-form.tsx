@@ -1,7 +1,6 @@
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ArtPiece } from "pages/_app";
-import styled from "styled-components";
 
 import AdminImagePreview from "../AdminEditImagePreview/admin-edit-image-preview";
 
@@ -40,7 +39,7 @@ export default function ArtPieceForm({
       .replaceAll(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
     const newArtPiece: ArtPiece = {
       slug: slug,
-      date: typeof data.date === "string" ? Number.parseInt(data.date, 10) : new Date().getFullYear(),
+      date: data.date === "string" ? Number.parseInt(data.date, 10) : new Date().getFullYear(),
       name: data.name as string,
       available: data.available === "on",
       description: data.description as string,
@@ -67,16 +66,20 @@ export default function ArtPieceForm({
   }
   const currentYear = new Date().getFullYear().toString();
   return (
-    <StyledSection>
+    <article className="text-xs">
       <h2>Füge ein neues Kunstwerk hinzu: </h2>
       <AdminImagePreview fileImageUrl={fileImageUrl} handleSetFileImageUrl={handleSetFileImageUrl} />
-      <StyledForm onSubmit={handleSubmit} autoComplete="on">
-        <FileLabel htmlFor="imageUrl">
+      <form className="grid grid-rows-1 gap-3" onSubmit={handleSubmit} autoComplete="on">
+        <label
+          className="leading-tight text-center cursor-pointer text-2xl text-tertiary-color border border-dotted border-tertiary-color bg-primary-color rounded-[5px] transition duration-500 hover:bg-tertiary-color focus:bg-tertiary-color active:bg-tertiary-color hover:text-white focus:text-white active:text-white"
+          htmlFor="imageUrl"
+        >
           <FontAwesomeIcon icon={faCloudArrowUp} />
-        </FileLabel>
-        <FileInput type="file" id="imageUrl" name="imageUrl" onChange={onChange} accept="image/*" />
+        </label>
+        <input className="hidden" type="file" id="imageUrl" name="imageUrl" onChange={onChange} accept="image/*" />
         <label htmlFor="name">Benenne dein Kunstwerk:</label>
-        <Input
+        <input
+          className="w-auto border-b border-tertiary-color bg-primary-color"
           type="text"
           id="name"
           name="name"
@@ -88,7 +91,8 @@ export default function ArtPieceForm({
           onChange={(event) => handleSetCurrentFormData({ ...currentFormData, name: event.target.value })}
         />
         <label htmlFor="date">Erscheinungsjahr: </label>
-        <Input
+        <input
+          className="w-auto border-b border-tertiary-color bg-primary-color"
           type="number"
           id="date"
           name="date"
@@ -100,7 +104,9 @@ export default function ArtPieceForm({
         />
         <label htmlFor="available">
           Verfügbar:
-          <StyledCheckbox
+          <input
+            className="align-top w-[15px] h-[15px] ml-2"
+            style={{ accentColor: "var(--tertiary-color)" }}
             type="checkbox"
             id="available"
             name="available"
@@ -109,9 +115,10 @@ export default function ArtPieceForm({
           />
         </label>
 
-        <StyledFieldset>
+        <fieldset className="border-none">
           <label htmlFor="category">Kategorie: </label>
-          <StyledSelection
+          <select
+            className="text-center w-auto border border-tertiary-color rounded-[5px] py-1 my-1 bg-primary-color text-font-color outline-none"
             name="category"
             id="category"
             defaultValue={currentFormData.category}
@@ -122,10 +129,11 @@ export default function ArtPieceForm({
             <option>Abstrakte Werke</option>
             <option>Aktmalerei</option>
             <option>Andere Kunstformen</option>
-          </StyledSelection>
+          </select>
           <br />
           <label htmlFor="technique">Technik: </label>
-          <StyledSelection
+          <select
+            className="text-center w-auto border border-tertiary-color rounded-[5px] py-1 my-1 bg-primary-color text-font-color outline-none"
             name="technique"
             id="technique"
             defaultValue={currentFormData.technique}
@@ -138,11 +146,12 @@ export default function ArtPieceForm({
             <option>Spachtel</option>
             <option>Spachtel und Pinsel</option>
             <option>Steinhauerei</option>
-          </StyledSelection>
-        </StyledFieldset>
-        <StyledFieldset>
+          </select>
+        </fieldset>
+        <fieldset className="border-none">
           <label htmlFor="widthReal"> Breite: </label>
-          <Input
+          <input
+            className="w-auto border-b border-tertiary-color bg-primary-color"
             type="number"
             min="0"
             max="400"
@@ -154,7 +163,8 @@ export default function ArtPieceForm({
             required
           />
           <label htmlFor="heightReal">Höhe: </label>
-          <Input
+          <input
+            className="w-auto border-b border-tertiary-color bg-primary-color"
             type="number"
             id="heightReal"
             name="heightReal"
@@ -165,9 +175,10 @@ export default function ArtPieceForm({
             onChange={(event) => handleSetCurrentFormData({ ...currentFormData, heightReal: event.target.value })}
             required
           />
-        </StyledFieldset>
+        </fieldset>
         <label htmlFor="description">Füge eine Beschreibung hinzu:</label>
-        <Textarea
+        <textarea
+          className="bg-primary-color font-family-inherit border border-tertiary-color rounded-[5px] p-2 text-font-color outline-none"
           name="description"
           maxLength={500}
           id="description"
@@ -175,100 +186,12 @@ export default function ArtPieceForm({
           rows={5}
           defaultValue={currentFormData.description}
           onChange={(event) => handleSetCurrentFormData({ ...currentFormData, description: event.target.value })}
-        ></Textarea>
-        <LetterCounter>{currentFormData && 500 - currentFormData.description?.length}</LetterCounter>
-        <StyledButton>Hinzufügen</StyledButton>
-      </StyledForm>
-    </StyledSection>
+        ></textarea>
+        <span className="text-right">{currentFormData && 500 - currentFormData.description?.length}</span>
+        <button className="p-3 rounded-[5px] no-underline font-bold border-none text-inherit transition-colors duration-200 ease bg-cool-brown hover:bg-tertiary-color">
+          Hinzufügen
+        </button>
+      </form>
+    </article>
   );
 }
-
-const StyledSection = styled.section`
-  font-size: 0.8rem;
-`;
-
-const StyledForm = styled.form`
-  display: grid;
-  grid-template-rows: 1fr;
-  gap: 0.7rem;
-`;
-
-const FileLabel = styled.label`
-  line-height: 1.15;
-  text-align: center;
-  cursor: pointer;
-  font-size: 2rem;
-  color: var(--tertiary-color);
-  border: 1px dotted var(--tertiary-color);
-  background: var(--primary-color);
-  border-radius: 5px;
-  transition: 0.5s;
-  &:hover,
-  &:focus,
-  &:active {
-    background: var(--tertiary-color);
-    color: #fff;
-  }
-`;
-
-const FileInput = styled.input`
-  display: none;
-`;
-
-const Input = styled.input`
-  width: auto;
-  border-bottom: 1px solid var(--tertiary-color);
-  background: var(--primary-color);
-`;
-
-const StyledCheckbox = styled.input`
-  vertical-align: top;
-  width: 20px;
-  height: 20px;
-  margin-left: 0.5rem;
-  accent-color: var(--tertiary-color);
-`;
-
-const StyledSelection = styled.select`
-  text-align: center;
-  width: auto;
-  border: 1px solid var(--tertiary-color);
-  border-radius: 5px;
-  padding: 0.3rem 0;
-  margin: 0.5rem 0;
-  background: var(--primary-color);
-  color: var(--font-color);
-  outline: none;
-`;
-
-const Textarea = styled.textarea`
-  font-family: inherit;
-  border: 1px solid var(--tertiary-color);
-  color: var(--font-color);
-  background: var(--primary-color);
-  border-radius: 5px;
-  padding: 0.5rem;
-  outline: none;
-`;
-
-const StyledButton = styled.button`
-  background-color: var(--cool-brown);
-  color: var(--font-color);
-  padding: 0.8rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: inherit;
-  &:hover {
-    background-color: var(--tertiary-color);
-    transition: background-color 0.2s ease;
-  }
-`;
-
-const StyledFieldset = styled.fieldset`
-  border: none;
-`;
-
-const LetterCounter = styled.span`
-  text-align: right;
-`;

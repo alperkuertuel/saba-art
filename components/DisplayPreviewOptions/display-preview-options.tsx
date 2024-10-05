@@ -1,7 +1,6 @@
 import { faArrowRightArrowLeft, faSquare, faTableCellsLarge } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import styled from "styled-components";
 
 type DisplayPreviewOptionsProperties = {
   handleSetPreviewOption: (previewOption: string) => void;
@@ -14,35 +13,27 @@ export default function DisplayPreviewOptions({
 }: DisplayPreviewOptionsProperties) {
   return (
     <>
-      <StyledPreviewOptionButton
+      <button
+        className="text-xl mr-6 p-2 rounded-[5px] shadow-box-shadow text-tertiary-color transition-colors duration-100 ease-in-out"
+        style={{ backgroundColor: previewoption === "slideShow" ? "var(--cool-brown)" : "var(--box-color)" }}
         onClick={() => handleSetPreviewOption("slideShow")}
-        $previewoption={previewoption === "slideShow" ? "var(--cool-brown)" : "var(--box-color)"}
       >
         <FontAwesomeIcon aria-label="show slider" icon={faArrowRightArrowLeft} />
-      </StyledPreviewOptionButton>
-      <StyledPreviewOptionButton
+      </button>
+      <button
+        className="text-xl mr-6 p-2 rounded-[5px] shadow-box-shadow text-tertiary-color transition-colors duration-100 ease-in-out"
+        style={{ backgroundColor: previewoption === "130px" ? "var(--cool-brown)" : "var(--box-color)" }}
         onClick={() => handleSetPreviewOption("130px")}
-        $previewoption={previewoption === "130px" ? "var(--cool-brown)" : "var(--box-color)"}
       >
         <FontAwesomeIcon aria-label="show middle size grid" icon={faTableCellsLarge} />
-      </StyledPreviewOptionButton>
-      <StyledPreviewOptionButton
+      </button>
+      <button
+        className="text-xl mr-6 p-2 rounded-[5px] shadow-box-shadow text-tertiary-color transition-colors duration-100 ease-in-out"
+        style={{ backgroundColor: previewoption === "280px" ? "var(--cool-brown)" : "var(--box-color)" }}
         onClick={() => handleSetPreviewOption("280px")}
-        $previewoption={previewoption === "280px" ? "var(--cool-brown)" : "var(--box-color)"}
       >
         <FontAwesomeIcon aria-label="show large grid" icon={faSquare} />
-      </StyledPreviewOptionButton>
+      </button>
     </>
   );
 }
-
-const StyledPreviewOptionButton = styled.button<{ $previewoption: string }>`
-  font-size: 1.5rem;
-  margin-right: 1.5rem;
-  padding: 0.5rem;
-  border-radius: 5px;
-  box-shadow: var(--box-shadow);
-  color: var(--tertiary-color);
-  background-color: ${(properties) => properties.$previewoption};
-  transition: background-color 0.1s ease-in-out;
-`;

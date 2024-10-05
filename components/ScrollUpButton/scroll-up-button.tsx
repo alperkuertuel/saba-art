@@ -1,7 +1,6 @@
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 
 type ScrollUpProperties = {
   scrollPercent: number;
@@ -19,25 +18,17 @@ export default function ScrollUp({ scrollPercent }: ScrollUpProperties) {
   return (
     <>
       {backToTopButton && (
-        <StyledScrollUpButton>
-          <ArrowUp icon={faChevronUp} onClick={() => window.scrollTo(0, 0)} />
-        </StyledScrollUpButton>
+        <button
+          className="fixed z-20 w-auto h-auto rounded-full bottom-3 right-4 bg-tertiary-color"
+          aria-label="nach oben scrollen"
+        >
+          <FontAwesomeIcon
+            className="text-secondary-color p-3 text-2xl"
+            icon={faChevronUp}
+            onClick={() => window.scrollTo(0, 0)}
+          />
+        </button>
       )}
     </>
   );
 }
-
-const StyledScrollUpButton = styled.button`
-  position: fixed;
-  z-index: 4;
-  bottom: 15px;
-  right: 15px;
-  background-color: var(--tertiary-color);
-  border-radius: 50%;
-`;
-
-const ArrowUp = styled(FontAwesomeIcon)`
-  color: var(--secondary-color);
-  font-size: 2rem;
-  padding: 0.5rem;
-`;

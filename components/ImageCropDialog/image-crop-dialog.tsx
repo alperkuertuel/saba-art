@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Cropper, { Area } from "react-easy-crop";
-import styled from "styled-components";
 
 import getCroppedImg from "./crop-image";
 
@@ -80,8 +79,8 @@ export default function ImageCropDialog({
   }
 
   return (
-    <BackDrop>
-      <CropContainer>
+    <div className="fixed bg-black bg-opacity-80 top-0 left-0 bottom-0 right-0 z-30">
+      <div className="fixed top-0 left-0 right-0 bottom-[205px] w-full">
         <Cropper
           image={fileImageUrl}
           zoom={zoom}
@@ -93,11 +92,12 @@ export default function ImageCropDialog({
           onRotationChange={onRotateChange}
           onCropComplete={onCropComplete}
         />
-      </CropContainer>
-      <Controls>
-        <ControlsArea>
+      </div>
+      <div className="fixed bottom-0 w-full h-[205px] bg-black">
+        <div className="text-white p-2 flex flex-col items-center w-full">
           <label htmlFor="zoom">Zoom:</label>
-          <Slider
+          <input
+            className="m-1 appearance-none w-full h-[25px] bg-highlight-color outline-none opacity-70 transition-opacity duration-200 hover:opacity-100"
             type="range"
             id="zoom"
             name="zoom"
@@ -108,7 +108,8 @@ export default function ImageCropDialog({
             onChange={(event) => onZoomChange(Number.parseFloat(event.target.value))}
           />
           <label htmlFor="rotate">Rotate:</label>
-          <Slider
+          <input
+            className="m-1 appearance-none w-full h-[25px] bg-highlight-color outline-none opacity-70 transition-opacity duration-200 hover:opacity-100"
             type="range"
             id="rotate"
             name="rotate"
@@ -118,126 +119,43 @@ export default function ImageCropDialog({
             value={rotation}
             onChange={(event) => onRotateChange(Number.parseFloat(event.target.value))}
           />
-          <SelectContainer>
+          <fieldset className="border-none flex items-center">
             <label htmlFor="aspect-ratio">Select aspect ratio:</label>
-            <AspectRatioSelector id="aspect-ratio" name="aspect-ratio" onChange={onAspectChange}>
+            <select
+              className="text-center w-auto border border-tertiary-color rounded-[5px] py-1 ml-2 bg-primary-color text-font-color outline-none"
+              id="aspect-ratio"
+              name="aspect-ratio"
+              onChange={onAspectChange}
+            >
               {aspectRatios.map((ratio) => (
                 <option key={ratio.text} value={ratio.value} defaultValue={ratio.value ?? aspect.value}>
                   {ratio.text}
                 </option>
               ))}
-            </AspectRatioSelector>
-          </SelectContainer>
-          <ButtonArea>
-            <StyledButton onClick={onCancel}>Cancel</StyledButton>
-            <StyledButton onClick={onReset}>Reset</StyledButton>
-            <StyledButton onClick={onCrop}>Crop</StyledButton>
-          </ButtonArea>
-        </ControlsArea>
-      </Controls>
-    </BackDrop>
+            </select>
+          </fieldset>
+          <div className="flex gap-2 my-2">
+            <button
+              className="p-3 rounded-[5px] no-underline font-bold border-none text-font-color transition-colors duration-200 ease bg-cool-brown hover:bg-tertiary-color"
+              onClick={onCancel}
+            >
+              Cancel
+            </button>
+            <button
+              className="p-3 rounded-[5px] no-underline font-bold border-none text-font-color transition-colors duration-200 ease bg-cool-brown hover:bg-tertiary-color"
+              onClick={onReset}
+            >
+              Reset
+            </button>
+            <button
+              className="p-3 rounded-[5px] no-underline font-bold border-none text-font-color transition-colors duration-200 ease bg-cool-brown hover:bg-tertiary-color"
+              onClick={onCrop}
+            >
+              Crop
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
-
-const BackDrop = styled.span`
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.8);
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 5; // no value underneath 5!
-`;
-
-const CropContainer = styled.span`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 205px;
-`;
-
-const Controls = styled.span`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 205px;
-  background: black;
-`;
-
-const ControlsArea = styled.span`
-  font-size: 1rem;
-  color: white;
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-`;
-
-const Slider = styled.input`
-  width: 50%;
-  margin: 5px;
-  appearance: none;
-  -webkit-appearance: none;
-  width: 100%;
-  height: 25px;
-  background: var(--highlight);
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-  &:hover {
-    opacity: 1;
-  }
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: var(--tertiary-color);
-    cursor: pointer;
-  }
-  &::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background: #04aa6d;
-    cursor: pointer;
-  }
-`;
-
-const SelectContainer = styled.span`
-  display: flex;
-  align-items: center;
-`;
-
-const AspectRatioSelector = styled.select`
-  text-align: center;
-  outline: none;
-  width: auto;
-  border: 1px solid var(--tertiary-color);
-  border-radius: 5px;
-  padding: 2px;
-  margin: 5px;
-`;
-
-const ButtonArea = styled.span`
-  display: flex;
-  gap: 1rem;
-  margin: 0.5rem;
-`;
-
-const StyledButton = styled.button`
-  text-transform: uppercase;
-  background-color: var(--cool-brown);
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 1rem;
-  &:hover {
-    background-color: var(--tertiary-color);
-    transition: background-color 0.2s ease;
-    color: black;
-  }
-`;

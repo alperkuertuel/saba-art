@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { ArtPiece } from "pages/_app";
 import { useState } from "react";
-import styled from "styled-components";
 
 type ArtPiecesEditFormProperties = {
   artPieceToEdit: ArtPiece;
@@ -90,10 +89,11 @@ export default function ArtPiecesEditForm({
   }
   const currentYear = new Date().getFullYear().toString();
   return (
-    <StyledArticle>
-      <StyledForm onSubmit={handleUpdate} autoComplete="off">
+    <article className="text-xs">
+      <form className="grid grid-rows-1 gap-3" onSubmit={handleUpdate} autoComplete="off">
         <label htmlFor="name">Ändere den Namen:</label>
-        <Input
+        <input
+          className="w-auto border-b border-tertiary-color bg-primary-color"
           type="text"
           id="name"
           name="name"
@@ -105,32 +105,58 @@ export default function ArtPiecesEditForm({
           required
         />
         <label htmlFor="date">Ändere das Erscheinungsjahr: </label>
-        <Input type="number" id="date" name="date" max={currentYear} defaultValue={artPieceToEdit.date} required />
+        <input
+          className="w-auto border-b border-tertiary-color bg-primary-color"
+          type="number"
+          id="date"
+          name="date"
+          max={currentYear}
+          defaultValue={artPieceToEdit.date}
+          required
+        />
         <label htmlFor="available">
           Ändere die Verfügbarkeit:
-          <StyledCheckbox type="checkbox" id="available" name="available" defaultChecked={artPieceToEdit?.available} />
+          <input
+            className="align-top w-[15px] h-[15px] ml-2"
+            style={{ accentColor: "var(--tertiary-color)" }}
+            type="checkbox"
+            id="available"
+            name="available"
+            defaultChecked={artPieceToEdit?.available}
+          />
         </label>
-        <StyledFieldset>
+        <fieldset className="border-none">
           <label htmlFor="category">Kategorie: </label>
-          <StyledSelection name="category" id="category" defaultValue={artPieceToEdit.category}>
+          <select
+            className="text-center w-auto border border-tertiary-color rounded-[5px] py-1 my-1 bg-primary-color text-font-color outline-none"
+            name="category"
+            id="category"
+            defaultValue={artPieceToEdit.category}
+          >
             <option>Impressionen</option>
             <option>Naturlandschaften</option>
             <option>Abstrakte Werke</option>
             <option>Aktmalerei</option>
             <option>Andere Kunstformen</option>
-          </StyledSelection>
+          </select>
           <br />
           <label htmlFor="technique">Technik: </label>
-          <StyledSelection name="technique" id="technique" defaultValue={artPieceToEdit.technique}>
+          <select
+            className="text-center w-auto border border-tertiary-color rounded-[5px] py-1 my-1 bg-primary-color text-font-color outline-none"
+            name="technique"
+            id="technique"
+            defaultValue={artPieceToEdit.technique}
+          >
             <option>Öl auf Leinwand</option>
             <option>Aquarell</option>
             <option>Steinhauerei</option>
             <option>Diverse</option>
-          </StyledSelection>
-        </StyledFieldset>
-        <StyledFieldset>
+          </select>
+        </fieldset>
+        <fieldset className="border-none">
           <label htmlFor="widthReal"> Breite: </label>
-          <Input
+          <input
+            className="w-auto border-b border-tertiary-color bg-primary-color"
             type="number"
             min="0"
             max="400"
@@ -141,7 +167,8 @@ export default function ArtPiecesEditForm({
             required
           />
           <label htmlFor="heightReal">Höhe: </label>
-          <Input
+          <input
+            className="w-auto border-b border-tertiary-color bg-primary-color"
             type="number"
             min="0"
             max="400"
@@ -151,9 +178,10 @@ export default function ArtPiecesEditForm({
             defaultValue={artPieceToEdit.heightReal}
             required
           />
-        </StyledFieldset>
+        </fieldset>
         <label htmlFor="description">Ändere die Beschreibung:</label>
-        <Textarea
+        <textarea
+          className="bg-primary-color font-family-inherit border border-tertiary-color rounded-[5px] p-2 text-font-color outline-none"
           name="description"
           maxLength={500}
           id="description"
@@ -161,79 +189,12 @@ export default function ArtPiecesEditForm({
           rows={5}
           defaultValue={artPieceToEdit.description}
           onChange={(event) => setLettersLeft(event.target.value.length)}
-        ></Textarea>
-        <LetterCounter>{500 - lettersLeft}</LetterCounter>
-        <StyledButton>UPDATE {artPieceToEdit ? artPieceToEdit.name : ""}</StyledButton>
-      </StyledForm>
-    </StyledArticle>
+        ></textarea>
+        <span className="text-right">{500 - lettersLeft}</span>
+        <button className="p-3 rounded-[5px] no-underline font-bold border-none text-inherit transition-colors duration-200 ease bg-cool-brown hover:bg-tertiary-color">
+          UPDATE {artPieceToEdit ? artPieceToEdit.name : ""}
+        </button>
+      </form>
+    </article>
   );
 }
-
-const StyledArticle = styled.article`
-  font-size: 0.8rem;
-`;
-
-const StyledForm = styled.form`
-  display: grid;
-  grid-template-rows: 1fr;
-  gap: 0.7rem;
-`;
-
-const Input = styled.input`
-  width: auto;
-  border-bottom: 1px solid var(--tertiary-color);
-  background: var(--primary-color);
-`;
-
-const StyledCheckbox = styled.input`
-  vertical-align: top;
-  width: 20px;
-  height: 20px;
-  margin-left: 0.5rem;
-  accent-color: var(--tertiary-color);
-`;
-
-const StyledSelection = styled.select`
-  text-align: center;
-  width: auto;
-  border: 1px solid var(--tertiary-color);
-  border-radius: 5px;
-  padding: 0.3rem 0;
-  margin: 0.5rem 0;
-  background: var(--primary-color);
-  color: var(--font-color);
-  outline: none;
-`;
-
-const Textarea = styled.textarea`
-  background: var(--primary-color);
-  font-family: inherit;
-  border: 1px solid var(--tertiary-color);
-  border-radius: 5px;
-  padding: 0.5rem;
-  color: var(--font-color);
-  outline: none;
-`;
-
-const StyledButton = styled.button`
-  background-color: var(--cool-brown);
-  color: var(--font-color);
-  padding: 0.8rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  border: none;
-  font-size: inherit;
-  &:hover {
-    background-color: var(--tertiary-color);
-    transition: background-color 0.2s ease;
-  }
-`;
-
-const StyledFieldset = styled.fieldset`
-  border: none;
-`;
-
-const LetterCounter = styled.span`
-  text-align: right;
-`;
