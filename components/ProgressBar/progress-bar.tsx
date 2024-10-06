@@ -1,14 +1,9 @@
 import { useEffect } from "react";
-import styled from "styled-components";
 
 type ProgressBarProperties = {
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
   width?: number;
-};
-
-type ProgressBarFillProperties = {
-  width: number;
 };
 
 export default function ProgressBar({ scrollPercent, handleSetScrollPercentage }: ProgressBarProperties) {
@@ -27,23 +22,11 @@ export default function ProgressBar({ scrollPercent, handleSetScrollPercentage }
   });
 
   return (
-    <ProgressBarContainer>
-      <ProgressBarFill width={scrollPercent} />
-    </ProgressBarContainer>
+    <div className="fixed top-0 left-0 w-[100%] h-[7px] bg-cool-brown">
+      <div
+        className="h-full bg-tertiary-color transition-width duration-100 ease-in-out"
+        style={{ width: `${scrollPercent}%` }}
+      />
+    </div>
   );
 }
-
-const ProgressBarContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 7px;
-  background-color: var(--cool-brown);
-`;
-const ProgressBarFill = styled.div<ProgressBarFillProperties>`
-  height: 100%;
-  background-color: var(--tertiary-color);
-  width: ${(properties) => properties.width}%;
-  transition: width 0.1s ease-in-out;
-`;

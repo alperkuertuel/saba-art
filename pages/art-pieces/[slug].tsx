@@ -2,30 +2,20 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import styled from "styled-components";
 import useSWR from "swr";
 
 import ArtPieceDetails from "@/ArtPieceDetails/art-piece-details";
 import Header from "@/Header/page-header";
 import LoadingDots from "@/LoadingDots/loading-dots";
 
-import { AppTheme, ArtPiece } from "../_app";
+import { ArtPiece } from "../_app";
 
 type ShowDetailsProperties = {
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
-  handleSetTheme: (theme: AppTheme) => void;
-  handleSetCurrentTheme: (currentTheme: string) => void;
-  currentTheme: string;
 };
 
-export default function ShowDetails({
-  scrollPercent,
-  handleSetTheme,
-  handleSetScrollPercentage,
-  handleSetCurrentTheme,
-  currentTheme,
-}: ShowDetailsProperties) {
+export default function ShowDetails({ scrollPercent, handleSetScrollPercentage }: ShowDetailsProperties) {
   const router = useRouter();
   const { slug } = router.query;
   const { data, isLoading, isValidating } = useSWR(`/api`, { fallbackData: [] });
@@ -33,15 +23,15 @@ export default function ShowDetails({
 
   if (isLoading || !data || !slug || isValidating) {
     return (
-      <StyledErrorMessage>
+      <h1 className="fixed top-1/2 w-full h-screen inline-block text-center">
         Wird geladen <LoadingDots />
-      </StyledErrorMessage>
+      </h1>
     );
   } else if (!foundArtPiece) {
     return (
-      <StyledErrorMessage>
+      <h1 className="fixed top-1/2 w-full h-screen inline-block text-center">
         Error 404 - Das Bild ist nicht vorhanden. <br /> <Link href={`/`}>Gehe zurück zur Galerie!</Link>
-      </StyledErrorMessage>
+      </h1>
     );
   }
   return (
@@ -50,17 +40,14 @@ export default function ShowDetails({
         <title>{foundArtPiece.name}</title>
         <meta name="description" content={foundArtPiece.description} />
       </Head>
-      <Header
-        scrollPercent={scrollPercent}
-        handleSetScrollPercentage={handleSetScrollPercentage}
-        handleSetTheme={handleSetTheme}
-        handleSetCurrentTheme={handleSetCurrentTheme}
-        currentTheme={currentTheme}
-      />
+      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
-        <StyledBackLink href="/">
+        <Link
+          href="/"
+          className="flex justify-center items-center gap-4 p-2 bg-box-color shadow-box-shadow text-lg rounded-[5px] mb-4"
+        >
           <b>Zur online Kunst-Galerie!</b>
-        </StyledBackLink>
+        </Link>
         <ArtPieceDetails
           _id={foundArtPiece._id}
           imageUrl={foundArtPiece.imageUrl}
@@ -78,26 +65,3 @@ export default function ShowDetails({
     </>
   );
 }
-
-const StyledBackLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  align-items: center;
-  padding: 0.5rem;
-  background-color: var(--box-color);
-  box-shadow: var(--box-shadow);
-  font-size: 1.2rem;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-`;
-
-const StyledErrorMessage = styled.h1`
-  position: fixed;
-  top: 50%;
-  width: 100%;
-  height: 100vh;
-  display: inline-block;
-  text-align: center;
-`;

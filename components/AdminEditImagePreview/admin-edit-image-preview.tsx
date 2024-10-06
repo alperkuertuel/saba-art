@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useState } from "react";
-import styled from "styled-components";
 
 import ImageCropDialog from "../ImageCropDialog/image-crop-dialog";
 
@@ -36,8 +35,8 @@ export default function AdminImagePreview({
   // console.log("selectedImageToCrop", selectedImageToCrop);
 
   return (
-    <StyledPreview>
-      {fileImageUrl === "/img/preview.png" ? "Vorschau:" : "Schneide dein Bild zu recht:"}
+    <article className="flex gap-4 my-6 mx-0 items-center">
+      {fileImageUrl === "/img/preview.png" ? "Vorschau:" : "Schneide dein Bild zurecht:"}
       {selectedImageToCrop && (
         <ImageCropDialog
           fileImageUrl={fileImageUrl}
@@ -51,7 +50,8 @@ export default function AdminImagePreview({
           setSelectedImageToCrop={setSelectedImageToCrop}
         />
       )}
-      <StyledImage
+      <Image
+        className="rounded-[5px] w-auto h-[50px]"
         src={fileImageUrl}
         priority={true}
         alt="image preview and crop functioniality"
@@ -63,19 +63,6 @@ export default function AdminImagePreview({
             : () => setSelectedImageToCrop(fileImageUrl)
         }
       />
-    </StyledPreview>
+    </article>
   );
 }
-
-const StyledPreview = styled.article`
-  display: flex;
-  gap: 1rem;
-  margin: 1.5rem 0;
-  align-items: center;
-`;
-
-const StyledImage = styled(Image)`
-  border-radius: 5px;
-  width: auto;
-  height: 50px;
-`;

@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArtPiece } from "pages/_app";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
-import styled from "styled-components";
 
 import ArtPieceDetails from "../ArtPieceDetails/art-piece-details";
 
@@ -53,7 +52,7 @@ export default function GallerySliderPreview({
   }
 
   return (
-    <Wrapper>
+    <div className="my-8 relative">
       <Carousel
         showIndicators={false}
         dynamicHeight={true}
@@ -66,29 +65,44 @@ export default function GallerySliderPreview({
       >
         {filteredCategory.map((artPiece) => (
           <div key={artPiece.name}>
-            <SliderImage src={artPiece.imageUrl} width={1000} height={1000} alt={artPiece.name} />
-            <StyledLink onClick={() => openModalGallerySlider(artPiece)}>
-              <StyledLegend>
+            <Image
+              className="object-contain h-[50vh]"
+              src={artPiece.imageUrl}
+              width={1000}
+              height={1000}
+              alt={artPiece.name}
+            />
+            <button
+              className="absolute top-0 right-0 h-full w-full cursor-pointer"
+              onClick={() => openModalGallerySlider(artPiece)}
+            >
+              <div className="absolute text-font-color bg-box-color block p-2 bottom-0 right-0 w-full h-auto">
                 {artPiece.name} - {artPiece.date}
-              </StyledLegend>
-            </StyledLink>
-            <LikeButton onClick={() => artPiece._id && handleLikeButton(artPiece._id)}>
+              </div>
+            </button>
+            <button
+              className="absolute text-xl p-2 top-0 left-[47%] text-rose-700"
+              onClick={() => artPiece._id && handleLikeButton(artPiece._id)}
+            >
               {artPiece._id && likedArtPieces.includes(artPiece._id) ? (
                 <FontAwesomeIcon icon={faHeart} />
               ) : (
                 <FontAwesomeIcon icon={farHeart} />
               )}
-            </LikeButton>
+            </button>
           </div>
         ))}
       </Carousel>
 
       {isModalOpen && selectedArtPiece && (
-        <BackDrop>
-          <ModalContent>
-            <CloseButton onClick={closeModalGallerySlider}>
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-30">
+          <div className="flex flex-col items-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 gap-4 p-2 w-[95%] max-w-[768px] max-h-[90vh] bg-primary-color z-30 overflow-y-auto rounded-[5px]">
+            <button
+              className="sticky top-0 flex justify-center items-center w-full gap-2 text-font-color bg-box-color shadow-box-shadow p-2 rounded-[5px] text-base cursor-pointer"
+              onClick={closeModalGallerySlider}
+            >
               Schließen <FontAwesomeIcon icon={faXmark} />
-            </CloseButton>
+            </button>
             <ArtPieceDetails
               _id={selectedArtPiece._id}
               imageUrl={selectedArtPiece.imageUrl}
@@ -102,95 +116,9 @@ export default function GallerySliderPreview({
               heightReal={selectedArtPiece.heightReal}
               slug={selectedArtPiece.slug}
             />
-          </ModalContent>
-        </BackDrop>
+          </div>
+        </div>
       )}
-    </Wrapper>
+    </div>
   );
 }
-
-const StyledLink = styled.span`
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  cursor: pointer;
-`;
-
-const SliderImage = styled(Image)`
-  object-fit: contain;
-  height: 50vh;
-`;
-
-const Wrapper = styled.div`
-  margin: 2rem 0;
-  position: relative;
-`;
-
-const StyledLegend = styled.span`
-  position: absolute;
-  color: var(--font-color);
-  background-color: var(--box-color);
-  display: block;
-  padding: 0.5rem;
-  bottom: 0px;
-  right: 0px;
-  width: 100%;
-  height: auto;
-`;
-
-const LikeButton = styled.button`
-  position: absolute;
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  top: 0px;
-  left: 47%;
-  color: red;
-`;
-
-export const BackDrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 6;
-`;
-
-export const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  gap: 1rem;
-  padding: 0.5rem;
-  width: 95%;
-  max-width: 768px;
-  max-height: 90vh;
-  background-color: var(--primary-color);
-  z-index: 5;
-  overflow-y: auto;
-  border-radius: 5px;
-`;
-
-export const CloseButton = styled.button`
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 0.5rem;
-  color: var(--font-color);
-  background-color: var(--box-color);
-  box-shadow: var(--box-shadow);
-  padding: 0.5rem;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-`;

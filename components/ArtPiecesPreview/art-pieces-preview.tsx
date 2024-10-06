@@ -4,10 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { ArtPiece } from "pages/_app";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 
 import ArtPieceDetails from "../ArtPieceDetails/art-piece-details";
-import { BackDrop, CloseButton, ModalContent } from "../GalleryCarouselPreview/gallery-carousel-preview";
 
 type ArtPieceCategoryProperties = {
   filteredCategory: ArtPiece[];
@@ -50,11 +48,14 @@ export default function ArtPiecesPreview({
   }
 
   return (
-    <GalleryWrapper $previewoption={previewoption}>
+    <section
+      className="grid gap-8 w-full"
+      style={{ gridTemplateColumns: `repeat(auto-fit, minmax(${previewoption}, 1fr))` }}
+    >
       {filteredCategory &&
         filteredCategory.map((artPiece) => (
-          <GalleryCard key={artPiece._id}>
-            <Figure>
+          <article key={artPiece._id} className="bg-box-color p-[3px] rounded-[5px] h-fit shadow-box-shadow">
+            <figure className="relative">
               <button
                 onClick={() => openModalFromGridView(artPiece)}
                 onKeyDown={(event) => {
@@ -63,31 +64,44 @@ export default function ArtPiecesPreview({
                   }
                 }}
               >
-                <StyledImage src={artPiece.imageUrl} alt={artPiece.name} width={1000} height={1000} priority={true} />
+                <Image
+                  className="object-cover w-full h-full rounded-[5px]"
+                  src={artPiece.imageUrl}
+                  alt={artPiece.name}
+                  width={1000}
+                  height={1000}
+                  priority={true}
+                />
               </button>
-              <LikeButton onClick={() => artPiece._id && handleLikeButton(artPiece._id)}>
+              <button
+                className="absolute text-xl p-2 top-0 left-0 text-rose-700"
+                onClick={() => artPiece._id && handleLikeButton(artPiece._id)}
+              >
                 {artPiece._id && likedArtPieces.includes(artPiece._id) ? (
                   <FontAwesomeIcon icon={faHeart} />
                 ) : (
                   <FontAwesomeIcon icon={farHeart} />
                 )}
-              </LikeButton>
+              </button>
 
-              <Caption>
+              <figcaption className="flex justify-between flex-wrap gap-2 p-2">
                 <b>
                   <q>{artPiece.name}</q>
                 </b>
                 {artPiece.date}
-              </Caption>
-            </Figure>
-          </GalleryCard>
+              </figcaption>
+            </figure>
+          </article>
         ))}
       {isModalOpen && selectedArtPiece && (
-        <BackDrop>
-          <ModalContent>
-            <CloseButton onClick={closeModalFromGridView}>
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-30">
+          <div className="flex flex-col items-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 gap-4 p-2 w-[95%] max-w-[768px] max-h-[90vh] bg-primary-color z-30 overflow-y-auto rounded-[5px]">
+            <button
+              className="sticky top-0 flex justify-center items-center w-full gap-2 text-font-color bg-box-color shadow-box-shadow p-2 rounded-[5px] text-base cursor-pointer"
+              onClick={closeModalFromGridView}
+            >
               Schließen <FontAwesomeIcon icon={faXmark} />
-            </CloseButton>
+            </button>
             <ArtPieceDetails
               _id={selectedArtPiece._id}
               imageUrl={selectedArtPiece.imageUrl}
@@ -101,54 +115,9 @@ export default function ArtPiecesPreview({
               heightReal={selectedArtPiece.heightReal}
               slug={selectedArtPiece.slug}
             />
-          </ModalContent>
-        </BackDrop>
+          </div>
+        </div>
       )}
-    </GalleryWrapper>
+    </section>
   );
 }
-
-const GalleryWrapper = styled.section<{ $previewoption: string }>`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(${(properties) => properties.$previewoption}, 1fr));
-  grid-gap: 2rem;
-  width: 100%;
-`;
-
-const StyledImage = styled(Image)`
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-`;
-
-const Caption = styled.figcaption`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0.5rem;
-`;
-
-const GalleryCard = styled.article`
-  background-color: var(--box-color);
-  padding: 3px;
-  border-radius: 5px;
-  height: fit-content;
-  box-shadow: var(--box-shadow);
-`;
-
-const Figure = styled.figure`
-  position: relative;
-`;
-
-const LikeButton = styled.button`
-  position: absolute;
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  top: 0px;
-  left: 0px;
-  color: red;
-`;
-
-// The model styles are imported from GalleryCarousel.js!

@@ -9,7 +9,7 @@ import FooterComponent from "@/Footer/page-footer";
 import Header from "@/Header/page-header";
 import ScrollUp from "@/ScrollUpButton/scroll-up-button";
 
-import { AppTheme, ArtPiece } from "./_app";
+import { ArtPiece } from "./_app";
 
 type AdminHomePageProperties = {
   artPieceToEdit: ArtPiece;
@@ -24,9 +24,6 @@ type AdminHomePageProperties = {
   handleSetScrollPercentage: (scrollPercent: number) => void;
   handleSetCurrentFormData: (currentFormData: ArtPiece) => void;
   currentFormData: ArtPiece;
-  handleSetTheme: (theme: AppTheme) => void;
-  handleSetCurrentTheme: (currentTheme: string) => void;
-  currentTheme: string;
 };
 
 export default function AdminHomePage({
@@ -42,9 +39,6 @@ export default function AdminHomePage({
   handleSetScrollPercentage,
   handleSetCurrentFormData,
   currentFormData,
-  handleSetTheme,
-  handleSetCurrentTheme,
-  currentTheme,
 }: AdminHomePageProperties) {
   const router = useRouter();
   const { data } = useSWR("/api", { fallbackData: [] });
@@ -170,13 +164,7 @@ export default function AdminHomePage({
         <title>saba-art - Bilder sind Erinnerungen</title>
         <meta name="description" content="Die online Kunst-Galerie von Saba." />
       </Head>
-      <Header
-        scrollPercent={scrollPercent}
-        handleSetScrollPercentage={handleSetScrollPercentage}
-        handleSetTheme={handleSetTheme}
-        handleSetCurrentTheme={handleSetCurrentTheme}
-        currentTheme={currentTheme}
-      />
+      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <main>
         <ArtPieceForm
           handleSetFileImageUrl={handleSetFileImageUrl}

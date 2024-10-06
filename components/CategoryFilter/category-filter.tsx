@@ -1,6 +1,5 @@
 import { ArtPiece } from "pages/_app";
 import React from "react";
-import styled from "styled-components";
 import useSWR from "swr";
 
 import LoadingDots from "../LoadingDots/loading-dots";
@@ -50,7 +49,7 @@ export default function CategoryFilter({
   }
 
   return (
-    <StyledCategoryFilter>
+    <ul className="flex flex-wrap items-center gap-4 my-4">
       {isLoading ? (
         <li>
           Wird geladen <LoadingDots />
@@ -58,81 +57,76 @@ export default function CategoryFilter({
       ) : (
         <>
           <li>
-            <StyledButton onClick={handleFilterAll}>
+            <button
+              className="bg-box-color p-2 rounded-[5px] text-base shadow-box-shadow leading-4"
+              onClick={handleFilterAll}
+            >
               Alle
-              <CategoryCount $activecategory={activeCategory === "Alle" ? "var(--cool-brown)" : "var(--highlight)"}>
+              <span
+                className="transition-colors duration-200 ease px-[5px] py-[3px] ml-2 rounded-[5px] text-sm align-top"
+                style={{ backgroundColor: activeCategory === "Alle" ? "var(--cool-brown)" : "var(--highlight-color)" }}
+              >
                 {data.length}
-              </CategoryCount>
-            </StyledButton>
+              </span>
+            </button>
           </li>
-          {data.some((piece: ArtPiece) => piece.date === currentYear).length > 0 && (
+          {data.some((piece: ArtPiece) => piece.date === currentYear) && (
             <li>
-              <StyledButton
-                $activecategory={activeCategory === "Neue" ? "var(--cool-brown)" : "var(--highlight)"}
+              <button
+                className="bg-box-color p-2 rounded-[5px] text-base shadow-box-shadow leading-4"
                 onClick={handleNewestArtPieces}
               >
                 Neueste Bilder aus {currentYear}
-                <CategoryCount $activecategory={activeCategory === "Neue" ? "var(--cool-brown)" : "var(--highlight)"}>
+                <span
+                  className="transition-colors duration-200 ease px-[5px] py-[3px] ml-2 rounded-[5px] text-sm align-top"
+                  style={{
+                    backgroundColor: activeCategory === "Neue" ? "var(--cool-brown)" : "var(--highlight-color)",
+                  }}
+                >
                   {data.filter((piece: ArtPiece) => piece.date === currentYear).length}
-                </CategoryCount>
-              </StyledButton>
+                </span>
+              </button>
             </li>
           )}
 
           {uniqueCatagories.map((category) => (
             <li key={category}>
-              <StyledButton onClick={() => handleFilteredCategories(category)}>
+              <button
+                className="bg-box-color p-2 rounded-[5px] text-base shadow-box-shadow leading-4"
+                onClick={() => handleFilteredCategories(category)}
+              >
                 {category}
-                <CategoryCount $activecategory={activeCategory === category ? "var(--cool-brown)" : "var(--highlight)"}>
+                <span
+                  className="transition-colors duration-200 ease px-[5px] py-[3px] ml-2 rounded-[5px] text-sm align-top"
+                  style={{
+                    backgroundColor: activeCategory === category ? "var(--cool-brown)" : "var(--highlight-color)",
+                  }}
+                >
                   {data.filter((piece: ArtPiece) => piece.category === category).length}
-                </CategoryCount>
-              </StyledButton>
+                </span>
+              </button>
             </li>
           ))}
           {likedArtPieces && likedArtPieces?.length > 0 && (
             <li>
-              <StyledButton
-                $activecategory={activeCategory === "Favoriten" ? "var(--cool-brown)" : "var(--highlight)"}
+              <button
+                className="bg-box-color p-2 rounded-[5px] text-base shadow-box-shadow leading-4"
                 onClick={handleLikedArtPieces}
               >
                 Favoriten
-                <CategoryCount
-                  $activecategory={activeCategory === "Favoriten" ? "var(--cool-brown)" : "var(--highlight)"}
+                <span
+                  className="transition-colors duration-200 ease px-[5px] py-[3px] ml-2 rounded-[5px] text-sm align-top"
+                  style={{
+                    backgroundColor: activeCategory === "Favoriten" ? "var(--cool-brown)" : "var(--highlight-color)",
+                  }}
                 >
                   {likedArtPieces.length}
-                </CategoryCount>
-              </StyledButton>
+                </span>
+              </button>
             </li>
           )}
         </>
       )}
-    </StyledCategoryFilter>
+    </ul>
   );
 }
-
-const StyledCategoryFilter = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
-  margin: 1rem 0;
-`;
-
-const StyledButton = styled.button<{ $activecategory?: string }>`
-  background-color: var(--box-color);
-  padding: 0.5rem;
-  border-radius: 5px;
-  font-size: 1rem;
-  box-shadow: var(--box-shadow);
-  line-height: 1rem;
-`;
-
-const CategoryCount = styled.span<{ $activecategory: string }>`
-  transition: background-color 0.2s ease;
-  padding: 3px 5px;
-  margin: 0 0 0 8px;
-  border-radius: 5px;
-  background-color: ${(properties) => properties.$activecategory};
-  font-size: 0.8rem;
-  vertical-align: top;
-`;

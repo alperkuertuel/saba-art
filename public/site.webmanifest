@@ -18,7 +18,5 @@
       "purpose": "any maskable"
     }
   ],
-  "theme_color": "white",
-  "background_color": "white",
   "display": "browser"
 }

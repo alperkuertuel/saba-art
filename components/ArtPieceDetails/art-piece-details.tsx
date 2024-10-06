@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { ArtPiece } from "pages/_app";
 import { FacebookIcon, FacebookShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
-import styled from "styled-components";
 
 export default function ArtPieceDetails({
   imageUrl,
@@ -18,11 +17,18 @@ export default function ArtPieceDetails({
   slug,
 }: ArtPiece) {
   return (
-    <StyledContainer>
+    <div className="flex max-w-[800px] gap-4 flex-col">
       <figure>
-        <StyledImage src={imageUrl} width={1000} height={1000} alt={name} priority={true} />
+        <Image
+          className="object-contain pointer-events-none w-full h-auto max-h-[800px] rounded-[5px]"
+          src={imageUrl}
+          width={1000}
+          height={1000}
+          alt={name}
+          priority={true}
+        />
       </figure>
-      <ButtonList>
+      <ul className="flex justify-end gap-2">
         <li>
           <FacebookShareButton
             windowWidth={1000}
@@ -41,71 +47,27 @@ export default function ArtPieceDetails({
             <WhatsappIcon size={32} round={true} />
           </WhatsappShareButton>
         </li>
-      </ButtonList>
-      <StyledCaption>
-        <StyledNameDate>
+      </ul>
+      <figcaption className="flex flex-col gap-2">
+        <div className="flex justify-between items-center">
           <h1>{name}</h1>
           <p>{date}</p>
-        </StyledNameDate>
-        <StyledAvailable>
+        </div>
+        <p className="flex items-center gap-4">
           Verfügbar:
           {available === true ? (
             <FontAwesomeIcon icon={faCheck} aria-label="Das Kunstwerk ist noch Verfügbar!" />
           ) : (
             <FontAwesomeIcon icon={faXmark} aria-label="Das Kunstwerk ist leider nicht mehr Verfügbar!" />
           )}
-        </StyledAvailable>
+        </p>
         <p>Kategorie: {category}</p>
         <p>Verwendete Technik: {technique}</p>
         <p>
           Größe: {widthReal}cm x {heightReal}cm
         </p>
-        <StyledDescription>{description}</StyledDescription>
-      </StyledCaption>
-    </StyledContainer>
+        <p className="text-justify">{description}</p>
+      </figcaption>
+    </div>
   );
 }
-
-const StyledContainer = styled.div`
-  display: flex;
-  max-width: 800px; // max width of resizing during upload
-  gap: 1rem;
-  flex-direction: column;
-`;
-
-const StyledImage = styled(Image)`
-  object-fit: contain;
-  pointer-events: none;
-  width: 100%;
-  height: auto;
-  max-height: 800px; // max height of resizing during upload
-  border-radius: 5px;
-`;
-
-const StyledNameDate = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const StyledAvailable = styled.p`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
-
-const StyledCaption = styled.figcaption`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const StyledDescription = styled.p`
-  text-align: justify;
-`;
-
-const ButtonList = styled.ul`
-  display: flex;
-  justify-content: end;
-  gap: 0.5rem;
-`;

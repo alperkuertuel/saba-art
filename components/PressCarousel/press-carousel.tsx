@@ -10,16 +10,10 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { pdfjs } from "react-pdf";
 import { Carousel } from "react-responsive-carousel";
-import styled from "styled-components";
 
-import { BackDrop, CloseButton, ModalContent } from "../GalleryCarouselPreview/gallery-carousel-preview";
 import pressCarouselData, { Article } from "./press-carousel-data";
 
-type PressCarouselProperties = {
-  currentTheme: string;
-};
-
-export default function PressCarousel({ currentTheme }: PressCarouselProperties) {
+export default function PressCarousel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState<Article>();
 
@@ -43,7 +37,7 @@ export default function PressCarousel({ currentTheme }: PressCarouselProperties)
   return (
     <section>
       <h2>Presseartikel über Saba:</h2>
-      <CarouselWrapper>
+      <div className="m-4 mx-auto relative">
         <Carousel
           axis={"horizontal"}
           showIndicators={false}
@@ -55,7 +49,8 @@ export default function PressCarousel({ currentTheme }: PressCarouselProperties)
         >
           {pressCarouselData.map((article) => (
             <div key={article._id}>
-              <StyledImage
+              <Image
+                className="relative object-cover w-full h-[50vh] opacity-40"
                 src={article.imageUrl}
                 alt={article.name}
                 aria-label={article.name}
@@ -63,83 +58,41 @@ export default function PressCarousel({ currentTheme }: PressCarouselProperties)
                 width={1000}
                 height={1000}
               />
-              <StyledCarouselLinkWrapper onClick={() => openModalPressSlider(article)}>
-                <StyledLegend>
+              <button className="absolute top-0 right-0 h-full w-full" onClick={() => openModalPressSlider(article)}>
+                <div className="absolute text-justify text-font-color bg-box-color block p-2 border-t-2 border-[var(--tertiary-color)] bottom-0 right-0 w-full h-auto opacity-90">
                   {article.legendText} - {article.dateOfArticle}
-                </StyledLegend>
-              </StyledCarouselLinkWrapper>
+                </div>
+              </button>
             </div>
           ))}
         </Carousel>
         {isModalOpen && selectedArticle && (
-          <BackDrop>
-            <ModalContent>
-              <CloseButton onClick={closeModalPressSlider}>
+          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-30">
+            <div className="flex flex-col items-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 gap-4 p-2 w-[95%] max-w-[768px] max-h-[90vh] bg-primary-color z-30 overflow-y-auto rounded-[5px]">
+              <button
+                className="sticky top-0 flex justify-center items-center w-full gap-2 text-font-color bg-box-color shadow-box-shadow p-2 rounded-[5px] text-base cursor-pointer"
+                onClick={closeModalPressSlider}
+              >
                 Schließen <FontAwesomeIcon icon={faXmark} />
-              </CloseButton>
+              </button>
               <Worker workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}>
-                <ViewerWrapper>
+                <div className="overflow-hidden w-full h-full">
                   <div
                     style={{
                       border: "1px solid rgba(0, 0, 0, 0.3)",
                       height: "750px",
                     }}
                   >
-                    <Viewer
-                      theme={currentTheme === "dark" ? "light" : "dark"}
-                      fileUrl={selectedArticle.pdfLink}
-                      plugins={[defaultLayoutPluginInstance]}
-                    />
+                    <Viewer theme={"light"} fileUrl={selectedArticle.pdfLink} plugins={[defaultLayoutPluginInstance]} />
                   </div>
-                </ViewerWrapper>
+                </div>
               </Worker>
-            </ModalContent>
-          </BackDrop>
+            </div>
+          </div>
         )}
-      </CarouselWrapper>
+      </div>
     </section>
   );
 }
 
-const CarouselWrapper = styled.div`
-  margin: 1rem auto;
-  position: relative;
-`;
-
-const StyledCarouselLinkWrapper = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-`;
-
-const StyledImage = styled(Image)`
-  position: relative;
-  object-fit: cover;
-  width: 100%;
-  height: 50vh;
-  opacity: 0.4;
-`;
-
-const StyledLegend = styled.span`
-  position: absolute;
-  text-align: justify;
-  color: var(--font-color);
-  background-color: var(--box-color);
-  display: block;
-  padding: 0.5rem;
-  border-top: 2px solid var(--tertiary-color);
-  bottom: 0px;
-  right: 0px;
-  width: 100%;
-  height: auto;
-  opacity: 0.9;
-`;
-
-const ViewerWrapper = styled.div`
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-`;
 // The model styles are imported from GalleryCarousel.js!

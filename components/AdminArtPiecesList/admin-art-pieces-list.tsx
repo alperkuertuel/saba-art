@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArtPiece } from "pages/_app";
 import { Fragment, useState } from "react";
-import styled from "styled-components";
 
 import ArtPiecesEditForm from "../AdminArtPiecesEditForm/admin-art-pieces-edit-form";
 import CategoryFilter from "../CategoryFilter/category-filter";
@@ -39,17 +38,26 @@ export default function ArtPiecesList({
         handleSetActiveCategory={handleSetActiveCategory}
         activeCategory={activeCategory}
       />
-      <StyledList>
+      <ul className="w-auto">
         {filteredCategory.map(({ slug, _id, imageUrl, name }) => (
           <Fragment key={_id}>
-            <StyledItem>
-              <StyledLink href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage(0)}>
-                <StyledImage src={imageUrl} width={1000} height={1000} alt={name} priority={false} />
-              </StyledLink>
-              <StyledName>
-                <q>{name}</q>
-              </StyledName>
-              <ButtonContainer>
+            <li className="flex flex-col content-center items-center w-auto gap-2 my-4 mx-0 p-2 rounded-[5px] shadow-box-shadow bg-box-color">
+              <Link
+                className="w-full rounded-[5px]"
+                href={`/art-pieces/${slug}`}
+                onClick={() => handleSetScrollPercentage(0)}
+              >
+                <Image
+                  className="object-cover rounded-[5px] w-full h-[50px]"
+                  src={imageUrl}
+                  width={1000}
+                  height={1000}
+                  alt={name}
+                  priority={false}
+                />
+              </Link>
+              <q className="font-bold justify-self-start w-full">{name}</q>
+              <div className="w-full flex justify-end">
                 <button
                   aria-label="edit"
                   onClick={() => {
@@ -59,16 +67,16 @@ export default function ArtPiecesList({
                     }
                   }}
                 >
-                  <StyledIcon icon={faPencil} />
+                  <FontAwesomeIcon className="my-0 mx-4" icon={faPencil} />
                 </button>
                 <a href={imageUrl} download={name}>
-                  <StyledIcon icon={faDownload} />
+                  <FontAwesomeIcon className="my-0 mx-4" icon={faDownload} />
                 </a>
                 <button onClick={() => _id && onDelete(_id)} aria-label="delete">
-                  <StyledIcon icon={faTrashCan} />
+                  <FontAwesomeIcon className="my-0 mx-4" icon={faTrashCan} />
                 </button>
-              </ButtonContainer>
-            </StyledItem>
+              </div>
+            </li>
             {artPieceToEdit && artPieceToEdit._id === _id && toggleEditForm && (
               <ArtPiecesEditForm
                 handleSetFilteredCategory={handleSetFilteredCategory}
@@ -78,59 +86,7 @@ export default function ArtPiecesList({
             )}
           </Fragment>
         ))}
-      </StyledList>
+      </ul>
     </section>
   );
 }
-
-const StyledList = styled.ul`
-  width: auto;
-`;
-
-const StyledItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  width: auto;
-  gap: 0.5rem;
-  margin: 1rem 0;
-  padding: 0.4rem;
-  border-radius: 5px;
-  box-shadow: var(--box-shadow);
-  background-color: var(--box-color);
-  &:hover {
-    background-color: var(--highlight);
-  }
-`;
-
-const StyledLink = styled(Link)`
-  padding: 0.2rem;
-  border-radius: 5px;
-  width: 100%;
-`;
-
-const StyledImage = styled(Image)`
-  object-fit: cover;
-  border-radius: 5px;
-  width: 100%;
-  height: 50px;
-`;
-
-const StyledName = styled.p`
-  align-self: start;
-  font-weight: bold;
-`;
-
-const StyledIcon = styled(FontAwesomeIcon)`
-  font-size: 1rem;
-  color: var(--secondary-color);
-  padding: 0 1rem;
-`;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-`;

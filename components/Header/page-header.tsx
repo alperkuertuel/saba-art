@@ -1,11 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import styled from "styled-components";
 
-import { AppTheme } from "../../pages/_app";
 import ProgressBar from "../ProgressBar/progress-bar";
-import ThemeChanger from "../ThemeChanger/color-theme";
 
 declare module "next-auth" {
   interface Session {
@@ -25,42 +22,31 @@ declare module "next-auth" {
 type HeaderProperties = {
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
-  handleSetTheme: (theme: AppTheme) => void;
-  handleSetCurrentTheme: (currentTheme: string) => void;
-  currentTheme: string;
 };
 
-export default function Header({
-  scrollPercent,
-  handleSetScrollPercentage,
-  handleSetTheme,
-  handleSetCurrentTheme,
-  currentTheme,
-}: HeaderProperties) {
+export default function Header({ scrollPercent, handleSetScrollPercentage }: HeaderProperties) {
   const { data: session } = useSession();
   return (
-    <StyledHeader>
+    <header className="w-full bg-cool-brown fixed top-0 p-[0.2rem] text-center z-10">
       <ProgressBar scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
       <h1>
         <Link href={`/`}>
-          <StyledLogo
+          <Image
+            className="my-2 mx-auto aspect-[4/1]"
             priority={true}
-            src={currentTheme === "light" ? "/img/logo_dark.png" : "/img/logo.png"}
+            src={"/img/logo.png"}
             alt="saba-art"
             width={170}
             height={45}
+            style={{ width: "170px", height: "45px" }}
           />
         </Link>
       </h1>
-      <ThemeChanger
-        handleSetTheme={handleSetTheme}
-        handleSetCurrentTheme={handleSetCurrentTheme}
-        currentTheme={currentTheme}
-      />
       {session && session.user?.role === "Admin" ? (
         <Link href="/admin">
-          <Greeting>
-            <StyledLoginAvatar
+          <p className="fixed text-xs right-3 top-3 flex flex-col items-center">
+            <Image
+              className="rounded-full"
               src={
                 session.user.image ??
                 "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAPklEQVR42u3OsQ0AAAQAMBIvm73uDtJe0KyOiWNSWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlr6eXoBiucrxq1KGkAAAAAASUVORK5CYII="
@@ -70,40 +56,13 @@ export default function Header({
               alt="user avatar"
             />
             {session.user.role}
-          </Greeting>
+          </p>
         </Link>
       ) : (
-        <Greeting>{session && `Hallo, ` + session.user?.name}</Greeting>
+        <p className="text-xs fixed right-3 top-3 flex flex-col items-center">
+          {session && `Hallo, ` + session.user?.name}
+        </p>
       )}
-    </StyledHeader>
+    </header>
   );
 }
-
-const StyledHeader = styled.header`
-  width: 100%;
-  background-color: var(--cool-brown);
-  position: fixed;
-  top: 0;
-  padding: 0.2rem;
-  border-bottom: 1px solid var(--tertiary-color);
-  text-align: center;
-  z-index: 3; // needed for the slide-show
-`;
-
-const StyledLogo = styled(Image)`
-  margin: 0.5rem auto;
-`;
-
-const Greeting = styled.p`
-  font-size: 0.8rem;
-  position: fixed;
-  right: 20px;
-  top: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const StyledLoginAvatar = styled(Image)`
-  border-radius: 50%;
-`;
