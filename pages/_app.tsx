@@ -1,13 +1,14 @@
-import "../styles/global.css";
-import "@fortawesome/fontawesome-svg-core/styles.css";
+import '../styles/global.css';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
-import { AppProps } from "next/app";
-import { SessionProvider } from "next-auth/react";
-import React, { useState } from "react";
-import useSWR, { SWRConfig } from "swr";
-import useLocalStorageState from "use-local-storage-state";
+import { AppProps } from 'next/app';
+import { Session } from 'next-auth';
+import { SessionProvider } from 'next-auth/react';
+import { useState } from 'react';
+import useSWR, { SWRConfig } from 'swr';
+import useLocalStorageState from 'use-local-storage-state';
 
-export type ArtPiece = {
+export interface ArtPieceType {
   _id?: string;
   slug: string;
   imageUrl: string;
@@ -19,40 +20,52 @@ export type ArtPiece = {
   technique: string;
   widthReal: string;
   heightReal: string;
-};
+}
+interface MyAppProps extends AppProps {
+  pageProps: {
+    session: Session;
+    [key: string]: unknown;
+  };
+}
 
 const fetcher = (url: string) => fetch(url).then((response) => response.json());
 
-export default function App({ Component, pageProps: { session, ...pageProperties } }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProperties },
+}: MyAppProps) {
   /* -- data-fetching states: -- */
-  const { data } = useSWR("/api", fetcher, { fallbackData: [] });
+  const { data } = useSWR<ArtPieceType[]>('/api', fetcher, {
+    fallbackData: [],
+  });
+
   const [filteredCategory, setFilteredCategory] = useState(data);
-  function handleSetFilteredCategory(filteredCategory: string) {
+  function handleSetFilteredCategory(filteredCategory: ArtPieceType[]) {
     setFilteredCategory(filteredCategory);
   }
 
-  const [artPieceToEdit, setArtPieceToEdit] = useState<ArtPiece>();
-  function handleSetArtPieceToEdit(artPieceToEdit: ArtPiece) {
+  const [artPieceToEdit, setArtPieceToEdit] = useState<ArtPieceType>();
+  function handleSetArtPieceToEdit(artPieceToEdit: ArtPieceType) {
     setArtPieceToEdit(artPieceToEdit);
   }
 
-  const [fileImageUrl, setfileImageUrl] = useState("/img/preview.png");
+  const [fileImageUrl, setfileImageUrl] = useState<string>('/img/preview.png');
   function handleSetFileImageUrl(fileImageUrl: string) {
     setfileImageUrl(fileImageUrl);
   }
 
   const [currentFormData, setCurrentFormData] = useState({
-    name: "",
+    name: '',
     date: new Date().getFullYear(),
     available: true,
-    description: "",
-    category: "Impressionen",
-    technique: "Öl auf Leinwand",
-    widthReal: "",
-    heightReal: "",
+    description: '',
+    category: 'Impressionen',
+    technique: 'Öl auf Leinwand',
+    widthReal: '',
+    heightReal: '',
   });
 
-  function handleSetCurrentFormData(currentFormData: ArtPiece) {
+  function handleSetCurrentFormData(currentFormData: ArtPieceType) {
     setCurrentFormData(currentFormData);
   }
 
@@ -67,14 +80,17 @@ export default function App({ Component, pageProps: { session, ...pageProperties
     setActiveCategory(activeCategory);
   }
 
-  const [previewoption, setpreviewoption] = useState("130px");
+  const [previewoption, setpreviewoption] = useState('130px');
   function handleSetPreviewOption(previewoption: string) {
     setpreviewoption(previewoption);
   }
 
-  const [likedArtPieces, setLikedArtPieces] = useLocalStorageState<string[]>("likedArtPieces", {
-    defaultValue: [],
-  });
+  const [likedArtPieces, setLikedArtPieces] = useLocalStorageState<string[]>(
+    'likedArtPieces',
+    {
+      defaultValue: [],
+    }
+  );
 
   function handleSetLikedArtPieces(likedArtPieces: string[]) {
     setLikedArtPieces(likedArtPieces);

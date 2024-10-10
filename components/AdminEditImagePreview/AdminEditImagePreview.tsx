@@ -1,18 +1,18 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import ImageCropDialog from "../ImageCropDialog/image-crop-dialog";
+import ImageCropDialog from "../ImageCropDialog/ImageCropDialog";
 
-type AdminImagePreviewProperties = {
+interface AdminImagePreviewProperties {
   handleSetFileImageUrl: (url: string) => void;
   fileImageUrl: string;
   crop?: { x: number; y: number };
   zoom?: number;
   rotation?: number;
   aspect?: { value: number; text: string };
-};
+}
 
-export default function AdminImagePreview({
+export default function AdminEditImagePreview({
   handleSetFileImageUrl,
   fileImageUrl,
   crop,
@@ -35,7 +35,7 @@ export default function AdminImagePreview({
   // console.log("selectedImageToCrop", selectedImageToCrop);
 
   return (
-    <article className="flex gap-4 my-6 mx-0 items-center">
+    <article className="mx-0 my-6 flex items-center gap-4">
       {fileImageUrl === "/img/preview.png" ? "Vorschau:" : "Schneide dein Bild zurecht:"}
       {selectedImageToCrop && (
         <ImageCropDialog
@@ -51,7 +51,7 @@ export default function AdminImagePreview({
         />
       )}
       <Image
-        className="rounded-[5px] w-auto h-[50px]"
+        className="h-[50px] w-auto rounded-[5px]"
         src={fileImageUrl}
         priority={true}
         alt="image preview and crop functioniality"

@@ -1,11 +1,11 @@
-export type Article = {
+export interface Article {
   _id: string;
   imageUrl: string;
   name: string;
   legendText: string;
   dateOfArticle: string;
   pdfLink: string;
-};
+}
 
 const pressCarouselData = [
   {

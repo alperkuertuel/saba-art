@@ -1,21 +1,20 @@
-import Head from "next/head";
-import React from "react";
+import Head from 'next/head';
 
-import ArtPiecesPreview from "@/ArtPiecesPreview/art-pieces-preview";
-import CategoryFilter from "@/CategoryFilter/category-filter";
-import DisplayPreviewOptions from "@/DisplayPreviewOptions/display-preview-options";
-import FooterComponent from "@/Footer/page-footer";
-import GallerySliderPreview from "@/GalleryCarouselPreview/gallery-carousel-preview";
-import Header from "@/Header/page-header";
-import PressCarousel from "@/PressCarousel/press-carousel";
-import ScrollUp from "@/ScrollUpButton/scroll-up-button";
-import WelcomingAbout from "@/WelcomingAndAbout/welcoming-and-about";
+import ArtPiecesPreview from '@/ArtPiecesPreview/ArtPiecesPreview';
+import CategoryFilter from '@/CategoryFilter/CategoryFilter';
+import DisplayPreviewOptions from '@/DisplayPreviewOptions/DisplayPreviewOptions';
+import FooterComponent from '@/Footer/Footer';
+import GallerySliderPreview from '@/GallerySliderPreview/GallerySliderPreview';
+import Header from '@/Header/Header';
+import PressCarousel from '@/PressCarousel/PressCarousel';
+import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
+import WelcomingAbout from '@/WelcomingAndAbout/WelcomingAndAbout';
 
-import { ArtPiece } from "./_app";
+import { ArtPieceType } from './_app';
 
-type HomePageProperties = {
-  handleSetFilteredCategory: (filteredCategory: ArtPiece[]) => void;
-  filteredCategory: ArtPiece[];
+interface HomePageProperties {
+  handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;
+  filteredCategory: ArtPieceType[];
   activeCategory: string;
   handleSetActiveCategory: (activeCategory: string) => void;
   fileImageUrl: string;
@@ -26,9 +25,9 @@ type HomePageProperties = {
   likedArtPieces: string[];
   handleSetLikedArtPieces: (likedArtPieces: string[]) => void;
   handleSetScrollPercentage: (scrollPercent: number) => void;
-  handleSetCurrentFormData: (currentFormData: ArtPiece) => void;
-  currentFormData: ArtPiece;
-};
+  handleSetCurrentFormData: (currentFormData: ArtPieceType) => void;
+  currentFormData: ArtPieceType;
+}
 
 export default function HomePage({
   handleSetFilteredCategory,
@@ -48,7 +47,10 @@ export default function HomePage({
         <title>saba-art - Bilder sind Erinnerungen</title>
         <meta name="description" content="Die online Kunst-Galerie von Saba." />
       </Head>
-      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
+      <Header
+        scrollPercent={scrollPercent}
+        handleSetScrollPercentage={handleSetScrollPercentage}
+      />
       <main>
         <WelcomingAbout />
         <PressCarousel />
@@ -61,16 +63,19 @@ export default function HomePage({
             likedArtPieces={likedArtPieces}
           />
           {activeCategory && (
-            <DisplayPreviewOptions handleSetPreviewOption={handleSetPreviewOption} previewoption={previewoption} />
+            <DisplayPreviewOptions
+              handleSetPreviewOption={handleSetPreviewOption}
+              previewoption={previewoption}
+            />
           )}
-          {activeCategory && previewoption === "slideShow" && (
+          {activeCategory && previewoption === 'slideShow' && (
             <GallerySliderPreview
               filteredCategory={filteredCategory}
               likedArtPieces={likedArtPieces}
               handleSetLikedArtPieces={handleSetLikedArtPieces}
             />
           )}
-          {activeCategory && previewoption != "slideShow" && (
+          {activeCategory && previewoption != 'slideShow' && (
             <ArtPiecesPreview
               filteredCategory={filteredCategory}
               likedArtPieces={likedArtPieces}

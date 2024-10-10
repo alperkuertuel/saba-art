@@ -1,18 +1,18 @@
-import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
-import { faHeart, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
-import { ArtPiece } from "pages/_app";
-import { useEffect, useState } from "react";
-import { Carousel } from "react-responsive-carousel";
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
+import { ArtPieceType } from 'pages/_app';
+import { useEffect, useState } from 'react';
+import { Carousel } from 'react-responsive-carousel';
 
-import ArtPieceDetails from "../ArtPieceDetails/art-piece-details";
+import ArtPieceDetails from '../ArtPieceDetails/ArtPieceDetails';
 
-type GallerySliderPreviewProperties = {
-  filteredCategory: ArtPiece[];
+interface GallerySliderPreviewProperties {
+  filteredCategory: ArtPieceType[];
   likedArtPieces: string[];
   handleSetLikedArtPieces: (likedArtPieces: string[]) => void;
-};
+}
 
 export default function GallerySliderPreview({
   filteredCategory,
@@ -21,17 +21,17 @@ export default function GallerySliderPreview({
 }: GallerySliderPreviewProperties) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedArtPiece, setSelectedArtPiece] = useState<ArtPiece>();
+  const [selectedArtPiece, setSelectedArtPiece] = useState<ArtPieceType>();
 
   useEffect(() => {
-    document.body.style.overflow = isModalOpen ? "hidden" : "auto";
+    document.body.style.overflow = isModalOpen ? 'hidden' : 'auto';
   }, [isModalOpen]);
 
   useEffect(() => {
     setSelectedIndex(0);
   }, [filteredCategory]);
 
-  function openModalGallerySlider(artPiece: ArtPiece) {
+  function openModalGallerySlider(artPiece: ArtPieceType) {
     setSelectedArtPiece(artPiece);
     setIsModalOpen(true);
   }
@@ -44,7 +44,9 @@ export default function GallerySliderPreview({
   function handleLikeButton(artPieceId: string) {
     const isLiked = likedArtPieces.includes(artPieceId);
     if (isLiked) {
-      const updatedLikedArtPieces = likedArtPieces.filter((id) => id !== artPieceId);
+      const updatedLikedArtPieces = likedArtPieces.filter(
+        (id) => id !== artPieceId
+      );
       handleSetLikedArtPieces(updatedLikedArtPieces);
     } else {
       handleSetLikedArtPieces([...likedArtPieces, artPieceId]);
@@ -52,7 +54,7 @@ export default function GallerySliderPreview({
   }
 
   return (
-    <div className="my-8 relative">
+    <div className="relative my-8">
       <Carousel
         showIndicators={false}
         dynamicHeight={true}
@@ -66,22 +68,22 @@ export default function GallerySliderPreview({
         {filteredCategory.map((artPiece) => (
           <div key={artPiece.name}>
             <Image
-              className="object-contain h-[50vh]"
+              className="h-[50vh] object-contain"
               src={artPiece.imageUrl}
               width={1000}
               height={1000}
               alt={artPiece.name}
             />
             <button
-              className="absolute top-0 right-0 h-full w-full cursor-pointer"
+              className="absolute right-0 top-0 size-full cursor-pointer"
               onClick={() => openModalGallerySlider(artPiece)}
             >
-              <div className="absolute text-font-color bg-box-color block p-2 bottom-0 right-0 w-full h-auto">
+              <div className="absolute bottom-0 right-0 block h-auto w-full bg-box-color p-2 text-font-color">
                 {artPiece.name} - {artPiece.date}
               </div>
             </button>
             <button
-              className="absolute text-xl p-2 top-0 left-[47%] text-rose-700"
+              className="absolute left-1/2 top-0 rounded-[5px] bg-highlight-color px-2 py-1 text-xl text-rose-700 shadow-box-shadow"
               onClick={() => artPiece._id && handleLikeButton(artPiece._id)}
             >
               {artPiece._id && likedArtPieces.includes(artPiece._id) ? (
@@ -95,10 +97,10 @@ export default function GallerySliderPreview({
       </Carousel>
 
       {isModalOpen && selectedArtPiece && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-30">
-          <div className="flex flex-col items-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 gap-4 p-2 w-[95%] max-w-[768px] max-h-[90vh] bg-primary-color z-30 overflow-y-auto rounded-[5px]">
+        <div className="fixed left-0 top-0 z-30 size-full bg-black/70">
+          <div className="fixed left-1/2 top-1/2 z-30 flex max-h-[90vh] w-[95%] max-w-screen-md -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 overflow-y-auto rounded-[5px] bg-primary-color p-2">
             <button
-              className="sticky top-0 flex justify-center items-center w-full gap-2 text-font-color bg-box-color shadow-box-shadow p-2 rounded-[5px] text-base cursor-pointer"
+              className="sticky top-0 flex w-full cursor-pointer items-center justify-center gap-2 rounded-[5px] bg-box-color p-2 text-base text-font-color shadow-box-shadow"
               onClick={closeModalGallerySlider}
             >
               Schließen <FontAwesomeIcon icon={faXmark} />

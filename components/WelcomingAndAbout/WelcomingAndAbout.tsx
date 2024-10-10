@@ -2,13 +2,13 @@ import Image from "next/image";
 
 export default function WelcomingAbout() {
   return (
-    <section className="flex flex-col gap-2 flex-wrap justify-center items-center">
+    <section className="flex flex-col flex-wrap items-center justify-center gap-2">
       <h2 className="text-center text-secondary-color">
         Hallo und herzlich willkommen in meiner online Kunst-Galerie!
       </h2>
-      <div className="relative flex justify-center items-center rounded-full">
+      <div className="relative flex items-center justify-center rounded-full">
         <Image
-          className="rounded-full w-full h-full"
+          className="size-full rounded-full"
           priority={true}
           width={192}
           height={200}

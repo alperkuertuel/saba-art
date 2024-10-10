@@ -1,21 +1,22 @@
-type PixelCrop = {
+interface PixelCrop {
   x: number;
   y: number;
   width: number;
   height: number;
-};
+}
 
-type Flip = {
+interface Flip {
   horizontal: boolean;
   vertical: boolean;
-};
+}
 
 export const createImage = (url: string): Promise<HTMLImageElement> =>
   new Promise((resolve, reject) => {
     const image = new Image();
-    image.addEventListener("load", () => resolve(image));
-    image.addEventListener("error", (error) => reject(error));
-    image.setAttribute("crossOrigin", "anonymous"); // needed to avoid cross-origin issues on CodeSandbox
+    image.addEventListener('load', () => resolve(image));
+    image.addEventListener('error', () =>
+      reject(new Error(`Failed to load image from ${url}`))
+    );
     image.src = url;
   });
 
@@ -30,8 +31,10 @@ export function rotateSize(width: number, height: number, rotation: number) {
   const rotRad = getRadianAngle(rotation);
 
   return {
-    width: Math.abs(Math.cos(rotRad) * width) + Math.abs(Math.sin(rotRad) * height),
-    height: Math.abs(Math.sin(rotRad) * width) + Math.abs(Math.cos(rotRad) * height),
+    width:
+      Math.abs(Math.cos(rotRad) * width) + Math.abs(Math.sin(rotRad) * height),
+    height:
+      Math.abs(Math.sin(rotRad) * width) + Math.abs(Math.cos(rotRad) * height),
   };
 }
 
@@ -42,21 +45,24 @@ export default async function getCroppedImg(
   imageSource: string,
   pixelCrop: PixelCrop,
   rotation = 0,
-  // eslint-disable-next-line unicorn/no-object-as-default-parameter
   flip: Flip = { horizontal: false, vertical: false }
 ): Promise<string> {
   const image = await createImage(imageSource);
-  const canvas = document.createElement("canvas");
-  const context = canvas.getContext("2d");
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
 
   if (!context) {
-    throw new Error("Could not get canvas context");
+    throw new Error('Could not get canvas context');
   }
 
   const rotRad = getRadianAngle(rotation);
 
   // calculate bounding box of the rotated image
-  const { width: bBoxWidth, height: bBoxHeight } = rotateSize(image.width, image.height, rotation);
+  const { width: bBoxWidth, height: bBoxHeight } = rotateSize(
+    image.width,
+    image.height,
+    rotation
+  );
 
   // set canvas size to match the bounding box
   canvas.width = bBoxWidth;
@@ -71,16 +77,16 @@ export default async function getCroppedImg(
   // draw rotated image
   context.drawImage(image, 0, 0);
 
-  const croppedCanvas = document.createElement("canvas");
+  const croppedCanvas = document.createElement('canvas');
 
-  const croppedContext = croppedCanvas.getContext("2d");
+  const croppedContext = croppedCanvas.getContext('2d');
 
   // set the size of the cropped canvas
   croppedCanvas.width = pixelCrop.width;
   croppedCanvas.height = pixelCrop.height;
 
   if (!croppedContext) {
-    throw new Error("Could not get cropped canvas context");
+    throw new Error('Could not get cropped canvas context');
   }
 
   // draw the cropped image onto the new canvas
@@ -96,6 +102,5 @@ export default async function getCroppedImg(
     pixelCrop.height
   );
 
-  // return as base64 string
-  return croppedCanvas.toDataURL("image/webp");
+  return croppedCanvas.toDataURL('image/webp');
 }

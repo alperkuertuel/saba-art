@@ -1,5 +1,4 @@
-/* eslint-disable unicorn/filename-case */
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -17,10 +16,11 @@ const artPieceSchema = new Schema(
     widthReal: { type: String, required: true },
   },
   {
-    collection: "artpieces",
+    collection: 'artpieces',
   }
 );
 
-const ArtPiece = mongoose.models.artpiece || mongoose.model("artpiece", artPieceSchema);
+const ArtPiece =
+  mongoose.models.artpiece || mongoose.model('artpiece', artPieceSchema);
 
 export default ArtPiece;

@@ -1,26 +1,26 @@
-import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ArtPiece } from "pages/_app";
+import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ArtPieceType } from 'pages/_app';
 
-import AdminImagePreview from "../AdminEditImagePreview/admin-edit-image-preview";
+import AdminImagePreview from '../AdminEditImagePreview/AdminEditImagePreview';
 
-type ArtPieceFormProperties = {
-  onSubmit: (newArtPiece: ArtPiece) => void;
+interface AdminArtPieceAddFormProperties {
+  onSubmit: (newArtPiece: ArtPieceType) => void;
   fileImageUrl: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSetFileImageUrl: (fileImageUrl: string) => void;
-  currentFormData: ArtPiece;
-  handleSetCurrentFormData: (currentFormData: ArtPiece) => void;
-};
+  currentFormData: ArtPieceType;
+  handleSetCurrentFormData: (currentFormData: ArtPieceType) => void;
+}
 
-export default function ArtPieceForm({
+export default function AdminArtPieceAddForm({
   onSubmit,
   fileImageUrl,
   onChange,
   handleSetFileImageUrl,
   currentFormData,
   handleSetCurrentFormData,
-}: ArtPieceFormProperties) {
+}: AdminArtPieceAddFormProperties) {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
@@ -30,18 +30,21 @@ export default function ArtPieceForm({
     const slug = name
       .toLowerCase()
       .trim()
-      .replaceAll("ö", "oe")
-      .replaceAll("ü", "ue")
-      .replaceAll("ä", "ae")
-      .replaceAll("ß", "ss")
-      .replaceAll(/[^\s\w-]/g, "") // remove any characters which are not word characters
-      .replaceAll(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
-      .replaceAll(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
-    const newArtPiece: ArtPiece = {
+      .replaceAll('ö', 'oe')
+      .replaceAll('ü', 'ue')
+      .replaceAll('ä', 'ae')
+      .replaceAll('ß', 'ss')
+      .replaceAll(/[^\s\w-]/g, '') // remove any characters which are not word characters
+      .replaceAll(/[\s_-]+/g, '-') // remove whitespace characters, underscores, hyphens with a single hyphen
+      .replaceAll(/^-+|-+$/g, ''); // no hyphens in the beginning or end of the string
+    const newArtPiece: ArtPieceType = {
       slug: slug,
-      date: data.date === "string" ? Number.parseInt(data.date, 10) : new Date().getFullYear(),
+      date:
+        data.date === 'string'
+          ? Number.parseInt(data.date, 10)
+          : new Date().getFullYear(),
       name: data.name as string,
-      available: data.available === "on",
+      available: data.available === 'on',
       description: data.description as string,
       category: data.category as string,
       technique: data.technique as string,
@@ -50,33 +53,47 @@ export default function ArtPieceForm({
       heightReal: data.heightReal as string,
     };
     onSubmit(newArtPiece);
-    handleSetFileImageUrl("/img/preview.png");
+    handleSetFileImageUrl('/img/preview.png');
     handleSetCurrentFormData({
       ...currentFormData,
-      name: "",
+      name: '',
       date: new Date().getFullYear(),
       available: true,
-      description: "",
-      category: "",
-      technique: "",
-      widthReal: "",
-      heightReal: "",
+      description: '',
+      category: '',
+      technique: '',
+      widthReal: '',
+      heightReal: '',
     });
-    (form.elements.namedItem("name") as HTMLInputElement).focus();
+    (form.elements.namedItem('name') as HTMLInputElement).focus();
   }
   const currentYear = new Date().getFullYear().toString();
   return (
     <article className="text-xs">
       <h2>Füge ein neues Kunstwerk hinzu: </h2>
-      <AdminImagePreview fileImageUrl={fileImageUrl} handleSetFileImageUrl={handleSetFileImageUrl} />
-      <form className="grid grid-rows-1 gap-3" onSubmit={handleSubmit} autoComplete="on">
+      <AdminImagePreview
+        fileImageUrl={fileImageUrl}
+        handleSetFileImageUrl={handleSetFileImageUrl}
+      />
+      <form
+        className="grid grid-rows-1 gap-3"
+        onSubmit={handleSubmit}
+        autoComplete="on"
+      >
         <label
-          className="leading-tight text-center cursor-pointer text-2xl text-tertiary-color border border-dotted border-tertiary-color bg-primary-color rounded-[5px] transition duration-500 hover:bg-tertiary-color focus:bg-tertiary-color active:bg-tertiary-color hover:text-white focus:text-white active:text-white"
+          className="cursor-pointer rounded-[5px] border border-dotted border-tertiary-color bg-primary-color text-center text-2xl leading-tight text-tertiary-color transition duration-500 hover:bg-tertiary-color hover:text-white focus:bg-tertiary-color focus:text-white active:bg-tertiary-color active:text-white"
           htmlFor="imageUrl"
         >
           <FontAwesomeIcon icon={faCloudArrowUp} />
         </label>
-        <input className="hidden" type="file" id="imageUrl" name="imageUrl" onChange={onChange} accept="image/*" />
+        <input
+          className="hidden"
+          type="file"
+          id="imageUrl"
+          name="imageUrl"
+          onChange={onChange}
+          accept="image/*"
+        />
         <label htmlFor="name">Benenne dein Kunstwerk:</label>
         <input
           className="w-auto border-b border-tertiary-color bg-primary-color"
@@ -88,7 +105,12 @@ export default function ArtPieceForm({
           autoComplete="name"
           required
           defaultValue={currentFormData.name}
-          onChange={(event) => handleSetCurrentFormData({ ...currentFormData, name: event.target.value })}
+          onChange={(event) =>
+            handleSetCurrentFormData({
+              ...currentFormData,
+              name: event.target.value,
+            })
+          }
         />
         <label htmlFor="date">Erscheinungsjahr: </label>
         <input
@@ -99,30 +121,45 @@ export default function ArtPieceForm({
           min="0"
           max={currentYear}
           defaultValue={currentFormData.date}
-          onChange={(event) => handleSetCurrentFormData({ ...currentFormData, date: Number(event.target.value) })}
+          onChange={(event) =>
+            handleSetCurrentFormData({
+              ...currentFormData,
+              date: Number(event.target.value),
+            })
+          }
           required
         />
         <label htmlFor="available">
           Verfügbar:
           <input
-            className="align-top w-[15px] h-[15px] ml-2"
-            style={{ accentColor: "var(--tertiary-color)" }}
+            className="ml-2 size-[15px] align-top"
+            style={{ accentColor: 'var(--tertiary-color)' }}
             type="checkbox"
             id="available"
             name="available"
             defaultChecked={currentFormData.available}
-            onChange={(event) => handleSetCurrentFormData({ ...currentFormData, available: event.target.checked })}
+            onChange={(event) =>
+              handleSetCurrentFormData({
+                ...currentFormData,
+                available: event.target.checked,
+              })
+            }
           />
         </label>
 
         <fieldset className="border-none">
           <label htmlFor="category">Kategorie: </label>
           <select
-            className="text-center w-auto border border-tertiary-color rounded-[5px] py-1 my-1 bg-primary-color text-font-color outline-none"
+            className="my-1 w-auto rounded-[5px] border border-tertiary-color bg-primary-color py-1 text-center text-font-color outline-none"
             name="category"
             id="category"
             defaultValue={currentFormData.category}
-            onChange={(event) => handleSetCurrentFormData({ ...currentFormData, category: event.target.value })}
+            onChange={(event) =>
+              handleSetCurrentFormData({
+                ...currentFormData,
+                category: event.target.value,
+              })
+            }
           >
             <option>Impressionen</option>
             <option>Naturlandschaften</option>
@@ -133,11 +170,16 @@ export default function ArtPieceForm({
           <br />
           <label htmlFor="technique">Technik: </label>
           <select
-            className="text-center w-auto border border-tertiary-color rounded-[5px] py-1 my-1 bg-primary-color text-font-color outline-none"
+            className="my-1 w-auto rounded-[5px] border border-tertiary-color bg-primary-color py-1 text-center text-font-color outline-none"
             name="technique"
             id="technique"
             defaultValue={currentFormData.technique}
-            onChange={(event) => handleSetCurrentFormData({ ...currentFormData, technique: event.target.value })}
+            onChange={(event) =>
+              handleSetCurrentFormData({
+                ...currentFormData,
+                technique: event.target.value,
+              })
+            }
           >
             <option>Aquarell</option>
             <option>Diverse</option>
@@ -159,7 +201,12 @@ export default function ArtPieceForm({
             name="widthReal"
             placeholder="cm"
             defaultValue={currentFormData.widthReal}
-            onChange={(event) => handleSetCurrentFormData({ ...currentFormData, widthReal: event.target.value })}
+            onChange={(event) =>
+              handleSetCurrentFormData({
+                ...currentFormData,
+                widthReal: event.target.value,
+              })
+            }
             required
           />
           <label htmlFor="heightReal">Höhe: </label>
@@ -172,23 +219,35 @@ export default function ArtPieceForm({
             max="400"
             placeholder="cm"
             defaultValue={currentFormData.heightReal}
-            onChange={(event) => handleSetCurrentFormData({ ...currentFormData, heightReal: event.target.value })}
+            onChange={(event) =>
+              handleSetCurrentFormData({
+                ...currentFormData,
+                heightReal: event.target.value,
+              })
+            }
             required
           />
         </fieldset>
         <label htmlFor="description">Füge eine Beschreibung hinzu:</label>
         <textarea
-          className="bg-primary-color font-family-inherit border border-tertiary-color rounded-[5px] p-2 text-font-color outline-none"
+          className="rounded-[5px] border border-tertiary-color bg-primary-color p-2 text-font-color outline-none"
           name="description"
           maxLength={500}
           id="description"
           cols={30}
           rows={5}
           defaultValue={currentFormData.description}
-          onChange={(event) => handleSetCurrentFormData({ ...currentFormData, description: event.target.value })}
+          onChange={(event) =>
+            handleSetCurrentFormData({
+              ...currentFormData,
+              description: event.target.value,
+            })
+          }
         ></textarea>
-        <span className="text-right">{currentFormData && 500 - currentFormData.description?.length}</span>
-        <button className="p-3 rounded-[5px] no-underline font-bold border-none text-inherit transition-colors duration-200 ease bg-cool-brown hover:bg-tertiary-color">
+        <span className="text-right">
+          {currentFormData && 500 - currentFormData.description?.length}
+        </span>
+        <button className="ease rounded-[5px] border-none bg-cool-brown p-3 font-bold text-inherit no-underline transition-colors duration-200 hover:bg-tertiary-color">
           Hinzufügen
         </button>
       </form>

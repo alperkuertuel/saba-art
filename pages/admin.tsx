@@ -1,30 +1,30 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
-import React from "react";
-import useSWR from "swr";
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import React from 'react';
+import useSWR from 'swr';
 
-import ArtPieceForm from "@/AdminArtPieceForm/arti-piece-form";
-import ArtPiecesList from "@/AdminArtPiecesList/admin-art-pieces-list";
-import FooterComponent from "@/Footer/page-footer";
-import Header from "@/Header/page-header";
-import ScrollUp from "@/ScrollUpButton/scroll-up-button";
+import AdminArtPieceAddForm from '@/AdminArtPieceAddForm/AdminArtPieceAddForm';
+import AdminArtPiecesEditList from '@/AdminArtPiecesEditList/AdminArtPiecesEditList';
+import FooterComponent from '@/Footer/Footer';
+import Header from '@/Header/Header';
+import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
-import { ArtPiece } from "./_app";
+import { ArtPieceType } from './_app';
 
-type AdminHomePageProperties = {
-  artPieceToEdit: ArtPiece;
-  handleSetFilteredCategory: (filteredCategory: ArtPiece[]) => void;
-  filteredCategory: ArtPiece[];
+interface AdminHomePageProperties {
+  artPieceToEdit: ArtPieceType;
+  handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;
+  filteredCategory: ArtPieceType[];
   activeCategory: string;
   handleSetActiveCategory: (activeCategory: string) => void;
-  handleSetArtPieceToEdit: (artPieceToEdit: ArtPiece) => void;
+  handleSetArtPieceToEdit: (artPieceToEdit: ArtPieceType) => void;
   fileImageUrl: string;
   handleSetFileImageUrl: (fileImageUrl: string | ArrayBuffer | null) => void;
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
-  handleSetCurrentFormData: (currentFormData: ArtPiece) => void;
-  currentFormData: ArtPiece;
-};
+  handleSetCurrentFormData: (currentFormData: ArtPieceType) => void;
+  currentFormData: ArtPieceType;
+}
 
 export default function AdminHomePage({
   artPieceToEdit,
@@ -41,7 +41,9 @@ export default function AdminHomePage({
   currentFormData,
 }: AdminHomePageProperties) {
   const router = useRouter();
-  const { data } = useSWR("/api", { fallbackData: [] });
+  const { data }: { data: ArtPieceType[] } = useSWR('/api', {
+    fallbackData: [],
+  });
   const maxWidth = 800; // maxWidth of detail page
   const maxHeight = 800; // maxHeight of detail page
 
@@ -52,29 +54,28 @@ export default function AdminHomePage({
       return;
     }
 
-    if (imageFile.type === "image/vnd.microsoft.icon" || imageFile.type === "image/gif") {
+    if (
+      imageFile.type === 'image/vnd.microsoft.icon' ||
+      imageFile.type === 'image/gif'
+    ) {
       return alert(
         `Der Dateityp Ihrer Bilddatei ist nicht erlaubt. Gültige Bilddateitypen sind .png, .jpg/jpeg und .webp Dateien!`
       );
     }
 
     const reader = new FileReader();
-    reader.addEventListener("load", function (loadEvent) {
+    reader.addEventListener('load', function (loadEvent) {
       const img = new Image();
-      img.addEventListener("load", function () {
-        if (imageFile.type === "image/webp") {
-          alert(
-            `Sie haben erfolgreich eine WebP-Bilddatei hochgeladen, die für die Galerie bereit ist! Füllen Sie das Formular aus, um das Kunstwerk zur Galerie hinzuzufügen.`
-          );
-
+      img.addEventListener('load', function () {
+        if (imageFile.type === 'image/webp') {
           const result = loadEvent.target?.result;
-          if (typeof result === "string") {
+          if (typeof result === 'string') {
             handleSetFileImageUrl(result);
           } else {
-            console.error("Unexpected result type from file load event.");
+            console.error('Unexpected result type from file load event.');
           }
         } else {
-          const canvas = document.createElement("canvas");
+          const canvas = document.createElement('canvas');
           let width = img.width;
           let height = img.height;
 
@@ -95,40 +96,50 @@ export default function AdminHomePage({
           canvas.width = width;
           canvas.height = height;
 
-          const context = canvas.getContext("2d");
+          const context = canvas.getContext('2d');
           context?.drawImage(img, 0, 0, width, height);
 
-          const resizedImageData = canvas.toDataURL("image/webp");
-          alert(
-            `Sie haben erfolgreich eine WebP-Bilddatei erstellt, die für die Galerie bereit ist! Füllen Sie das Formular aus, um das Kunstwerk zur Galerie hinzuzufügen.`
-          );
+          const resizedImageData = canvas.toDataURL('image/webp');
 
           handleSetFileImageUrl(resizedImageData);
         }
       });
 
-      if (typeof loadEvent.target?.result === "string") {
+      if (typeof loadEvent.target?.result === 'string') {
         img.src = loadEvent.target.result;
       } else {
-        console.error("Unexpected result type from file load event.");
+        console.error('Unexpected result type from file load event.');
       }
     });
 
     reader.readAsDataURL(imageFile);
   }
 
-  async function handleAddArtPiece(newArtPieceData: ArtPiece) {
-    if (data.some((piece: ArtPiece) => piece.slug === newArtPieceData.slug)) {
-      alert("Der Name existiert bereits. Bitte wählen Sie einen anderen Namen.");
-    } else if (data.some((piece: ArtPiece) => piece.imageUrl === newArtPieceData.imageUrl)) {
-      window.alert("Die Bilddatei existiert bereits in der Kunstgalerie. Bitte wählen Sie ein anderes Bild aus!");
-    } else if (newArtPieceData.imageUrl === "/img/preview.png" || !newArtPieceData) {
-      alert("Sie können kein Kunstwerk ohne ein Bild hinzufügen!");
+  async function handleAddArtPiece(newArtPieceData: ArtPieceType) {
+    if (
+      data.some((piece: ArtPieceType) => piece.slug === newArtPieceData.slug)
+    ) {
+      alert(
+        'Der Name existiert bereits. Bitte wählen Sie einen anderen Namen.'
+      );
+    } else if (
+      data.some(
+        (piece: ArtPieceType) => piece.imageUrl === newArtPieceData.imageUrl
+      )
+    ) {
+      globalThis.alert(
+        'Die Bilddatei existiert bereits in der Kunstgalerie. Bitte wählen Sie ein anderes Bild aus!'
+      );
+    } else if (
+      newArtPieceData.imageUrl === '/img/preview.png' ||
+      !newArtPieceData
+    ) {
+      alert('Sie können kein Kunstwerk ohne ein Bild hinzufügen!');
     } else {
-      const response = await fetch("/api", {
-        method: "POST",
+      const response = await fetch('/api', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(newArtPieceData),
       });
@@ -136,25 +147,33 @@ export default function AdminHomePage({
         console.error(response.status);
         return;
       }
-      router.push(`/art-pieces/${newArtPieceData.slug}`);
+      await router.push(`/art-pieces/${newArtPieceData.slug}`);
     }
   }
 
   function handleArtPieceToEdit(id: string) {
-    const selectedArtPieceToEdit = data.find((piece: ArtPiece) => piece._id === id);
-    handleSetArtPieceToEdit(selectedArtPieceToEdit);
+    const selectedArtPieceToEdit = data.find(
+      (piece: ArtPieceType) => piece._id === id
+    );
+    handleSetArtPieceToEdit(selectedArtPieceToEdit!);
   }
 
   async function handleDeleteArtPiece(id: string) {
-    const artPieceToDelete = data.find((piece: ArtPiece) => piece._id === id);
-    const sureToDelete = confirm(`Sind Sie sicher, dass Sie "${artPieceToDelete.name}" löschen möchten?`);
+    const artPieceToDelete = data.find(
+      (piece: ArtPieceType) => piece._id === id
+    );
+    const sureToDelete = confirm(
+      `Sind Sie sicher, dass Sie "${artPieceToDelete?.name}" löschen möchten?`
+    );
     if (sureToDelete) {
       await fetch(`/api/${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
       });
-      alert(`Sie haben "${artPieceToDelete.name}" erfolgriech gelöscht!`);
+      alert(`Sie haben "${artPieceToDelete?.name}" erfolgriech gelöscht!`);
     }
-    const artPiecesWithoutDeletedArtPiece = filteredCategory.filter((piece) => piece._id !== id);
+    const artPiecesWithoutDeletedArtPiece = filteredCategory.filter(
+      (piece) => piece._id !== id
+    );
     handleSetFilteredCategory(artPiecesWithoutDeletedArtPiece);
   }
 
@@ -164,25 +183,28 @@ export default function AdminHomePage({
         <title>saba-art - Bilder sind Erinnerungen</title>
         <meta name="description" content="Die online Kunst-Galerie von Saba." />
       </Head>
-      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
+      <Header
+        scrollPercent={scrollPercent}
+        handleSetScrollPercentage={handleSetScrollPercentage}
+      />
       <main>
-        <ArtPieceForm
+        <AdminArtPieceAddForm
           handleSetFileImageUrl={handleSetFileImageUrl}
           handleSetCurrentFormData={handleSetCurrentFormData}
           fileImageUrl={fileImageUrl}
-          onSubmit={handleAddArtPiece}
+          onSubmit={() => void handleAddArtPiece}
           onChange={handleImageUpload}
           currentFormData={currentFormData}
         />
-        <ArtPiecesList
+        <AdminArtPiecesEditList
           handleSetFilteredCategory={handleSetFilteredCategory}
-          handleSetScrollPercentage={handleSetScrollPercentage}
           filteredCategory={filteredCategory}
+          artPieceToEdit={artPieceToEdit}
+          handleSetScrollPercentage={handleSetScrollPercentage}
           handleSetActiveCategory={handleSetActiveCategory}
           activeCategory={activeCategory}
-          artPieceToEdit={artPieceToEdit}
+          onDelete={() => void handleDeleteArtPiece}
           onEdit={handleArtPieceToEdit}
-          onDelete={handleDeleteArtPiece}
         />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>

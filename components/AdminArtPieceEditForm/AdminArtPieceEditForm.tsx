@@ -1,19 +1,21 @@
-import { useRouter } from "next/router";
-import { ArtPiece } from "pages/_app";
-import { useState } from "react";
+import { useRouter } from 'next/router';
+import { ArtPieceType } from 'pages/_app';
+import { useState } from 'react';
 
-type ArtPiecesEditFormProperties = {
-  artPieceToEdit: ArtPiece;
-  filteredCategory: ArtPiece[];
-  handleSetFilteredCategory: (filteredCategory: ArtPiece[]) => void;
-};
+interface AdminArtPieceEditFormProperties {
+  artPieceToEdit: ArtPieceType;
+  filteredCategory: ArtPieceType[];
+  handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;
+}
 
-export default function ArtPiecesEditForm({
+export default function AdminArtPieceEditForm({
   artPieceToEdit,
   filteredCategory,
   handleSetFilteredCategory,
-}: ArtPiecesEditFormProperties) {
-  const [lettersLeft, setLettersLeft] = useState(artPieceToEdit.description.length);
+}: AdminArtPieceEditFormProperties) {
+  const [lettersLeft, setLettersLeft] = useState(
+    artPieceToEdit?.description.length
+  );
   const router = useRouter();
   async function handleUpdate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,28 +23,30 @@ export default function ArtPiecesEditForm({
     const formData = new FormData(form);
     const editData = Object.fromEntries(formData);
     const name = editData.name as string;
-
     const slug = name
       .toLowerCase()
       .trim()
-      .replaceAll("ö", "oe")
-      .replaceAll("ü", "ue")
-      .replaceAll("ä", "ae")
-      .replaceAll("ß", "ss")
-      .replaceAll(/[^\s\w-]/g, "") // remove any characters which are not word characters
-      .replaceAll(/[\s_-]+/g, "-") // remove whitespace characters, underscores, hyphens with a single hyphen
-      .replaceAll(/^-+|-+$/g, ""); // no hyphens in the beginning or end of the string
+      .replaceAll('ö', 'oe')
+      .replaceAll('ü', 'ue')
+      .replaceAll('ä', 'ae')
+      .replaceAll('ß', 'ss')
+      .replaceAll(/[^\s\w-]/g, '') // remove any characters which are not word characters
+      .replaceAll(/[\s_-]+/g, '-') // remove whitespace characters, underscores, hyphens with a single hyphen
+      .replaceAll(/^-+|-+$/g, ''); // no hyphens in the beginning or end of the string
 
-    const editedArtPiece: ArtPiece = {
+    const editedArtPiece: ArtPieceType = {
       _id: artPieceToEdit._id,
       slug: slug,
-      date: typeof editData.date === "string" ? Number.parseInt(editData.date, 10) : artPieceToEdit.date, // ensure date is a number,
-      available: editData.available === "on",
+      date:
+        typeof editData.date === 'string'
+          ? Number.parseInt(editData.date, 10)
+          : artPieceToEdit.date, // ensure date is a number,
+      available: editData.available === 'on',
       name: editData.name as string,
       description: editData.description as string,
       category: editData.category as string,
       technique: editData.technique as string,
-      imageUrl: artPieceToEdit.imageUrl as string,
+      imageUrl: artPieceToEdit.imageUrl,
       heightReal: editData.heightReal as string,
       widthReal: editData.widthReal as string,
     };
@@ -70,9 +74,9 @@ export default function ArtPiecesEditForm({
 
     try {
       const response = await fetch(`/api/${artPieceToEdit._id}`, {
-        method: "PATCH",
+        method: 'PATCH',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(editedArtPiece),
       });
@@ -80,17 +84,22 @@ export default function ArtPiecesEditForm({
       if (response.ok) {
         alert(`Deine Änderungen waren erfolgreich.`);
       } else
-        alert(`Etwas ist beim Ändern von "${editedArtPiece.name}" schief geflaufen! Versuche es später noch einmal.`);
+        alert(
+          `Etwas ist beim Ändern von "${editedArtPiece.name}" schief geflaufen! Versuche es später noch einmal.`
+        );
     } catch (error) {
       console.error(`Etwas ist schief gelaufen!`, error);
     }
-    //location.reload();
-    router.push(`/art-pieces/${editedArtPiece.slug}`);
+    await router.push(`/art-pieces/${editedArtPiece.slug}`);
   }
   const currentYear = new Date().getFullYear().toString();
   return (
     <article className="text-xs">
-      <form className="grid grid-rows-1 gap-3" onSubmit={handleUpdate} autoComplete="off">
+      <form
+        className="grid grid-rows-1 gap-3"
+        onSubmit={() => void handleUpdate}
+        autoComplete="off"
+      >
         <label htmlFor="name">Ändere den Namen:</label>
         <input
           className="w-auto border-b border-tertiary-color bg-primary-color"
@@ -99,7 +108,7 @@ export default function ArtPiecesEditForm({
           name="name"
           autoComplete="name"
           placeholder="change the name"
-          defaultValue={artPieceToEdit.name}
+          defaultValue={artPieceToEdit?.name}
           minLength={3}
           maxLength={100}
           required
@@ -111,14 +120,14 @@ export default function ArtPiecesEditForm({
           id="date"
           name="date"
           max={currentYear}
-          defaultValue={artPieceToEdit.date}
+          defaultValue={artPieceToEdit?.date}
           required
         />
         <label htmlFor="available">
           Ändere die Verfügbarkeit:
           <input
-            className="align-top w-[15px] h-[15px] ml-2"
-            style={{ accentColor: "var(--tertiary-color)" }}
+            className="ml-2 size-[15px] align-top"
+            style={{ accentColor: 'var(--tertiary-color)' }}
             type="checkbox"
             id="available"
             name="available"
@@ -128,10 +137,10 @@ export default function ArtPiecesEditForm({
         <fieldset className="border-none">
           <label htmlFor="category">Kategorie: </label>
           <select
-            className="text-center w-auto border border-tertiary-color rounded-[5px] py-1 my-1 bg-primary-color text-font-color outline-none"
+            className="my-1 w-auto rounded-[5px] border border-tertiary-color bg-primary-color py-1 text-center text-font-color outline-none"
             name="category"
             id="category"
-            defaultValue={artPieceToEdit.category}
+            defaultValue={artPieceToEdit?.category}
           >
             <option>Impressionen</option>
             <option>Naturlandschaften</option>
@@ -142,10 +151,10 @@ export default function ArtPiecesEditForm({
           <br />
           <label htmlFor="technique">Technik: </label>
           <select
-            className="text-center w-auto border border-tertiary-color rounded-[5px] py-1 my-1 bg-primary-color text-font-color outline-none"
+            className="my-1 w-auto rounded-[5px] border border-tertiary-color bg-primary-color py-1 text-center text-font-color outline-none"
             name="technique"
             id="technique"
-            defaultValue={artPieceToEdit.technique}
+            defaultValue={artPieceToEdit?.technique}
           >
             <option>Öl auf Leinwand</option>
             <option>Aquarell</option>
@@ -163,7 +172,7 @@ export default function ArtPiecesEditForm({
             id="widthReal"
             name="widthReal"
             placeholder="cm"
-            defaultValue={artPieceToEdit.widthReal}
+            defaultValue={artPieceToEdit?.widthReal}
             required
           />
           <label htmlFor="heightReal">Höhe: </label>
@@ -175,24 +184,24 @@ export default function ArtPiecesEditForm({
             id="heightReal"
             name="heightReal"
             placeholder="cm"
-            defaultValue={artPieceToEdit.heightReal}
+            defaultValue={artPieceToEdit?.heightReal}
             required
           />
         </fieldset>
         <label htmlFor="description">Ändere die Beschreibung:</label>
         <textarea
-          className="bg-primary-color font-family-inherit border border-tertiary-color rounded-[5px] p-2 text-font-color outline-none"
+          className="rounded-[5px] border border-tertiary-color bg-primary-color p-2 text-font-color outline-none"
           name="description"
           maxLength={500}
           id="description"
           cols={30}
           rows={5}
-          defaultValue={artPieceToEdit.description}
+          defaultValue={artPieceToEdit?.description}
           onChange={(event) => setLettersLeft(event.target.value.length)}
         ></textarea>
-        <span className="text-right">{500 - lettersLeft}</span>
-        <button className="p-3 rounded-[5px] no-underline font-bold border-none text-inherit transition-colors duration-200 ease bg-cool-brown hover:bg-tertiary-color">
-          UPDATE {artPieceToEdit ? artPieceToEdit.name : ""}
+        <span className="text-right">{500 - lettersLeft} / 500 </span>
+        <button className="ease rounded-[5px] border-none bg-cool-brown p-3 font-bold text-inherit no-underline transition-colors duration-200 hover:bg-tertiary-color">
+          UPDATE {artPieceToEdit ? artPieceToEdit.name : ''}
         </button>
       </form>
     </article>

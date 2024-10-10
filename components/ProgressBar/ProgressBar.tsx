@@ -1,12 +1,15 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-type ProgressBarProperties = {
+interface ProgressBarProperties {
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
   width?: number;
-};
+}
 
-export default function ProgressBar({ scrollPercent, handleSetScrollPercentage }: ProgressBarProperties) {
+export default function ProgressBar({
+  scrollPercent,
+  handleSetScrollPercentage,
+}: ProgressBarProperties) {
   function handleScroll() {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
@@ -17,14 +20,14 @@ export default function ProgressBar({ scrollPercent, handleSetScrollPercentage }
   }
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   });
 
   return (
-    <div className="fixed top-0 left-0 w-[100%] h-[7px] bg-cool-brown">
+    <div className="fixed left-0 top-0 h-[7px] w-full bg-cool-brown">
       <div
-        className="h-full bg-tertiary-color transition-width duration-100 ease-in-out"
+        className="h-full bg-tertiary-color duration-100 ease-in-out"
         style={{ width: `${scrollPercent}%` }}
       />
     </div>

@@ -1,23 +1,28 @@
-import { faArrowLeftLong, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React from "react";
+import { faArrowLeftLong, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import FooterComponent from "@/Footer/page-footer";
-import Header from "@/Header/page-header";
-import ScrollUp from "@/ScrollUpButton/scroll-up-button";
+import FooterComponent from '@/Footer/Footer';
+import Header from '@/Header/Header';
+import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
-type ImprintProperties = {
+interface ImprintProperties {
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
-};
+}
 
-export default function Imprint({ scrollPercent, handleSetScrollPercentage }: ImprintProperties) {
+export default function Imprint({
+  scrollPercent,
+  handleSetScrollPercentage,
+}: ImprintProperties) {
   const router = useRouter();
   return (
     <>
-      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
+      <Header
+        scrollPercent={scrollPercent}
+        handleSetScrollPercentage={handleSetScrollPercentage}
+      />
       <main>
         <Link href="/">
           <FontAwesomeIcon icon={faArrowLeftLong} /> Zurück
@@ -30,7 +35,10 @@ export default function Imprint({ scrollPercent, handleSetScrollPercentage }: Im
           98693 Ilmenau
         </p>
         <p>
-          <button type="button" onClick={() => router.push("mailto:alperkuertuel@hotmail.de")}>
+          <button
+            type="button"
+            onClick={() => void router.push('mailto:alperkuertuel@hotmail.de')}
+          >
             E-Mail <FontAwesomeIcon icon={faEnvelope} />
           </button>
         </p>
