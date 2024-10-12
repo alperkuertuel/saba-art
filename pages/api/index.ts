@@ -3,7 +3,7 @@ import { Session } from 'next-auth';
 import { getServerSession } from 'next-auth/next';
 import { ArtPieceType } from 'pages/_app';
 
-import ArtPiece from '../../db/ArtPiece';
+import ArtPiece from '../../db/art-piece-modal';
 import databaseConnect from '../../db/connect';
 import { authOptions } from './auth/[...nextauth]';
 

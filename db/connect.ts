@@ -8,7 +8,7 @@ interface Cached {
 }
 
 // Use a global variable to store the cached connection
-const globalWithCache = global as typeof global & { mongoose: Cached };
+const globalWithCache = globalThis as typeof globalThis & { mongoose: Cached };
 
 if (!globalWithCache.mongoose) {
   globalWithCache.mongoose = { conn: undefined, promise: undefined };

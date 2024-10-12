@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -115,6 +116,7 @@ export default function AdminHomePage({
     reader.readAsDataURL(imageFile);
   }
 
+  // THIS MIGHT BE NOT THE CORRECT SPOT FOR A FETCH WILL BE MOVED WITH TANSTACK INTEGRATION
   async function handleAddArtPiece(newArtPieceData: ArtPieceType) {
     if (
       data.some((piece: ArtPieceType) => piece.slug === newArtPieceData.slug)
@@ -192,7 +194,7 @@ export default function AdminHomePage({
           handleSetFileImageUrl={handleSetFileImageUrl}
           handleSetCurrentFormData={handleSetCurrentFormData}
           fileImageUrl={fileImageUrl}
-          onSubmit={() => void handleAddArtPiece}
+          onSubmit={handleAddArtPiece}
           onChange={handleImageUpload}
           currentFormData={currentFormData}
         />
@@ -203,7 +205,7 @@ export default function AdminHomePage({
           handleSetScrollPercentage={handleSetScrollPercentage}
           handleSetActiveCategory={handleSetActiveCategory}
           activeCategory={activeCategory}
-          onDelete={() => void handleDeleteArtPiece}
+          onDelete={handleDeleteArtPiece}
           onEdit={handleArtPieceToEdit}
         />
         <ScrollUp scrollPercent={scrollPercent} />

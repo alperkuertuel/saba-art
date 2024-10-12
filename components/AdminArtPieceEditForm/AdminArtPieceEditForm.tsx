@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { useRouter } from 'next/router';
 import { ArtPieceType } from 'pages/_app';
 import { useState } from 'react';
@@ -90,14 +92,15 @@ export default function AdminArtPieceEditForm({
     } catch (error) {
       console.error(`Etwas ist schief gelaufen!`, error);
     }
-    await router.push(`/art-pieces/${editedArtPiece.slug}`);
+    //location.reload();
+    router.push(`/art-pieces/${editedArtPiece.slug}`);
   }
   const currentYear = new Date().getFullYear().toString();
   return (
     <article className="text-xs">
       <form
         className="grid grid-rows-1 gap-3"
-        onSubmit={() => void handleUpdate}
+        onSubmit={handleUpdate}
         autoComplete="off"
       >
         <label htmlFor="name">Ändere den Namen:</label>

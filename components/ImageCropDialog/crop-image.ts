@@ -1,15 +1,3 @@
-interface PixelCrop {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-}
-
-interface Flip {
-  horizontal: boolean;
-  vertical: boolean;
-}
-
 export const createImage = (url: string): Promise<HTMLImageElement> =>
   new Promise((resolve, reject) => {
     const image = new Image();
@@ -41,11 +29,25 @@ export function rotateSize(width: number, height: number, rotation: number) {
 /**
  * This function was adapted from the one in the ReadMe of https://github.com/DominicTobias/react-image-crop
  */
+interface PixelCrop {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+interface Flip {
+  horizontal: boolean;
+  vertical: boolean;
+}
+
+const flipDefaults: Flip = { horizontal: false, vertical: false };
+
 export default async function getCroppedImg(
   imageSource: string,
   pixelCrop: PixelCrop,
   rotation = 0,
-  flip: Flip = { horizontal: false, vertical: false }
+  flip = flipDefaults
 ): Promise<string> {
   const image = await createImage(imageSource);
   const canvas = document.createElement('canvas');

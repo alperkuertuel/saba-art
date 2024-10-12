@@ -13,6 +13,8 @@ interface ApiBackUpPageProperties {
   handleSetActiveCategory: (activeCategory: string) => void;
 }
 
+/////// ONLY PREVIEWS VISIBLE HERE WHEN ON API ROUTE ///////
+
 export default function ApiBackUpPage({
   handleSetFilteredCategory,
   filteredCategory,
@@ -40,4 +42,3 @@ export default function ApiBackUpPage({
     </div>
   );
 }
-/////// ONLY PREVIEWS VISIBLE HERE ///////
