@@ -12,7 +12,7 @@ interface ImprintProperties {
   handleSetScrollPercentage: (scrollPercent: number) => void;
 }
 
-export default function Imprint({
+export default function ImprintPage({
   scrollPercent,
   handleSetScrollPercentage,
 }: ImprintProperties) {

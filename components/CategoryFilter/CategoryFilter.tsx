@@ -79,9 +79,7 @@ export default function CategoryFilter({
                 className="ease ml-2 rounded-[5px] px-[5px] py-[3px] align-top text-sm transition-colors duration-200"
                 style={{
                   backgroundColor:
-                    activeCategory === 'Alle'
-                      ? 'var(--cool-color)'
-                      : 'var(--highlight-color)',
+                    activeCategory === 'Alle' ? 'var(--tertiary-color)' : '',
                 }}
               >
                 {data.length}
@@ -100,9 +98,7 @@ export default function CategoryFilter({
                   className="ml-2 rounded-[5px] px-[5px] py-[3px]"
                   style={{
                     backgroundColor:
-                      activeCategory === 'Neue'
-                        ? 'var(--cool-color)'
-                        : 'var(--highlight-color)',
+                      activeCategory === 'Neue' ? 'var(--tertiary-color)' : '',
                   }}
                 >
                   {
@@ -128,8 +124,8 @@ export default function CategoryFilter({
                   style={{
                     backgroundColor:
                       activeCategory === category
-                        ? 'var(--cool-color)'
-                        : 'var(--highlight-color)',
+                        ? 'var(--tertiary-color)'
+                        : '',
                   }}
                 >
                   {
@@ -154,8 +150,8 @@ export default function CategoryFilter({
                   style={{
                     backgroundColor:
                       activeCategory === 'Favoriten'
-                        ? 'var(--cool-color)'
-                        : 'var(--highlight-color)',
+                        ? 'var(--tertiary-color)'
+                        : '',
                   }}
                 >
                   {likedArtPieces.length}

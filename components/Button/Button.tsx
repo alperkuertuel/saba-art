@@ -19,8 +19,8 @@ export default function Button({
     'px-4 py-2 rounded-[5px] border-none cursor-pointer focus:outline-none focus:ring-none shadow-box-style ease transition-colors duration-200';
 
   const variantStyles = {
-    main: 'font-bold bg-cool-color text-black hover:bg-tertiary-color',
-    categoryFilter: 'bg-box-color text-black hover:bg-gray-400',
+    main: 'bg-secondary-color hover:bg-tertiary-color',
+    categoryFilter: 'bg-box-color hover:bg-gray-400',
     danger: 'bg-rose-700 text-white hover:bg-rose-600',
   };
 

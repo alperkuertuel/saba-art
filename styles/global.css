@@ -3,25 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --font-color: black;
-  --primary-color: white;
-  --secondary-color: #391b0e;
-  --tertiary-color: #a48676;
-  --cool-color: #d9cbc4;
+  --font-color: rgb(48, 48, 48);
+  --primary-color: rgb(250, 250, 250);
+  --secondary-color: #dee1e6;
+  --tertiary-color: #9ca3af;
+  --cool-color: #b2b3b9;
   --highlight-color: #dee1e6;
-  --box-color: #f4f4f4;
-  --box-style: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-}
-
-.dark-theme {
-  --font-color: #f8f8ff;
-  --primary-color: #282828;
-  --secondary-color: #d9cbc4;
-  --tertiary-color: #a48676;
-  --cool-color: #391b0e;
-  --highlight-color: #4e3524;
-  --box-color: #382f2a;
+  --box-color: #ececec;
   --box-style: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
@@ -39,25 +27,19 @@ html {
 }
 
 body {
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    Segoe UI,
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    Fira Sans,
-    Droid Sans,
-    Helvetica Neue,
-    sans-serif;
-  font-size: 100%;
-  background-color: var(--primary-color);
   color: var(--font-color);
+  background: var(--primary-color);
+  font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-feature-settings: normal;
+  font-kerning: auto;
+  font-optical-sizing: auto;
+  font-size-adjust: none;
+  font-size: 100%;
 }
 
 main {
-  margin: 6rem auto;
+  margin: 4rem auto;
   max-width: 768px;
   padding: 0 0.5rem;
 }
@@ -89,7 +71,6 @@ p {
 
 a {
   text-decoration: none;
-  color: var(--secondary-color);
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -110,8 +91,6 @@ input {
 }
 
 button {
-  border: none;
-  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;

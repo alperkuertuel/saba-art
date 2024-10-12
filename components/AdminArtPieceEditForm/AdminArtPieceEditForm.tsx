@@ -206,7 +206,7 @@ export default function AdminArtPieceEditForm({
         ></textarea>
         <span className="text-right">{500 - lettersLeft} / 500 </span>
         <Button variant="main" size="small">
-          UPDATE {artPieceToEdit ? artPieceToEdit.name : ''}
+          Aktualisiere: {artPieceToEdit ? artPieceToEdit.name : ''}
         </Button>
       </form>
     </article>

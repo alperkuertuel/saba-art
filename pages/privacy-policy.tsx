@@ -12,7 +12,7 @@ interface PrivacyPolicyPageProperties {
   handleSetScrollPercentage: (scrollPercent: number) => void;
 }
 
-export default function PrivacyPolicy({
+export default function PrivacyPolicyPage({
   scrollPercent,
   handleSetScrollPercentage,
 }: PrivacyPolicyPageProperties) {

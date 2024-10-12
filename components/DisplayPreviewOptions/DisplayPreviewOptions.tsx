@@ -17,46 +17,49 @@ export default function DisplayPreviewOptions({
   return (
     <>
       <button
-        className="mr-6 rounded-[5px] p-2 text-xl text-tertiary-color shadow-box-style transition-colors duration-100 ease-in-out"
+        className="mr-6 rounded-[5px] p-2 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
         style={{
           backgroundColor:
             previewoption === 'slideShow'
-              ? 'var(--cool-color)'
+              ? 'var(--tertiary-color)'
               : 'var(--box-color)',
         }}
         onClick={() => handleSetPreviewOption('slideShow')}
       >
         <FontAwesomeIcon
-          aria-label="show slider"
+          aria-label="show slider and drink some beer"
           icon={faArrowRightArrowLeft}
         />
       </button>
       <button
-        className="mr-6 rounded-[5px] p-2 text-xl text-tertiary-color shadow-box-style transition-colors duration-100 ease-in-out"
+        className="mr-6 rounded-[5px] p-2 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
         style={{
           backgroundColor:
             previewoption === '130px'
-              ? 'var(--cool-color)'
+              ? 'var(--tertiary-color)'
               : 'var(--box-color)',
         }}
         onClick={() => handleSetPreviewOption('130px')}
       >
         <FontAwesomeIcon
-          aria-label="show middle size grid"
+          aria-label="show middle size grid and have some tortilla chips"
           icon={faTableCellsLarge}
         />
       </button>
       <button
-        className="mr-6 rounded-[5px] p-2 text-xl text-tertiary-color shadow-box-style transition-colors duration-100 ease-in-out"
+        className="mr-6 rounded-[5px] p-2 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
         style={{
           backgroundColor:
             previewoption === '280px'
-              ? 'var(--cool-color)'
+              ? 'var(--tertiary-color)'
               : 'var(--box-color)',
         }}
         onClick={() => handleSetPreviewOption('280px')}
       >
-        <FontAwesomeIcon aria-label="show large grid" icon={faSquare} />
+        <FontAwesomeIcon
+          aria-label="show large grid and listen to 2001 album by Dr. Dre"
+          icon={faSquare}
+        />
       </button>
     </>
   );

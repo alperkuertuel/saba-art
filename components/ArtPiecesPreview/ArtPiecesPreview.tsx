@@ -84,7 +84,7 @@ export default function ArtPiecesPreview({
               />
             </button>
             <button
-              className="absolute left-0 top-0 m-2 rounded-[5px] bg-highlight-color px-2 py-1 text-xl text-rose-700 shadow-box-style"
+              className="absolute left-0 top-0 m-2 rounded-[5px] bg-highlight-color px-2 py-1 text-sm text-rose-700 shadow-box-style"
               onClick={() => artPiece._id && handleLikeButton(artPiece._id)}
             >
               {artPiece._id && likedArtPieces.includes(artPiece._id) ? (

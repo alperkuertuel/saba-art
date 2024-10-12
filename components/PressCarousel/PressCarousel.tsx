@@ -47,7 +47,6 @@ export default function PressCarousel() {
 
   return (
     <section>
-      <h2>Presseartikel über Saba:</h2>
       <div className="relative m-4 mx-auto">
         <Carousel
           axis={'horizontal'}

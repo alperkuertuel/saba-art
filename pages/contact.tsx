@@ -3,17 +3,16 @@ import Head from 'next/head';
 import FooterComponent from '@/Footer/Footer';
 import Header from '@/Header/Header';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
-import WelcomingAndAbout from '@/WelcomingAndAbout/WelcomingAndAbout';
 
-interface HomePageProperties {
+interface PressPageProperties {
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
 }
 
-export default function HomePage({
+export default function PressPage({
   scrollPercent,
   handleSetScrollPercentage,
-}: HomePageProperties) {
+}: PressPageProperties) {
   return (
     <>
       <Head>
@@ -25,8 +24,7 @@ export default function HomePage({
         handleSetScrollPercentage={handleSetScrollPercentage}
       />
       <main>
-        <h1>Home</h1>
-        <WelcomingAndAbout />
+        <h1>Kontakt</h1>
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
       <FooterComponent />

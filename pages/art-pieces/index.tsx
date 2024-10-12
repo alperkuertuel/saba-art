@@ -22,7 +22,7 @@ export default function ApiBackUpPage({
   activeCategory,
 }: ApiBackUpPageProperties) {
   return (
-    <div
+    <section
       style={{
         margin: '1rem auto',
         maxWidth: '1280px',
@@ -39,6 +39,6 @@ export default function ApiBackUpPage({
         handleSetFilteredCategory={handleSetFilteredCategory}
       />
       <ArtPiecesPreview filteredCategory={filteredCategory} />
-    </div>
+    </section>
   );
 }
