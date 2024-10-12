@@ -56,7 +56,7 @@ export default function ShowDetails({
       <main>
         <Link
           href="/"
-          className="mb-4 flex items-center justify-center gap-4 rounded-[5px] bg-box-color p-2 text-lg shadow-box-shadow"
+          className="mb-4 flex items-center justify-center gap-4 rounded-[5px] bg-box-color p-2 text-lg shadow-box-style"
         >
           <b>Zur online Kunst-Galerie!</b>
         </Link>

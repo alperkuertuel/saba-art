@@ -15,7 +15,7 @@ export default function Header({
   handleSetScrollPercentage,
 }: HeaderProperties) {
   return (
-    <header className="fixed top-0 z-10 w-full border-b-2 bg-cool-brown p-[0.2rem] text-center">
+    <header className="fixed top-0 z-10 w-full border-b-2 bg-cool-color p-[0.2rem] text-center">
       <ProgressBar
         scrollPercent={scrollPercent}
         handleSetScrollPercentage={handleSetScrollPercentage}

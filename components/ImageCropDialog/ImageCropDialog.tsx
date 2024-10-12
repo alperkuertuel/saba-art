@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useState } from 'react';
 import Cropper, { Area } from 'react-easy-crop';
+
+import Button from '@/Button/Button';
 
 import getCroppedImg from './crop-image';
 
@@ -152,24 +155,9 @@ export default function ImageCropDialog({
             </select>
           </fieldset>
           <div className="my-2 flex gap-2">
-            <button
-              className="ease rounded-[5px] border-none bg-cool-brown p-3 font-bold text-font-color no-underline transition-colors duration-200 hover:bg-tertiary-color"
-              onClick={onCancel}
-            >
-              Cancel
-            </button>
-            <button
-              className="ease rounded-[5px] border-none bg-cool-brown p-3 font-bold text-font-color no-underline transition-colors duration-200 hover:bg-tertiary-color"
-              onClick={onReset}
-            >
-              Reset
-            </button>
-            <button
-              className="ease rounded-[5px] border-none bg-cool-brown p-3 font-bold text-font-color no-underline transition-colors duration-200 hover:bg-tertiary-color"
-              onClick={() => void onCrop}
-            >
-              Crop
-            </button>
+            <Button onClick={onCancel}>Cancel</Button>
+            <Button onClick={onReset}>Reset</Button>
+            <Button onClick={onCrop}>Crop</Button>
           </div>
         </div>
       </div>

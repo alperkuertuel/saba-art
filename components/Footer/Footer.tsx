@@ -4,7 +4,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 export default function Footer() {
   const { data: session } = useSession();
   return (
-    <footer className="fixed bottom-0 left-0 z-10 w-full items-center gap-4 border-t-2 bg-cool-brown p-2 text-xs">
+    <footer className="fixed bottom-0 left-0 z-10 w-full items-center gap-4 border-t-2 bg-cool-color p-2 text-xs">
       <ul className="flex gap-2">
         <li>
           <Link href="/imprint">Impressum</Link>

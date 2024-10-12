@@ -1,7 +1,11 @@
-import { faDownload, faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
-import Link from "next/link";
+import {
+  faDownload,
+  faPencil,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface EditCardProperties {
   handleSetScrollPercentage: (scrollPercentage: number) => void;
@@ -27,8 +31,12 @@ export default function EditCard({
   setToggleEditForm,
 }: EditCardProperties) {
   return (
-    <li className="mx-0 my-4 flex w-auto flex-col content-center items-center gap-2 rounded-[5px] bg-box-color p-2 shadow-box-shadow">
-      <Link className="w-full rounded-[5px]" href={`/art-pieces/${slug}`} onClick={() => handleSetScrollPercentage(0)}>
+    <li className="mx-0 my-4 flex w-auto flex-col content-center items-center gap-2 rounded-[5px] bg-box-color p-2 shadow-box-style">
+      <Link
+        className="w-full rounded-[5px]"
+        href={`/art-pieces/${slug}`}
+        onClick={() => handleSetScrollPercentage(0)}
+      >
         <Image
           className="h-[50px] w-full rounded-[5px] object-cover"
           src={imageUrl}

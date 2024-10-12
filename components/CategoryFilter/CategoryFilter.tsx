@@ -1,6 +1,8 @@
 import { ArtPieceType } from 'pages/_app';
 import useSWR from 'swr';
 
+import Button from '@/Button/Button';
+
 import LoadingDots from '../LoadingDots/LoadingDots';
 
 interface CategoryFilterProperties {
@@ -67,8 +69,9 @@ export default function CategoryFilter({
       ) : (
         <>
           <li>
-            <button
-              className="rounded-[5px] bg-box-color p-2 text-base leading-4 shadow-box-shadow"
+            <Button
+              variant="categoryFilter"
+              size="small"
               onClick={handleFilterAll}
             >
               Alle
@@ -77,27 +80,28 @@ export default function CategoryFilter({
                 style={{
                   backgroundColor:
                     activeCategory === 'Alle'
-                      ? 'var(--cool-brown)'
+                      ? 'var(--cool-color)'
                       : 'var(--highlight-color)',
                 }}
               >
                 {data.length}
               </span>
-            </button>
+            </Button>
           </li>
           {data.some((piece: ArtPieceType) => piece.date === currentYear) && (
             <li>
-              <button
-                className="rounded-[5px] bg-box-color p-2 text-base leading-4 shadow-box-shadow"
+              <Button
+                variant="categoryFilter"
+                size="small"
                 onClick={handleNewestArtPieces}
               >
                 Neueste Bilder aus {currentYear}
                 <span
-                  className="ease ml-2 rounded-[5px] px-[5px] py-[3px] align-top text-sm transition-colors duration-200"
+                  className="ml-2 rounded-[5px] px-[5px] py-[3px]"
                   style={{
                     backgroundColor:
                       activeCategory === 'Neue'
-                        ? 'var(--cool-brown)'
+                        ? 'var(--cool-color)'
                         : 'var(--highlight-color)',
                   }}
                 >
@@ -107,23 +111,24 @@ export default function CategoryFilter({
                     ).length
                   }
                 </span>
-              </button>
+              </Button>
             </li>
           )}
 
           {uniqueCatagories.map((category) => (
             <li key={category}>
-              <button
-                className="rounded-[5px] bg-box-color p-2 text-base leading-4 shadow-box-shadow"
+              <Button
+                variant="categoryFilter"
+                size="small"
                 onClick={() => handleFilteredCategories(category)}
               >
                 {category}
                 <span
-                  className="ease ml-2 rounded-[5px] px-[5px] py-[3px] align-top text-sm transition-colors duration-200"
+                  className="ml-2 rounded-[5px] px-[5px] py-[3px]"
                   style={{
                     backgroundColor:
                       activeCategory === category
-                        ? 'var(--cool-brown)'
+                        ? 'var(--cool-color)'
                         : 'var(--highlight-color)',
                   }}
                 >
@@ -133,28 +138,29 @@ export default function CategoryFilter({
                     ).length
                   }
                 </span>
-              </button>
+              </Button>
             </li>
           ))}
           {likedArtPieces && likedArtPieces?.length > 0 && (
             <li>
-              <button
-                className="rounded-[5px] bg-box-color p-2 text-base leading-4 shadow-box-shadow"
+              <Button
+                variant="categoryFilter"
+                size="small"
                 onClick={handleLikedArtPieces}
               >
                 Favoriten
                 <span
-                  className="ease ml-2 rounded-[5px] px-[5px] py-[3px] align-top text-sm transition-colors duration-200"
+                  className="ml-2 rounded-[5px] px-[5px] py-[3px]"
                   style={{
                     backgroundColor:
                       activeCategory === 'Favoriten'
-                        ? 'var(--cool-brown)'
+                        ? 'var(--cool-color)'
                         : 'var(--highlight-color)',
                   }}
                 >
                   {likedArtPieces.length}
                 </span>
-              </button>
+              </Button>
             </li>
           )}
         </>

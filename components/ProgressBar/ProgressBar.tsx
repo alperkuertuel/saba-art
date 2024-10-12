@@ -25,7 +25,7 @@ export default function ProgressBar({
   });
 
   return (
-    <div className="fixed left-0 top-0 h-[7px] w-full bg-cool-brown">
+    <div className="fixed left-0 top-0 h-[7px] w-full bg-cool-color">
       <div
         className="h-full bg-tertiary-color duration-100 ease-in-out"
         style={{ width: `${scrollPercent}%` }}

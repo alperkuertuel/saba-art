@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { ArtPieceType } from 'pages/_app';
 import { useState } from 'react';
 
+import Button from '@/Button/Button';
+
 interface AdminArtPieceEditFormProperties {
   artPieceToEdit: ArtPieceType;
   filteredCategory: ArtPieceType[];
@@ -203,9 +205,9 @@ export default function AdminArtPieceEditForm({
           onChange={(event) => setLettersLeft(event.target.value.length)}
         ></textarea>
         <span className="text-right">{500 - lettersLeft} / 500 </span>
-        <button className="ease rounded-[5px] border-none bg-cool-brown p-3 font-bold text-inherit no-underline transition-colors duration-200 hover:bg-tertiary-color">
+        <Button variant="main" size="small">
           UPDATE {artPieceToEdit ? artPieceToEdit.name : ''}
-        </button>
+        </Button>
       </form>
     </article>
   );

@@ -3,27 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: white;
   --font-color: black;
+  --primary-color: white;
   --secondary-color: #391b0e;
   --tertiary-color: #a48676;
-  --box-color: #f4f4f4;
-  --box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  --cool-brown: #d9cbc4;
+  --cool-color: #d9cbc4;
   --highlight-color: #dee1e6;
+  --box-color: #f4f4f4;
+  --box-style: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .dark-theme {
-  --primary-color: #282828;
   --font-color: #f8f8ff;
+  --primary-color: #282828;
   --secondary-color: #d9cbc4;
   --tertiary-color: #a48676;
-  --box-color: #382f2a;
-  --box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  --cool-brown: #391b0e;
+  --cool-color: #391b0e;
   --highlight-color: #4e3524;
+  --box-color: #382f2a;
+  --box-style: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 *,
@@ -112,7 +112,6 @@ input {
 button {
   border: none;
   cursor: pointer;
-  background: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;

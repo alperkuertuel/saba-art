@@ -6,6 +6,8 @@ import { ArtPieceType } from 'pages/_app';
 import { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 
+import Button from '@/Button/Button';
+
 import ArtPieceDetails from '../ArtPieceDetails/ArtPieceDetails';
 
 interface GallerySliderPreviewProperties {
@@ -64,9 +66,11 @@ export default function GallerySliderPreview({
         onChange={(index) => setSelectedIndex(index)}
         preventMovementUntilSwipeScrollTolerance={true}
         swipeScrollTolerance={100}
+        renderArrowPrev={() => null}
+        renderArrowNext={() => null}
       >
         {filteredCategory.map((artPiece) => (
-          <div key={artPiece.name}>
+          <div key={artPiece.name} className="w-full">
             <Image
               className="h-[50vh] object-contain"
               src={artPiece.imageUrl}
@@ -83,7 +87,7 @@ export default function GallerySliderPreview({
               </div>
             </button>
             <button
-              className="absolute left-1/2 top-0 rounded-[5px] bg-highlight-color px-2 py-1 text-xl text-rose-700 shadow-box-shadow"
+              className="absolute left-0 top-0 rounded-[5px] bg-highlight-color px-2 py-1 text-xl text-rose-700 shadow-box-style"
               onClick={() => artPiece._id && handleLikeButton(artPiece._id)}
             >
               {artPiece._id && likedArtPieces.includes(artPiece._id) ? (
@@ -99,12 +103,14 @@ export default function GallerySliderPreview({
       {isModalOpen && selectedArtPiece && (
         <div className="fixed left-0 top-0 z-30 size-full bg-black/70">
           <div className="fixed left-1/2 top-1/2 z-30 flex max-h-[90vh] w-[95%] max-w-screen-md -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 overflow-y-auto rounded-[5px] bg-primary-color p-2">
-            <button
-              className="sticky top-0 flex w-full cursor-pointer items-center justify-center gap-2 rounded-[5px] bg-box-color p-2 text-base text-font-color shadow-box-shadow"
+            <Button
+              variant="main"
+              size="base"
+              additionalStyles="sticky top-0"
               onClick={closeModalGallerySlider}
             >
               Schließen <FontAwesomeIcon icon={faXmark} />
-            </button>
+            </Button>
             <ArtPieceDetails
               _id={selectedArtPiece._id}
               imageUrl={selectedArtPiece.imageUrl}

@@ -11,7 +11,18 @@ import { useEffect, useState } from 'react';
 import { pdfjs } from 'react-pdf';
 import { Carousel } from 'react-responsive-carousel';
 
-import pressCarouselData, { Article } from './press-carousel-data';
+import Button from '@/Button/Button';
+
+import pressCarouselData from './press-carousel-data';
+
+interface Article {
+  _id: string;
+  imageUrl: string;
+  name: string;
+  legendText: string;
+  dateOfArticle: string;
+  pdfLink: string;
+}
 
 export default function PressCarousel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,12 +83,14 @@ export default function PressCarousel() {
         {isModalOpen && selectedArticle && (
           <div className="fixed left-0 top-0 z-30 size-full bg-black/70">
             <div className="fixed left-1/2 top-1/2 z-30 flex max-h-[90vh] w-[95%] max-w-screen-md -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 overflow-y-auto rounded-[5px] bg-primary-color p-2">
-              <button
-                className="sticky top-0 flex w-full cursor-pointer items-center justify-center gap-2 rounded-[5px] bg-box-color p-2 text-base text-font-color shadow-box-shadow"
+              <Button
+                variant="main"
+                size="base"
+                additionalStyles="sticky top-0"
                 onClick={closeModalPressSlider}
               >
                 Schließen <FontAwesomeIcon icon={faXmark} />
-              </button>
+              </Button>
               <Worker
                 workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
               >

@@ -2,6 +2,8 @@ import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ArtPieceType } from 'pages/_app';
 
+import Button from '@/Button/Button';
+
 import AdminImagePreview from '../AdminEditImagePreview/AdminEditImagePreview';
 
 interface AdminArtPieceAddFormProperties {
@@ -247,9 +249,9 @@ export default function AdminArtPieceAddForm({
         <span className="text-right">
           {currentFormData && 500 - currentFormData.description?.length}
         </span>
-        <button className="ease rounded-[5px] border-none bg-cool-brown p-3 font-bold text-inherit no-underline transition-colors duration-200 hover:bg-tertiary-color">
+        <Button variant="main" size="base">
           Hinzufügen
-        </button>
+        </Button>
       </form>
     </article>
   );
