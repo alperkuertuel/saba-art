@@ -22,7 +22,7 @@ interface Article {
   pdfLink: string;
 }
 
-export default function PressCarousel() {
+export default function PressCarousel({ isDarkMode }: { isDarkMode: boolean }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState<Article>();
 
@@ -90,7 +90,7 @@ export default function PressCarousel() {
                   }}
                 >
                   <Viewer
-                    theme={'light'}
+                    theme={isDarkMode ? 'dark' : 'light'}
                     fileUrl={selectedArticle.pdfLink}
                     plugins={[defaultLayoutPluginInstance]}
                   />

@@ -1,3 +1,5 @@
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
@@ -29,7 +31,13 @@ const navItems: NavigationItems = [
   // TODO: { href: '/contact', label: 'Kontakt' },
 ];
 
-export default function Navigation() {
+export default function Navigation({
+  isDarkMode,
+  handleToggleDarkMode,
+}: {
+  isDarkMode: boolean;
+  handleToggleDarkMode: (isDarkMode: boolean) => void;
+}) {
   const { data: session } = useSession();
   const [toggle, setToggle] = useState<boolean>(false);
   const router = useRouter();
@@ -53,6 +61,18 @@ export default function Navigation() {
             </Link>
           </li>
         ))}
+        <li className="size-full text-center">
+          <button
+            className="ease size-full px-3 py-2 transition-colors duration-200 hover:bg-secondary-color"
+            onClick={() => handleToggleDarkMode(isDarkMode)}
+          >
+            {isDarkMode ? (
+              <FontAwesomeIcon icon={faSun} />
+            ) : (
+              <FontAwesomeIcon icon={faMoon} />
+            )}
+          </button>
+        </li>
       </ul>
     </nav>
   );

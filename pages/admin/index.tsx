@@ -12,6 +12,8 @@ import { DetailsModal } from '@/Modal/Modal';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
 interface AdminHomePageProperties {
+  isDarkMode: boolean;
+  handleToggleDarkMode: (isDarkMode: boolean) => void;
   fileImageUrl: string;
   handleSetFileImageUrl: (fileImageUrl: string | ArrayBuffer | null) => void;
   scrollPercent: number;
@@ -21,6 +23,8 @@ interface AdminHomePageProperties {
 }
 
 export default function AdminHomePage({
+  isDarkMode,
+  handleToggleDarkMode,
   fileImageUrl,
   handleSetFileImageUrl,
   scrollPercent,
@@ -130,6 +134,8 @@ export default function AdminHomePage({
         <meta name="description" content="Die online Kunst-Galerie von Saba." />
       </Head>
       <Header
+        isDarkMode={isDarkMode}
+        handleToggleDarkMode={handleToggleDarkMode}
         scrollPercent={scrollPercent}
         handleSetScrollPercentage={handleSetScrollPercentage}
       />

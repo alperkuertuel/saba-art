@@ -7,11 +7,15 @@ import Header from '@/Header/Header';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
 interface HomePageProperties {
+  isDarkMode: boolean;
+  handleToggleDarkMode: (isDarkMode: boolean) => void;
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
 }
 
 export default function HomePage({
+  isDarkMode,
+  handleToggleDarkMode,
   scrollPercent,
   handleSetScrollPercentage,
 }: HomePageProperties) {
@@ -22,12 +26,14 @@ export default function HomePage({
         <meta name="description" content="Die online Kunst-Galerie von Saba." />
       </Head>
       <Header
+        isDarkMode={isDarkMode}
+        handleToggleDarkMode={handleToggleDarkMode}
         scrollPercent={scrollPercent}
         handleSetScrollPercentage={() => handleSetScrollPercentage(0)}
       />
       <main>
         <h1 className="border-none grayscale">
-          <Logo />
+          <Logo isDarkMode={isDarkMode} />
         </h1>
         <AboutAndWelcoming />
         <ScrollUp scrollPercent={scrollPercent} />

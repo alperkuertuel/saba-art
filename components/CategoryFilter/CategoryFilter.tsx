@@ -1,10 +1,10 @@
+import { useSession } from 'next-auth/react';
 import { ArtPieceType } from 'pages/_app';
 import useSWR from 'swr';
 
 import Button from '@/Button/Button';
 
 import LoadingDots from '../LoadingDots/LoadingDots';
-import { useSession } from 'next-auth/react';
 
 interface CategoryFilterProperties {
   handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;

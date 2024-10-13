@@ -9,7 +9,7 @@ export default function AboutAndWelcoming() {
           priority={true}
           width={192}
           height={200}
-          src="/img/saba-art.jpg"
+          src={'/img/saba-art.jpg'}
           alt="Saba"
         />
         <p className="md:w-1/2">

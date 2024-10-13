@@ -6,6 +6,8 @@ import PressCarousel from '@/PressCarousel/PressCarousel';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
 interface PressPageProperties {
+  isDarkMode: boolean;
+  handleToggleDarkMode: (isDarkMode: boolean) => void;
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
 }
@@ -13,6 +15,8 @@ interface PressPageProperties {
 export default function PressPage({
   scrollPercent,
   handleSetScrollPercentage,
+  isDarkMode,
+  handleToggleDarkMode,
 }: PressPageProperties) {
   return (
     <>
@@ -21,12 +25,14 @@ export default function PressPage({
         <meta name="description" content="Die online Kunst-Galerie von Saba." />
       </Head>
       <Header
+        isDarkMode={isDarkMode}
+        handleToggleDarkMode={handleToggleDarkMode}
         scrollPercent={scrollPercent}
         handleSetScrollPercentage={() => handleSetScrollPercentage(0)}
       />
       <main>
         <h1>Presse</h1>
-        <PressCarousel />
+        <PressCarousel isDarkMode={isDarkMode} />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
       <FooterComponent />

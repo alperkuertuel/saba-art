@@ -9,6 +9,8 @@ import Header from '@/Header/Header';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
 interface AdminHomePageProperties {
+  isDarkMode: boolean;
+  handleToggleDarkMode: (isDarkMode: boolean) => void;
   artPieceToEdit: ArtPieceType;
   handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;
   filteredCategory: ArtPieceType[];
@@ -24,6 +26,8 @@ interface AdminHomePageProperties {
 }
 
 export default function AdminHomePage({
+  isDarkMode,
+  handleToggleDarkMode,
   artPieceToEdit,
   handleSetFilteredCategory,
   filteredCategory,
@@ -70,6 +74,8 @@ export default function AdminHomePage({
         <meta name="description" content="Die online Kunst-Galerie von Saba." />
       </Head>
       <Header
+        isDarkMode={isDarkMode}
+        handleToggleDarkMode={handleToggleDarkMode}
         scrollPercent={scrollPercent}
         handleSetScrollPercentage={handleSetScrollPercentage}
       />

@@ -11,6 +11,8 @@ import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 import { ArtPieceType } from './_app';
 
 interface GalleryPageProperties {
+  isDarkMode: boolean;
+  handleToggleDarkMode: (isDarkMode: boolean) => void;
   handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;
   filteredCategory: ArtPieceType[];
   activeCategory: string;
@@ -28,6 +30,8 @@ interface GalleryPageProperties {
 }
 
 export default function GalleryPage({
+  isDarkMode,
+  handleToggleDarkMode,
   handleSetFilteredCategory,
   filteredCategory,
   scrollPercent,
@@ -46,6 +50,8 @@ export default function GalleryPage({
         <meta name="description" content="Die online Kunst-Galerie von Saba." />
       </Head>
       <Header
+        isDarkMode={isDarkMode}
+        handleToggleDarkMode={handleToggleDarkMode}
         scrollPercent={scrollPercent}
         handleSetScrollPercentage={handleSetScrollPercentage}
       />

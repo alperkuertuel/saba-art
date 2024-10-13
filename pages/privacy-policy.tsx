@@ -8,11 +8,15 @@ import Header from '@/Header/Header';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
 interface PrivacyPolicyPageProperties {
+  isDarkMode: boolean;
+  handleToggleDarkMode: (isDarkMode: boolean) => void;
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
 }
 
 export default function PrivacyPolicyPage({
+  isDarkMode,
+  handleToggleDarkMode,
   scrollPercent,
   handleSetScrollPercentage,
 }: PrivacyPolicyPageProperties) {
@@ -20,6 +24,8 @@ export default function PrivacyPolicyPage({
   return (
     <>
       <Header
+        isDarkMode={isDarkMode}
+        handleToggleDarkMode={handleToggleDarkMode}
         scrollPercent={scrollPercent}
         handleSetScrollPercentage={handleSetScrollPercentage}
       />

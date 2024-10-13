@@ -10,6 +10,8 @@ import ArtPiece from '../../db/art-piece-modal';
 import databaseConnect from '../../db/connect';
 
 interface ShowDetailsProperties {
+  isDarkMode: boolean;
+  handleToggleDarkMode: (isDarkMode: boolean) => void;
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
   foundArtPiece: ArtPieceType | null;
@@ -51,6 +53,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export default function SlugPage({
+  isDarkMode,
+  handleToggleDarkMode,
   scrollPercent,
   handleSetScrollPercentage,
   foundArtPiece,
@@ -70,6 +74,8 @@ export default function SlugPage({
         <meta name="description" content={foundArtPiece.description} />
       </Head>
       <Header
+        isDarkMode={isDarkMode}
+        handleToggleDarkMode={handleToggleDarkMode}
         scrollPercent={scrollPercent}
         handleSetScrollPercentage={handleSetScrollPercentage}
       />

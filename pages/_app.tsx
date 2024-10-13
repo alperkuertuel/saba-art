@@ -111,12 +111,45 @@ export default function App({
     }
   }, [data]);
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  useEffect(() => {
+    // Check system preference for dark mode
+    const systemPrefersDark = globalThis.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches;
+    setIsDarkMode(systemPrefersDark);
+
+    // Add event listener to update dark mode based on system preference changes
+    const mediaQuery = globalThis.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsDarkMode(e.matches);
+    };
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  function handleToggleDarkMode(isDarkMode: boolean) {
+    setIsDarkMode(!isDarkMode);
+  }
+
   return (
     <>
       <SWRConfig value={{ fetcher }}>
         <SessionProvider session={session}>
           <Component
             {...pageProperties}
+            isDarkMode={isDarkMode}
             artPieceToEdit={artPieceToEdit}
             filteredCategory={filteredCategory}
             likedArtPieces={likedArtPieces}
@@ -125,6 +158,7 @@ export default function App({
             activeCategory={activeCategory}
             previewoption={previewoption}
             currentFormData={currentFormData}
+            handleToggleDarkMode={handleToggleDarkMode}
             handleSetPreviewOption={handleSetPreviewOption}
             handleSetFileImageUrl={handleSetFileImageUrl}
             handleSetArtPieceToEdit={handleSetArtPieceToEdit}

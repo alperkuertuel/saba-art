@@ -8,11 +8,15 @@ import Header from '@/Header/Header';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
 interface ImprintProperties {
+  isDarkMode: boolean;
+  handleToggleDarkMode: (isDarkMode: boolean) => void;
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
 }
 
 export default function ImprintPage({
+  isDarkMode,
+  handleToggleDarkMode,
   scrollPercent,
   handleSetScrollPercentage,
 }: ImprintProperties) {
@@ -20,6 +24,8 @@ export default function ImprintPage({
   return (
     <>
       <Header
+        isDarkMode={isDarkMode}
+        handleToggleDarkMode={handleToggleDarkMode}
         scrollPercent={scrollPercent}
         handleSetScrollPercentage={handleSetScrollPercentage}
       />
