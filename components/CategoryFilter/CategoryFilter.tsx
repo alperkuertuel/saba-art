@@ -52,6 +52,14 @@ export default function CategoryFilter({
     handleSetActiveCategory('Alle');
   }
 
+  function handleAvailable() {
+    const availableFilter = data.filter(
+      (piece: ArtPieceType) => piece.available === true
+    );
+    handleSetFilteredCategory(availableFilter);
+    handleSetActiveCategory('Verfügbare');
+  }
+
   function handleLikedArtPieces() {
     const favoriteArtPieces = data.filter(
       (piece: ArtPieceType) => piece._id && likedArtPieces?.includes(piece._id)
@@ -83,6 +91,29 @@ export default function CategoryFilter({
                 }}
               >
                 {data.length}
+              </span>
+            </Button>
+          </li>
+          <li>
+            <Button
+              variant="categoryFilter"
+              size="small"
+              onClick={handleAvailable}
+            >
+              Verfügbare
+              <span
+                className="ml-2 rounded-lg border border-cool-color px-[5px] py-[3px] text-xs font-bold"
+                style={{
+                  backgroundColor:
+                    activeCategory === 'Verfügbare'
+                      ? 'var(--tertiary-color)'
+                      : '',
+                }}
+              >
+                {
+                  data.filter((piece: ArtPieceType) => piece.available === true)
+                    .length
+                }
               </span>
             </Button>
           </li>

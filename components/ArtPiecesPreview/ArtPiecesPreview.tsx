@@ -95,9 +95,7 @@ export default function ArtPiecesPreview({
             </button>
 
             <figcaption className="flex flex-wrap justify-between gap-2 p-2">
-              <b>
-                <q>{artPiece.name}</q>
-              </b>
+              <q className="hyphens-auto">{artPiece.name}</q>
               {artPiece.date}
             </figcaption>
           </figure>
