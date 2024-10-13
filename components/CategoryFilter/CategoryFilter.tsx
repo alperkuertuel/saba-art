@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import Button from '@/Button/Button';
 
 import LoadingDots from '../LoadingDots/LoadingDots';
+import { useSession } from 'next-auth/react';
 
 interface CategoryFilterProperties {
   handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;
@@ -18,6 +19,7 @@ export default function CategoryFilter({
   activeCategory,
   likedArtPieces,
 }: CategoryFilterProperties) {
+  const { data: session } = useSession();
   const { data, isLoading }: { data: ArtPieceType[]; isLoading: boolean } =
     useSWR('/api', {
       fallbackData: [],
@@ -60,6 +62,14 @@ export default function CategoryFilter({
     handleSetActiveCategory('Verfügbare');
   }
 
+  function handleNotAvailable() {
+    const notAvailableFilter = data.filter(
+      (piece: ArtPieceType) => piece.available === false
+    );
+    handleSetFilteredCategory(notAvailableFilter);
+    handleSetActiveCategory('Vergeben');
+  }
+
   function handleLikedArtPieces() {
     const favoriteArtPieces = data.filter(
       (piece: ArtPieceType) => piece._id && likedArtPieces?.includes(piece._id)
@@ -94,29 +104,58 @@ export default function CategoryFilter({
               </span>
             </Button>
           </li>
-          <li>
-            <Button
-              variant="categoryFilter"
-              size="small"
-              onClick={handleAvailable}
-            >
-              Verfügbare
-              <span
-                className="ml-2 rounded-lg border border-cool-color px-[5px] py-[3px] text-xs font-bold"
-                style={{
-                  backgroundColor:
-                    activeCategory === 'Verfügbare'
-                      ? 'var(--tertiary-color)'
-                      : '',
-                }}
+          {session && session.user?.role === 'Admin' && (
+            <li>
+              <Button
+                variant="categoryFilter"
+                size="small"
+                onClick={handleAvailable}
               >
-                {
-                  data.filter((piece: ArtPieceType) => piece.available === true)
-                    .length
-                }
-              </span>
-            </Button>
-          </li>
+                Verfügbare
+                <span
+                  className="ml-2 rounded-lg border border-cool-color px-[5px] py-[3px] text-xs font-bold"
+                  style={{
+                    backgroundColor:
+                      activeCategory === 'Verfügbare'
+                        ? 'var(--tertiary-color)'
+                        : '',
+                  }}
+                >
+                  {
+                    data.filter(
+                      (piece: ArtPieceType) => piece.available === true
+                    ).length
+                  }
+                </span>
+              </Button>
+            </li>
+          )}
+          {session && session.user?.role === 'Admin' && (
+            <li>
+              <Button
+                variant="categoryFilter"
+                size="small"
+                onClick={handleNotAvailable}
+              >
+                Vergebene
+                <span
+                  className="ml-2 rounded-lg border border-cool-color px-[5px] py-[3px] text-xs font-bold"
+                  style={{
+                    backgroundColor:
+                      activeCategory === 'Vergeben'
+                        ? 'var(--tertiary-color)'
+                        : '',
+                  }}
+                >
+                  {
+                    data.filter(
+                      (piece: ArtPieceType) => piece.available === false
+                    ).length
+                  }
+                </span>
+              </Button>
+            </li>
+          )}
           {data.some((piece: ArtPieceType) => piece.date === currentYear) && (
             <li>
               <Button
