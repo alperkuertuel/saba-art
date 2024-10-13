@@ -1,18 +1,19 @@
-import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
+import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
+import { ArtPieceType } from 'pages/_app';
 
-import ArtPiecesPreview from "@/ArtPiecesPreview/art-pieces-preview";
-import CategoryFilter from "@/CategoryFilter/category-filter";
+import ArtPiecesPreview from '@/ArtPiecesPreview/ArtPiecesPreview';
+import CategoryFilter from '@/CategoryFilter/CategoryFilter';
 
-import { ArtPiece } from "../_app";
-
-type ApiBackUpPageProperties = {
-  handleSetFilteredCategory: (filteredCategory: ArtPiece[]) => void;
-  filteredCategory: ArtPiece[];
+interface ApiBackUpPageProperties {
+  handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;
+  filteredCategory: ArtPieceType[];
   activeCategory: string;
   handleSetActiveCategory: (activeCategory: string) => void;
-};
+}
+
+/////// ONLY PREVIEWS VISIBLE HERE WHEN ON API ROUTE ///////
 
 export default function ApiBackUpPage({
   handleSetFilteredCategory,
@@ -21,16 +22,16 @@ export default function ApiBackUpPage({
   activeCategory,
 }: ApiBackUpPageProperties) {
   return (
-    <div
+    <section
       style={{
-        margin: "1rem auto",
-        maxWidth: "1280px",
-        padding: "0 1rem",
+        margin: '1rem auto',
+        maxWidth: '1280px',
+        padding: '0 1rem',
       }}
     >
       <Link href="/">
         <FontAwesomeIcon icon={faArrowLeftLong} />
-        {" BACK"}
+        {' BACK'}
       </Link>
       <CategoryFilter
         activeCategory={activeCategory}
@@ -38,7 +39,6 @@ export default function ApiBackUpPage({
         handleSetFilteredCategory={handleSetFilteredCategory}
       />
       <ArtPiecesPreview filteredCategory={filteredCategory} />
-    </div>
+    </section>
   );
 }
-/////// ONLY PREVIEWS VISIBLE HERE ///////

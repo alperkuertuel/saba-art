@@ -7,19 +7,51 @@
     "plugin:jest/recommended",
     "plugin:unicorn/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:promise/recommended",
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest-formatting/recommended",
+    "plugin:tailwindcss/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["jest", "@typescript-eslint", "unused-imports", "simple-import-sort"],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": "latest" // Allows for the latest ECMAScript features
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
+    }
+  },
+  "ignorePatterns": ["tailwind.config.js"],
+  "plugins": [
+    "jest",
+    "@typescript-eslint",
+    "unused-imports",
+    "simple-import-sort"
+  ],
   "rules": {
     "unicorn/no-null": "off",
     "unicorn/prefer-module": "off",
     "unicorn/prevent-abbreviations": "off",
-    "@typescript-eslint/no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
-      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
     ],
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
@@ -32,5 +64,25 @@
         "allowObject": true
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["components/**/*.tsx"],
+      "rules": {
+        "unicorn/filename-case": [
+          "error",
+          {
+            "cases": {
+              "camelCase": false,
+              "pascalCase": true
+            }
+          }
+        ],
+        "@typescript-eslint/ban-tslint-comment": "off",
+        "unicorn/no-abusive-eslint-disable": "off",
+        "eslint-comments/disable-enable-pair": "off",
+        "eslint-comments/no-unlimited-disable": "off"
+      }
+    }
+  ]
 }

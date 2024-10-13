@@ -1,16 +1,21 @@
 module.exports = {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     extend: {
       colors: {
-        "primary-color": "var(--primary-color)",
-        "font-color": "var(--font-color)",
-        "secondary-color": "var(--secondary-color)",
-        "tertiary-color": "var(--tertiary-color)",
-        "box-color": "var(--box-color)",
-        "box-shadow": "var(--box-shadow)",
-        "cool-brown": "var(--cool-brown)",
-        "highlight-color": "var(--highlight-color)",
+        'font-color': 'var(--font-color)',
+        'primary-color': 'var(--primary-color)',
+        'secondary-color': 'var(--secondary-color)',
+        'tertiary-color': 'var(--tertiary-color)',
+        'cool-color': 'var(--cool-color)',
+        'box-color': 'var(--box-color)',
+      },
+      boxShadow: {
+        'box-style':
+          '0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)',
       },
     },
   },

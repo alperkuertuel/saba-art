@@ -1,14 +1,14 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI || "";
+const MONGODB_URI = process.env.MONGODB_URI ?? '';
 
-type Cached = {
+interface Cached {
   conn: mongoose.Mongoose | undefined;
   promise: Promise<mongoose.Mongoose> | undefined;
-};
+}
 
 // Use a global variable to store the cached connection
-const globalWithCache = global as typeof global & { mongoose: Cached };
+const globalWithCache = globalThis as typeof globalThis & { mongoose: Cached };
 
 if (!globalWithCache.mongoose) {
   globalWithCache.mongoose = { conn: undefined, promise: undefined };

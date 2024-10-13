@@ -1,36 +1,69 @@
-import Head from "next/head";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React from "react";
-import useSWR from "swr";
+import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
+import { ArtPieceType } from 'pages/_app';
 
-import ArtPieceDetails from "@/ArtPieceDetails/art-piece-details";
-import Header from "@/Header/page-header";
-import LoadingDots from "@/LoadingDots/loading-dots";
+import ArtPieceDetails from '@/ArtPieceDetails/ArtPieceDetails';
+import Header from '@/Header/Header';
 
-import { ArtPiece } from "../_app";
+import ArtPiece from '../../db/art-piece-modal';
+import databaseConnect from '../../db/connect';
 
-type ShowDetailsProperties = {
+interface ShowDetailsProperties {
+  isDarkMode: boolean;
+  handleToggleDarkMode: (isDarkMode: boolean) => void;
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
+  foundArtPiece: ArtPieceType | null;
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  await databaseConnect();
+  const artPieces: ArtPieceType[] = (await ArtPiece.find(
+    {}
+  ).lean()) as ArtPieceType[];
+  const paths = artPieces.map((artPiece) => ({
+    params: { slug: artPiece.slug },
+  }));
+
+  return {
+    paths,
+    fallback: true,
+  };
 };
 
-export default function ShowDetails({ scrollPercent, handleSetScrollPercentage }: ShowDetailsProperties) {
-  const router = useRouter();
-  const { slug } = router.query;
-  const { data, isLoading, isValidating } = useSWR(`/api`, { fallbackData: [] });
-  const foundArtPiece = data.find((artpiece: ArtPiece) => artpiece.slug === slug);
+export const getStaticProps: GetStaticProps = async (context) => {
+  await databaseConnect();
+  const { slug } = context.params!;
+  const foundArtPiece = (await ArtPiece.findOne({
+    slug,
+  }).lean()) as ArtPieceType;
 
-  if (isLoading || !data || !slug || isValidating) {
+  // _id field contains a buffer object which needs to be converted to a string
+  if (foundArtPiece) {
+    foundArtPiece._id = foundArtPiece._id?.toString();
+  }
+
+  return {
+    props: {
+      foundArtPiece: structuredClone(foundArtPiece),
+    },
+    revalidate: 10,
+  };
+};
+
+export default function SlugPage({
+  isDarkMode,
+  handleToggleDarkMode,
+  scrollPercent,
+  handleSetScrollPercentage,
+  foundArtPiece,
+}: ShowDetailsProperties) {
+  if (!foundArtPiece) {
     return (
-      <h1 className="fixed top-1/2 w-full h-screen inline-block text-center">
-        Wird geladen <LoadingDots />
-      </h1>
-    );
-  } else if (!foundArtPiece) {
-    return (
-      <h1 className="fixed top-1/2 w-full h-screen inline-block text-center">
-        Error 404 - Das Bild ist nicht vorhanden. <br /> <Link href={`/`}>Gehe zurück zur Galerie!</Link>
+      <h1 className="fixed top-1/2 inline-block h-screen w-full text-center">
+        Error 404 - Das Bild ist nicht vorhanden. <br />{' '}
+        <Link href={`/`}>Gehe zurück zur Galerie!</Link>
       </h1>
     );
   }
@@ -40,14 +73,13 @@ export default function ShowDetails({ scrollPercent, handleSetScrollPercentage }
         <title>{foundArtPiece.name}</title>
         <meta name="description" content={foundArtPiece.description} />
       </Head>
-      <Header scrollPercent={scrollPercent} handleSetScrollPercentage={handleSetScrollPercentage} />
+      <Header
+        isDarkMode={isDarkMode}
+        handleToggleDarkMode={handleToggleDarkMode}
+        scrollPercent={scrollPercent}
+        handleSetScrollPercentage={handleSetScrollPercentage}
+      />
       <main>
-        <Link
-          href="/"
-          className="flex justify-center items-center gap-4 p-2 bg-box-color shadow-box-shadow text-lg rounded-[5px] mb-4"
-        >
-          <b>Zur online Kunst-Galerie!</b>
-        </Link>
         <ArtPieceDetails
           _id={foundArtPiece._id}
           imageUrl={foundArtPiece.imageUrl}
