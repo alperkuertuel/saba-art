@@ -11,9 +11,11 @@ module.exports = {
         'secondary-color': 'var(--secondary-color)',
         'tertiary-color': 'var(--tertiary-color)',
         'cool-color': 'var(--cool-color)',
-        'highlight-color': 'var(--highlight-color)',
         'box-color': 'var(--box-color)',
-        'box-style': 'var(--box-style)',
+      },
+      boxShadow: {
+        'box-style':
+          '0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)',
       },
     },
   },

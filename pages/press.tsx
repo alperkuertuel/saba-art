@@ -22,7 +22,7 @@ export default function PressPage({
       </Head>
       <Header
         scrollPercent={scrollPercent}
-        handleSetScrollPercentage={handleSetScrollPercentage}
+        handleSetScrollPercentage={() => handleSetScrollPercentage(0)}
       />
       <main>
         <h1>Presse</h1>

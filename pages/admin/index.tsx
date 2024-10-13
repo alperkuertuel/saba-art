@@ -2,12 +2,13 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ArtPieceType } from 'pages/_app';
-import React from 'react';
+import React, { useState } from 'react';
 import useSWR from 'swr';
 
 import AdminArtPieceAddForm from '@/AdminArtPieceAddForm/AdminArtPieceAddForm';
 import FooterComponent from '@/Footer/Footer';
 import Header from '@/Header/Header';
+import { DetailsModal } from '@/Modal/Modal';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
 interface AdminHomePageProperties {
@@ -28,6 +29,7 @@ export default function AdminHomePage({
   currentFormData,
 }: AdminHomePageProperties) {
   const router = useRouter();
+  const [modalContext, setModalContext] = useState<string>();
   const { data }: { data: ArtPieceType[] } = useSWR('/api', {
     fallbackData: [],
   });
@@ -45,9 +47,7 @@ export default function AdminHomePage({
       imageFile.type === 'image/vnd.microsoft.icon' ||
       imageFile.type === 'image/gif'
     ) {
-      return alert(
-        `Der Dateityp Ihrer Bilddatei ist nicht erlaubt. Gültige Bilddateitypen sind .png, .jpg/jpeg und .webp Dateien!`
-      );
+      return setModalContext('imgTypeNotAllowed');
     }
 
     const reader = new FileReader();
@@ -58,8 +58,6 @@ export default function AdminHomePage({
           const result = loadEvent.target?.result;
           if (typeof result === 'string') {
             handleSetFileImageUrl(result);
-          } else {
-            console.error('Unexpected result type from file load event.');
           }
         } else {
           const canvas = document.createElement('canvas');
@@ -67,9 +65,7 @@ export default function AdminHomePage({
           let height = img.height;
 
           if (height <= maxHeight && width <= maxWidth) {
-            return alert(
-              `Ihre Bildbreite oder -höhe ist kleiner als 800px. Um die Qualität zu erhalten, laden Sie ein Bild in größerer Größe hoch!`
-            );
+            return setModalContext('imgWidthHeight');
           }
 
           if (width > maxWidth) {
@@ -94,35 +90,23 @@ export default function AdminHomePage({
 
       if (typeof loadEvent.target?.result === 'string') {
         img.src = loadEvent.target.result;
-      } else {
-        console.error('Unexpected result type from file load event.');
       }
     });
 
     reader.readAsDataURL(imageFile);
   }
 
-  // THIS MIGHT BE NOT THE CORRECT SPOT FOR A FETCH WILL BE MOVED WITH TANSTACK INTEGRATION
   async function handleAddArtPiece(newArtPieceData: ArtPieceType) {
     if (
       data.some((piece: ArtPieceType) => piece.slug === newArtPieceData.slug)
     ) {
-      alert(
-        'Der Name existiert bereits. Bitte wählen Sie einen anderen Namen.'
-      );
+      return setModalContext('slugExists');
     } else if (
       data.some(
         (piece: ArtPieceType) => piece.imageUrl === newArtPieceData.imageUrl
       )
     ) {
-      globalThis.alert(
-        'Die Bilddatei existiert bereits in der Kunstgalerie. Bitte wählen Sie ein anderes Bild aus!'
-      );
-    } else if (
-      newArtPieceData.imageUrl === '/img/preview.png' ||
-      !newArtPieceData
-    ) {
-      alert('Sie können kein Kunstwerk ohne ein Bild hinzufügen!');
+      return setModalContext('imgExists');
     } else {
       const response = await fetch('/api', {
         method: 'POST',
@@ -133,7 +117,7 @@ export default function AdminHomePage({
       });
       if (!response.ok) {
         console.error(response.status);
-        return;
+        return setModalContext('responseError');
       }
       await router.push(`/art-pieces/${newArtPieceData.slug}`);
     }
@@ -150,6 +134,7 @@ export default function AdminHomePage({
         handleSetScrollPercentage={handleSetScrollPercentage}
       />
       <main>
+        <h1>Füge ein neues Kunstwerk hinzu:</h1>
         <AdminArtPieceAddForm
           handleSetFileImageUrl={handleSetFileImageUrl}
           handleSetCurrentFormData={handleSetCurrentFormData}
@@ -161,6 +146,35 @@ export default function AdminHomePage({
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
       <FooterComponent />
+      {modalContext === 'slugExists' && (
+        <DetailsModal title="Ups!" closeAction={() => setModalContext('close')}>
+          Der Name des Kunstwerkes existiert bereits. Bitte wählen Sie einen
+          anderen Namen.
+        </DetailsModal>
+      )}
+      {modalContext === 'imgExists' && (
+        <DetailsModal title="Ups!" closeAction={() => setModalContext('close')}>
+          Das Kunstwerk existiert bereits. Bitte wählen Sie einen Anderes aus.
+        </DetailsModal>
+      )}
+      {modalContext === 'imgTypeNotAllowed' && (
+        <DetailsModal title="Ups!" closeAction={() => setModalContext('close')}>
+          Der Dateityp Ihrer Bilddatei ist nicht erlaubt. Gültige Bilddateitypen
+          sind .png, .jpg/jpeg und .webp Dateien!
+        </DetailsModal>
+      )}
+      {modalContext === 'imgWidthHeight' && (
+        <DetailsModal title="Ups!" closeAction={() => setModalContext('close')}>
+          Deine Bildbreite oder -höhe ist kleiner als 800 Pixel. Bitte wähle ein
+          größeres Bild.
+        </DetailsModal>
+      )}
+      {modalContext === 'responseError' && (
+        <DetailsModal title="Ups!" closeAction={() => setModalContext('close')}>
+          Beim Hochladen ist leider ein Fehler aufgetreten. Bitte versuchen es
+          später noch einmal oder kontaktiere den Entwickler.
+        </DetailsModal>
+      )}
     </>
   );
 }

@@ -92,7 +92,7 @@ export default function ImageCropDialog({
 
   return (
     <div className="fixed inset-0 z-30 bg-black/80">
-      <div className="fixed inset-x-0 bottom-[205px] top-0 w-full">
+      <div className="fixed inset-x-0 bottom-[250px] top-0 w-full">
         <Cropper
           image={fileImageUrl}
           zoom={zoom}
@@ -105,11 +105,11 @@ export default function ImageCropDialog({
           onCropComplete={onCropComplete}
         />
       </div>
-      <div className="fixed bottom-0 h-[205px] w-full bg-black">
-        <div className="flex w-full flex-col items-center p-2 text-white">
+      <div className="fixed bottom-0 h-[250px] w-full bg-primary-color">
+        <div className="flex w-full flex-col items-start gap-2 p-2">
           <label htmlFor="zoom">Zoom:</label>
           <input
-            className="m-1 h-[25px] w-full appearance-none bg-highlight-color opacity-70 outline-none transition-opacity duration-200 hover:opacity-100"
+            className="m-1 h-[25px] w-full appearance-none bg-secondary-color opacity-70 outline-none transition-opacity duration-200 hover:opacity-100"
             type="range"
             id="zoom"
             name="zoom"
@@ -123,7 +123,7 @@ export default function ImageCropDialog({
           />
           <label htmlFor="rotate">Rotate:</label>
           <input
-            className="m-1 h-[25px] w-full appearance-none bg-highlight-color opacity-70 outline-none transition-opacity duration-200 hover:opacity-100"
+            className="m-1 h-[25px] w-full appearance-none bg-secondary-color opacity-70 outline-none transition-opacity duration-200 hover:opacity-100"
             type="range"
             id="rotate"
             name="rotate"
@@ -138,7 +138,7 @@ export default function ImageCropDialog({
           <fieldset className="flex items-center border-none">
             <label htmlFor="aspect-ratio">Select aspect ratio:</label>
             <select
-              className="ml-2 w-auto rounded-[5px] border border-tertiary-color bg-primary-color py-1 text-center text-font-color outline-none"
+              className="ml-2 w-auto rounded-lg border border-tertiary-color bg-primary-color py-1 text-center text-font-color outline-none"
               id="aspect-ratio"
               name="aspect-ratio"
               onChange={onAspectChange}

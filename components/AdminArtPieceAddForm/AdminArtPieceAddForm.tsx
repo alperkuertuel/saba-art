@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ArtPieceType } from 'pages/_app';
 
 import Button from '@/Button/Button';
+import { slugify } from '@/utils/slugify';
 
 import AdminImagePreview from '../AdminEditImagePreview/AdminEditImagePreview';
 
@@ -29,16 +30,8 @@ export default function AdminArtPieceAddForm({
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
     const name = data.name as string;
-    const slug = name
-      .toLowerCase()
-      .trim()
-      .replaceAll('ö', 'oe')
-      .replaceAll('ü', 'ue')
-      .replaceAll('ä', 'ae')
-      .replaceAll('ß', 'ss')
-      .replaceAll(/[^\s\w-]/g, '') // remove any characters which are not word characters
-      .replaceAll(/[\s_-]+/g, '-') // remove whitespace characters, underscores, hyphens with a single hyphen
-      .replaceAll(/^-+|-+$/g, ''); // no hyphens in the beginning or end of the string
+    const slug = slugify(name);
+
     const newArtPiece: ArtPieceType = {
       slug: slug,
       date:
@@ -55,7 +48,7 @@ export default function AdminArtPieceAddForm({
       heightReal: data.heightReal as string,
     };
     onSubmit(newArtPiece);
-    handleSetFileImageUrl('/img/preview.png');
+    handleSetFileImageUrl('/img/crop.png');
     handleSetCurrentFormData({
       ...currentFormData,
       name: '',
@@ -71,8 +64,7 @@ export default function AdminArtPieceAddForm({
   }
   const currentYear = new Date().getFullYear().toString();
   return (
-    <article className="text-xs">
-      <h2>Füge ein neues Kunstwerk hinzu: </h2>
+    <section>
       <AdminImagePreview
         fileImageUrl={fileImageUrl}
         handleSetFileImageUrl={handleSetFileImageUrl}
@@ -83,7 +75,7 @@ export default function AdminArtPieceAddForm({
         autoComplete="on"
       >
         <label
-          className="cursor-pointer rounded-[5px] border border-dotted border-tertiary-color bg-primary-color text-center text-2xl leading-tight text-tertiary-color transition duration-500 hover:bg-tertiary-color hover:text-white focus:bg-tertiary-color focus:text-white active:bg-tertiary-color active:text-white"
+          className="cursor-pointer rounded-lg border border-dotted border-tertiary-color bg-primary-color text-center text-2xl leading-tight text-cool-color transition duration-500 hover:bg-tertiary-color hover:text-white focus:bg-tertiary-color focus:text-white active:bg-tertiary-color active:text-white"
           htmlFor="imageUrl"
         >
           <FontAwesomeIcon icon={faCloudArrowUp} />
@@ -131,10 +123,12 @@ export default function AdminArtPieceAddForm({
           }
           required
         />
-        <label htmlFor="available">
-          Verfügbar:
+        <div className="flex items-center">
+          <label htmlFor="available" className="w-20 items-center">
+            Verfügbar:
+          </label>
           <input
-            className="ml-2 size-[15px] align-top"
+            className="ml-2 size-[15px]"
             style={{ accentColor: 'var(--tertiary-color)' }}
             type="checkbox"
             id="available"
@@ -147,92 +141,102 @@ export default function AdminArtPieceAddForm({
               })
             }
           />
-        </label>
-
-        <fieldset className="border-none">
-          <label htmlFor="category">Kategorie: </label>
-          <select
-            className="my-1 w-auto rounded-[5px] border border-tertiary-color bg-primary-color py-1 text-center text-font-color outline-none"
-            name="category"
-            id="category"
-            defaultValue={currentFormData.category}
-            onChange={(event) =>
-              handleSetCurrentFormData({
-                ...currentFormData,
-                category: event.target.value,
-              })
-            }
-          >
-            <option>Impressionen</option>
-            <option>Naturlandschaften</option>
-            <option>Abstrakte Werke</option>
-            <option>Aktmalerei</option>
-            <option>Andere Kunstformen</option>
-          </select>
-          <br />
-          <label htmlFor="technique">Technik: </label>
-          <select
-            className="my-1 w-auto rounded-[5px] border border-tertiary-color bg-primary-color py-1 text-center text-font-color outline-none"
-            name="technique"
-            id="technique"
-            defaultValue={currentFormData.technique}
-            onChange={(event) =>
-              handleSetCurrentFormData({
-                ...currentFormData,
-                technique: event.target.value,
-              })
-            }
-          >
-            <option>Aquarell</option>
-            <option>Diverse</option>
-            <option>Öl auf Leinwand</option>
-            <option>Öl auf Malpappe</option>
-            <option>Spachtel</option>
-            <option>Spachtel und Pinsel</option>
-            <option>Steinhauerei</option>
-          </select>
+        </div>
+        <fieldset className="flex size-full flex-col gap-2 border-none">
+          <div className="flex items-center justify-start gap-2">
+            <label htmlFor="category" className="w-20">
+              Kategorie:
+            </label>
+            <select
+              className="my-1 w-auto rounded-lg border border-tertiary-color bg-primary-color py-1 text-font-color outline-none"
+              name="category"
+              id="category"
+              defaultValue={currentFormData.category}
+              onChange={(event) =>
+                handleSetCurrentFormData({
+                  ...currentFormData,
+                  category: event.target.value,
+                })
+              }
+            >
+              <option>Impressionen</option>
+              <option>Naturlandschaften</option>
+              <option>Abstrakte Werke</option>
+              <option>Aktmalerei</option>
+              <option>Andere Kunstformen</option>
+            </select>
+          </div>
+          <div className="flex items-center justify-start gap-2">
+            <label htmlFor="technique" className="w-20">
+              Technik:
+            </label>
+            <select
+              className="my-1 w-auto rounded-lg border border-tertiary-color bg-primary-color py-1 text-font-color outline-none"
+              name="technique"
+              id="technique"
+              defaultValue={currentFormData.technique}
+              onChange={(event) =>
+                handleSetCurrentFormData({
+                  ...currentFormData,
+                  technique: event.target.value,
+                })
+              }
+            >
+              <option>Aquarell</option>
+              <option>Diverse</option>
+              <option>Öl auf Leinwand</option>
+              <option>Öl auf Malpappe</option>
+              <option>Spachtel</option>
+              <option>Spachtel und Pinsel</option>
+              <option>Steinhauerei</option>
+            </select>
+          </div>
         </fieldset>
-        <fieldset className="border-none">
-          <label htmlFor="widthReal"> Breite: </label>
-          <input
-            className="w-auto border-b border-tertiary-color bg-primary-color"
-            type="number"
-            min="0"
-            max="400"
-            id="widthReal"
-            name="widthReal"
-            placeholder="cm"
-            defaultValue={currentFormData.widthReal}
-            onChange={(event) =>
-              handleSetCurrentFormData({
-                ...currentFormData,
-                widthReal: event.target.value,
-              })
-            }
-            required
-          />
-          <label htmlFor="heightReal">Höhe: </label>
-          <input
-            className="w-auto border-b border-tertiary-color bg-primary-color"
-            type="number"
-            id="heightReal"
-            name="heightReal"
-            min="0"
-            max="400"
-            placeholder="cm"
-            defaultValue={currentFormData.heightReal}
-            onChange={(event) =>
-              handleSetCurrentFormData({
-                ...currentFormData,
-                heightReal: event.target.value,
-              })
-            }
-            required
-          />
+        <fieldset className="flex gap-6 border-none">
+          <div>
+            <label htmlFor="widthReal">Breite: </label>
+            <input
+              className="w-auto border-b border-tertiary-color bg-primary-color"
+              type="number"
+              min="0"
+              max="400"
+              id="widthReal"
+              name="widthReal"
+              placeholder="cm"
+              defaultValue={currentFormData.widthReal}
+              onChange={(event) =>
+                handleSetCurrentFormData({
+                  ...currentFormData,
+                  widthReal: event.target.value,
+                })
+              }
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="heightReal">Höhe: </label>
+            <input
+              className="w-auto border-b border-tertiary-color bg-primary-color"
+              type="number"
+              id="heightReal"
+              name="heightReal"
+              min="0"
+              max="400"
+              placeholder="cm"
+              defaultValue={currentFormData.heightReal}
+              onChange={(event) =>
+                handleSetCurrentFormData({
+                  ...currentFormData,
+                  heightReal: event.target.value,
+                })
+              }
+              required
+            />
+          </div>
         </fieldset>
         <label htmlFor="description">Füge eine Beschreibung hinzu:</label>
         <textarea
-          className="rounded-[5px] border border-tertiary-color bg-primary-color p-2 text-font-color outline-none"
+          className="rounded-lg border border-tertiary-color bg-primary-color p-2 text-font-color outline-none"
           name="description"
           maxLength={500}
           id="description"
@@ -246,13 +250,13 @@ export default function AdminArtPieceAddForm({
             })
           }
         ></textarea>
-        <span className="text-right">
+        <span className="text-right text-xs">
           {currentFormData && 500 - currentFormData.description?.length}
         </span>
         <Button variant="main" size="base">
           Hinzufügen
         </Button>
       </form>
-    </article>
+    </section>
   );
 }

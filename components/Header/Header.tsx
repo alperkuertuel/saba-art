@@ -3,7 +3,7 @@ import ProgressBar from '@/ProgressBar/ProgressBar';
 
 interface HeaderProperties {
   scrollPercent: number;
-  handleSetScrollPercentage: (scrollPercent: number) => void;
+  handleSetScrollPercentage: (scrollPercent: number) => void | undefined;
 }
 
 export default function Header({
@@ -11,7 +11,7 @@ export default function Header({
   handleSetScrollPercentage,
 }: HeaderProperties) {
   return (
-    <header className="fixed top-0 z-20 w-full ">
+    <header className="fixed top-0 z-20 w-full">
       <Navigation />
       <ProgressBar
         scrollPercent={scrollPercent}

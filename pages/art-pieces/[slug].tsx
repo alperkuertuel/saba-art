@@ -74,12 +74,6 @@ export default function SlugPage({
         handleSetScrollPercentage={handleSetScrollPercentage}
       />
       <main>
-        <Link
-          href="/"
-          className="mb-4 flex items-center justify-center gap-4 rounded-[5px] bg-box-color p-2 text-lg shadow-box-style"
-        >
-          <b>Zur online Kunst-Galerie!</b>
-        </Link>
         <ArtPieceDetails
           _id={foundArtPiece._id}
           imageUrl={foundArtPiece.imageUrl}

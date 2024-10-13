@@ -2,8 +2,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import also n
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Viewer, Worker } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import Image from 'next/image';
@@ -11,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { pdfjs } from 'react-pdf';
 import { Carousel } from 'react-responsive-carousel';
 
-import Button from '@/Button/Button';
+import { DetailsModal } from '@/Modal/Modal';
 
 import pressCarouselData from './press-carousel-data';
 
@@ -60,7 +58,7 @@ export default function PressCarousel() {
           {pressCarouselData.map((article) => (
             <div key={article._id}>
               <Image
-                className="relative h-[50vh] w-full object-cover opacity-40"
+                className="relative h-[50vh] w-full object-cover"
                 src={article.imageUrl}
                 alt={article.name}
                 aria-label={article.name}
@@ -80,36 +78,26 @@ export default function PressCarousel() {
           ))}
         </Carousel>
         {isModalOpen && selectedArticle && (
-          <div className="fixed left-0 top-0 z-30 size-full bg-black/70">
-            <div className="fixed left-1/2 top-1/2 z-30 flex max-h-[90vh] w-[95%] max-w-screen-md -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 overflow-y-auto rounded-[5px] bg-primary-color p-2">
-              <Button
-                variant="main"
-                size="base"
-                additionalStyles="sticky top-0"
-                onClick={closeModalPressSlider}
-              >
-                Schließen <FontAwesomeIcon icon={faXmark} />
-              </Button>
-              <Worker
-                workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
-              >
-                <div className="size-full overflow-hidden">
-                  <div
-                    style={{
-                      border: '1px solid rgba(0, 0, 0, 0.3)',
-                      height: '750px',
-                    }}
-                  >
-                    <Viewer
-                      theme={'light'}
-                      fileUrl={selectedArticle.pdfLink}
-                      plugins={[defaultLayoutPluginInstance]}
-                    />
-                  </div>
+          <DetailsModal closeAction={closeModalPressSlider}>
+            <Worker
+              workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
+            >
+              <div className="size-full overflow-hidden">
+                <div
+                  style={{
+                    border: '1px solid rgba(0, 0, 0, 0.3)',
+                    height: '750px',
+                  }}
+                >
+                  <Viewer
+                    theme={'light'}
+                    fileUrl={selectedArticle.pdfLink}
+                    plugins={[defaultLayoutPluginInstance]}
+                  />
                 </div>
-              </Worker>
-            </div>
-          </div>
+              </div>
+            </Worker>
+          </DetailsModal>
         )}
       </div>
     </section>

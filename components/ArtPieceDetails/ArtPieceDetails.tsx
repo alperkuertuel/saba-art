@@ -21,7 +21,7 @@ export default function ArtPieceDetails({
     <div className="flex max-w-[800px] flex-col gap-4">
       <figure>
         <Image
-          className="pointer-events-none h-auto max-h-[800px] w-full rounded-[5px] object-contain"
+          className="pointer-events-none h-auto max-h-[800px] w-full rounded-lg object-contain"
           src={imageUrl}
           width={1000}
           height={1000}
@@ -31,10 +31,9 @@ export default function ArtPieceDetails({
       </figure>
       <ShareButtons slug={slug} />
       <figcaption className="flex flex-col gap-2">
-        <div className="flex items-center justify-between">
-          <h1>{name}</h1>
-          <p>{date}</p>
-        </div>
+        <h1 className="flex w-full items-center justify-between">
+          {name} <span className="justify-self-end">{date}</span>
+        </h1>
         <p className="flex items-center gap-4">
           Verfügbar:
           {available === true ? (

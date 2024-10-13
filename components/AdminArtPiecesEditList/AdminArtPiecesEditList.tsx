@@ -29,7 +29,6 @@ export default function AdminArtPiecesEditList({
   const [toggleEditForm, setToggleEditForm] = useState(false);
   return (
     <section>
-      <h2>Bearbeite oder lösche Kunstwerke:</h2>
       <CategoryFilter
         handleSetFilteredCategory={handleSetFilteredCategory}
         handleSetActiveCategory={handleSetActiveCategory}

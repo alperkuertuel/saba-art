@@ -16,7 +16,7 @@ export default function Button({
   onClick,
 }: ButtonProps) {
   const baseStyles =
-    'px-4 py-2 rounded-[5px] border-none cursor-pointer focus:outline-none focus:ring-none shadow-box-style ease transition-colors duration-200';
+    'px-4 py-2 rounded-lg border-none cursor-pointer focus:outline-none focus:ring-none shadow-box-style ease transition-colors duration-200';
 
   const variantStyles = {
     main: 'bg-secondary-color hover:bg-tertiary-color',

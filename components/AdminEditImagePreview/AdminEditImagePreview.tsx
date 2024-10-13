@@ -1,7 +1,9 @@
-import Image from "next/image";
-import { useState } from "react";
+import Image from 'next/image';
+import { useState } from 'react';
 
-import ImageCropDialog from "../ImageCropDialog/ImageCropDialog";
+import { DetailsModal } from '@/Modal/Modal';
+
+import ImageCropDialog from '../ImageCropDialog/ImageCropDialog';
 
 interface AdminImagePreviewProperties {
   handleSetFileImageUrl: (url: string) => void;
@@ -21,6 +23,7 @@ export default function AdminEditImagePreview({
   aspect,
 }: AdminImagePreviewProperties) {
   const [selectedImageToCrop, setSelectedImageToCrop] = useState<string>();
+  const [toggle, setToggle] = useState(false);
 
   function onCancel() {
     setSelectedImageToCrop(undefined);
@@ -28,41 +31,50 @@ export default function AdminEditImagePreview({
 
   function onReset() {
     setSelectedImageToCrop(undefined);
-    handleSetFileImageUrl("/img/preview.png");
+    handleSetFileImageUrl('/img/crop.png');
   }
 
   // console.log("fileImageUrl", fileImageUrl);
   // console.log("selectedImageToCrop", selectedImageToCrop);
 
   return (
-    <article className="mx-0 my-6 flex items-center gap-4">
-      {fileImageUrl === "/img/preview.png" ? "Vorschau:" : "Schneide dein Bild zurecht:"}
-      {selectedImageToCrop && (
-        <ImageCropDialog
-          fileImageUrl={fileImageUrl}
-          handleSetFileImageUrl={handleSetFileImageUrl}
-          cropInit={crop}
-          zoomInit={zoom}
-          aspectInit={aspect}
-          rotationInit={rotation}
-          onCancel={onCancel}
-          onReset={onReset}
-          setSelectedImageToCrop={setSelectedImageToCrop}
+    <>
+      <article className="mx-0 my-6 flex items-center gap-4">
+        {fileImageUrl === '/img/crop.png'
+          ? 'Vorschau:'
+          : 'Schneide dein Bild zurecht:'}
+        {selectedImageToCrop && (
+          <ImageCropDialog
+            fileImageUrl={fileImageUrl}
+            handleSetFileImageUrl={handleSetFileImageUrl}
+            cropInit={crop}
+            zoomInit={zoom}
+            aspectInit={aspect}
+            rotationInit={rotation}
+            onCancel={onCancel}
+            onReset={onReset}
+            setSelectedImageToCrop={setSelectedImageToCrop}
+          />
+        )}
+        <Image
+          className="h-[35px] w-auto rounded-lg"
+          src={fileImageUrl}
+          priority={true}
+          alt="image preview and crop functioniality"
+          height={512}
+          width={512}
+          onClick={
+            fileImageUrl === '/img/crop.png'
+              ? () => setToggle(true)
+              : () => setSelectedImageToCrop(fileImageUrl)
+          }
         />
+      </article>
+      {toggle && (
+        <DetailsModal closeAction={() => setToggle(false)} title="Ups!">
+          Du hast leider noch kein Bild ausgewählt.
+        </DetailsModal>
       )}
-      <Image
-        className="h-[50px] w-auto rounded-[5px]"
-        src={fileImageUrl}
-        priority={true}
-        alt="image preview and crop functioniality"
-        height={512}
-        width={512}
-        onClick={
-          fileImageUrl === "/img/preview.png"
-            ? () => alert("Upload an image to start the cropping!")
-            : () => setSelectedImageToCrop(fileImageUrl)
-        }
-      />
-    </article>
+    </>
   );
 }

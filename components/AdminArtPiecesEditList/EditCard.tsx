@@ -31,14 +31,14 @@ export default function EditCard({
   setToggleEditForm,
 }: EditCardProperties) {
   return (
-    <li className="mx-0 my-4 flex w-auto flex-col content-center items-center gap-2 rounded-[5px] bg-box-color p-2 shadow-box-style">
+    <li className="mx-0 my-4 flex w-auto flex-col content-center items-center gap-2 rounded-lg bg-box-color p-2 shadow-box-style">
       <Link
-        className="w-full rounded-[5px]"
+        className="w-full rounded-lg"
         href={`/art-pieces/${slug}`}
         onClick={() => handleSetScrollPercentage(0)}
       >
         <Image
-          className="h-[50px] w-full rounded-[5px] object-cover"
+          className="h-[50px] w-full rounded-lg object-cover"
           src={imageUrl}
           width={1000}
           height={1000}

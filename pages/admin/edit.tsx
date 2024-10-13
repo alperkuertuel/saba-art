@@ -48,14 +48,14 @@ export default function AdminHomePage({
     const artPieceToDelete = data.find(
       (piece: ArtPieceType) => piece._id === id
     );
-    const sureToDelete = confirm(
-      `Sind Sie sicher, dass Sie "${artPieceToDelete?.name}" löschen möchten?`
+    const deleteBoundary = confirm(
+      `Möchten Sie das Kunstwerk ${artPieceToDelete?.name} wirklich löschen?`
     );
-    if (sureToDelete) {
+    if (deleteBoundary) {
       await fetch(`/api/${id}`, {
         method: 'DELETE',
       });
-      alert(`Sie haben "${artPieceToDelete?.name}" erfolgriech gelöscht!`);
+      alert(`Das Kunstwerk ${artPieceToDelete?.name} wurde gelöscht.`);
     }
     const artPiecesWithoutDeletedArtPiece = filteredCategory.filter(
       (piece) => piece._id !== id
@@ -74,6 +74,7 @@ export default function AdminHomePage({
         handleSetScrollPercentage={handleSetScrollPercentage}
       />
       <main>
+        <h1>Bearbeite oder lösche Kunstwerke:</h1>
         <AdminArtPiecesEditList
           handleSetFilteredCategory={handleSetFilteredCategory}
           filteredCategory={filteredCategory}

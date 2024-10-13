@@ -7,11 +7,9 @@
   --primary-color: rgb(250, 250, 250);
   --secondary-color: #dee1e6;
   --tertiary-color: #9ca3af;
-  --cool-color: #b2b3b9;
-  --highlight-color: #dee1e6;
+  --cool-color: rgb(63 63 70);
   --box-color: #ececec;
-  --box-style: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  --box-style: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 *,
@@ -39,21 +37,22 @@ body {
 }
 
 main {
-  margin: 4rem auto;
-  max-width: 768px;
-  padding: 0 0.5rem;
+  margin: 3.5rem auto;
+  max-width: 1024px;
+  padding: 0 1rem;
 }
 
 section {
-  margin: 2rem auto;
+  margin: 1.5rem auto;
 }
 
 h1 {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
+  border-bottom: 1px solid var(--secondary-color);
 }
 
 h2 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 h3 {
@@ -84,8 +83,12 @@ img {
   display: block;
 }
 
+/* adhoc global hack for SVGs except those in articles */
+svg:not(article svg, label svg) {
+  color: var(--cool-color);
+}
+
 input {
-  line-height: 1.5rem;
   outline: none;
   color: var(--font-color);
 }
@@ -106,7 +109,7 @@ input[type='range']::-webkit-slider-thumb {
   appearance: none;
   width: 20px;
   height: 20px;
-  background: var(--tertiary-color);
+  background: var(--cool-color);
   cursor: pointer;
 }
 

@@ -5,6 +5,7 @@ import { ArtPieceType } from 'pages/_app';
 import { useState } from 'react';
 
 import Button from '@/Button/Button';
+import { slugify } from '@/utils/slugify';
 
 interface AdminArtPieceEditFormProperties {
   artPieceToEdit: ArtPieceType;
@@ -27,16 +28,7 @@ export default function AdminArtPieceEditForm({
     const formData = new FormData(form);
     const editData = Object.fromEntries(formData);
     const name = editData.name as string;
-    const slug = name
-      .toLowerCase()
-      .trim()
-      .replaceAll('ö', 'oe')
-      .replaceAll('ü', 'ue')
-      .replaceAll('ä', 'ae')
-      .replaceAll('ß', 'ss')
-      .replaceAll(/[^\s\w-]/g, '') // remove any characters which are not word characters
-      .replaceAll(/[\s_-]+/g, '-') // remove whitespace characters, underscores, hyphens with a single hyphen
-      .replaceAll(/^-+|-+$/g, ''); // no hyphens in the beginning or end of the string
+    const slug = slugify(name);
 
     const editedArtPiece: ArtPieceType = {
       _id: artPieceToEdit._id,
@@ -44,7 +36,7 @@ export default function AdminArtPieceEditForm({
       date:
         typeof editData.date === 'string'
           ? Number.parseInt(editData.date, 10)
-          : artPieceToEdit.date, // ensure date is a number,
+          : artPieceToEdit.date,
       available: editData.available === 'on',
       name: editData.name as string,
       description: editData.description as string,
@@ -94,12 +86,11 @@ export default function AdminArtPieceEditForm({
     } catch (error) {
       console.error(`Etwas ist schief gelaufen!`, error);
     }
-    //location.reload();
     router.push(`/art-pieces/${editedArtPiece.slug}`);
   }
   const currentYear = new Date().getFullYear().toString();
   return (
-    <article className="text-xs">
+    <article>
       <form
         className="grid grid-rows-1 gap-3"
         onSubmit={handleUpdate}
@@ -128,8 +119,10 @@ export default function AdminArtPieceEditForm({
           defaultValue={artPieceToEdit?.date}
           required
         />
-        <label htmlFor="available">
-          Ändere die Verfügbarkeit:
+        <div className="flex items-center">
+          <label htmlFor="available" className="w-20 items-center">
+            Verfügbar:
+          </label>
           <input
             className="ml-2 size-[15px] align-top"
             style={{ accentColor: 'var(--tertiary-color)' }}
@@ -138,64 +131,75 @@ export default function AdminArtPieceEditForm({
             name="available"
             defaultChecked={artPieceToEdit?.available}
           />
-        </label>
-        <fieldset className="border-none">
-          <label htmlFor="category">Kategorie: </label>
-          <select
-            className="my-1 w-auto rounded-[5px] border border-tertiary-color bg-primary-color py-1 text-center text-font-color outline-none"
-            name="category"
-            id="category"
-            defaultValue={artPieceToEdit?.category}
-          >
-            <option>Impressionen</option>
-            <option>Naturlandschaften</option>
-            <option>Abstrakte Werke</option>
-            <option>Aktmalerei</option>
-            <option>Andere Kunstformen</option>
-          </select>
-          <br />
-          <label htmlFor="technique">Technik: </label>
-          <select
-            className="my-1 w-auto rounded-[5px] border border-tertiary-color bg-primary-color py-1 text-center text-font-color outline-none"
-            name="technique"
-            id="technique"
-            defaultValue={artPieceToEdit?.technique}
-          >
-            <option>Öl auf Leinwand</option>
-            <option>Aquarell</option>
-            <option>Steinhauerei</option>
-            <option>Diverse</option>
-          </select>
+        </div>
+        <fieldset className="flex size-full flex-col gap-2 border-none">
+          <div className="flex items-center justify-start gap-2">
+            <label htmlFor="category" className="w-20">
+              Kategorie:
+            </label>
+            <select
+              className="my-1 w-auto rounded-lg border border-tertiary-color bg-primary-color py-1 text-font-color outline-none"
+              name="category"
+              id="category"
+              defaultValue={artPieceToEdit?.category}
+            >
+              <option>Impressionen</option>
+              <option>Naturlandschaften</option>
+              <option>Abstrakte Werke</option>
+              <option>Aktmalerei</option>
+              <option>Andere Kunstformen</option>
+            </select>
+          </div>
+          <div className="flex items-center justify-start gap-2">
+            <label htmlFor="technique" className="w-20">
+              Technik:
+            </label>
+            <select
+              className="my-1 w-auto rounded-lg border border-tertiary-color bg-primary-color py-1 text-font-color outline-none"
+              name="technique"
+              id="technique"
+              defaultValue={artPieceToEdit?.technique}
+            >
+              <option>Öl auf Leinwand</option>
+              <option>Aquarell</option>
+              <option>Steinhauerei</option>
+              <option>Diverse</option>
+            </select>
+          </div>
         </fieldset>
-        <fieldset className="border-none">
-          <label htmlFor="widthReal"> Breite: </label>
-          <input
-            className="w-auto border-b border-tertiary-color bg-primary-color"
-            type="number"
-            min="0"
-            max="400"
-            id="widthReal"
-            name="widthReal"
-            placeholder="cm"
-            defaultValue={artPieceToEdit?.widthReal}
-            required
-          />
-          <label htmlFor="heightReal">Höhe: </label>
-          <input
-            className="w-auto border-b border-tertiary-color bg-primary-color"
-            type="number"
-            min="0"
-            max="400"
-            id="heightReal"
-            name="heightReal"
-            placeholder="cm"
-            defaultValue={artPieceToEdit?.heightReal}
-            required
-          />
+        <fieldset className="flex gap-4 border-none">
+          <div>
+            <label htmlFor="widthReal">Breite: </label>
+            <input
+              className="w-auto border-b border-tertiary-color bg-primary-color"
+              type="number"
+              min="0"
+              max="400"
+              id="widthReal"
+              name="widthReal"
+              placeholder="cm"
+              defaultValue={artPieceToEdit?.widthReal}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="heightReal">Höhe: </label>
+            <input
+              className="w-auto border-b border-tertiary-color bg-primary-color"
+              type="number"
+              min="0"
+              max="400"
+              id="heightReal"
+              name="heightReal"
+              placeholder="cm"
+              defaultValue={artPieceToEdit?.heightReal}
+              required
+            />
+          </div>
         </fieldset>
         <label htmlFor="description">Ändere die Beschreibung:</label>
         <textarea
-          className="rounded-[5px] border border-tertiary-color bg-primary-color p-2 text-font-color outline-none"
+          className="rounded-lg border border-tertiary-color bg-primary-color p-2 text-font-color outline-none"
           name="description"
           maxLength={500}
           id="description"

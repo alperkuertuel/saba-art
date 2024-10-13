@@ -76,7 +76,7 @@ export default function CategoryFilter({
             >
               Alle
               <span
-                className="ease ml-2 rounded-[5px] px-[5px] py-[3px] align-top text-sm transition-colors duration-200"
+                className="ml-2 rounded-lg border border-cool-color px-[5px] py-[3px] text-xs font-bold"
                 style={{
                   backgroundColor:
                     activeCategory === 'Alle' ? 'var(--tertiary-color)' : '',
@@ -95,7 +95,7 @@ export default function CategoryFilter({
               >
                 Neueste Bilder aus {currentYear}
                 <span
-                  className="ml-2 rounded-[5px] px-[5px] py-[3px]"
+                  className="ml-2 rounded-lg border border-cool-color px-[5px] py-[3px] text-xs font-bold"
                   style={{
                     backgroundColor:
                       activeCategory === 'Neue' ? 'var(--tertiary-color)' : '',
@@ -120,7 +120,7 @@ export default function CategoryFilter({
               >
                 {category}
                 <span
-                  className="ml-2 rounded-[5px] px-[5px] py-[3px]"
+                  className="ml-2 rounded-lg border border-cool-color px-[5px] py-[3px] text-xs font-bold"
                   style={{
                     backgroundColor:
                       activeCategory === category
@@ -146,7 +146,7 @@ export default function CategoryFilter({
               >
                 Favoriten
                 <span
-                  className="ml-2 rounded-[5px] px-[5px] py-[3px]"
+                  className="ml-2 rounded-lg border border-cool-color px-[5px] py-[3px] text-xs font-bold"
                   style={{
                     backgroundColor:
                       activeCategory === 'Favoriten'

@@ -17,7 +17,7 @@ export default function DisplayPreviewOptions({
   return (
     <>
       <button
-        className="mr-6 rounded-[5px] p-2 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
+        className="mr-6 rounded-lg p-2 py-1 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
         style={{
           backgroundColor:
             previewoption === 'slideShow'
@@ -32,7 +32,7 @@ export default function DisplayPreviewOptions({
         />
       </button>
       <button
-        className="mr-6 rounded-[5px] p-2 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
+        className="mr-6 rounded-lg p-2 py-1 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
         style={{
           backgroundColor:
             previewoption === '130px'
@@ -47,7 +47,7 @@ export default function DisplayPreviewOptions({
         />
       </button>
       <button
-        className="mr-6 rounded-[5px] p-2 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
+        className="mr-6 rounded-lg p-2 py-1 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
         style={{
           backgroundColor:
             previewoption === '280px'

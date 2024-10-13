@@ -1,9 +1,10 @@
 import Head from 'next/head';
 
+import AboutAndWelcoming from '@/AboutAndWelcoming/AboutAndWelcoming';
+import Logo from '@/AboutAndWelcoming/Logo';
 import FooterComponent from '@/Footer/Footer';
 import Header from '@/Header/Header';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
-import WelcomingAndAbout from '@/WelcomingAndAbout/WelcomingAndAbout';
 
 interface HomePageProperties {
   scrollPercent: number;
@@ -22,11 +23,13 @@ export default function HomePage({
       </Head>
       <Header
         scrollPercent={scrollPercent}
-        handleSetScrollPercentage={handleSetScrollPercentage}
+        handleSetScrollPercentage={() => handleSetScrollPercentage(0)}
       />
       <main>
-        <h1>Home</h1>
-        <WelcomingAndAbout />
+        <h1 className="border-none grayscale">
+          <Logo />
+        </h1>
+        <AboutAndWelcoming />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
       <FooterComponent />

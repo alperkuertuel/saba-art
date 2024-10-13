@@ -15,8 +15,8 @@ type AdminNavigationItem = {
 }[];
 
 const adminNavItems: AdminNavigationItem = [
-  { href: '/admin', label: 'Add Art Pieces', icon: faPlus },
-  { href: '/admin/edit', label: 'Edit Art Pieces', icon: faPencil },
+  { href: '/admin', label: 'Hizufügen', icon: faPlus },
+  { href: '/admin/edit', label: 'Bearbeiten', icon: faPencil },
 ];
 
 interface AdminNavigationProperties {
@@ -32,7 +32,7 @@ export default function AdminNavigation({
   return (
     <li className="relative">
       <button
-        aria-label="Administration"
+        aria-label="open administration dropdown menue"
         onClick={onToggle}
         className={`${
           adminNavItems
@@ -45,14 +45,19 @@ export default function AdminNavigation({
         <FontAwesomeIcon icon={faGear} />
       </button>
       {toggle && (
-        <ul className="absolute left-0 mt-2 space-y-1 rounded bg-primary-color shadow-lg">
+        <ul className="absolute left-0 m-2 space-y-1 rounded bg-primary-color shadow-lg">
           {adminNavItems.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="flex items-center justify-center rounded p-2 hover:bg-secondary-color"
+                className="flex items-center justify-center gap-2 rounded p-2 text-base"
               >
-                <FontAwesomeIcon icon={item.icon} aria-label={item.label} />
+                {item.label}
+                <FontAwesomeIcon
+                  icon={item.icon}
+                  aria-label={item.label}
+                  className="text-sm"
+                />
               </Link>
             </li>
           ))}

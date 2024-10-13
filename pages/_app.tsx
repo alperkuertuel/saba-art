@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { AppProps } from 'next/app';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useSWR, { SWRConfig } from 'swr';
 import useLocalStorageState from 'use-local-storage-state';
 
@@ -49,7 +49,7 @@ export default function App({
     setArtPieceToEdit(artPieceToEdit);
   }
 
-  const [fileImageUrl, setfileImageUrl] = useState<string>('/img/preview.png');
+  const [fileImageUrl, setfileImageUrl] = useState<string>('/img/crop.png');
   function handleSetFileImageUrl(fileImageUrl: string) {
     setfileImageUrl(fileImageUrl);
   }
@@ -69,12 +69,6 @@ export default function App({
     setCurrentFormData(currentFormData);
   }
 
-  /* -- gallery-view states: -- */
-  const [scrollPercent, setScrollPercent] = useState(0);
-  function handleSetScrollPercentage(scrollPercent: number) {
-    setScrollPercent(scrollPercent);
-  }
-
   const [activeCategory, setActiveCategory] = useState<string>();
   function handleSetActiveCategory(activeCategory: string) {
     setActiveCategory(activeCategory);
@@ -85,6 +79,13 @@ export default function App({
     setpreviewoption(previewoption);
   }
 
+  const [scrollPercent, setScrollPercent] = useState(0);
+  function handleSetScrollPercentage(scrollPercent: number) {
+    if (!activeCategory || previewoption !== 'slideShow') {
+      setScrollPercent(scrollPercent);
+    }
+  }
+
   const [likedArtPieces, setLikedArtPieces] = useLocalStorageState<string[]>(
     'likedArtPieces',
     {
@@ -92,9 +93,23 @@ export default function App({
     }
   );
 
-  function handleSetLikedArtPieces(likedArtPieces: string[]) {
-    setLikedArtPieces(likedArtPieces);
+  function handleSetLikedArtPieces(likedArtPieces2: string[]) {
+    setLikedArtPieces(likedArtPieces2);
   }
+
+  useEffect(() => {
+    if (data && data.length > 0 && likedArtPieces.length > 0) {
+      const localStorageLikedArtPieces: string[] = JSON.parse(
+        localStorage.getItem('likedArtPieces') ?? '[]'
+      ) as string[];
+      const favoriteArtPieces = data.filter((piece) =>
+        localStorageLikedArtPieces.includes(piece._id!)
+      );
+      handleSetFilteredCategory(favoriteArtPieces);
+      handleSetActiveCategory('Favoriten');
+      handleSetPreviewOption('130px');
+    }
+  }, [data]);
 
   return (
     <>
