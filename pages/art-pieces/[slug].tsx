@@ -1,64 +1,88 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { ArtPieceType } from 'pages/_app';
+import useSWR from 'swr';
 
 import ArtPieceDetails from '@/ArtPieceDetails/ArtPieceDetails';
 import Header from '@/Header/Header';
-
-import ArtPiece from '../../db/art-piece-modal';
-import databaseConnect from '../../db/connect';
+import LoadingDots from '@/LoadingDots/LoadingDots';
 
 interface ShowDetailsProperties {
   isDarkMode: boolean;
   handleToggleDarkMode: (isDarkMode: boolean) => void;
   scrollPercent: number;
   handleSetScrollPercentage: (scrollPercent: number) => void;
-  foundArtPiece: ArtPieceType | null;
+  // foundArtPiece: ArtPieceType | null;
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  await databaseConnect();
-  const artPieces: ArtPieceType[] = (await ArtPiece.find(
-    {}
-  ).lean()) as ArtPieceType[];
-  const paths = artPieces.map((artPiece) => ({
-    params: { slug: artPiece.slug },
-  }));
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   await databaseConnect();
+//   const artPieces: ArtPieceType[] = (await ArtPiece.find(
+//     {}
+//   ).lean()) as ArtPieceType[];
+//   const paths = artPieces.map((artPiece) => ({
+//     params: { slug: artPiece.slug },
+//   }));
 
-  return {
-    paths,
-    fallback: true,
-  };
-};
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  await databaseConnect();
-  const { slug } = context.params!;
-  const foundArtPiece = (await ArtPiece.findOne({
-    slug,
-  }).lean()) as ArtPieceType;
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   await databaseConnect();
+//   const { slug } = context.params!;
+//   const foundArtPiece = (await ArtPiece.findOne({
+//     slug,
+//   }).lean()) as ArtPieceType;
 
-  // _id field contains a buffer object which needs to be converted to a string
-  if (foundArtPiece) {
-    foundArtPiece._id = foundArtPiece._id?.toString();
-  }
+//   // _id field contains a buffer object which needs to be converted to a string
+//   if (foundArtPiece) {
+//     foundArtPiece._id = foundArtPiece._id?.toString();
+//   }
 
-  return {
-    props: {
-      foundArtPiece: structuredClone(foundArtPiece),
-    },
-    revalidate: 10,
-  };
-};
+//   return {
+//     props: {
+//       foundArtPiece: structuredClone(foundArtPiece),
+//     },
+//     revalidate: 10,
+//   };
+// };
 
 export default function SlugPage({
   isDarkMode,
   handleToggleDarkMode,
   scrollPercent,
   handleSetScrollPercentage,
-  foundArtPiece,
 }: ShowDetailsProperties) {
+  const router = useRouter();
+  const { slug } = router.query;
+  const {
+    data,
+    isLoading,
+    isValidating,
+  }: { data: ArtPieceType[]; isLoading: boolean; isValidating: boolean } =
+    useSWR(`/api`, { fallbackData: [] });
+  const foundArtPiece = data.find(
+    (artpiece: ArtPieceType) => artpiece.slug === slug
+  );
+
+  if (isLoading || !data || !slug || isValidating) {
+    return (
+      <h1 className="fixed top-1/2 inline-block h-screen w-full text-center">
+        Wird geladen <LoadingDots />
+      </h1>
+    );
+  } else if (!foundArtPiece) {
+    return (
+      <h1 className="fixed top-1/2 inline-block h-screen w-full text-center">
+        Error 404 - Das Bild ist nicht vorhanden. <br />{' '}
+        <Link href={`/`}>Gehe zurück zur Galerie!</Link>
+      </h1>
+    );
+  }
   if (!foundArtPiece) {
     return (
       <h1 className="fixed top-1/2 inline-block h-screen w-full text-center">
