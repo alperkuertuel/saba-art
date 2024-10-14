@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { ArtPieceType } from 'types/types';
 
 import Button from '@/Button/Button';
+import { currentYear } from '@/utils/dates';
 import { slugify } from '@/utils/slugify';
 
 interface AdminArtPieceEditFormProperties {
@@ -88,7 +89,7 @@ export default function AdminArtPieceEditForm({
     }
     router.push(`/art-pieces/${editedArtPiece.slug}`);
   }
-  const currentYear = new Date().getFullYear().toString();
+
   return (
     <article>
       <form

@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import { ActiveCategory, ArtPieceType } from 'types/types';
 
 import Button from '@/Button/Button';
+import { currentYear } from '@/utils/dates';
 
 import LoadingDots from '../LoadingDots/LoadingDots';
 
@@ -28,7 +29,7 @@ export default function CategoryFilter({
   const allCategories: string[] = data.map(
     (piece: ArtPieceType) => piece.category
   );
-  const currentYear = new Date().getFullYear();
+
   const uniqueSet = new Set(allCategories);
   const uniqueCatagories = [...uniqueSet] as ActiveCategory[];
 

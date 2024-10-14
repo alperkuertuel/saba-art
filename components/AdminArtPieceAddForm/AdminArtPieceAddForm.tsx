@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ArtPieceType } from 'types/types';
 
 import Button from '@/Button/Button';
+import { currentYear } from '@/utils/dates';
 import { slugify } from '@/utils/slugify';
 
 import AdminImagePreview from '../AdminEditImagePreview/AdminEditImagePreview';
@@ -63,7 +64,7 @@ export default function AdminArtPieceAddForm({
     });
     (form.elements.namedItem('name') as HTMLInputElement).focus();
   }
-  const currentYear = new Date().getFullYear().toString();
+
   return (
     <section>
       <AdminImagePreview
