@@ -2,8 +2,8 @@ import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
-import { ArtPieceType } from 'pages/_app';
 import { useEffect, useState } from 'react';
+import { ArtPieceType, PreviewOption } from 'types/types';
 
 import { DetailsModal } from '@/Modal/Modal';
 
@@ -11,14 +11,14 @@ import ArtPieceDetails from '../ArtPieceDetails/ArtPieceDetails';
 
 interface ArtPieceCategoryProperties {
   filteredCategory: ArtPieceType[];
-  previewoption?: string;
-  likedArtPieces?: string[];
+  previewOption: PreviewOption;
+  likedArtPieces: string[];
   handleSetLikedArtPieces?: (likedArtPieces: string[]) => void;
 }
 
 export default function ArtPiecesPreview({
   filteredCategory,
-  previewoption = '',
+  previewOption,
   likedArtPieces = [],
   handleSetLikedArtPieces,
 }: ArtPieceCategoryProperties) {
@@ -57,7 +57,7 @@ export default function ArtPiecesPreview({
     <section
       className="grid w-full gap-8"
       style={{
-        gridTemplateColumns: `repeat(auto-fit, minmax(${previewoption}, 1fr))`,
+        gridTemplateColumns: `repeat(auto-fit, minmax(${previewOption && '130px'}, 1fr))`,
       }}
     >
       {filteredCategory?.map((artPiece) => (

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { ArtPieceType } from 'pages/_app';
 import React, { useState } from 'react';
 import useSWR from 'swr';
+import { ArtPieceType } from 'types/types';
 
 import AdminArtPieceAddForm from '@/AdminArtPieceAddForm/AdminArtPieceAddForm';
 import FooterComponent from '@/Footer/Footer';

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { useRouter } from 'next/router';
-import { ArtPieceType } from 'pages/_app';
 import { useState } from 'react';
+import { ArtPieceType } from 'types/types';
 
 import Button from '@/Button/Button';
 import { slugify } from '@/utils/slugify';

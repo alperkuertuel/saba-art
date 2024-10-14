@@ -1,6 +1,6 @@
 import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ArtPieceType } from 'pages/_app';
+import { ArtPieceType } from 'types/types';
 
 import Button from '@/Button/Button';
 import { slugify } from '@/utils/slugify';
@@ -33,6 +33,7 @@ export default function AdminArtPieceAddForm({
     const slug = slugify(name);
 
     const newArtPiece: ArtPieceType = {
+      _id: '',
       slug: slug,
       date:
         data.date === 'string'

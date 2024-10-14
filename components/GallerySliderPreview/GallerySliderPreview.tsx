@@ -4,9 +4,9 @@ import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
-import { ArtPieceType } from 'pages/_app';
 import { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
+import { ArtPieceType } from 'types/types';
 
 import { DetailsModal } from '@/Modal/Modal';
 

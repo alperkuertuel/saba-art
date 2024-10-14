@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';
-import { ArtPieceType } from 'pages/_app';
+import { ArtPieceType } from 'types/types';
 
 import ArtPiece from '../../../db/art-piece-modal';
 import databaseConnect from '../../../db/connect';

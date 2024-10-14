@@ -4,15 +4,16 @@ import {
   faTableCellsLarge,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PreviewOption } from 'types/types';
 
 interface DisplayPreviewOptionsProperties {
-  handleSetPreviewOption: (previewOption: string) => void;
-  previewoption: string;
+  handleSetPreviewOption: (previewOption: PreviewOption) => void;
+  previewOption: PreviewOption;
 }
 
 export default function DisplayPreviewOptions({
   handleSetPreviewOption,
-  previewoption,
+  previewOption,
 }: DisplayPreviewOptionsProperties) {
   return (
     <>
@@ -20,7 +21,7 @@ export default function DisplayPreviewOptions({
         className="mr-6 rounded-lg p-2 py-1 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
         style={{
           backgroundColor:
-            previewoption === 'slideShow'
+            previewOption === 'slideShow'
               ? 'var(--tertiary-color)'
               : 'var(--box-color)',
         }}
@@ -35,11 +36,11 @@ export default function DisplayPreviewOptions({
         className="mr-6 rounded-lg p-2 py-1 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
         style={{
           backgroundColor:
-            previewoption === '130px'
+            previewOption === 'smallGrid'
               ? 'var(--tertiary-color)'
               : 'var(--box-color)',
         }}
-        onClick={() => handleSetPreviewOption('130px')}
+        onClick={() => handleSetPreviewOption('smallGrid')}
       >
         <FontAwesomeIcon
           aria-label="show middle size grid and have some tortilla chips"
@@ -50,11 +51,11 @@ export default function DisplayPreviewOptions({
         className="mr-6 rounded-lg p-2 py-1 text-xl shadow-box-style transition-colors duration-100 ease-in-out"
         style={{
           backgroundColor:
-            previewoption === '280px'
+            previewOption === 'mediumGrid'
               ? 'var(--tertiary-color)'
               : 'var(--box-color)',
         }}
-        onClick={() => handleSetPreviewOption('280px')}
+        onClick={() => handleSetPreviewOption('mediumGrid')}
       >
         <FontAwesomeIcon
           aria-label="show large grid and listen to 2001 album by Dr. Dre"

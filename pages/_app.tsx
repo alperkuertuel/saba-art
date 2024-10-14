@@ -6,29 +6,17 @@ import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import useSWR, { SWRConfig } from 'swr';
+import { ActiveCategory, ArtPieceType, PreviewOption } from 'types/types';
 import useLocalStorageState from 'use-local-storage-state';
 
-export interface ArtPieceType {
-  _id?: string;
-  slug: string;
-  imageUrl: string;
-  name: string;
-  date: number;
-  available: boolean;
-  description: string;
-  category: string;
-  technique: string;
-  widthReal: string;
-  heightReal: string;
-}
-interface MyAppProps extends AppProps {
+const fetcher = (url: string) => fetch(url).then((response) => response.json());
+
+export interface MyAppProps extends AppProps {
   pageProps: {
     session: Session;
     [key: string]: unknown;
   };
 }
-
-const fetcher = (url: string) => fetch(url).then((response) => response.json());
 
 export default function App({
   Component,
@@ -69,19 +57,20 @@ export default function App({
     setCurrentFormData(currentFormData);
   }
 
-  const [activeCategory, setActiveCategory] = useState<string>();
-  function handleSetActiveCategory(activeCategory: string) {
+  const [activeCategory, setActiveCategory] = useState<ActiveCategory>();
+  function handleSetActiveCategory(activeCategory: ActiveCategory) {
     setActiveCategory(activeCategory);
   }
 
-  const [previewoption, setpreviewoption] = useState('130px');
-  function handleSetPreviewOption(previewoption: string) {
-    setpreviewoption(previewoption);
+  const [previewOption, setPreviewOption] =
+    useState<PreviewOption>('smallGrid');
+  function handleSetPreviewOption(previewOption: PreviewOption) {
+    setPreviewOption(previewOption);
   }
 
   const [scrollPercent, setScrollPercent] = useState(0);
   function handleSetScrollPercentage(scrollPercent: number) {
-    if (!activeCategory || previewoption !== 'slideShow') {
+    if (!activeCategory || previewOption !== 'slideShow') {
       setScrollPercent(scrollPercent);
     }
   }
@@ -93,8 +82,8 @@ export default function App({
     }
   );
 
-  function handleSetLikedArtPieces(likedArtPieces2: string[]) {
-    setLikedArtPieces(likedArtPieces2);
+  function handleSetLikedArtPieces(likedArtPieces: string[]) {
+    setLikedArtPieces(likedArtPieces);
   }
 
   useEffect(() => {
@@ -103,12 +92,13 @@ export default function App({
         localStorage.getItem('likedArtPieces') ?? '[]'
       ) as string[];
       const favoriteArtPieces = data.filter((piece) =>
-        localStorageLikedArtPieces.includes(piece._id!)
+        localStorageLikedArtPieces.includes(piece._id)
       );
       handleSetFilteredCategory(favoriteArtPieces);
       handleSetActiveCategory('Favoriten');
-      handleSetPreviewOption('130px');
+      handleSetPreviewOption('smallGrid');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -156,7 +146,7 @@ export default function App({
             fileImageUrl={fileImageUrl}
             scrollPercent={scrollPercent}
             activeCategory={activeCategory}
-            previewoption={previewoption}
+            previewOption={previewOption}
             currentFormData={currentFormData}
             handleToggleDarkMode={handleToggleDarkMode}
             handleSetPreviewOption={handleSetPreviewOption}

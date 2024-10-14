@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ArtPieceType } from 'pages/_app';
 import useSWR from 'swr';
+import { ArtPieceType } from 'types/types';
 
 import ArtPieceDetails from '@/ArtPieceDetails/ArtPieceDetails';
 import Header from '@/Header/Header';
