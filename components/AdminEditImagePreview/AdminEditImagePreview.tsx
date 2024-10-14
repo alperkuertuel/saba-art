@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-import { DetailsModal } from '@/Modal/Modal';
+import { InfoModal } from '@/Modal/DetailsModal';
 
 import ImageCropDialog from '../ImageCropDialog/ImageCropDialog';
 
@@ -71,9 +71,9 @@ export default function AdminEditImagePreview({
         />
       </article>
       {toggle && (
-        <DetailsModal closeAction={() => setToggle(false)} title="Ups!">
+        <InfoModal closeAction={() => setToggle(false)} title="Ups!">
           Du hast leider noch kein Bild ausgewählt.
-        </DetailsModal>
+        </InfoModal>
       )}
     </>
   );

@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { ArtPieceType } from 'types/types';
 
-import { DetailsModal } from '@/Modal/Modal';
+import { InfoModal } from '@/Modal/DetailsModal';
 
 import ArtPieceDetails from '../ArtPieceDetails/ArtPieceDetails';
 
@@ -102,7 +102,7 @@ export default function GallerySliderPreview({
           ))}
         </Carousel>
         {isModalOpen && selectedArtPiece && (
-          <DetailsModal closeAction={closeModalGallerySlider}>
+          <InfoModal closeAction={closeModalGallerySlider}>
             <ArtPieceDetails
               _id={selectedArtPiece._id}
               imageUrl={selectedArtPiece.imageUrl}
@@ -116,7 +116,7 @@ export default function GallerySliderPreview({
               heightReal={selectedArtPiece.heightReal}
               slug={selectedArtPiece.slug}
             />
-          </DetailsModal>
+          </InfoModal>
         )}
       </div>
     </section>

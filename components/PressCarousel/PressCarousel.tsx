@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { pdfjs } from 'react-pdf';
 import { Carousel } from 'react-responsive-carousel';
 
-import { DetailsModal } from '@/Modal/Modal';
+import { InfoModal } from '@/Modal/DetailsModal';
 
 import pressCarouselData from './press-carousel-data';
 
@@ -78,7 +78,7 @@ export default function PressCarousel({ isDarkMode }: { isDarkMode: boolean }) {
           ))}
         </Carousel>
         {isModalOpen && selectedArticle && (
-          <DetailsModal closeAction={closeModalPressSlider}>
+          <InfoModal closeAction={closeModalPressSlider}>
             <Worker
               workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
             >
@@ -97,7 +97,7 @@ export default function PressCarousel({ isDarkMode }: { isDarkMode: boolean }) {
                 </div>
               </div>
             </Worker>
-          </DetailsModal>
+          </InfoModal>
         )}
       </div>
     </section>

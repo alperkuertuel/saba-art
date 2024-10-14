@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { ArtPieceType, PreviewOption } from 'types/types';
 
-import { DetailsModal } from '@/Modal/Modal';
+import { InfoModal } from '@/Modal/DetailsModal';
 
 import ArtPieceDetails from '../ArtPieceDetails/ArtPieceDetails';
 
@@ -102,7 +102,7 @@ export default function ArtPiecesPreview({
         </article>
       ))}
       {isModalOpen && selectedArtPiece && (
-        <DetailsModal closeAction={closeModalFromGridView}>
+        <InfoModal closeAction={closeModalFromGridView}>
           <ArtPieceDetails
             _id={selectedArtPiece._id}
             imageUrl={selectedArtPiece.imageUrl}
@@ -116,7 +116,7 @@ export default function ArtPiecesPreview({
             heightReal={selectedArtPiece.heightReal}
             slug={selectedArtPiece.slug}
           />
-        </DetailsModal>
+        </InfoModal>
       )}
     </section>
   );

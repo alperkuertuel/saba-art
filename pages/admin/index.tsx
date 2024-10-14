@@ -8,7 +8,7 @@ import { ArtPieceType } from 'types/types';
 import AdminArtPieceAddForm from '@/AdminArtPieceAddForm/AdminArtPieceAddForm';
 import FooterComponent from '@/Footer/Footer';
 import Header from '@/Header/Header';
-import { DetailsModal } from '@/Modal/Modal';
+import { InfoModal } from '@/Modal/DetailsModal';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
 interface AdminHomePageProperties {
@@ -153,33 +153,33 @@ export default function AdminHomePage({
       </main>
       <FooterComponent />
       {modalContext === 'slugExists' && (
-        <DetailsModal title="Ups!" closeAction={() => setModalContext('close')}>
+        <InfoModal title="Ups!" closeAction={() => setModalContext('close')}>
           Der Name des Kunstwerkes existiert bereits. Bitte wählen Sie einen
           anderen Namen.
-        </DetailsModal>
+        </InfoModal>
       )}
       {modalContext === 'imgExists' && (
-        <DetailsModal title="Ups!" closeAction={() => setModalContext('close')}>
+        <InfoModal title="Ups!" closeAction={() => setModalContext('close')}>
           Das Kunstwerk existiert bereits. Bitte wählen Sie einen Anderes aus.
-        </DetailsModal>
+        </InfoModal>
       )}
       {modalContext === 'imgTypeNotAllowed' && (
-        <DetailsModal title="Ups!" closeAction={() => setModalContext('close')}>
+        <InfoModal title="Ups!" closeAction={() => setModalContext('close')}>
           Der Dateityp Ihrer Bilddatei ist nicht erlaubt. Gültige Bilddateitypen
           sind .png, .jpg/jpeg und .webp Dateien!
-        </DetailsModal>
+        </InfoModal>
       )}
       {modalContext === 'imgWidthHeight' && (
-        <DetailsModal title="Ups!" closeAction={() => setModalContext('close')}>
+        <InfoModal title="Ups!" closeAction={() => setModalContext('close')}>
           Deine Bildbreite oder -höhe ist kleiner als 800 Pixel. Bitte wähle ein
           größeres Bild.
-        </DetailsModal>
+        </InfoModal>
       )}
       {modalContext === 'responseError' && (
-        <DetailsModal title="Ups!" closeAction={() => setModalContext('close')}>
+        <InfoModal title="Ups!" closeAction={() => setModalContext('close')}>
           Beim Hochladen ist leider ein Fehler aufgetreten. Bitte versuchen es
           später noch einmal oder kontaktiere den Entwickler.
-        </DetailsModal>
+        </InfoModal>
       )}
     </>
   );
