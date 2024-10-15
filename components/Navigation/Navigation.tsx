@@ -43,7 +43,7 @@ export default function Navigation({
   const router = useRouter();
 
   return (
-    <nav className="size-full border-b border-cool-color bg-primary-color">
+    <nav className="size-full border-b border-secondary-color bg-primary-color">
       <ul className="flex items-center justify-between text-xl">
         {session && session.user?.role === 'Admin' && (
           <AdminNavigation

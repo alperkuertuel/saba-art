@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { pdfjs } from 'react-pdf';
 import { Carousel } from 'react-responsive-carousel';
 
-import { InfoModal } from '@/Modal/DetailsModal';
+import { InfoModal } from '@/Modal/InfoModal';
 
 import pressCarouselData from './press-carousel-data';
 

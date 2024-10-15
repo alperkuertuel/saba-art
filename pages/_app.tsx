@@ -91,9 +91,14 @@ export default function App({
       const localStorageLikedArtPieces: string[] = JSON.parse(
         localStorage.getItem('likedArtPieces') ?? '[]'
       ) as string[];
-      const favoriteArtPieces = data.filter((piece) =>
-        localStorageLikedArtPieces.includes(piece._id)
-      );
+
+      const favoriteArtPieces = data.filter((piece) => {
+        const pieceId = piece?._id;
+        return (
+          typeof pieceId === 'string' &&
+          localStorageLikedArtPieces.includes(pieceId)
+        );
+      });
       handleSetFilteredCategory(favoriteArtPieces);
       handleSetActiveCategory('Favoriten');
       handleSetPreviewOption('smallGrid');

@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import { ActiveCategory, ArtPieceType } from 'types/types';
 
 import Button from '@/Button/Button';
-import { currentYear } from '@/utils/dates';
+import { currentYear } from '@/utils/utils';
 
 import LoadingDots from '../LoadingDots/LoadingDots';
 
