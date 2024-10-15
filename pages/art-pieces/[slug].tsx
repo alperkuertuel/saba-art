@@ -64,7 +64,7 @@ export default function SlugPage({
     isLoading,
     isValidating,
   }: { data: ArtPieceType[]; isLoading: boolean; isValidating: boolean } =
-    useSWR(`/api`, { fallbackData: [] });
+    useSWR('/api', { fallbackData: [] });
   const foundArtPiece = data.find(
     (artpiece: ArtPieceType) => artpiece.slug === slug
   );
