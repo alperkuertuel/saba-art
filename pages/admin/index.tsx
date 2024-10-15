@@ -8,7 +8,7 @@ import { ArtPieceType } from 'types/types';
 import AdminArtPieceAddForm from '@/AdminArtPieceAddForm/AdminArtPieceAddForm';
 import FooterComponent from '@/Footer/Footer';
 import Header from '@/Header/Header';
-import { InfoModal } from '@/Modal/DetailsModal';
+import { InfoModal } from '@/Modal/InfoModal';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
 interface AdminHomePageProperties {
@@ -101,15 +101,16 @@ export default function AdminHomePage({
   }
 
   async function handleAddArtPiece(newArtPieceData: ArtPieceType) {
-    if (
-      data.some((piece: ArtPieceType) => piece.slug === newArtPieceData.slug)
-    ) {
+    const nameExists = data.some(
+      (piece: ArtPieceType) => piece.slug === newArtPieceData.slug
+    );
+    const imageExists = data.some(
+      (piece: ArtPieceType) => piece.imageUrl === newArtPieceData.imageUrl
+    );
+
+    if (nameExists) {
       return setModalContext('slugExists');
-    } else if (
-      data.some(
-        (piece: ArtPieceType) => piece.imageUrl === newArtPieceData.imageUrl
-      )
-    ) {
+    } else if (imageExists) {
       return setModalContext('imgExists');
     } else {
       const response = await fetch('/api', {
@@ -177,8 +178,7 @@ export default function AdminHomePage({
       )}
       {modalContext === 'responseError' && (
         <InfoModal title="Ups!" closeAction={() => setModalContext('close')}>
-          Beim Hochladen ist leider ein Fehler aufgetreten. Bitte versuchen es
-          später noch einmal oder kontaktiere den Entwickler.
+          Beim Hochladen ist leider ein Fehler aufgetreten!
         </InfoModal>
       )}
     </>

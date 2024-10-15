@@ -49,18 +49,9 @@ export default function AdminHomePage({
   }
 
   async function handleDeleteArtPiece(id: string) {
-    const artPieceToDelete = data.find(
-      (piece: ArtPieceType) => piece._id === id
-    );
-    const deleteBoundary = confirm(
-      `Möchten Sie das Kunstwerk ${artPieceToDelete?.name} wirklich löschen?`
-    );
-    if (deleteBoundary) {
-      await fetch(`/api/${id}`, {
-        method: 'DELETE',
-      });
-      alert(`Das Kunstwerk ${artPieceToDelete?.name} wurde gelöscht.`);
-    }
+    await fetch(`/api/${id}`, {
+      method: 'DELETE',
+    });
     const artPiecesWithoutDeletedArtPiece = filteredCategory.filter(
       (piece) => piece._id !== id
     );

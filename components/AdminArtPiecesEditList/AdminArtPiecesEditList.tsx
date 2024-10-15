@@ -39,7 +39,7 @@ export default function AdminArtPiecesEditList({
           <Fragment key={_id}>
             <EditCard
               slug={slug}
-              _id={_id}
+              _id={_id!}
               imageUrl={imageUrl}
               name={name}
               handleSetScrollPercentage={handleSetScrollPercentage}

@@ -1,5 +1,5 @@
 export interface ArtPieceType {
-  _id: string;
+  _id?: string;
   slug: string;
   imageUrl: string;
   name: string;

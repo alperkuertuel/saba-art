@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-import { InfoModal } from '@/Modal/DetailsModal';
+import { InfoModal } from '@/Modal/InfoModal';
 
 import ImageCropDialog from '../ImageCropDialog/ImageCropDialog';
 

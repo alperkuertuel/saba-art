@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { ArtPieceType, PreviewOption } from 'types/types';
 
-import { InfoModal } from '@/Modal/DetailsModal';
+import { InfoModal } from '@/Modal/InfoModal';
 
 import ArtPieceDetails from '../ArtPieceDetails/ArtPieceDetails';
 

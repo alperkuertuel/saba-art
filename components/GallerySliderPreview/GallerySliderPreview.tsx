@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { ArtPieceType } from 'types/types';
 
-import { InfoModal } from '@/Modal/DetailsModal';
+import { InfoModal } from '@/Modal/InfoModal';
 
 import ArtPieceDetails from '../ArtPieceDetails/ArtPieceDetails';
 

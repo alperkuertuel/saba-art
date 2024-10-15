@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ArtPieceType } from 'types/types';
 
 import Button from '@/Button/Button';
-import { currentYear } from '@/utils/dates';
-import { slugify } from '@/utils/slugify';
+import { currentYear, slugify } from '@/utils/utils';
 
 import AdminImagePreview from '../AdminEditImagePreview/AdminEditImagePreview';
 
@@ -34,7 +33,6 @@ export default function AdminArtPieceAddForm({
     const slug = slugify(name);
 
     const newArtPiece: ArtPieceType = {
-      _id: '',
       slug: slug,
       date:
         data.date === 'string'
