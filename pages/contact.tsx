@@ -2,6 +2,7 @@ import Head from 'next/head';
 
 import FooterComponent from '@/Footer/Footer';
 import Header from '@/Header/Header';
+import KontaktFormular from '@/Kontakt/KontaktFormular';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
 interface PressPageProperties {
@@ -31,6 +32,7 @@ export default function PressPage({
       />
       <main>
         <h1>Kontakt</h1>
+        <KontaktFormular />
         <ScrollUp scrollPercent={scrollPercent} />
       </main>
       <FooterComponent />

@@ -28,7 +28,7 @@ const navItems: NavigationItems = [
   { href: '/', label: 'Home' },
   { href: '/gallery', label: 'Galerie' },
   { href: '/press', label: 'Presse' },
-  // TODO: { href: '/contact', label: 'Kontakt' },
+  { href: '/contact', label: 'Kontakt' },
 ];
 
 export default function Navigation({
