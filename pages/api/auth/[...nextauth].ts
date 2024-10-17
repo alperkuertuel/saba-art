@@ -45,7 +45,10 @@ interface CustomToken extends JWT {
 }
 
 function getUserRoleFromDatabase(email: string) {
-  if (email === process.env.ADMIN_MAIL || email === process.env.ADMIN_2) {
+  if (
+    email === process.env.ADMIN_MAIL ||
+    email === process.env.ANOTHER_ADMIN_MAIL
+  ) {
     return 'Admin';
   }
   return 'Viewer';

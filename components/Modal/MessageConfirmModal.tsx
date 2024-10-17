@@ -35,7 +35,7 @@ export const MessageConfirmModal = ({
         <div className="flex w-full cursor-pointer justify-end text-xl">
           <FontAwesomeIcon icon={faCircleXmark} onClick={closeAction} />
         </div>
-        {title && <h1 className="border-none">{title}</h1>}
+        {title && <h1 className="m-0 border-none">{title}</h1>}
         {children}
         <div className="flex justify-center gap-2">
           <Button

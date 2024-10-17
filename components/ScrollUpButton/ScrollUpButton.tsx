@@ -23,7 +23,7 @@ export default function ScrollUpButton({ scrollPercent }: ScrollUpProperties) {
           aria-label="nach oben scrollen"
         >
           <FontAwesomeIcon
-            className="p-3 text-2xl text-font-color"
+            className="p-3 text-xl text-font-color"
             icon={faChevronUp}
             onClick={() => window.scrollTo(0, 0)}
           />

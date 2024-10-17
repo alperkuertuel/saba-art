@@ -13,16 +13,12 @@ export function slugify(name: string): string {
     .replaceAll(/^-+|-+$/g, ''); // no hyphens in the beginning or end of the string
 }
 
-export function timeOut(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 export const currentYear = new Date().getFullYear();
 
 export function isAdmin(session: Session): boolean {
   return (
     session.user.role === 'Admin' &&
     (session.user.email === process.env.ADMIN_MAIL ||
-      session.user.email === process.env.ADMIN_2)
+      session.user.email === process.env.ANOTHER_ADMIN_MAIL)
   );
 }
