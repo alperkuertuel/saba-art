@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Session } from 'next-auth';
 import { getServerSession } from 'next-auth/next';
-import { ArtPieceType } from 'pages/_app';
+import { ArtPieceType } from 'types/types';
+
+import { isAdmin } from '@/utils/utils';
 
 import ArtPiece from '../../db/art-piece-modal';
 import databaseConnect from '../../db/connect';
@@ -13,50 +14,60 @@ export const config = {
   },
 };
 
+// GET UND POST
+
 export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
   await databaseConnect();
+  const session = await getServerSession(request, response, authOptions);
 
-  // todo: CORS?
   if (request.method === 'GET') {
-    const artPieces = await ArtPiece.find().setOptions({ lean: true });
-    return response.status(200).json(artPieces);
+    try {
+      const artPieces = await ArtPiece.find().setOptions({ lean: true });
+      if (!artPieces) {
+        return response.status(404).json({ status: 'Not Found' });
+      }
+      return response.status(200).json(artPieces);
+    } catch (error) {
+      console.error('Error:', error);
+      if (error instanceof Error && error.message === 'Request timed out') {
+        return response.status(408).json({ message: 'Request timed out' });
+      }
+      return response
+        .status(500)
+        .json({ message: 'Error fetching art piece', error });
+    }
   }
 
   switch (request.method) {
     case 'POST': {
+      if (!session) {
+        return response.status(401).json({
+          message: '401 Unauthorized: You are not authorized!',
+        });
+      }
       try {
-        const session: Session | null = await getServerSession(
-          request,
-          response,
-          authOptions
-        );
-        if (!session || session.user.role !== 'Admin') {
-          return response.status(401).json({
+        if (!isAdmin(session)) {
+          return response.status(403).json({
             message:
-              'Status 401: You are not authorized! Only administrators can add pictures!',
+              '403 FORBIDDEN: You do not have permission to perform this action.',
           });
         }
-        if (
-          (session.user.role === 'Admin' &&
-            session.user.email === process.env.ADMIN_MAIL) ||
-          (session.user.role === 'Admin' &&
-            session.user.email === process.env.ADMIN_2)
-        ) {
-          const newArtPieceData: ArtPieceType = request.body as ArtPieceType;
-          await ArtPiece.create(newArtPieceData);
-          return response.status(201).json(newArtPieceData);
-        }
+        const newArtPieceData: ArtPieceType = request.body as ArtPieceType;
+        await ArtPiece.create(newArtPieceData);
+        return response.status(201).json(newArtPieceData);
       } catch (error) {
         console.error('Error:', error);
-        return response.status(500).json({ error: 'Error!' });
+        return response.status(500).json({ error: 'Error adding art piece!' });
       }
-      break;
     }
     default: {
-      response.status(405).json({ error: 'Method not allowed' });
+      return response.status(405).json({
+        error:
+          '405 METHOD NOT ALLOWED: Something went wrong with your request!',
+      });
     }
   }
 }

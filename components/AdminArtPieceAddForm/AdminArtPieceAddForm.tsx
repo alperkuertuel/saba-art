@@ -1,9 +1,9 @@
 import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ArtPieceType } from 'pages/_app';
+import { ArtPieceType } from 'types/types';
 
 import Button from '@/Button/Button';
-import { slugify } from '@/utils/slugify';
+import { currentYear, slugify } from '@/utils/utils';
 
 import AdminImagePreview from '../AdminEditImagePreview/AdminEditImagePreview';
 
@@ -62,7 +62,7 @@ export default function AdminArtPieceAddForm({
     });
     (form.elements.namedItem('name') as HTMLInputElement).focus();
   }
-  const currentYear = new Date().getFullYear().toString();
+
   return (
     <section>
       <AdminImagePreview

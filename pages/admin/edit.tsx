@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import Head from 'next/head';
-import { ArtPieceType } from 'pages/_app';
 import useSWR from 'swr';
+import { ActiveCategory, ArtPieceType } from 'types/types';
 
 import AdminArtPiecesEditList from '@/AdminArtPiecesEditList/AdminArtPiecesEditList';
 import FooterComponent from '@/Footer/Footer';
@@ -14,8 +14,8 @@ interface AdminHomePageProperties {
   artPieceToEdit: ArtPieceType;
   handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;
   filteredCategory: ArtPieceType[];
-  activeCategory: string;
-  handleSetActiveCategory: (activeCategory: string) => void;
+  activeCategory: ActiveCategory;
+  handleSetActiveCategory: (activeCategory: ActiveCategory) => void;
   handleSetArtPieceToEdit: (artPieceToEdit: ArtPieceType) => void;
   fileImageUrl: string;
   handleSetFileImageUrl: (fileImageUrl: string | ArrayBuffer | null) => void;
@@ -42,25 +42,16 @@ export default function AdminHomePage({
   });
 
   function handleArtPieceToEdit(id: string) {
-    const selectedArtPieceToEdit = data.find(
+    const selectedArtPieceToEdit: ArtPieceType = data.find(
       (piece: ArtPieceType) => piece._id === id
-    );
-    handleSetArtPieceToEdit(selectedArtPieceToEdit!);
+    )!;
+    handleSetArtPieceToEdit(selectedArtPieceToEdit);
   }
 
   async function handleDeleteArtPiece(id: string) {
-    const artPieceToDelete = data.find(
-      (piece: ArtPieceType) => piece._id === id
-    );
-    const deleteBoundary = confirm(
-      `Möchten Sie das Kunstwerk ${artPieceToDelete?.name} wirklich löschen?`
-    );
-    if (deleteBoundary) {
-      await fetch(`/api/${id}`, {
-        method: 'DELETE',
-      });
-      alert(`Das Kunstwerk ${artPieceToDelete?.name} wurde gelöscht.`);
-    }
+    await fetch(`/api/${id}`, {
+      method: 'DELETE',
+    });
     const artPiecesWithoutDeletedArtPiece = filteredCategory.filter(
       (piece) => piece._id !== id
     );

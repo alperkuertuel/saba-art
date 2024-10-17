@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
 
-import { MessageModal } from '@/Modal/Modal';
+import { MessageConfirmModal } from '@/Modal/MessageConfirmModal';
 
 export default function Footer() {
   const { data: session } = useSession();
@@ -39,12 +39,12 @@ export default function Footer() {
         </ul>
       </footer>
       {toggle && (
-        <MessageModal
+        <MessageConfirmModal
           closeAction={() => setToggle(false)}
           confirmAction={() => void signOut()}
         >
           Willst du dich wirklich ausloggen?
-        </MessageModal>
+        </MessageConfirmModal>
       )}
     </>
   );

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { ActiveCategory, ArtPieceType, PreviewOption } from 'types/types';
 
 import ArtPiecesPreview from '@/ArtPiecesPreview/ArtPiecesPreview';
 import CategoryFilter from '@/CategoryFilter/CategoryFilter';
@@ -8,20 +9,18 @@ import GallerySliderPreview from '@/GallerySliderPreview/GallerySliderPreview';
 import Header from '@/Header/Header';
 import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
-import { ArtPieceType } from './_app';
-
 interface GalleryPageProperties {
   isDarkMode: boolean;
   handleToggleDarkMode: (isDarkMode: boolean) => void;
   handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;
   filteredCategory: ArtPieceType[];
-  activeCategory: string;
-  handleSetActiveCategory: (activeCategory: string) => void;
+  activeCategory: ActiveCategory;
+  handleSetActiveCategory: (activeCategory: ActiveCategory) => void;
   fileImageUrl: string;
   handleSetFileImageUrl: (fileImageUrl: string | ArrayBuffer | null) => void;
   scrollPercent: number;
-  previewoption: string;
-  handleSetPreviewOption: (previewoption: string) => void;
+  previewOption: PreviewOption;
+  handleSetPreviewOption: (previewOption: PreviewOption) => void;
   likedArtPieces: string[];
   handleSetLikedArtPieces: (likedArtPieces: string[]) => void;
   handleSetScrollPercentage: (scrollPercent: number) => void;
@@ -38,7 +37,7 @@ export default function GalleryPage({
   handleSetScrollPercentage,
   handleSetActiveCategory,
   activeCategory,
-  previewoption,
+  previewOption,
   handleSetPreviewOption,
   likedArtPieces,
   handleSetLikedArtPieces,
@@ -71,22 +70,22 @@ export default function GalleryPage({
           {activeCategory && (
             <DisplayPreviewOptions
               handleSetPreviewOption={handleSetPreviewOption}
-              previewoption={previewoption}
+              previewOption={previewOption}
             />
           )}
-          {activeCategory && previewoption === 'slideShow' && (
+          {activeCategory && previewOption === 'slideShow' && (
             <GallerySliderPreview
               filteredCategory={filteredCategory}
               likedArtPieces={likedArtPieces}
               handleSetLikedArtPieces={handleSetLikedArtPieces}
             />
           )}
-          {activeCategory && previewoption != 'slideShow' && (
+          {activeCategory && previewOption != 'slideShow' && (
             <ArtPiecesPreview
               filteredCategory={filteredCategory}
               likedArtPieces={likedArtPieces}
               handleSetLikedArtPieces={handleSetLikedArtPieces}
-              previewoption={previewoption}
+              previewOption={previewOption}
             />
           )}
         </section>

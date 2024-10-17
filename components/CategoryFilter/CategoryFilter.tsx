@@ -1,15 +1,16 @@
 import { useSession } from 'next-auth/react';
-import { ArtPieceType } from 'pages/_app';
 import useSWR from 'swr';
+import { ActiveCategory, ArtPieceType } from 'types/types';
 
 import Button from '@/Button/Button';
+import { currentYear } from '@/utils/utils';
 
 import LoadingDots from '../LoadingDots/LoadingDots';
 
 interface CategoryFilterProperties {
   handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;
-  handleSetActiveCategory: (activecategory: string) => void;
-  activeCategory: string;
+  handleSetActiveCategory: (activeCategory: ActiveCategory) => void;
+  activeCategory: ActiveCategory;
   likedArtPieces?: string[];
 }
 
@@ -24,14 +25,15 @@ export default function CategoryFilter({
     useSWR('/api', {
       fallbackData: [],
     });
+
   const allCategories: string[] = data.map(
     (piece: ArtPieceType) => piece.category
   );
-  const currentYear = new Date().getFullYear();
-  const uniqueSet = new Set(allCategories);
-  const uniqueCatagories = [...uniqueSet];
 
-  function handleFilteredCategories(category: string) {
+  const uniqueSet = new Set(allCategories);
+  const uniqueCatagories = [...uniqueSet] as ActiveCategory[];
+
+  function handleFilteredCategories(category: ActiveCategory) {
     if (uniqueCatagories.includes(category)) {
       const filter = data.filter(
         (piece: ArtPieceType) => piece.category === category

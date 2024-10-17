@@ -1,7 +1,7 @@
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { ArtPieceType } from 'pages/_app';
+import { ActiveCategory, ArtPieceType, PreviewOption } from 'types/types';
 
 import ArtPiecesPreview from '@/ArtPiecesPreview/ArtPiecesPreview';
 import CategoryFilter from '@/CategoryFilter/CategoryFilter';
@@ -9,8 +9,10 @@ import CategoryFilter from '@/CategoryFilter/CategoryFilter';
 interface ApiBackUpPageProperties {
   handleSetFilteredCategory: (filteredCategory: ArtPieceType[]) => void;
   filteredCategory: ArtPieceType[];
-  activeCategory: string;
-  handleSetActiveCategory: (activeCategory: string) => void;
+  activeCategory: ActiveCategory;
+  handleSetActiveCategory: (activeCategory: ActiveCategory) => void;
+  previewOption: PreviewOption;
+  likedArtPieces: string[];
 }
 
 /////// ONLY PREVIEWS VISIBLE HERE WHEN ON API ROUTE ///////
@@ -20,6 +22,8 @@ export default function ApiBackUpPage({
   filteredCategory,
   handleSetActiveCategory,
   activeCategory,
+  previewOption,
+  likedArtPieces,
 }: ApiBackUpPageProperties) {
   return (
     <section
@@ -38,7 +42,11 @@ export default function ApiBackUpPage({
         handleSetActiveCategory={handleSetActiveCategory}
         handleSetFilteredCategory={handleSetFilteredCategory}
       />
-      <ArtPiecesPreview filteredCategory={filteredCategory} />
+      <ArtPiecesPreview
+        previewOption={previewOption}
+        likedArtPieces={likedArtPieces}
+        filteredCategory={filteredCategory}
+      />
     </section>
   );
 }

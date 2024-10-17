@@ -1,7 +1,7 @@
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
-import { ArtPieceType } from 'pages/_app';
+import { ArtPieceType } from 'types/types';
 
 import ShareButtons from './ShareButtons';
 
