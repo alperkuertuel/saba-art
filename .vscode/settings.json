@@ -1,8 +1,0 @@
-{
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit"
-  },
-  "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#391b0e"
-  }
-}
