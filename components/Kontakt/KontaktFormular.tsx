@@ -37,7 +37,7 @@ export default function KontaktFormular() {
       />
       <label htmlFor="message" className="sr-only"></label>
       <textarea
-        className="rounded-lg border border-tertiary-color bg-primary-color p-2 text-font-color outline-none"
+        className="my-4 rounded-lg border border-tertiary-color bg-primary-color p-2 text-font-color outline-none"
         name="message"
         maxLength={500}
         id="message"

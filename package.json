@@ -6,6 +6,7 @@
     "setup": "pnpm clean && pnpm i",
     "clean": "rm -rf node_modules && rm -rf .next",
     "dev": "next dev --turbo",
+    "dev-email": "email dev --dir components/Emails",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
