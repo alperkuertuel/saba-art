@@ -2,8 +2,8 @@ import Head from 'next/head';
 
 import FooterComponent from '@/Footer/Footer';
 import Header from '@/Header/Header';
-import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 import KontaktFormular from '@/Kontakt/KontaktFormular';
+import ScrollUp from '@/ScrollUpButton/ScrollUpButton';
 
 interface PressPageProperties {
   isDarkMode: boolean;

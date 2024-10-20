@@ -1,12 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession } from 'next-auth/next';
-import { ArtPieceType } from 'types/types';
-
-import { isAdmin } from '@/utils/utils';
 
 import ArtPiece from '../../db/art-piece-modal';
 import databaseConnect from '../../db/connect';
-import { authOptions } from './auth/[...nextauth]';
 
 export const config = {
   api: {

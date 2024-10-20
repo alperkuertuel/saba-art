@@ -1,17 +1,54 @@
+import '../styles/global.css';
+
+import { useState } from 'react';
+
 import Button from '@/Button/Button';
 
 export default function KontaktFormular() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const data = new FormData(form);
-    const formData = Object.fromEntries(data);
-    console.log(formData);
+    try {
+      const response = await fetch('/api/emails/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+      setSuccess(true);
+      setError(null);
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error_) {
+      console.error(error_);
+      setError('Es ist etwas schief gelaufen. Probiere es später noch einmal.');
+      setSuccess(false);
+    }
   }
+
+  function handleChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
+
   return (
     <form
+      className="mx-auto my-4 flex max-w-lg flex-col gap-2"
       onSubmit={handleSubmit}
-      className="flex flex-col gap-2 my-4 mx-auto max-w-lg"
     >
       <label htmlFor="name">Name:</label>
       <input
@@ -22,20 +59,24 @@ export default function KontaktFormular() {
         minLength={3}
         maxLength={100}
         autoComplete="name"
+        value={formData.name}
+        onChange={handleChange}
         required
       />
       <label htmlFor="email">E-Mail:</label>
       <input
         className="w-auto border-b border-tertiary-color bg-primary-color"
-        type="text"
+        type="email"
         id="email"
         name="email"
         minLength={3}
         maxLength={100}
         autoComplete="email"
+        value={formData.email}
+        onChange={handleChange}
         required
       />
-      <label htmlFor="message" className="sr-only"></label>
+      <label htmlFor="message">Message:</label>
       <textarea
         className="my-4 rounded-lg border border-tertiary-color bg-primary-color p-2 text-font-color outline-none"
         name="message"
@@ -43,10 +84,19 @@ export default function KontaktFormular() {
         id="message"
         cols={30}
         rows={5}
-      ></textarea>
-      <Button variant="main" size="base">
+        value={formData.message}
+        onChange={handleChange}
+        required
+      />
+      <Button variant="main" size="base" type="submit">
         Versenden
       </Button>
+      {error && <p className="mt-2 text-red-500">{error}</p>}
+      {success && (
+        <p className="mt-2 text-emerald-600">
+          Deine E-Mail wurde erfolgreich versendet!
+        </p>
+      )}
     </form>
   );
 }

@@ -1,15 +1,47 @@
-import { Button, Html } from '@react-email/components';
-import * as React from 'react';
+import 'styles/global.css';
 
-export default function KontaktEmail() {
+import { Heading,Tailwind } from '@react-email/components';
+
+interface KontaktEmailProps {
+  name: string;
+  email: string;
+  message: string;
+}
+
+export default function KontaktEmail({
+  name,
+  email,
+  message,
+}: KontaktEmailProps) {
   return (
-    <Html>
-      <Button
-        href="https://example.com"
-        style={{ background: '#000', color: '#fff', padding: '12px 20px' }}
+    <Tailwind
+      config={{
+        theme: {
+          extend: {
+            colors: {
+              'font-color': 'var(--font-color)',
+              'primary-color': 'var(--primary-color)',
+              'secondary-color': 'var(--secondary-color)',
+              'tertiary-color': 'var(--tertiary-color)',
+              'cool-color': 'var(--cool-color)',
+              'box-color': 'var(--box-color)',
+            },
+            boxShadow: {
+              'box-style':
+                '0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)',
+            },
+          },
+        },
+      }}
+    >
+      <Heading
+        as="h1"
+        className="m-0 mt-[8px] text-[36px] font-semibold leading-[36px] text-gray-900"
       >
-        Click me
-      </Button>
-    </Html>
+        <a href={`mailto:${email}`}>{name}</a>
+      </Heading>
+      <p className="text-[16px] leading-[24px] text-gray-500">{message}</p>
+      <a href="https://www.saba-art.com">saba-art.com</a>
+    </Tailwind>
   );
 }
