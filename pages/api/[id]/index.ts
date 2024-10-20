@@ -47,6 +47,28 @@ export default async function handler(
   }
 
   switch (request.method) {
+    case 'POST': {
+      if (!session) {
+        return response.status(401).json({
+          message: '401 Unauthorized: You are not authorized!',
+        });
+      }
+      try {
+        if (!isAdmin(session)) {
+          return response.status(403).json({
+            message:
+              '403 FORBIDDEN: You do not have permission to perform this action.',
+          });
+        }
+        const newArtPieceData: ArtPieceType = request.body as ArtPieceType;
+        await ArtPiece.create(newArtPieceData);
+        return response.status(201).json(newArtPieceData);
+      } catch (error) {
+        console.error('Error:', error);
+        return response.status(500).json({ error: 'Error adding art piece!' });
+      }
+    }
+
     case 'PATCH': {
       try {
         if (!isAdmin(session)) {
