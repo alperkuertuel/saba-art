@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Resend } from 'resend';
 
-import KontaktEmail from '@/Emails/KontaktEmail';
+import KontaktEmail from '@/emails/KontaktEmail';
 import { KontaktFormularProperties } from '@/Kontakt/KontaktFormular';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
