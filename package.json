@@ -23,7 +23,7 @@
     "@testing-library/jest-dom": "^6.6.2",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.4.3",
-    "@types/node": "^20.15.1",
+    "@types/node": "^20.16.13",
     "@types/react": "^18.3.10",
     "@typescript-eslint/eslint-plugin": "^8.10.0",
     "@typescript-eslint/parser": "^8.10.0",
