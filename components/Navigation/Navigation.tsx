@@ -63,6 +63,7 @@ export default function Navigation({
         ))}
         <li className="size-full text-center">
           <button
+            aria-label="dark mode switch"
             className="ease size-full px-3 py-2 transition-colors duration-200 hover:bg-secondary-color"
             onClick={() => handleToggleDarkMode(isDarkMode)}
           >
