@@ -28,7 +28,7 @@ const navItems: NavigationItems = [
   { href: '/', label: 'Home' },
   { href: '/gallery', label: 'Galerie' },
   { href: '/press', label: 'Presse' },
-  // TODO: { href: '/contact', label: 'Kontakt' },
+  { href: '/contact', label: 'Kontakt' },
 ];
 
 export default function Navigation({
@@ -63,6 +63,7 @@ export default function Navigation({
         ))}
         <li className="size-full text-center">
           <button
+            aria-label="dark mode switch"
             className="ease size-full px-3 py-2 transition-colors duration-200 hover:bg-secondary-color"
             onClick={() => handleToggleDarkMode(isDarkMode)}
           >

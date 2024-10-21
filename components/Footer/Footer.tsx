@@ -18,6 +18,9 @@ export default function Footer() {
             <Link href="/privacy-policy">Datenschutz</Link>
           </li>
           <li>
+            <Link href="/contact">Kontakt</Link>
+          </li>
+          <li>
             {session && session.user.role === 'Admin' ? (
               <button
                 className="text-font-color"

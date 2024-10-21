@@ -2,6 +2,7 @@ import React from 'react';
 
 interface ButtonProps {
   variant?: 'main' | 'categoryFilter' | 'danger';
+  type?: 'submit';
   size?: 'small' | 'base' | 'large';
   children: React.ReactNode;
   additionalStyles?: string;
